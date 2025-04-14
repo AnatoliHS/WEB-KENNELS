@@ -18,6 +18,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(sectionizePlugin);
 
   eleventyConfig.addTemplateFormats("md");
+  
   eleventyConfig.addLayoutAlias("default", "default.njk");
 
   eleventyConfig.addGlobalData("layout", "default");

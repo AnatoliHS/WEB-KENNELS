@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include "component/head.njk" %}
+    <body style="--maxw-md: 100vw;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    --m: auto;
+    --size: 1.2rem;
+    min-height: 100vh;
+    --ai: center;
+    --jc: center; 
+    --d: flex; 
+    --fd: column;">
+    
+      <main style="flex-grow: 1;">
+      {{ content | safe }}
+      </main>
+      {% include "component/footer.njk" %}
+      {% include "component/scripts.njk" %}
+    </body>
+  </html>
+</html>

@@ -12,30 +12,36 @@
 
         .header {
             display: flex;
-            width: 100%;
-            justify-content: flex-start;
+            width: 100vw;
+            justify-content: center;
             align-items: center;
-            background-color: #ECE2DC;
-            padding: 10px 20px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+            padding: 1px 10px;
+          
             
         }
+        .line {
+				flex-grow: 1;
+				height: 2px;
+				background-color: black;
+                
+			}
     </style>
 </head>
 <body>
+
     <div class="header">
     
-        <div class="logo" style="--d: flex; --ai: center; --jc: flex-start;">
-        <img style="--h: 60px; --mr: 10px;" src="/assets/logo.png" alt="Logo">
-        <div style="--size: 21px; --weight: bold; --ff: 'Times New Roman', Times, serif; --ls: 0.05em; --size-lg: 25px; --ls-lg: 0.3em;">
-        INSPECTION SEASON
-        <div style="--size: 13px; --weight: bold; --ff: 'Times New Roman', Times, serif; --ls: 0.05em; --size-lg: 18px; --ls-lg: 0.2em;"> 
-        Inspect with Confidence Every Season
-        </div>
-        </div>
+        <div class="logo" style="--d: flex; --ai: center; --jc: center;  text-align: center; padding-left: 10px;">
+        <!--<img style="--h: 60px; --mr: 10px;" src="/assets/logo.png" alt="Logo">-->
+        
+        <div style="--size: 21px; --weight: bold; --mt: 40px; --ff: 'Times New Roman', Times, serif; --ls: 0.1em; --size-lg: 70px; --ls-lg: 0.1em;">
+        <span style="color: #b30000;">WHIMIS</span>Wise
+        
         
         </div>
        
+        </div>
+        
        
     </div>
 

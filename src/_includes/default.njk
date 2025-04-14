@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   {% include "component/head.njk" %}
-    <body style="--maxw-md: 110rem;
-    --m: auto;
-    --size: 1.2rem;
-    min-height: 100vh;
-    --ai: center;
-    --jc: center; 
-    --d: flex; 
-    --fd: column;">
+    <body style="--maxw-md: 100vw; 
+        background: linear-gradient(to bottom, #becef4, #ede8f5);
+        background-size: cover; 
+        background-attachment: fixed; 
+        overflow-x: hidden;
+        overflow-y: scroll;
+        --m: auto;
+        --size: 1.2rem;
+        min-height: 100vh;
+        --ai: center;
+        --jc: center; 
+        --d: flex; 
+        --fd: column;">
       {% include "component/navbar.njk" %}
       {% include "component/header.njk" %}
 
