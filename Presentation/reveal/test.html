@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #e4e5e6, #00416a);
+            background-attachment: fixed;
+            background-size: cover;  
+            
+             
+        }
+        .quiz-container {
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            max-width: 900px;
+            margin: auto;
+            background-color: rgba(242, 242, 242, 0.8);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+            display: block;
+        }
+
+        .info-box3 {
+				width: 90%; /* Adjust width as needed */
+				background-color: rgba(255, 204, 102, 0.8); /* Semi-transparent white */
+				padding: 15px; /* Ensure even spacing inside the box */
+				border-radius: 10px;
+				border: 1px solid black;
+				box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+				text-align: left;
+				font-size: 18px;
+				list-style-position: inside; /* Ensures bullets align properly */
+				
+			}
+        .option {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 25px;
+            color: black;
+        }
+        .quiz-btn {
+            margin-top: 30px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 25px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+        }
+        .quiz-btn:hover {
+            background-color: #00ccff;
+        }
+        input[type="radio"] {
+            transform: scale(2);
+            margin-right: 20px;
+        }
+
+        .line {
+				flex-grow: 1;
+				height: 2px;
+				background-color: black;
+			}
+            .title-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 20px;
+				gap: 10px; /* Space between lines and box */
+					}
+
+			.title-box {
+				padding: 10px 20px;
+				border: 2px solid black;
+				border-radius: 10px;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+				font-weight: bold;
+				text-align: center;
+				background-color: rgba(255, 255, 255, 0.3); /* Light transparency */
+				color: #631314;
+			}
+
+            .result-score {
+                font-size: 50px; /* Increase the font size */
+                font-weight: bold;
+                color: #333; /* Dark color for contrast */
+                text-align: center;
+                margin-top: 20px;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="title-container">
+        <span class="line"></span>
+        <p class="title-box" style="color: #bb1414; font-size: 40px;">FINAL ASSESSMENT</p>
+        <span class="line"></span>
+        </div>
+
+    <div id="quiz"></div>
+    <script>
+        const questions = [
+            {
+                question: "What does WHMIS stand for?",
+                options: [
+                    "Workplace Hazardous Materials Information System",
+                    "World Health Management and Injury System",
+                    "Workers’ Hazard Monitoring and Identification Scheme"
+                ],
+                answer: "A"
+            },
+            {
+                question: "Employers must keep an SDS (Safety Data Sheet) for each hazardous product.",
+                options: ["True", "False"],
+                answer: "A"
+            },
+            {
+                question: " Who is responsible for providing WHMIS training to workers?",
+                options: [
+                    "The workers themselves",
+                    "The employer",
+                    "The patients"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which WHMIS hazard type is indicated by the Health Hazard pictogram? ",
+                options: [
+                    "Acute toxicity causing immediate poisoning ",
+                    "Chronic health effects like cancer or organ damage",
+                    "Radioactivity"
+                ],
+                answer: "B",
+                image: "/test/assets/health_hazard.png"
+            },
+            {
+                question: "What does the WHMIS pictogram with a flame symbolize?",
+                options: [
+                    "Corrosive materials",
+                    "Biohazardous infectious materials",
+                    "Flammable or combustible substances"
+                ],
+                answer: "C",
+                image: "/test/assets/flame.png"
+            },
+            {
+                question: "What does the Corrosion pictogram represent?",
+                options: [
+                    "Products that may explode if heated",
+                    "Substances that cause skin burns and eye damage",
+                    "Products that release toxic fumes"
+                ],
+                answer: "B",
+                image: "/test/assets/corrosion.png"
+            },
+            {
+                question: "Pictograms on a WHMIS label will always be red diamonds with black symbols inside.",
+                options: ["True", "False"],
+                answer: "A"
+            },
+            {
+                question: "Which information is NOT required on a WHMIS supplier label?",
+                options: [
+                    "Product name",
+                    "Expiration date of the product",
+                    "Precautionary statements"
+                ],
+                answer: "B"
+            },
+            {
+                question: "You have a spray bottle with no label that you suspect contains disinfectant. What should you do?",
+                options: [
+                    "Smell it to identify it.",
+                    "Assume it’s water and use it freely.",
+                    "Do not use it until it’s identified and properly labeled."
+                ],
+                answer: "C"
+            },
+            {
+                question: "You want to know if a certain chemical in your clinic can react dangerously with another. Which SDS section is most likely to have that info?",
+                options: [
+                    "Section 5 – Fire-fighting Measures",
+                    "Section 10 – Stability and Reactivity",
+                    "Section 15 – Regulatory Information"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Which of the following would likely REQUIRE a workplace label in a dental office?",
+                options: [
+                    "A sealed bottle of cavity liner received from a supplier with its original label",
+                    "A secondary jar into which you’ve poured some monomer for immediate use and you use it all, then throw it out",
+                    "A small container where you’re storing some diluted bleach for use over the next week"
+                ],
+                answer: "C"
+            },
+            {
+                question: "What is the best method to reduce inhalation exposure to chemical fumes?",
+                options: [
+                    "Wearing a surgical mask at all times",
+                    "Opening a window for fresh air",
+                    "Using local exhaust ventilation (LEV) or working under a fume hood"
+                ],
+                answer: "C"
+            },
+            {
+                question: "Safety Data Sheets must be updated by the supplier at least every 3 years under WHMIS 2015.",
+                options: ["True", "False"],
+                answer: "B"
+            },
+            {
+                question: "Which type of gloves generally provide the best protection against a wide range of dental chemicals like disinfectants and solvents?",
+                options: [
+                    "Cotton gloves",
+                    "Nitrile gloves",
+                    "Latex gloves"
+                ],
+                answer: "B"
+            },
+            {
+                question: "Where is the best place to store chemicals?",
+                options: [
+                    "In a dedicated, labeled chemical storage cabinet away from patient treatment and food areas",
+                    "In the same cabinets as food and beverages for convenience",
+                    "On any open shelf as long as the containers are sealed tightly"
+                ],
+                answer: "A"
+            },
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        function loadQuestion() {
+            const quizDiv = document.getElementById("quiz");
+            quizDiv.innerHTML = "";
+            
+            let questionObj = questions[currentQuestion];
+            let questionHTML = `<div class='quiz-container'>
+                                    <p class='info-box3' style='font-size: 30px; color: black;'>${questionObj.question}</p>`;
+            
+                                    if (questionObj.image) {
+        questionHTML += `<img src='${questionObj.image}' alt='WHMIS pictogram' style='width: 150px; display: block; margin: 10px auto;'>`;
+    }
+            questionObj.options.forEach((option, index) => {
+                let optionLetter = String.fromCharCode(65 + index);
+                questionHTML += `<div class='option'>
+                                    <input type='radio' name='answer' value='${optionLetter}' id='q${currentQuestion}${optionLetter}'>
+                                    <label for='q${currentQuestion}${optionLetter}'>${optionLetter}. ${option}</label>
+                                 </div>`;
+            });
+            
+            let buttonText = currentQuestion === questions.length - 1 ? "Submit" : "Next";
+            questionHTML += `<button class='quiz-btn' onclick='nextQuestion()'>${buttonText}</button>`;
+            questionHTML += "</div>";
+            quizDiv.innerHTML = questionHTML;
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector("input[name='answer']:checked");
+            if (!selected) {
+                alert("Please select an answer!");
+                return;
+            }
+            userAnswers.push(selected.value);
+            if (selected.value === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const quizDiv = document.getElementById("quiz");
+            let percentage = (score / questions.length) * 100;
+            
+            let resultHTML = `<div class='quiz-container'>
+                                <p class='result-score'>Your Score: ${percentage.toFixed(2)}%</p>`;
+
+            if (percentage >= 80) {
+                resultHTML += `<p style='font-size: 30px; color: green; text-align: center;'>Congratulations! You have passed the test.</p>
+                            <button class='quiz-btn' onclick='claimCertificate()'>Claim Your Certificate</button>`;
+            } else {
+                resultHTML += `<p style='font-size: 30px; color: red; text-align: center;'>Sorry, please retry the test.</p>
+                            <button class='quiz-btn' onclick='restartQuiz()'>Re-Try</button>`;
+            }
+
+            resultHTML += "</div>";
+            quizDiv.innerHTML = resultHTML;
+                }
+                
+                function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            loadQuestion();
+        }
+
+            function claimCertificate() {
+                alert("Certificate generation not implemented yet!");
+            }
+
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>

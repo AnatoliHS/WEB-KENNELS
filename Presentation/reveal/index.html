@@ -1,0 +1,3404 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.content{
+				width: calc(100% - 20px);
+				max-width: 800px; /* Adjust as needed */
+				padding: 20px 5rem;
+				background: linear-gradient(to bottom, #f2f2f2, #ffffff); 
+				border-radius: 5px;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+				margin: 0 auto; 
+				margin-bottom: 10px;
+				font-size: 15px;
+				color: black;
+				text-align: left;
+			}
+
+			.content2 {
+				width: calc(100% - 20px);
+				max-width: 800px; /* Adjust as needed */
+				padding: 20px 5rem;
+				background-color: rgba(255, 255, 255, 0.9); 
+				border-radius: 5px;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+				margin: 0 auto; 
+				margin-bottom: 10px;
+				font-size: 15px;
+				color: black;
+				display: flex;  /* Aligns children in a row */
+				align-items: center; /* Centers them vertically */
+				justify-content: space-between; /* Pushes them apart */
+			}
+
+			.content3{
+					width: calc(100% - 20px);
+					max-width: 800px;
+					padding: 20px 5rem;
+					background-color: rgba(255, 255, 255, 0.9);
+					border-radius: 5px;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					margin: 0 auto;
+					margin-bottom: 10px;
+					font-size: 15px;
+					color: black;
+					text-align: left;
+				}
+				 .content4 {
+					width: calc(100% - 20px);
+					max-width: 800px;
+					padding: 20px 5rem;
+					background-color: rgba(255, 255, 255, 0.9);
+					border-radius: 5px;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					margin: 0 auto;
+					margin-bottom: 10px;
+					font-size: 15px;
+					color: black;
+					text-align: left;
+				}
+
+				.content5{
+				width: 33.33%;
+				max-width: none; /* Adjust as needed */
+				padding: 20px 5rem;
+				background-color: rgba(255, 255, 255, 0.9); 
+				border-radius: 5px;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+				margin: 0 auto; 
+				margin-bottom: 10px;
+				font-size: 15px;
+				color: black;
+				text-align: left;
+			}
+
+			.flex-container {
+				display: flex;
+				gap: 20px; /* Adds space between the two sections */
+				justify-content: space-between; /* Ensures even spacing */
+				max-width: 90%; /* Makes the container wider */
+    			margin: 0 auto; /* Centers the container */
+			}
+
+			.duties-section {
+				flex: 1; /* Makes both sections take equal space */
+				padding: 10px;
+				border: 1px solid #000; /* Optional: Adds a border to each section */
+				border-radius: 5px;
+			}
+
+
+
+			.text-container {
+				width: 55%; /* Adjust width of the text container */
+			}
+
+			.title-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 20px;
+				gap: 10px; /* Space between lines and box */
+					}
+
+			.title-box {
+				padding: 10px 20px;
+				border: 2px solid black;
+				border-radius: 10px;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+				font-weight: bold;
+				text-align: center;
+				background-color: rgba(255, 255, 255, 0.3); /* Light transparency */
+				color: #631314;
+			}
+
+			.title-box2 {
+				display: inline-block;
+				padding: 10px 20px;
+				border: 2px solid black;
+				background-color: black;
+				border-radius: 10px;
+				font-weight: bold;
+				text-align: left;		
+				font-size: 25px;
+				white-space: nowrap;
+				color: white;
+			}
+
+			.title-box3 {				
+				padding: 10px 20px;
+				border: 1px solid black;
+				background-color: #0c8499;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+				border-radius: 10px;
+				font-weight: bold;
+				text-align: left;			
+				font-size: 30px;
+				white-space: nowrap;
+				color: white;
+				margin-left: 0; 
+			}
+
+			.line {
+				flex-grow: 1;
+				height: 2px;
+				background-color: black;
+			}
+
+			.image-container {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center; /* Center images */
+				gap: 15px; /* Space between images */
+				margin-top: 20px; /* Space below title */
+			}
+
+			.image-container img {
+				width: 80px;  /* Adjust as needed */
+				height: 80px;
+				
+			}
+
+			.info-box {
+				width: 40%; /* Adjust width as needed */
+				background-color: rgba(255, 204, 102, 0.8); /* Semi-transparent white */
+				padding: 15px;
+				border-radius: 10px;
+				border: 1px solid black;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+				text-align: left;
+				font-size: 18px;
+			}
+
+			.info-box2 {
+				width: 90%; /* Adjust width as needed */
+				background-color: rgba(255, 204, 102, 0.8); /* Semi-transparent white */
+				padding-left: 30px;
+				padding-bottom: 20px;
+				border-radius: 10px;
+				border: 1px solid black;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+				text-align: left;
+				font-size: 18px;
+			}
+
+			.info-box3 {
+				width: 90%; /* Adjust width as needed */
+				background-color: rgba(255, 204, 102, 0.8); /* Semi-transparent white */
+				padding: 15px; /* Ensure even spacing inside the box */
+				border-radius: 10px;
+				border: 1px solid black;
+				box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+				text-align: left;
+				font-size: 18px;
+				list-style-position: inside; /* Ensures bullets align properly */
+				
+			}
+
+			.info-box3 li {
+				padding: 5px 0; /* Ensures even spacing between items */
+				
+			}
+
+			
+
+			.container3 {
+				display: flex; /* Use flexbox to align the boxes side by side */
+				justify-content: center; /* Center the boxes horizontally */
+				align-items: center; /* Align the boxes vertically */
+				gap: 20px; /* Space between the boxes */
+				margin: 20px auto; /* Center the entire container with margin */
+				max-width: 1100px; /* Set a max width for the container */
+				}
+			
+
+			.box {
+				width: 45%; /* Each box takes 45% of the container's width */
+				background-color: #0c8499; /* Light background for contrast */
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); /* Add shadow for depth */
+				text-align: left; /* Align text to the left inside the box */
+				font-size: 15px;
+				}
+
+			.box h3 {
+				text-align: center; /* Center the heading text */
+				font-size: 22px;
+				margin-bottom: 15px;
+				}
+
+			ul {
+				padding-left: 20px; /* Indent the list items */
+				}
+
+				.hazard-image {
+					width: 150px; /* Adjust as needed */
+					height: auto;
+				}
+
+				.hazard-image2 {
+					width: 90px; /* Adjust as needed */
+					height: auto;
+				}
+
+				.hazard-text {
+					font-size: 18px;
+					text-align: left;
+					max-width: 600px;
+					color:black;
+				}
+
+				.hazard-text-b {
+					font-size: 18px;
+					text-align: left;
+					max-width: 600px;
+				}
+
+				.hazard-text2 {
+					font-size: 14px;
+					text-align: left;
+					max-width: 600px;
+					color:black;
+				}
+
+				.image-text-container, .content4 {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					max-width: 800px;
+					margin: 20px auto;
+					gap: 20px;
+				}
+
+				.image-text-container2 {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					max-width: 800px;
+					margin: 4px auto;
+					gap: 20px;
+					border-radius: 5px;
+					border: 1.5px solid black;
+					box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.8);
+					background: linear-gradient(to bottom, #f2f2f2, #ffffff);
+					
+				}
+
+				.hazard-title-container {
+					background-color: orange;
+					border-radius: 5px;
+					border: 1px solid black;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					padding: 10px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 30%; /* Adjusts width to content */
+					margin: 0 auto; /* Centers the container */
+				}
+
+				.hazard-title-container2 {
+					padding: 10px;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 70%; /* Adjusts width to content */
+					margin: 0 auto; /* Centers the container */
+				}
+
+				.hazard-title-container3 {
+					background-color: #7575a3;
+					border-radius: 5px;
+					border: 1px solid black;
+					padding: 10px;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 30%; /* Adjusts width to content */
+					margin: 0 auto; /* Centers the container */
+				}
+
+				.hazard-title-container4 {
+					padding: 10px;
+					background-color: rgba(255, 204, 102, 0.8);
+					border-radius: 5px;
+					border: 1px solid black;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 60%; /* Adjusts width to content */
+					margin: 0 auto; /* Centers the container */
+				}
+
+				.hazard-title {
+					font-size: 24px;
+					font-weight: bold;
+					text-align: center; /* Centers text inside the title */
+					display: flex;
+					align-items: center; /* Centers title vertically */
+					justify-content: center; /* Centers text horizontally inside */
+					width: 40%;
+					height: 100%; /* Ensures it takes full height of the div */
+				}
+
+				.hazard-list {
+					list-style-type: disc;
+					font-size: 18px;
+					text-align: left;
+					max-width: 60%;
+				}
+
+				.whmis-label {
+					width: 500px;
+					border: 1px solid black;
+					border-radius: 10px;
+					padding: 15px;
+					background-color: #f2f2f2;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					font-family: Arial, sans-serif;
+					font-size: 14px;
+					margin: 0 auto;
+					text-align: left;
+					color: black;
+				}
+
+				.label-section {
+					display: flex;
+					align-items: center;  /* Align items vertically in the center */
+					
+					margin: 10px;
+					
+				}
+
+				.circle {
+					width: 40px;  /* Increased size for better visibility */
+					height: 40px; /* Increased size */
+					background-color: #b30000;
+					color: white;
+					text-align: center;
+					border-radius: 50%;
+					font-weight: bold;
+					margin-right: 25px; /* Space between circle and text */
+					font-size: 18px; /* Larger text */
+					line-height: 40px;
+					position: relative;
+					flex-shrink: 0;  /* Prevent shrinking of the circle */
+				}
+
+				.circle:hover::after {
+					content: attr(data-tooltip);
+					position: absolute;
+					background-color: black;
+					color: white;
+					padding: 4px;
+					border-radius: 4px;
+					top: -25px;
+					left: 50%;
+					transform: translateX(-50%);
+					white-space: nowrap;
+					font-size: 12px;
+				}
+
+				.pictogram-container {
+					display: flex;
+					gap: 10px; /* Space between images */
+					border: 1px solid black;
+					border-radius: 10px;
+
+				}
+
+				.pictogram {
+					width: 100px;  /* Adjusted size for better visibility */
+					height: 100px; /* Adjusted size */
+				}
+
+				.danger {
+					color: red;
+					font-weight: bold;
+					font-size: 20px;
+				}
+
+				/* Adding responsive font size for content */
+				.label-section > div {
+					font-size: 12px;
+					margin-left: 70px; /* Ensure proper spacing */
+				}
+
+
+
+				/* Adding responsive font size for content */
+				.label-section > div {
+					font-size: 12px;
+					margin-left: 10px; /* Ensure proper spacing */
+				}
+
+				.container-section {
+					display: flex;
+					justify-content: space-between; /* Evenly spaces boxes */
+					width: 100%; /* Adjust width as needed */
+					max-width: 1200px; /* Prevents it from stretching too wide */
+					margin: 0 auto; /* Centers the container */
+					gap: 20px; /* Adds space between boxes */
+				}
+
+				.container-section2 {
+					flex: 1 1 calc(33.33% - 20px); /* 1/3 width minus gap space */
+    				max-width: 300px; /* Prevents excessive stretching */
+				}
+
+				.title-box4 {
+					background-color: #7575a3;
+					color: white;
+					text-align: center;
+					font-weight: bold;
+					padding: 10px;
+					border-radius: 5px;
+					font-size: 18px;
+				}
+
+				.box-section {
+					flex: 1; /* Ensures all boxes take equal space */
+					background-color: #f2f2f2;
+					border: 1px solid black;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					border-radius: 5px;
+					padding: 15px;
+					text-align: left;
+					height: 500px; /* Adjust height as needed */
+					display: flex;
+					flex-direction: column; /* Stack children vertically */
+				}
+
+				.box-section2 {
+					
+					background-color: #f2f2f2;
+					border: 1px solid black;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+					border-radius: 5px;
+					padding: 15px;
+					text-align: left;
+					height: 500px; /* Adjust height as needed */
+					display: flex;
+					flex-direction: column; /* Stack children vertically */
+				}
+
+				.text-content-section {
+					flex-grow: 1; /* Ensures the text takes remaining space */
+					padding: 10px;
+					font-size: 14px;
+					text-align: left;
+					color: black;
+				}
+
+				.text-content-section2 {
+					flex-grow: 1; /* Ensures the text takes remaining space */
+					padding: 10px;
+					font-size: 18px;
+					text-align: left;
+					color: black;
+					
+				}
+
+				.text-decor{
+					text-decoration: underline;
+    				font-style: italic;
+					font-size: 30px; 
+					color: white;
+					
+				}
+
+				.container-wrapper {
+					display: flex;
+					justify-content: flex-start; /* Aligns containers to the left */
+					flex-wrap: wrap; /* Allows multiple rows if needed */
+					gap: 20px; /* Space between sections */
+					width: 100%;
+				}
+
+				.quiz-container {
+					border: 1px solid #333;
+					padding: 20px;
+					border-radius: 10px;
+					text-align: left;
+					max-width: 900px;
+					margin: auto;
+					background-color: rgba(242, 242, 242, 0.8);
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+				}
+				.option {
+					display: flex;
+					align-items: center;
+					margin: 5px 0;
+					font-size: 25px;
+					color: black;
+				}
+				.quiz-btn {
+					margin-top: 30px;
+					padding: 5px 10px;
+					cursor: pointer;
+					font-size: 25px;
+					border-radius: 10px;
+					box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+				}
+
+				.quiz-btn:hover {
+					background-color: #00ccff;
+				}
+				
+				input[type="radio"] {
+					transform: scale(2); /* Increase size */
+					margin-right: 20px;
+				}
+
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<script>
+					window.onload = function() {
+						Reveal.initialize();
+					};
+				
+					function checkAnswer(questionName, correctAnswer, resultId) {
+						const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+						const result = document.getElementById(resultId);
+				
+						if (!selected) {
+							result.textContent = "Please select an answer!";
+							result.style.color = "red";
+						} else if (selected.value === correctAnswer) {
+							result.textContent = "Correct!";
+							result.style.color = "green";
+						} else {
+							result.textContent = "Incorrect. Try again!";
+							result.style.color = "red";
+						}
+					}
+
+
+					
+				</script>
+	
+ <!-- Slide number 1 -->				
+
+				<section data-background-gradient="linear-gradient(to bottom, #17b2c3, #283b95)">
+					<div class="title-container">
+						<span class="line"></span>
+						<div class="title-box">WHIMIS FOR CLINICAL SETTING</div>
+						<span class="line"></span>
+					</div>
+
+					<div class="image-container">
+						<img src="/test/assets/environment.png" alt="Image 1">
+						<img src="/test/assets/corrosion.png" alt="Image 2">
+						<img src="/test/assets/exclamation_mark.png" alt="Image 3">
+						<img src="/test/assets/flame_circle.png" alt="Image 4">
+						<img src="/test/assets/skull_crossbones.png" alt="Image 5">
+						<img src="/test/assets/flame.png" alt="Image 6">
+						<img src="/test/assets/health_hazard.png" alt="Image 7">
+						<img src="/test/assets/gas_cylinder.png" alt="Image 8">
+						<img src="/test/assets/exploding_bomb.png" alt="Image 9">
+						<img src="/test/assets/biohazardous.png" alt="Image 9">
+					</div>
+
+				</section>
+
+<!-- Slide number 2a -->
+
+				<section data-background-gradient="linear-gradient(to bottom, #32d5e7, #283b95)">
+					<section><div class="title-container">
+						<span class="line"></span>
+						<div class="title-box">What is WHIMIS</div>
+						<span class="line"></span>
+					</div>
+				</section>
+					<section>
+					<div class="title-container">
+						
+						<div class="title-box">What is WHIMIS</div>
+						
+					</div>
+					<div class="content">
+							<p class="title-box2">WHMIS legislation includes:</p>
+
+							<ul style="text-align: left;">
+								<li>
+									Workplace safety, including WHMIS, is a shared responsibility between federal and provincial governments. WHMIS 2015 (the current system) is implemented through complementary federal rules (which focus on suppliers) and provincial rules (which focus on employers and workplaces). In Ontario, WHMIS requirements are enforced under the Occupational Health and Safety Act (OHSA) and the WHMIS Regulation (R.R.O. 1990, Reg. 860).
+								</li>
+								<br>
+								<li>
+									Federal WHMIS requirements: Under federal law (the Hazardous Products Act), suppliers (manufacturers, importers, distributors) of hazardous products must classify their products and provide proper labels and SDSs when selling or importing for workplace use.
+								</li>
+								<br>
+								<li>
+									Provincial (Ontario) WHMIS requirements: Under Ontario’s OHSA and Reg. 860, employers have specific duties to protect workers from hazardous products. In general, Ontario employers must: 
+								</li>
+								<br>
+								<ul class="info-box2" style=" font-size: 14px; font-style: italic;">
+									<br>
+									<li>
+										Ensure identification of hazardous products: Every hazardous chemical or material in the workplace must be clearly identified (usually by an appropriate WHMIS label).
+									</li>
+									<br>
+									<li>
+										Obtain and maintain SDSs: Employers must have an up-to-date Safety Data Sheet for each hazardous product and make SDSs readily accessible to workers.
+									</li>
+									<br>
+									<li>
+										Provide education and training: Employers must develop a WHMIS program that educates workers on the hazards of products in their workplace and trains them on safe use, handling, storage, and emergency procedures.S
+									</li>
+								</ul>
+								<br>
+							</ul>
+            		
+					</div>
+					</section>
+
+<!-- Slide number 2b -->					
+
+					<section>
+						<div class="title-container">
+							
+							<div class="title-box">What is WHIMIS</div>
+							
+						</div>
+						<div class="content">
+							<p class="title-box2">What is the purpose of WHIMIS:</p>
+
+							<ul style="text-align: left;">
+								<li>Establishes rules for classifying hazardous products</li>
+								<br>
+								<li>Establishes the information that must be provided on labels and Safety Data Sheets (SDSs)</li>
+								<br>
+								<li>Requires suppliers to attach labels to hazardous products and provide SDSs to their customers</li>
+								<br>
+								<li>Requires employers to provide information to workers about hazardous products in the workplace</li>
+								<br>
+							</ul>
+            		
+					</div>
+					</section>
+
+<!-- Slide number 2c -->					
+
+					<section>
+						<div class="title-container">
+							
+							<div class="title-box">What is WHIMIS</div>
+							
+						</div>
+						<div class="content2">
+							<div class="text-container">
+								<p class="title-box2">What products are excluded from WHMIS:</p>
+						
+								<ul style="text-align: left;">
+									<li>Consumer products</li>
+									<br>
+									<li>Cosmetics, devices, drugs or foods</li>
+									<br>
+									<li>Explosives</li>
+									<br>
+									<li>Hazardous wastes</li>
+									<br>
+									<li>Manufactured articles</li>
+									<br>
+									<li>Nuclear substances</li>
+									<br>
+									<li>Pesticides (insecticides, herbicides, and fungicides)</li>
+									<br>
+									<li>Tobacco or tobacco products</li>
+									<br>
+									<li>Wood and wood products</li>
+									<br>
+								</ul>
+							</div>
+						
+							<div class="info-box">
+								<p>These products are not required to have a WHMIS label and SDS even though they may be hazardous.</p>
+								<p><strong>Your employer must train you on how to work safely with these products.</strong></p>
+							</div>
+						</div>
+					</section>
+
+
+					<section><div class="title-container">
+						<span class="line"></span>
+						<div class="title-box"> Responsibilities under WHIMIS</div>
+						<span class="line"></span>
+					</div>
+				</section>
+					<section>
+					<div class="title-container">
+						
+						<div class="title-box"> Responsibilities under WHIMIS</div>
+						
+					</div>
+					<div class="content">
+							<p class="title-box2">Employer:</p>
+							<p>In a dental clinic, the employer (or owner/manager) has the primary duty to establish and maintain a safe environment regarding hazardous materials. Under WHMIS in Ontario, key employer responsibilities include:</p>
+							<ul class="info-box3" style=" font-size: 14px; font-style: italic;">
+								<li>
+									Identify and Inventory Hazardous Products: Keep an up-to-date inventory of all hazardous chemicals and materials in the clinic (e.g., disinfectants, chemical cleaners, mercury, etc.)
+								</li>
+								
+								<li>
+									Obtain and Make Available SDSs: For every hazardous product in the clinic, obtain a current Safety Data Sheet from the supplier and keep it accessible (for example, in a binder or an electronic database that all staff can access).
+								</li>
+								
+								<li>
+									Provide Education and Training: Employers must develop a WHMIS education and training program for workers.
+								</li>
+								
+								<li>
+									Ensure Controlled Products Are Properly Labelled: Employers must not allow hazardous products to be used if they are not properly labelled.
+								</li>
+								
+								<li>
+									Implement Safe Work Practices and Controls: Employers need to establish procedures and controls to reduce the risk from hazardous materials.
+								</li>
+								
+								<li>
+									Consult and Review: In Ontario, employers should consult the Joint Health and Safety Committee or Health and Safety Representative (if applicable in the dental office) about the WHMIS training program and review the program’s effectiveness at least annually.
+								</li>
+								
+							</ul>
+					
+					</div>
+					</section>
+
+<!-- Slide number 3b -->
+
+					<section>
+						<div class="title-container">
+							
+							<div class="title-box"> Responsibilities under WHIMIS</div>
+							
+						</div>
+						<div class="content">
+								<p class="title-box2">Employee:</p>
+								<p>Worker (Employee) Responsibilities: Dental clinic staff also have responsibilities under WHMIS. Workers are not passive recipients of information – they must actively apply what they learn and follow safe practices. Key employee responsibilities include:</p>
+								<ul class="info-box3" style=" font-size: 14px; font-style: italic;">
+									<li>
+										Participate in Training: Workers must attend WHMIS training sessions provided by the employer and pay attention so they understand the hazards of products in the clinic.
+										Training is not a one-time event; workers should also participate in refreshers and new training whenever procedures or products change.
+									</li>
+									
+									<li>
+										Read and Follow Labels and SDSs: Before using any hazardous product (like a chemical disinfectant or a bottle of mercury capsule waste), workers should read the product’s label for hazard information and recommended precautions.
+									</li>
+									
+									<li>
+										Use Recommended Protective Measures: It is the worker’s responsibility to follow the safety procedures established by the employer.
+									</li>
+									
+									<li>
+										Handle and Store Materials Safely: Workers should take care when handling hazardous materials – use caution to avoid spills or exposure, do not mix chemicals unless instructed, keep containers closed when not in use, etc.
+									</li>
+									
+									<li>
+										Report Issues: If a worker finds a container with no label or an illegible label, or if they notice any hazard that isn’t properly controlled (like a leaking chemical container or broken ventilation), they should report it to their supervisor immediately.
+									</li>
+									
+									<li>
+										Respond to Emergencies as Trained: In the event of a spill, exposure, or other incident, workers must act according to their training.
+									</li>
+									
+								</ul>						
+						</div>
+						</section>
+
+<!-- Slide number QUIZ ONE -->						
+
+					<section data-auto-animate>
+						<div class="title-container">
+						<span class="line"></span>
+						<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+						<span class="line"></span>
+						</div>
+						</section>
+
+
+
+						<section data-auto-animate>
+							<div class="title-container">
+							
+							<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+							
+							</div>
+							
+							<div class="quiz-container">
+								<p class="info-box3" style="font-size: 30px; color: black;" id="question1">What does WHMIS stand for?</p>
+				
+								<div class="option">
+									<input type="radio" name="answer1" value="A" id="q1A">
+									<label for="q1A">A. Workplace Hazardous Materials Information System</label>
+								</div>
+								<div class="option">
+									<input type="radio" name="answer1" value="B" id="q1B">
+									<label for="q1B">B. World Health Management and Injury System</label>
+								</div>
+								<div class="option">
+									<input type="radio" name="answer1" value="C" id="q1C">
+									<label for="q1C">C. Workers’ Hazard Monitoring and Identification Scheme</label>
+								</div>
+				
+								<button class="quiz-btn" onclick="checkAnswer('answer1', 'A', 'result1')">Check Answer</button>
+								<p id="result1"></p>
+							</div>
+							
+						</section>
+
+						<section data-auto-animate>
+							<div class="title-container">
+							
+							<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+							
+							</div>
+							
+							<div class="quiz-container">
+								<p class="info-box3" style="font-size: 30px; color: black;" id="question2">Which of the following is NOT an element of WHMIS?</p>
+				
+								<div class="option">
+									<input type="radio" name="answer2" value="A" id="q2A">
+									<label for="q2A">A. Hazard classification of products</label>
+								</div>
+								<div class="option">
+									<input type="radio" name="answer2" value="B" id="q2B">
+									<label for="q2B">B. Standardized labelling of hazardous products</label>
+								</div>
+								<div class="option">
+									<input type="radio" name="answer2" value="C" id="q2C">
+									<label for="q2C">C. Mandatory weekly inspections by a government agent</label>
+								</div>
+								<div class="option">
+									<input type="radio" name="answer2" value="D" id="q2D">
+									<label for="q2D">D. Safety Data Sheets with detailed information</label>
+								</div>
+				
+								<button class="quiz-btn" onclick="checkAnswer('answer2', 'C', 'result2')">Check Answer</button>
+								<p id="result2"></p>
+							</div>
+							
+						</section>
+
+
+				</section>
+
+<!-- Slide number 4a -->
+				<section data-background-gradient="linear-gradient(to bottom, #2bb0ee, #f4ae71)">
+					<section><div class="title-container">
+						<span class="line"></span>
+						<div class="title-box"> Hazard Classification: Overview</div>
+						<span class="line"></span>
+					</div>
+				</section>
+					<section>
+						<div class="title-container">
+							
+							<div class="title-box"> Hazard Classification: Overview</div>
+							
+						</div>
+						<div class="content">								
+								<p style="font-size: 20px;"><span style="color: #bb1414;">Groups</span>, <span style="color: #047494;">Classes</span>, and <span style="color: #1f7a1f;">Categories</span> in WHMIS (Workplace Hazardous Materials Information System) are essential tools for organizing and defining hazardous materials. They provide a clear framework that helps in identifying, labeling, and taking appropriate safety measures for hazardous substances. Here's a more detailed look at how each of these classifications helps in categorizing hazardous materials according to their properties and effects:</p>								
+						</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">GROUPS</h3>
+							<span class="line"></span>
+						</div>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GROUPS</h3>
+								
+							</div>
+							<p class="content">WHMIS and the Globally Harmonized System (GHS) group hazards into three broad categories: physical hazards, health hazards, and environmental hazards. Each hazardous product can have one or more of these types of hazards.</p>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GROUPS</h3>
+								
+							</div>
+						  <p class="content">WHMIS and the Globally Harmonized System (GHS) group hazards into three broad categories: physical hazards, health hazards, and environmental hazards. Each hazardous product can have one or more of these types of hazards.</p>
+						  <p class="title-box3">Physical Hazards</p>
+						  <p style="text-align: left; font-size: 20px;">Physical hazards are properties of a chemical or substance that relate to its ability to physically harm people or property through fire, explosion, or reactive properties.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GROUPS</h3>
+								
+							</div>
+							<p class="content">WHMIS and the Globally Harmonized System (GHS) group hazards into three broad categories: physical hazards, health hazards, and environmental hazards. Each hazardous product can have one or more of these types of hazards.</p>
+							<p class="title-box3">Physical Hazards</p>
+							<p style="text-align: left; font-size: 20px;">Physical hazards are properties of a chemical or substance that relate to its ability to physically harm people or property through fire, explosion, or reactive properties.</p>
+							<p class="title-box3">Health Hazards</p>
+							<p style="text-align: left; font-size: 20px;">Health hazards are properties of a substance that can cause adverse health effects in humans. These hazards might be acute (immediate effects like poisoning, burns, or irritation) or chronic (long-term effects like cancer or organ damage).</p>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GROUPS</h3>
+								
+							</div>
+							<p class="content">WHMIS and the Globally Harmonized System (GHS) group hazards into three broad categories: physical hazards, health hazards, and environmental hazards. Each hazardous product can have one or more of these types of hazards.</p>
+							<p class="title-box3">Physical Hazards</p>
+							<p style="text-align: left; font-size: 20px;">Physical hazards are properties of a chemical or substance that relate to its ability to physically harm people or property through fire, explosion, or reactive properties.</p>
+							<p class="title-box3">Health Hazards</p>
+							<p style="text-align: left; font-size: 20px;">Health hazards are properties of a substance that can cause adverse health effects in humans. These hazards might be acute (immediate effects like poisoning, burns, or irritation) or chronic (long-term effects like cancer or organ damage).</p>
+							<p class="title-box3">Environmental Hazards</p>
+							<p style="text-align: left; font-size: 20px;">Environmental hazards refer to the potential of a chemical to harm the environment, particularly aquatic ecosystems.</p>
+						</section>
+
+<!-- Slide number 4b -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h3 class="title-box" style="color: #047494;">CLASSES</h3>
+								<span class="line"></span>
+							</div>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+							<h3 class="title-box" style="color: #047494;">CLASSES</h3>
+								
+							</div>
+							<p class="content">Hazard Classes are the broadest level of categorization. They describe the type of hazard associated with a substance. These can be physical (like flammability) or health-related (like carcinogenicity).</p>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #047494;">CLASSES</h3>
+									
+								</div>
+							<p class="content">Hazard Classes are the broadest level of categorization. They describe the type of hazard associated with a substance. These can be physical (like flammability) or health-related (like carcinogenicity).</p>
+							<div class="container3">
+								<!-- Left box with physical hazard class -->
+								<div class="box left-box">
+								  <h3>Physical Hazard Class Examples</h3>
+								  <ul>
+									<li>Flammable Gases</li>
+									<li>Explosives</li>
+									<li>Self-reactive Substances</li>
+								  </ul>
+								</div>
+								
+								<!-- Right box with health hazard class -->
+								<div class="box right-box">
+								  <h3>Health Hazard Class Examples</h3>
+								  <ul>
+									<li>Carcinogens</li>
+									<li>Respiratory Sensitizers</li>
+									<li>Reproductive Toxicants</li>
+								  </ul>
+								</div>
+							  </div>
+							</section>
+
+<!-- Slide number 4c -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h3 class="title-box" style="color: #1f7a1f;">CATEGORIES</h3>
+									<span class="line"></span>
+								</div>
+							  </section>
+							  <section data-auto-animate>
+								<div class="title-container">
+									
+								<h3 class="title-box" style="color: #1f7a1f;">CATEGORIES</h3>
+									
+								</div>
+								<p class="content">Categories provide a more detailed level of classification, usually representing the level of severity or risk within a given class or group. Categories are used to define the degree of hazard a substance poses. Category 1 is considered more hazardous than Category 2, and this pattern continues. Within a category, Subcategory 1A is more hazardous than 1B, and so on. Some classes use types instead of categories, where Type A is more hazardous than Type B, and this pattern continues as well.</p>
+							  </section>
+							  <section data-auto-animate>
+								<div class="title-container">
+									
+								<h3 class="title-box" style="color: #1f7a1f;">CATEGORIES</h3>
+									
+								</div>
+								<p class="content">Categories provide a more detailed level of classification, usually representing the level of severity or risk within a given class or group. Categories are used to define the degree of hazard a substance poses. Category 1 is considered more hazardous than Category 2, and this pattern continues. Within a category, Subcategory 1A is more hazardous than 1B, and so on. Some classes use types instead of categories, where Type A is more hazardous than Type B, and this pattern continues as well.</p>
+								<div class="container3">
+									<!-- Left box with physical hazard class -->
+									<div class="box left-box">
+									  <h3>In the Acute Toxicity class, substances are divided into:</h3>
+									  <ul>
+										<li>Category 1: Fatal or toxic when inhaled, ingested, or absorbed</li>
+										<li>Category 2: Toxic but not as severe as Category 1.</li>
+										<li>Category 3: Harmful but not fatal.</li>
+									  </ul>
+									</div>
+									
+									<!-- Right box with health hazard class -->
+									<div class="box right-box">
+									  <h3>Similarly, in the Carcinogenicity hazard class:</h3>
+									  <ul>
+										<li>Category 1A: Known to cause cancer in humans.</li>
+										<li>Category 1B: Presumed to cause cancer in humans.</li>
+										<li>Category 2: Suspected of causing cancer.</li>
+									  </ul>
+									</div>
+								  </div>
+							</section>
+
+<!-- Slide number QUIZ TWO -->							
+
+							<section data-auto-animate>
+								<div class="title-container">
+								<span class="line"></span>
+								<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+								<span class="line"></span>
+								</div>
+								</section>
+
+
+
+								<section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+									
+									</div>
+									
+									<div class="quiz-container">
+										<p class="info-box3" style="font-size: 30px; color: black;" id="question3">What are the three broad hazard groups in WHMIS and the Globally Harmonized System (GHS)?</p>
+						
+										<div class="option">
+											<input type="radio" name="answer3" value="A" id="q3A">
+											<label for="q3A">A. Physical, Chemical, Biological</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer3" value="B" id="q3B">
+											<label for="q3B">B. Physical, Health, Environmental </label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer3" value="C" id="q3C">
+											<label for="q3C">C. Chemical, Biological, Mechanical </label>
+										</div>
+						
+										<button class="quiz-btn" onclick="checkAnswer('answer3', 'B', 'result3')">Check Answer</button>
+										<p id="result3"></p>
+									</div>
+									
+								</section>
+
+								<section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+									
+									</div>
+									
+									<div class="quiz-container">
+										<p class="info-box3" style="font-size: 30px; color: black;" id="question4">What is the main purpose of hazard classification in WHMIS?</p>
+						
+										<div class="option">
+											<input type="radio" name="answer4" value="A" id="q4A">
+											<label for="q4A">A. To help in identifying, labeling, and implementing safety measures</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer4" value="B" id="q4B">
+											<label for="q4B">B. To regulate the sale of chemicals</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer4" value="C" id="q4C">
+											<label for="q4C">C. To provide storage recommendations for substances</label>
+										</div>
+										
+						
+										<button class="quiz-btn" onclick="checkAnswer('answer4', 'A', 'result4')">Check Answer</button>
+										<p id="result4"></p>
+									</div>
+									
+								</section>
+
+					</section>
+
+<!-- Slide number 5a -->
+
+					<section data-background-gradient="linear-gradient(to bottom, #eaecc6, #2bc0e4)">
+						<section><div class="title-container">
+							<span class="line"></span>
+							<div class="title-box">Physical Hazards</div>
+							<span class="line"></span>
+						</div>
+					</section>
+						<section>
+							<div class="title-container">
+								
+								<div class="title-box">Physical Hazards</div>
+								
+							</div>
+							<div class="content">								
+									<p style="font-size: 20px;">Physical hazards are properties of a chemical or substance that relate to its ability to physically harm people or property through fire, explosion, or reactive properties. Essentially, these hazards affect things (and indirectly people) through physical incidents like fires or explosions or corrosion of metals. Under WHMIS, physical hazard classes include things like flammability, explosiveness, oxidizing ability, gases under pressure, corrosivity to metals, etc.</p>								
+							</div>
+							</section>
+
+<!-- Slide number 5b -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #b30000;">EXPLOSIVES</h5>
+									<span class="line"></span>
+								</div>
+							  </section>
+							  <section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">EXPLOSIVES</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Explosives/Self-Reactives: These are chemicals that can explode or undergo violent reactions without needing oxygen from air.</p>
+							  </section>
+							  <section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">EXPLOSIVES</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Explosives/Self-Reactives: These are chemicals that can explode or undergo violent reactions without needing oxygen from air.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/exploding_bomb.png" alt="Exploding Bomb Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The Exploding Bomb pictogram signifies such hazards. Generally, dental clinics do not stock anything highly explosive. (Explosive materials like certain peroxides or picric acid would be very unusual in dentistry.)
+									</p>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">EXPLOSIVES</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Explosives/Self-Reactives: These are chemicals that can explode or undergo violent reactions without needing oxygen from air.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/exploding_bomb.png" alt="Exploding Bomb Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The Exploding Bomb pictogram signifies such hazards. Generally, dental clinics do not stock anything highly explosive. (Explosive materials like certain peroxides or picric acid would be very unusual in dentistry.)
+									</p>
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container">
+									<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+									</div>
+									<div class="hazard-title-container2">
+									<ul class="hazard-list">
+										<li>Self-reactive Substances and Mixtures (Types A and B)</li>
+										<li>Organic Peroxides (Types A and B)</li>
+										<li>Explosives</li>
+									</ul>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 5c -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #b30000;">FLAMABLE</h5>
+									<span class="line"></span>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">FLAMABLE</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Flammable and Combustible Materials: These substances have a high tendency to ignite and sustain combustion when exposed to heat, sparks, or an open flame.</p>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">FLAMABLE</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Flammable and Combustible Materials: These substances have a high tendency to ignite and sustain combustion when exposed to heat, sparks, or an open flame.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/flame.png" alt="flame Symbol" class="hazard-image">
+									<p class="hazard-text">
+										 The Flame pictogram indicates that a substance is highly flammable or combustible and requires careful handling and storage to prevent fire-related hazards. Some examples of these substances that can be found in a dental office environment are Alcohol-based substances, Aerosol cans, and Methyl methacrylate monomer (used for denture repairs).
+									</p>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">FLAMABLE</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Flammable and Combustible Materials: These substances have a high tendency to ignite and sustain combustion when exposed to heat, sparks, or an open flame.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/flame.png" alt="flame Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The Flame pictogram indicates that a substance is highly flammable or combustible and requires careful handling and storage to prevent fire-related hazards. Some examples of these substances that can be found in a dental office environment are Alcohol-based substances, Aerosol cans, and Methyl methacrylate monomer (used for denture repairs).
+									</p>
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container">
+									<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+									</div>
+									<div class="hazard-title-container2">
+									<ul class="hazard-list" style="font-size: 13px;">
+										<li>Flammable Gases (Category 1A, 1B)</li>
+										<li>Aerosols (Category 1, 2)</li>
+										<li>Flammable Liquids (Category 1, 2, 3)</li>
+										<li>Flammable Solids (Category 1, 2)</li>
+										<li>Chemicals Under Pressure (Category 1, 2)</li>
+										<li>Pyrophoric Liquids (Category 1)</li>
+										<li>Pyrophoric Solids</li>
+										<li>Self-reactive Substances and Mixtures (Types B, C, D, E and F)</li>
+										<li>Self-heating Substances and Mixtures (Category 1, 2)</li>
+										<li>Substances and Mixtures which, in Contact with Water, Emit Flammable Gases (Category 1, 2 and 3)</li>
+										<li>Organic Peroxides (Type B to F)</li>
+									</ul>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 5d -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #b30000;">OXIDIZERS</h5>
+									<span class="line"></span>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">OXIDIZERS</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">These chemicals aren’t necessarily flammable themselves, but they can cause or fuel a fire by providing oxygen or another oxidizing element.</p>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">OXIDIZERS</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">These chemicals aren’t necessarily flammable themselves, but they can cause or fuel a fire by providing oxygen or another oxidizing element.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/flame_circle.png" alt="flame over circle Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The Flame Over Circle pictogram denotes oxidizing materials. In a clinical setting, a common example is the compressed oxygen cylinder used for sedation or medical emergencies. 
+									</p>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">OXIDIZERS</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">These chemicals aren’t necessarily flammable themselves, but they can cause or fuel a fire by providing oxygen or another oxidizing element.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/flame_circle.png" alt="flame over circle Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The Flame Over Circle pictogram denotes oxidizing materials. In a clinical setting, a common example is the compressed oxygen cylinder used for sedation or medical emergencies. 
+									</p>
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container">
+									<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+									</div>
+									<div class="hazard-title-container2">
+									<ul class="hazard-list">
+										<li>Oxidizing Gases (Category 1)</li>
+										<li>Oxidizing Liquids (Category 1, 2, 3)</li>
+										<li>Oxidizing Solids (Category 1, 2, 3)</li>
+									</ul>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 5e -->	
+ 
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #b30000;">GASES UNDER PRESSURE</h5>
+									<span class="line"></span>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">GASES UNDER PRESSURE</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Compressed gases (whether they are hazardous by themselves or not) pose a physical hazard because of the high pressure. A gas cylinder can rocket if its valve breaks off.</p>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">GASES UNDER PRESSURE</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Compressed gases (whether they are hazardous by themselves or not) pose a physical hazard because of the high pressure. A gas cylinder can rocket if its valve breaks off.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/gas_cylinder.png" alt="flame over circle Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The Gas Cylinder pictogram is used for any pressurized gas. In a clinical setting, nitrous oxide and oxygen cylinders are prime examples 
+									</p>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">GASES UNDER PRESSURE</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Compressed gases (whether they are hazardous by themselves or not) pose a physical hazard because of the high pressure. A gas cylinder can rocket if its valve breaks off.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/gas_cylinder.png" alt="flame over circle Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The Gas Cylinder pictogram is used for any pressurized gas. In a clinical setting, nitrous oxide and oxygen cylinders are prime examples. 
+									</p>
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container">
+									<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+									</div>
+									<div class="hazard-title-container2">
+									<ul class="hazard-list" style="font-size: 17px;">
+										<li>Gases Under Pressure (compressed gas, liquefied gas, refrigerated liquefied gas, and dissolved gas)</li>
+										<li>Chemicals Under Pressure (Category 1, 2, 3)</li>
+										
+									</ul>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 5f -->
+ 
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+									<span class="line"></span>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Some chemicals can corrode (eat away) metals or other materials. Phosphoric acid etchant could potentially rust steel instruments if left on them too long. </p>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Some chemicals can corrode (eat away) metals or other materials. Phosphoric acid etchant could potentially rust steel instruments if left on them too long. </p>
+								<div class="image-text-container">
+									<img src="/test/assets/corrosion.png" alt="flame over circle Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The corrosion pictogram is used to indicate substances that can cause severe damage to metals, skin, and eyes. It is represented by an image of test tubes pouring a corrosive substance onto a hand and a metal surface, both showing visible damage. While corrosion to metals might not be a primary concern in the clinic (except for maintaining equipment), it is related to chemical reactivity. 
+									</p>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Some chemicals can corrode (eat away) metals or other materials. Phosphoric acid etchant could potentially rust steel instruments if left on them too long. </p>
+								<div class="image-text-container">
+									<img src="/test/assets/corrosion.png" alt="flame over circle Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The corrosion pictogram is used to indicate substances that can cause severe damage to metals, skin, and eyes. It is represented by an image of test tubes pouring a corrosive substance onto a hand and a metal surface, both showing visible damage. While corrosion to metals might not be a primary concern in the clinic (except for maintaining equipment), it is related to chemical reactivity.
+									</p>
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container">
+									<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+									</div>
+									<div class="hazard-title-container2">
+									<ul class="hazard-list" style="font-size: 17px;">
+										<li>Corrosive to Metals (Category 1)</li>
+										
+									</ul>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 5g -->							
+
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #b30000;">PICTOGRAMS</h5>
+									<span class="line"></span>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">PICTOGRAMS</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Pictograms are symbols used to visually communicate the hazards associated with hazardous products in workplaces.</p>
+							</section>
+							
+							<section data-auto-animate>
+								<div class="image-text-container2">
+									<img src="/test/assets/exploding_bomb.png" alt="flame over circle Symbol" class="hazard-image2">
+									<p class="hazard-text2" style="color: black">
+										The Exploding Bomb pictogram signifies such hazards. Generally, dental clinics do not stock anything highly explosive. (Explosive materials like certain peroxides or picric acid would be very unusual in dentistry.) 
+									</p>
+								</div>
+								<div class="image-text-container2">
+									<img src="/test/assets/flame.png" alt="flame over circle Symbol" class="hazard-image2">
+									<p class="hazard-text2" style="color: black">
+										The Flame pictogram indicates that a substance is highly flammable or combustible and requires careful handling and storage to prevent fire-related hazards. Some examples of these substances that can be found in a dental office environment are Alcohol-based substances, Aerosol cans, and Methyl methacrylate monomer (used for denture repairs).
+									</p>
+								</div>
+								<div class="image-text-container2">
+									<img src="/test/assets/flame_circle.png" alt="flame Symbol" class="hazard-image2">
+									<p class="hazard-text2" style="color: black">
+										The Flame Over Circle pictogram denotes oxidizing materials. In a clinical setting, a common example is the compressed oxygen cylinder used for sedation or medical emergencies.
+									</p>
+								</div>
+								<div class="image-text-container2">
+									<img src="/test/assets/gas_cylinder.png" alt="flame Symbol" class="hazard-image2">
+									<p class="hazard-text2" style="color: black">
+										The Gas Cylinder pictogram is used for any pressurized gas. In a clinical setting, nitrous oxide and oxygen cylinders are prime examples. 
+									</p>
+								</div>
+								<div class="image-text-container2">
+									<img src="/test/assets/corrosion.png" alt="flame Symbol" class="hazard-image2">
+									<p class="hazard-text2" style="color: black">
+										The corrosion pictogram is used to indicate substances that can cause severe damage to metals, skin, and eyes. It is represented by an image of test tubes pouring a corrosive substance onto a hand and a metal surface, both showing visible damage. While corrosion to metals might not be a primary concern in the clinic (except for maintaining equipment), it is related to chemical reactivity.
+									</p>
+								</div>
+							</section>
+
+<!-- Slide number QUIZ THREE -->							
+
+							<section data-auto-animate>
+								<div class="title-container">
+								<span class="line"></span>
+								<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+								<span class="line"></span>
+								</div>
+								</section>
+
+
+
+								<section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+									
+									</div>
+									
+									<div class="quiz-container">
+										<p class="info-box3" style="font-size: 30px; color: black;" id="question5">Which hazard class would compressed nitrous oxide gas fall under?</p>
+						
+										<div class="option">
+											<input type="radio" name="answer5" value="A" id="q5A">
+											<label for="q5A">A. Flammable gas</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer5" value="B" id="q5B">
+											<label for="q5B">B. Gas under pressure</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer5" value="C" id="q5C">
+											<label for="q5C">C. Corrosive to meta</label>
+										</div>
+										
+						
+										<button class="quiz-btn" onclick="checkAnswer('answer5', 'B', 'result5')">Check Answer</button>
+										<p id="result5"></p>
+									</div>
+									
+								</section>
+
+					</section>
+
+<!-- Slide number 6a -->
+
+					<section data-background-gradient="linear-gradient(to bottom, #ba8dd8, #8c8c8c)">
+						<section><div class="title-container">
+							<span class="line"></span>
+							<div class="title-box">Health Hazards</div>
+							<span class="line"></span>
+						</div>
+					</section>
+						<section>
+							<div class="title-container">
+								
+								<div class="title-box">Health Hazards</div>
+								
+							</div>
+							<div class="content">								
+									<p style="font-size: 20px;">Health hazards are properties of a substance that can cause adverse health effects in humans. These hazards might be acute (immediate effects like poisoning, burns, or irritation) or chronic (long-term effects like cancer or organ damage). WHMIS uses various classes to describe health hazards, and many clinical chemicals fall into these categories.</p>								
+							</div>
+							</section>
+
+<!-- Slide number 6b -->
+ 
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">Corrosive (to skin/eyes): These chemicals can cause severe skin burns and eye damage on contact. </p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">Corrosive (to skin/eyes): These chemicals can cause severe skin burns and eye damage on contact. </p>
+							<div class="image-text-container">
+								<img src="/test/assets/corrosion.png" alt="flame over circle Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									The corrosion pictogram is used to indicate substances that can cause severe damage to metals, skin, and eyes. It is represented by an image of test tubes pouring a corrosive substance onto a hand and a metal surface, both showing visible damage. While corrosion to metals might not be a primary concern in the clinic (except for maintaining equipment), it is related to chemical reactivity. 
+								</p>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">CORROSION</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">Corrosive (to skin/eyes): These chemicals can cause severe skin burns and eye damage on contact. </p>
+							<div class="image-text-container">
+								<img src="/test/assets/corrosion.png" alt="flame over circle Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									The corrosion pictogram is used to indicate substances that can cause severe damage to metals, skin, and eyes. It is represented by an image of test tubes pouring a corrosive substance onto a hand and a metal surface, both showing visible damage. While corrosion to metals might not be a primary concern in the clinic (except for maintaining equipment), it is related to chemical reactivity.
+								</p>
+							</div>
+							<div class="content4">
+								<div class="hazard-title-container">
+								<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+								</div>
+								<div class="hazard-title-container2">
+								<ul class="hazard-list" style="font-size: 17px;">
+									<li>Skin corrosion/irritation (Category 1)</li>
+									<li>Serious eye damage/irritation (Category 1)</li>
+									
+								</ul>
+								</div>
+							</div>
+						</section>	
+						
+<!-- Slide number 6c -->
+ 
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">ACUTE TOXICITY</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">ACUTE TOXICITY</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">(Harmful, Toxic, or Fatal): These classes cover chemicals that can cause effects after a short exposure – by inhalation, ingestion, or skin absorption.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">ACUTE TOXICITY</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">(Harmful, Toxic, or Fatal): These classes cover chemicals that can cause effects after a short exposure – by inhalation, ingestion, or skin absorption.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/skull_crossbones.png" alt="flame over circle Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									Skull and Crossbones pictogram is used for the most acutely toxic substances (those that can cause death or serious harm even in small amounts). In a clinical setting, you might not have many substances with the Skull and Crossbones symbol, as those are extremely dangerous chemicals (like cyanides or arsenic compounds). However, one example could be phenol (found in some dental formulations or local anesthetic formulations in very low concentrations) – phenol is quite toxic if ingested or absorbed in significant amount.
+								</p>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">ACUTE TOXICITY</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">(Harmful, Toxic, or Fatal): These classes cover chemicals that can cause effects after a short exposure – by inhalation, ingestion, or skin absorption.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/skull_crossbones.png" alt="flame over circle Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									Skull and Crossbones pictogram is used for the most acutely toxic substances (those that can cause death or serious harm even in small amounts). In a clinical setting, you might not have many substances with the Skull and Crossbones symbol, as those are extremely dangerous chemicals (like cyanides or arsenic compounds). However, one example could be phenol (found in some dental formulations or local anesthetic formulations in very low concentrations) – phenol is quite toxic if ingested or absorbed in significant amount.
+								</p>
+							</div>
+							<div class="content4">
+								<div class="hazard-title-container">
+								<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+								</div>
+								<div class="hazard-title-container2">
+								<ul class="hazard-list" style="font-size: 17px;">
+									<li>Acute Toxicity (severe) (Categories 1, 2, 3)</li>
+								</ul>
+								</div>
+							</div>
+						</section>	
+						
+<!-- Slide number 6d -->						
+					
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">HEALTH HAZARD</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">HEALTH HAZARD</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">Serious Health Effects: Some substances may not make you sick immediately but can cause serious health issues over time.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">HEALTH HAZARD</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">Serious Health Effects: Some substances may not make you sick immediately but can cause serious health issues over time.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/health_hazard.png" alt="flame Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									 Health Hazard pictogram (silhouette of a person with a star-shaped burst in the chest) indicating hazards like carcinogenicity, reproductive toxicity, respiratory sensitization, specific organ toxicity, etc. Unlike immediate dangers (such as acute toxicity), these hazards may develop over time and impact major body systems.
+								</p>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">HEALTH HAZARD</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">Serious Health Effects: Some substances may not make you sick immediately but can cause serious health issues over time.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/health_hazard.png" alt="flame Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									Health Hazard pictogram (silhouette of a person with a star-shaped burst in the chest) indicating hazards like carcinogenicity, reproductive toxicity, respiratory sensitization, specific organ toxicity, etc. Unlike immediate dangers (such as acute toxicity), these hazards may develop over time and impact major body systems.
+								</p>
+							</div>
+							<div class="content4">
+								<div class="hazard-title-container">
+								<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+								</div>
+								<div class="hazard-title-container2">
+								<ul class="hazard-list" style="font-size: 15px;">
+									<li>Carcinogenicity (Category 1, 2)</li>
+									<li>Respiratory Sensitization (Category 1)</li>
+									<li>Reproductive Toxicity (Category 1, 2)</li>
+									<li>Germ Cell Mutagenicity (Category 1, 2)</li>
+									<li>Specific Target Organ Toxicity – Single Exposure (Category 1, 2)</li>
+									<li>Specific Target Organ Toxicity – Repeated Exposure (Category 1, 2)</li>
+									<li>Aspiration Hazard (Category 1, 2)</li>
+								</ul>
+								</div>
+							</div>
+						</section>
+
+<!-- Slide number 6e -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">IRRITANT</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">IRRITANT</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">These substances cause less severe health effects but still can harm. These chemicals can cause irritation, allergic reactions, drowsiness, or other temporary health effects but are not necessarily fatal or chronically damaging.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">IRRITANT</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">These substances cause less severe health effects but still can harm. These chemicals can cause irritation, allergic reactions, drowsiness, or other temporary health effects but are not necessarily fatal or chronically damaging.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/exclamation_mark.png" alt="flame Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									 The Exclamation Mark pictogram warns about less severe health hazards compared to the Health Hazard or Skull and Crossbones pictograms. Many clinical chemicals are irritants, such as surface disinfectants, euginol, or acrylic monomers.
+								</p>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">IRRITANT</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">These substances cause less severe health effects but still can harm. These chemicals can cause irritation, allergic reactions, drowsiness, or other temporary health effects but are not necessarily fatal or chronically damaging.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/exclamation_mark.png" alt="flame Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									The Exclamation Mark pictogram warns about less severe health hazards compared to the Health Hazard or Skull and Crossbones pictograms. Many clinical chemicals are irritants, such as surface disinfectants, euginol, or acrylic monomers.
+								</p>
+							</div>
+							<div class="content4">
+								<div class="hazard-title-container">
+								<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+								</div>
+								<div class="hazard-title-container2">
+								<ul class="hazard-list" style="font-size: 15px;">
+									<li>Acute Toxicity (harmful) (Category 4)</li>
+									<li>Skin Corrosion/Irritation (Category 2)</li>
+									<li>Serious Eye Damage/Eye Irritation (Category 2, 2A)</li>
+									<li>Skin Sensitization (Category 1, 1A, 1B)</li>
+									<li>Specific Target Organ Toxicity – Single Exposure (Category 3) (narcotic and respiratory tract irritation)</li>
+								</ul>
+								</div>
+							</div>
+						</section>
+
+<!-- Slide number 6f -->						
+
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">BIOHAZARDOUS</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">BIOHAZARDOUS</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">A biohazard is any biological substance that can cause harm. Proper handling, protective equipment, and disposal methods are essential to prevent infections and contamination.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">BIOHAZARDOUS</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">A biohazard is any biological substance that can cause harm. Proper handling, protective equipment, and disposal methods are essential to prevent infections and contamination.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/biohazardous.png" alt="flame Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									 The Biohazard symbol is used to indicate the presence of biological substances that pose a risk to human health, animals, or the environment. These hazards include bacteria, viruses, toxins, or other microorganisms that can cause infections, diseases, or other harmful biological effects.
+								</p>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">BIOHAZARDOUS</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">A biohazard is any biological substance that can cause harm. Proper handling, protective equipment, and disposal methods are essential to prevent infections and contamination.</p>
+							<div class="image-text-container">
+								<img src="/test/assets/biohazardous.png" alt="flame Symbol" class="hazard-image">
+								<p class="hazard-text-b">
+									The Biohazard symbol is used to indicate the presence of biological substances that pose a risk to human health, animals, or the environment. These hazards include bacteria, viruses, toxins, or other microorganisms that can cause infections, diseases, or other harmful biological effects.
+								</p>
+							</div>
+							<div class="content4">
+								<div class="hazard-title-container">
+								<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+								</div>
+								<div class="hazard-title-container2">
+								<ul class="hazard-list" style="font-size: 15px;">
+									<li>Biohazardous Infectious Materials</li>
+									
+								</ul>
+								</div>
+							</div>
+						</section>
+
+<!-- Slide number 6g -->						
+
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">PICTOGRAMS</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">PICTOGRAMS</h5>
+								
+							</div>
+							<p class="content" style="font-size: 20px;">Pictograms are symbols used to visually communicate the hazards associated with hazardous products in workplaces.</p>
+						</section>
+
+<!-- Slide number 6h -->						
+						
+						<section data-auto-animate>
+							<div class="image-text-container2">
+								<img src="/test/assets/corrosion.png" alt="flame over circle Symbol" class="hazard-image2">
+								<p class="hazard-text2">
+									The corrosion pictogram is used to indicate substances that can cause severe damage to metals, skin, and eyes. It is represented by an image of test tubes pouring a corrosive substance onto a hand and a metal surface, both showing visible damage. While corrosion to metals might not be a primary concern in the clinic (except for maintaining equipment), it is related to chemical reactivity. 
+								</p>
+							</div>
+							<div class="image-text-container2">
+								<img src="/test/assets/skull_crossbones.png" alt="flame over circle Symbol" class="hazard-image2">
+								<p class="hazard-text2">
+									Skull and Crossbones pictogram is used for the most acutely toxic substances (those that can cause death or serious harm even in small amounts). In a clinical setting, you might not have many substances with the Skull and Crossbones symbol, as those are extremely dangerous chemicals (like cyanides or arsenic compounds). However, one example could be phenol (found in some dental formulations or local anesthetic formulations in very low concentrations) – phenol is quite toxic if ingested or absorbed in significant amount.
+								</p>
+							</div>
+							<div class="image-text-container2">
+								<img src="/test/assets/health_hazard.png" alt="flame Symbol" class="hazard-image2">
+								<p class="hazard-text2">
+									Health Hazard pictogram (silhouette of a person with a star-shaped burst in the chest) indicating hazards like carcinogenicity, reproductive toxicity, respiratory sensitization, specific organ toxicity, etc. Unlike immediate dangers (such as acute toxicity), these hazards may develop over time and impact major body systems.
+								</p>
+							</div>
+							<div class="image-text-container2">
+								<img src="/test/assets/exclamation_mark.png" alt="flame Symbol" class="hazard-image2">
+								<p class="hazard-text2">
+									 The Exclamation Mark pictogram warns about less severe health hazards compared to the Health Hazard or Skull and Crossbones pictograms. Many clinical chemicals are irritants, such as surface disinfectants, euginol, or acrylic monomers.
+								</p>
+							</div>
+							<div class="image-text-container2">
+								<img src="/test/assets/biohazardous.png" alt="flame Symbol" class="hazard-image2">
+								<p class="hazard-text2">
+									The Biohazard symbol is used to indicate the presence of biological substances that pose a risk to human health, animals, or the environment. These hazards include bacteria, viruses, toxins, or other microorganisms that can cause infections, diseases, or other harmful biological effects.
+								</p>
+							</div>
+						</section>
+
+<!-- Slide number QUIZ FOUR -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+							<span class="line"></span>
+							</div>
+							</section>
+
+
+
+							<section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+								
+								</div>
+								
+								<div class="quiz-container">
+									<p class="info-box3" style="font-size: 30px; color: black;" id="question6">Which WHMIS hazard type is indicated by the Health Hazard pictogram (human silhouette with star)?</p>
+					
+									<div class="option">
+										<input type="radio" name="answer6" value="A" id="q6A">
+										<label for="q6A">A. Acute toxicity causing immediate poisoning</label>
+									</div>
+									<div class="option">
+										<input type="radio" name="answer6" value="B" id="q6B">
+										<label for="q6B">B. Radioactivity</label>
+									</div>
+									<div class="option">
+										<input type="radio" name="answer6" value="C" id="q6C">
+										<label for="q6C">C. Chronic health effects like cancer or organ damage</label>
+									</div>
+									
+					
+									<button class="quiz-btn" onclick="checkAnswer('answer6', 'C', 'result6')">Check Answer</button>
+									<p id="result6"></p>
+								</div>
+								
+							</section>
+					</section>
+											
+<!-- Slide number 7a -->
+
+					<section data-background-gradient="linear-gradient(to bottom, #e9d362, #8c8c8c)">
+						<section><div class="title-container">
+							<span class="line"></span>
+							<div class="title-box">Environmental Hazards</div>
+							<span class="line"></span>
+						</div>
+					</section>
+						<section>
+							<div class="title-container">
+								
+								<div class="title-box">Environmental Hazards</div>
+								
+							</div>
+							<div class="content">								
+									<p style="font-size: 20px;">Environmental hazards refer to the potential of a chemical to harm the environment, particularly aquatic ecosystems. Under GHS, there are classes for things like Aquatic Toxicity (acute or chronic) and hazards to the ozone layer. In Canada’s WHMIS, the environmental hazard information is not mandatory on labels (because WHMIS is focused on worker safety), but many SDSs do include it, and some supplier labels might show the environmental pictogram as extra information.</p>								
+							</div>
+							</section>
+
+<!-- Slide number 7b -->		
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #b30000;">ENVIRONMENTAL</h5>
+									<span class="line"></span>
+								</div>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">ENVIRONMENTAL</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Environmental hazards refer to substances or conditions that pose a risk to the environment, including air, water, soil, wildlife, and ecosystems. Even though it’s voluntary in WHMIS, it’s worth noting environmental hazards in a clinical context because proper disposal of chemicals is critical to avoid pollution.</p>
+							</section>
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">ENVIRONMENTAL</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Environmental hazards refer to substances or conditions that pose a risk to the environment, including air, water, soil, wildlife, and ecosystems. Even though it’s voluntary in WHMIS, it’s worth noting environmental hazards in a clinical context because proper disposal of chemicals is critical to avoid pollution.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/environment.png" alt="flame Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The pictogram for environmental hazards is a silhouette of a dead tree and fish on a white background (usually called the Environmental or Aquatic Toxicity pictogram).
+									</p>
+								</div>
+							</section>
+
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #b30000;">ENVIRONMENTAL</h5>
+									
+								</div>
+								<p class="content" style="font-size: 20px;">Environmental hazards refer to substances or conditions that pose a risk to the environment, including air, water, soil, wildlife, and ecosystems. Even though it’s voluntary in WHMIS, it’s worth noting environmental hazards in a clinical context because proper disposal of chemicals is critical to avoid pollution.</p>
+								<div class="image-text-container">
+									<img src="/test/assets/environment.png" alt="flame Symbol" class="hazard-image">
+									<p class="hazard-text">
+										The pictogram for environmental hazards is a silhouette of a dead tree and fish on a white background (usually called the Environmental or Aquatic Toxicity pictogram).
+									</p>
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container">
+									<h3 class="hazard-title" style="color: black;">Hazard Classes</h3>
+									</div>
+									<div class="hazard-title-container2">
+									<ul class="hazard-list" style="font-size: 15px;">
+										<li>Hazardous to the Aquatic Environment</li>
+										<li>Hazardous to the Ozone Layer</li>
+									</ul>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number QUIZ FIVE -->							
+
+							<section data-auto-animate>
+								<div class="title-container">
+								<span class="line"></span>
+								<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+								<span class="line"></span>
+								</div>
+								</section>
+
+
+
+								<section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+									
+									</div>
+									
+									<div class="quiz-container">
+										<p class="info-box3" style="font-size: 30px; color: black;" id="question7">What do environmental hazards primarily refer to?</p>
+						
+										<div class="option">
+											<input type="radio" name="answer7" value="A" id="q7A">
+											<label for="q7A">A. The potential of a chemical to harm the environment, especially aquatic ecosystems</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer7" value="B" id="q7B">
+											<label for="q7B">B. The likelihood of a chemical causing skin irritation</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer7" value="C" id="q7C">
+											<label for="q7C">C. The probability of a chemical reacting with air</label>
+										</div>
+						
+										<button class="quiz-btn" onclick="checkAnswer('answer7', 'A', 'result7')">Check Answer</button>
+										<p id="result7"></p>
+									</div>
+									
+								</section>
+
+					</section>
+
+<!-- Slide number 8a -->					
+
+					<section data-background-gradient="linear-gradient(to bottom, #88ddd8, #556270)">
+						<section><div class="title-container">
+							<span class="line"></span>
+							<div class="title-box">Labels</div>
+							<span class="line"></span>
+						</div>
+					</section>
+						<section>
+						<div class="title-container">
+							
+							<div class="title-box">Labels</div>
+							
+						</div>
+						<div class="content">
+								<p class="title-box2">Understanding and Application:</p>
+										<p>WHMIS labels are often the first line of defense in hazard communication. Whenever you pick up a bottle, jar, or container in the dental clinic, the label is there to warn you about any dangers and to guide you on safe handling. In this module, we will break down the components of WHMIS labels, explain the pictograms (symbols) you see on them, and clarify the difference between supplier labels and workplace labels. We’ll also cover how to properly read and interpret labels so that you can quickly get the safety information you need from any hazardous product’s container.
+										</p>								
+									<br>
+						</div>
+						</section>
+
+<!-- Slide number 8b -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">SUPPLIER LABEL</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h5 class="title-box" style="color: #bb1414;">SUPPLIER LABEL</h5>
+								
+							</div>
+							<p class="content">A supplier label is the label that comes on a hazardous product when you receive it from the manufacturer or supplier. It’s required by law to have specific information in English and French, presented clearly on the container. Whenever you pick up a bottle or container and see the full suite of hazard information, you’re likely looking at a supplier label.</p>
+						  </section>
+
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h5 class="title-box" style="color: #bb1414;">SUPPLIER LABEL</h5>
+								
+							</div>
+							<p class="content">A supplier label is the label that comes on a hazardous product when you receive it from the manufacturer or supplier. It’s required by law to have specific information in English and French, presented clearly on the container. Whenever you pick up a bottle or container and see the full suite of hazard information, you’re likely looking at a supplier label.</p>
+						 
+							<div class="content4">
+								<div class="hazard-title-container3">
+								<h3 class="hazard-title" style="color: white;">WHAT TO LOOK FOR</h3>
+								</div>
+								<div class="hazard-title-container4">
+								<ul class="hazard-list" style="font-size: 15px;">
+									<li>1. Product Identifier – This is the name of the product (trade name, chemical name, or generic name). It should exactly match the name listed on the SDS.</li>
+									<li>2. Initial Supplier Identifier – The company that made or distributed the product, including their name, address, and contact number.</li>
+									<li>3. Pictogram(s) – All applicable WHMIS pictograms for the product must be shown in full color (red diamond border).</li>
+									<li>4. Signal Word – Either “Danger” or “Warning”, or none for some low-hazard classes.</li>
+									<li>5. Hazard Statement(s) – Standardized phrases that describe the main hazards of the product.</li>
+									<li>6. Precautionary Statement(s) – Standardized phrases about how to reduce exposure or handle safely.</li>
+									<li>7. Supplemental Information – Sometimes additional info is required or provided.</li>
+								</ul>
+								</div>
+							</div>
+						</section>
+
+<!-- Slide number 8c -->						
+						  
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">EXAMPLE LABEL</h5>
+								<span class="line"></span>
+								</div>
+						</section>
+
+						<section data-auto-animate>
+							<div class="title-container">
+								
+							<h5 class="title-box" style="color: #b30000;">EXAMPLE LABEL</h5>
+							</div>
+							
+							<div class="whmis-label">
+								<div class="label-section">
+									<span class="circle" data-tooltip="Product identifier">1</span>
+									<div style="border: 1px solid black; border-radius: 5px; padding: 10px; font-size: 20px; font-weight: bold;">
+									ACME Dental X-ray Fixer
+									</div>
+								</div>
+							
+								<div class="label-section">
+									<span class="circle" data-tooltip="Signal Word">2</span>
+									<div style="border: 1px solid black; border-radius: 5px; padding: 10px;">
+									<span class="danger">Danger</span>
+									</div>
+								</div>
+							
+								<div class="label-section">
+									<span class="circle" data-tooltip="Pictogram">3</span>
+									<div class="pictogram-container" style="background-color: rgba(255, 204, 102, 0.8);">
+										<img src="/test/assets/corrosion.png" alt="Corrosion symbol" class="pictogram">
+										<img src="/test/assets/environment.png" alt="Environment symbol" class="pictogram">
+									</div>
+								</div>
+							
+								<div class="label-section">
+									<span class="circle" data-tooltip="Hazard Statement">4</span>
+									<div style="border: 1px solid black; border-radius: 5px; padding: 10px;">									Causes serious eye damage. Harmful if swallowed. May cause skin irritation. Toxic to aquatic life with long-lasting effects.
+									</div>
+									</div>
+							
+								<div class="label-section">
+									<span class="circle" data-tooltip="Precautionary Statement">5</span>
+									<div style="border: 1px solid black; border-radius: 5px; padding: 10px;">
+									Do not breathe vapours. Wear eye protection and gloves. Wash hands thoroughly after handling. First Aid: IF IN EYES: Rinse cautiously with water for several minutes. Remove contact lenses, continue rinsing. Immediately call a POISON CENTER or doctor. IF SWALLOWED: Rinse mouth. Call a POISON CENTER if you feel unwell. Spill: Absorb spillage to prevent material damage.
+										</div>
+								</div>
+							
+								<div class="label-section">
+									<span class="circle" data-tooltip="Supplier identifier">6</span>
+									<div style="border: 1px solid black; border-radius: 5px; padding: 10px;">
+									ACME Chemicals Ltd., 123 Lab St., Ottawa, ON K1A 2B3, 1-800-123-4567.
+									</div>
+								</div>
+							</div>
+						</section>
+
+<!-- Slide number 8d -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+								<span class="line"></span>
+							<h5 class="title-box" style="color: #b30000;">WORKPLACE LABEL</h5>
+								<span class="line"></span>
+							</div>
+						</section>
+						
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h5 class="title-box" style="color: #bb1414;">WORKPLACE LABEL</h5>
+								
+							</div>
+							<p class="content">A workplace label is a simplified label that employers produce and affix to hazardous materials under certain circumstances in the workplace. Unlike supplier labels, workplace labels are for internal use only – they’re not the original label from the manufacturer, but one we create at the clinic when needed.</p>
+						  </section>
+
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h5 class="title-box" style="color: #bb1414;">WORKPLACE LABEL</h5>
+								
+							</div>
+							<p class="content">A workplace label is a simplified label that employers produce and affix to hazardous materials under certain circumstances in the workplace. Unlike supplier labels, workplace labels are for internal use only – they’re not the original label from the manufacturer, but one we create at the clinic when needed.</p>
+						 
+							<div class="content4">
+								<div class="hazard-title-container3">
+								<h3 class="hazard-title" style="color: white;">WHEN IS WORKPLACE LABEL REQUIRED</h3>
+								</div>
+								<div class="hazard-title-container4">
+								<ul class="hazard-list" style="font-size: 15px;">
+									<li>Transfer/Decanting: If you pour or transfer a hazardous product from its original container into another container (for example, putting concentrated cleaner into a secondary bottle, or mixing a solution in a beaker), and the product will not be used immediately by the person who did the transfer, then the new container needs a workplace label.</li>
+									<li>Supplier Label Missing or Damaged: If a hazardous product arrives with no supplier label, or if over time the label falls off, gets spilled on, or becomes unreadable, you need to label that container with a workplace label (unless you quickly replace it with a proper supplier label).</li>
+									<li>Produced in the Workplace: If your workplace (dental office) produces a hazardous product (this is uncommon in dentistry, but imagine you mix two chemicals and create a new solution that’s stored, or maybe you have a generator of a gas), that product needs a WHMIS label.</li>
+									
+								</ul>
+								</div>
+							</div>
+						</section>
+
+
+						<section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+							<span class="line"></span>
+							</div>
+							</section>
+
+<!-- Slide number QUIZ SIX -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+								
+								</div>
+								
+								<div class="quiz-container" >
+									<p class="info-box3" style="font-size: 30px; color: black;" id="question8">You have a spray bottle with no label that you suspect contains disinfectant. What should you do?</p>
+					
+									<div class="option">
+										<input type="radio" name="answer8" value="A" id="q8A">
+										<label for="q8A">A. Smell it to identify it. </label>
+									</div>
+									<div class="option">
+										<input type="radio" name="answer8" value="B" id="q8B">
+										<label for="q8B">B. Assume it’s water and use it freely</label>
+									</div>
+									<div class="option">
+										<input type="radio" name="answer8" value="C" id="q8C">
+										<label for="q8C">C. Do not use it until it’s identified and properly labeled.  </label>
+									</div>
+									
+					
+									<button class="quiz-btn" onclick="checkAnswer('answer8', 'C', 'result8')">Check Answer</button>
+									<p id="result8"></p>
+								</div>
+								
+							</section>
+
+							<section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+								
+								</div>
+								
+								<div class="quiz-container" >
+									<p class="info-box3" style="font-size: 30px; color: black;" id="question9">Which information is NOT required on a WHMIS supplier label? </p>
+					
+									<div class="option">
+										<input type="radio" name="answer9" value="A" id="q9A">
+										<label for="q9A">A. Expiration date of the product</label>
+									</div>
+									<div class="option">
+										<input type="radio" name="answer9" value="B" id="q9B">
+										<label for="q9B">B. Product name</label>
+									</div>
+									<div class="option">
+										<input type="radio" name="answer9" value="C" id="q9C">
+										<label for="q9C">C. Hazard pictograms</label>
+									</div>
+									<div class="option">
+										<input type="radio" name="answer9" value="D" id="q9D">
+										<label for="q9D">D. Precautionary statements</label>
+									</div>
+					
+									<button class="quiz-btn" onclick="checkAnswer('answer9', 'A', 'result9')">Check Answer</button>
+									<p id="result9"></p>
+								</div>
+								
+							</section>
+							
+					</section>
+
+<!-- Slide number 9a -->
+
+					<section data-background-gradient="linear-gradient(to bottom, #df9fbf, #264d73)">
+						<section>
+							<div class="title-container">
+							<span class="line"></span>
+							<div class="title-box">Safety Data Sheets (SDS)</div>
+							<span class="line"></span>
+						</div>
+					</section>
+						<section>
+						<div class="title-container">
+							
+							<div class="title-box">Safety Data Sheets (SDS)</div>
+							
+						</div>
+						<div class="content">
+								<p class="title-box2">What is an SDS and Why is it Important?</p>
+										<p>A Safety Data Sheet (SDS) – formerly called a Material Safety Data Sheet (MSDS) in WHMIS 1988 – is essentially a fact sheet or technical document that provides detailed information about a hazardous product. Think of it as the encyclopedia entry for the chemical. The SDS is prepared by the product’s manufacturer or supplier according to strict requirements in the Hazardous Products Regulations. It supplements the label by giving the reasoning and deeper details behind those label warnings.
+										</p>								
+									<br>
+						</div>
+						</section>
+
+<!-- Slide number 9b -->
+
+						<section>
+							<div class="title-container">
+								
+								<div class="title-box">Safety Data Sheets (SDS)</div>
+								
+							</div>
+							<div class="content">
+									<p class="title-box2">Why do you Need SDS?</p>
+											<p>While labels provide a snapshot of key information, the Safety Data Sheet (SDS) is where you find the full story about a hazardous product. An SDS is a comprehensive document that outlines everything from a chemical’s ingredients to its fire-fighting measures to its toxicological data.
+											</p>								
+										<br>
+							</div>
+								</section>
+
+<!-- Slide number 9c -->
+
+							<section>
+								<div class="title-container">
+									
+									<div class="title-box">Safety Data Sheets (SDS)</div>
+									
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container3">
+									<h3 class="hazard-title" style="color: white;">PURPOSE OF SDS</h3>
+									</div>
+									<div class="hazard-title-container4">
+									<ul class="hazard-list" style="font-size: 15px;">
+										<li> It lists the hazards of the product in detail (both physical and health hazards, and environmental hazards too).</li>
+										<li> It describes safe handling and storage recommendations beyond the short phrases on the label.</li>
+										<li> It provides first aid measures, fire-fighting measures, and spill response procedures.</li>
+										<li> It gives toxicological data (how poisonous or irritating a substance is, effects of exposure).</li>
+										<li> It may include regulatory information, like if the product is controlled under certain laws, and whether any ingredients are on hazardous lists.</li>
+										<li> It is a key resource for emergency responders (firefighters, doctors treating exposure, etc.) because it contains specifics like flash point, chemical formula, reactivity info, antidotes, etc.</li>
+											
+									</ul>
+									</div>
+								</div>
+							</section>
+
+	<!-- Slide number 9d -->									
+
+							<section>
+								<div class="title-container">
+									
+									<div class="title-box">Safety Data Sheets (SDS)</div>
+									
+								</div>
+								<div class="content4">
+									<div class="hazard-title-container3">
+									<h3 class="hazard-title" style="color: white;">WHEN SHOULD YOU CONSULT AN SDS</h3>
+									</div>
+									<div class="hazard-title-container4">
+									<ul class="hazard-list" style="font-size: 15px;">
+										<li>When you start using a new product, read its SDS to familiarize yourself with all hazards and precautions (even beyond what training covered).</li>
+										<li>If you are going to do something out of the ordinary with a product (e.g., heat it, dilute it significantly, or use it in a way not covered in training).</li>
+										<li>When a spill or exposure occurs, and you need detailed first aid or cleanup instructions.</li>
+										<li>If you or someone in the clinic has a health condition or sensitivity – the SDS might indicate if certain people should be extra cautious (for instance, some SDSs say “medical conditions aggravated by exposure”).</li>
+										<li>Periodically during safety meetings or refreshers, reviewing SDSs can reinforce knowledge.</li>
+										<li>If you simply want to know more about a chemical (e.g., “What exactly is in this cold sterilant solution? Why does it smell this way? What is its pH?”).</li>
+													
+									</ul>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 9e -->							
+
+							<section data-auto-animate>
+								<div class="title-container">
+									<span class="line"></span>
+								<h5 class="title-box" style="color: #5c0a0a;">SECTIONS OF SDS</h5>
+									<span class="line"></span>
+								</div>
+							</section>
+
+<!-- Slide number 9f -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #5c0a0a;">SECTIONS OF SDS</h5>
+									
+								</div>
+								<div class="container-section">
+									<div class="box-section">
+										<div class="title-box4">Section 1</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Identification:</strong> <br>This section gives the product name, any other names (synonyms), the recommended use of the chemical, and supplier contact information including emergency phone number. For example: “Product: Glutaclean Instrument Disinfectant. Use: High-level disinfectant for medical instruments. Supplier: XYZ Corp, Tel: ... Emergency 24-hr Tel: ...”. _Why it matters:_ Confirms you’re looking at the right SDS; has numbers to call in a transport accident or large emergency; if a poison center or doctor needs details, you give them this info.</div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 2</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Hazard Identification:</strong><br>Here you’ll find the WHMIS classification of the product (which hazard classes it falls under) and the label elements – basically what pictograms, signal word, hazard statements apply, plus any other hazard not otherwise classified. It often literally lists the pictogram names, “Danger” or “Warning,” and hazard statements like on the label. Some SDS may also list potential effects/symptoms briefly here. _Why it matters:_ It’s a summary of hazards. It might include things like “Other hazards: spills create slipping hazard” or “dust may form explosive mixture in air” if applicable – things that don’t go on the label but are good to know.</div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 3</div>
+										<div class="text-content-section"><strong style="font-size: 20px;">Composition/Information on Ingredients:</strong><br>If it’s a single substance, this section gives the chemical name, formula, CAS number, etc. If it’s a mixture, it lists hazardous ingredients and their concentrations (ranges) in the mixture. For example, your disinfectant SDS might say it contains Glutaraldehyde 2.5% w/v, Ethanol 5-10%, and other non-hazardous ingredients to 100%. Sometimes exact percentages are withheld (trade secrets) but ranges are given. _Why it matters:_ Knowing the ingredients can help in understanding what hazards come from which component. If someone has a specific chemical allergy, you can see if that chemical is present. Also, in emergencies, knowing ingredients is crucial (e.g., if someone drank it, ER doctors need to know what's in it). Some ingredients might be hazardous even if the mixture is diluted – this section reveals them.</div>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 9g -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #5c0a0a;">SECTIONS OF SDS</h5>
+									
+								</div>
+								<div class="container-section">
+									<div class="box-section">
+										<div class="title-box4">Section 4</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">First-Aid Measures:</strong> <br>Detailed instructions for first aid in different exposure scenarios: inhalation, skin contact, eye contact, ingestion. It tells you what symptoms might arise and what immediate actions to take. E.g., “Inhalation: Remove person to fresh air. If breathing is difficult, give oxygen. If not breathing, give artificial respiration. Seek medical attention if symptoms persist.” There’s often advice like “Never give anything by mouth if unconscious” in ingestion case.”  It might note specific treatments. Why it matters: In a dental office, if an exposure occurs, this section guides you and medical professionals. As a worker, you should know where this info is so you can quickly respond. Sometimes SDS first aid will mention things the label doesn’t – e.g., “Symptoms may be delayed” or “Specific antidote: administer calcium gluconate for HF acid exposure” – those details can be lifesaving.</div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 5</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Fire-Fighting Measures:</strong><br> Information on what to do if the product catches fire. It lists suitable extinguishing media (water, CO₂, foam, dry chemical, etc.), any specific hazards from fire (like “may produce toxic fumes of chlorine” or “containers may explode in heat”), and special protective equipment for firefighters (like wear self-contained breathing apparatus). Why it matters: For your knowledge, if you store a lot of a flammable chemical, you know how to fight a small fire (and when not to). For example, if an SDS says “Do not use water jet on burning liquid” you’d know to use an extinguisher instead of water. This section is primarily for fire emergency planning and informing firefighters. If you have certain chemicals, your fire emergency plan can be adjusted (like evacuate further away if it can explode). </div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 6</div>
+										<div class="text-content-section"><strong style="font-size: 20px;">Accidental Release Measures:</strong><br>How to safely clean up spills or leaks. It covers personal precautions (evacuate area, ventilate, wear gloves/respirator, etc.), environmental precautions (e.g., prevent entry into drains), and methods for cleanup (absorb with inert material, use neutralizing agent, scoop into container, etc.). Why it matters: Spills happen – maybe a bottle drops or something leaks. The SDS tells you the right way to handle it. For instance, if a mercury spill occurs, the SDS will say use a mercury spill kit or sulfur powder, and not to use a vacuum. Or if you drop a bottle of acid, SDS might say neutralize with sodium bicarbonate then mop up. Following these instructions protects you and others from harm during cleanup.</div>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 9h -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #5c0a0a;">SECTIONS OF SDS</h5>
+									
+								</div>
+								<div class="container-section">
+									<div class="box-section">
+										<div class="title-box4">Section 7</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Handling and Storage:</strong> <br>Guidelines for safe use and storage. It might repeat some precautions (like “use in fume hood” or “keep away from heat, sparks”), and tells you storage conditions (temperature range, keep out of sunlight, keep container tightly closed, incompatible materials to avoid storing near). _Why it matters:_ It helps you set up your storage correctly – e.g., store this chemical in a cool dark cabinet, or do not store acid and bleach together (incompatibility). It might indicate if you need special ventilation or if the product degrades over time. For example, “use only stainless steel or plastic containers, will corrode metal” – you’d know not to store it in a metal can. For handling, it guides your SOPs: maybe “avoid repeated or prolonged skin contact” meaning even if it’s not acutely dangerous, you should minimize contact and wear gloves each time.</div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 8</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Exposure Controls/Personal Protection:</strong><br> This section is very practical. It lists exposure limits (like OSHA/ACGIH TLVs or Ontario exposure limits for certain ingredients – e.g., glutaraldehyde might have a ceiling limit, N₂O has exposure limits). It then covers engineering controls (ventilation requirements, fume hood, etc.) and personal protective equipment (PPE) recommendations. For instance, it will specify what type of respirator if any, what kind of gloves (it might say “impervious gloves (nitrile, neoprene) are recommended”; sometimes it even warns that certain glove materials are not suitable because the chemical can permeate them). It will mention eye/face protection (safety glasses, goggles, face shield if risk of splash), and maybe apron or specific clothing. Why it matters: This is your go-to for what PPE to wear. While training might tell you, the SDS confirms it. </div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 9</div>
+										<div class="text-content-section"><strong style="font-size: 20px;">Physical and Chemical Properties:</strong><br>This is a list of the product’s physical properties: appearance (color, physical state), odor (and odor threshold), pH, melting/freezing point, boiling point, flash point (for flammables), evaporation rate, flammability limits, vapor pressure, vapor density, relative density (specific gravity), solubility, partition coefficient, auto-ignition temp, decomposition temp, and viscosity. Why it matters:_ For a user, some of these are interesting but not critical. </div>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 9i -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #5c0a0a;">SECTIONS OF SDS</h5>
+									
+								</div>
+								<div class="container-section">
+									<div class="box-section">
+										<div class="title-box4">Section 10</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Stability and Reactivity:</strong> <br>Details on how stable the product is and what conditions to avoid. It lists reactivity (is it reactive with water? etc.), chemical stability (stable under normal conditions or not), conditions to avoid (heat, shock, light, etc.), incompatible materials (what other chemicals cause dangerous reactions – e.g., “Avoid contact with strong acids, oxidizers”), and hazardous decomposition products (like if it burns or decays, does it produce CO, NOx, chlorine gas, etc.). Why it matters: This prevents accidents – you learn things like “don’t mix X with Y.” For example, SDS for bleach will say incompatible with ammonia, acids, and metals. So you never store bleach by your ortho acid etch, and you never mix with ammoniated cleaners. Stability info might tell you shelf-life hints: “unstable at high temps or on prolonged exposure to light.”</div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 11</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Toxicological Information:</strong><br> This section can be a bit technical. It describes the routes of exposure (inhalation, ingestion, skin, eye), symptoms (immediate and delayed), and the toxicity data like LD50 or LC50 (lethal doses in animal studies).  It covers acute effects and chronic effects: does it cause cancer (carcinogenicity info from agencies like IARC or NTP), mutagenicity, reproductive effects, sensitization, etc. Why it matters: For a safety-conscious worker, it tells you how toxic something is. If you see an oral LD50 of, say, 50 mg/kg with a skull symbol in earlier sections, you realize a small amount can be deadly if ingested.  </div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 12</div>
+										<div class="text-content-section"><strong style="font-size: 20px;">Ecological Information:</strong><br>This section is marked with * in Canadian SDS since info might not be provided. It includes data on how the chemical affects the environment – fish toxicity (LC50 in fish), persistence/degradability, bioaccumulation potential, mobility in soil, etc. Also any other adverse effects like ozone depletion potential. Why it matters: It reinforces disposal considerations. For example, it might say “Very toxic to aquatic life.It includes data on how the chemical affects the environment – fish toxicity (LC50 in fish), persistence/degradability, bioaccumulation potential, mobility in soil, etc. Also any other adverse effects like ozone depletion potential. _Why it matters:_ It reinforces disposal considerations. For example, it might say “Very toxic to aquatic life. </div>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 9j -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #5c0a0a;">SECTIONS OF SDS</h5>
+									
+								</div>
+								<div class="container-section">
+									<div class="box-section">
+										<div class="title-box4">Section 13</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Disposal Considerations:</strong> <br>(Also optional info in Canada SDS) This gives guidance on how to dispose of the product and contaminated packaging. It might say if it’s considered a hazardous waste under regulations, and suggest methods (e.g., “Dispose via licensed hazardous waste contractor. Do not pour into sewer. Rinse container before recycling if appropriate.”). Why it matters: Clinics generate chemical waste (like fixer, mercury, etc.). The SDS disposal section often clearly states what to do.</div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 14</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Transport Information:</strong><br> This lists how the product is classified for shipping: the UN number, proper shipping name, hazard class (for DOT/TDG), packing group, etc., and any environmental hazards (like “Marine pollutant”). Why it matters:_ If your clinic ever ships out hazardous materials (maybe returning a chemical or sending waste), this is for reference.  </div>
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 15</div>
+										<div class="text-content-section"><strong style="font-size: 20px;">Regulatory Information:</strong><br>Lists specific safety, health, environmental regulations for the product not covered elsewhere. It might mention if any ingredients are on inventories (TSCA, DSL), or if any ingredient is subject to WHMIS disclosure exemptions, or any specific provincial regulations. _Why it matters:_ Largely for compliance people. It’s not something a worker uses daily, but it might mentioned. </div>
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number 9k -->
+
+							<section data-auto-animate>
+								<div class="title-container">
+									
+								<h5 class="title-box" style="color: #5c0a0a;">SECTIONS OF SDS</h5>
+									
+								</div>
+								<div class="container-section">
+									<div class="box-section" style="background-color: transparent; border-color: transparent; box-shadow: none;">
+										
+									</div>
+									<div class="box-section">
+										<div class="title-box4">Section 16</div>
+										<div class="text-content-section"> <strong style="font-size: 20px;">Other Information:</strong> <br>This usually includes the preparation or revision date of the SDSand maybe a disclaimer or references. It tells you when the SDS was last updated. Why it matters: You want to ensure you have the latest SDS. Under WHMIS 2015, suppliers must update the SDS when new information becomes available (new hazard findings, etc.). .</div>
+									</div>
+									
+									<div class="box-section" style="background-color: transparent; border-color: transparent; box-shadow: none;">
+										
+									</div>
+								</div>
+							</section>
+
+<!-- Slide number QUIZ SEVEN -->							
+
+							<section data-auto-animate>
+								<div class="title-container">
+								<span class="line"></span>
+								<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+								<span class="line"></span>
+								</div>
+								</section>
+
+
+
+								<section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+									
+									</div>
+									
+									<div class="quiz-container">
+										<p class="info-box3" style="font-size: 30px; color: black;" id="question10">Which section of the SDS would you check to find out what personal protective equipment (PPE) you should wear when using a chemical?</p>
+						
+										<div class="option">
+											<input type="radio" name="answer10" value="A" id="q10A">
+											<label for="q10A">A. Section 4 – First Aid Measures  </label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer10" value="B" id="q10B">
+											<label for="q10B">B. Section 12 – Ecological Information</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer10" value="C" id="q10C">
+											<label for="q10C">C.  Section 8 – Exposure Controls/Personal Protection</label>
+										</div>
+						
+										<button class="quiz-btn" onclick="checkAnswer('answer10', 'C', 'result10')">Check Answer</button>
+										<p id="result10"></p>
+									</div>
+									
+								</section>
+
+								<section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+									
+									</div>
+									
+									<div class="quiz-container">
+										<p class="info-box3" style="font-size: 30px; color: black;" id="question11">Where on the SDS would you find whether a chemical has any long-term health effects like cancer or reproductive harm?</p>
+						
+										<div class="option">
+											<input type="radio" name="answer11" value="A" id="q11A">
+											<label for="q11A">A. Section 7 – Handling and Storag</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer11" value="B" id="q11B">
+											<label for="q11B">B. Section 11 – Toxicological Information</label>
+										</div>
+										<div class="option">
+											<input type="radio" name="answer11" value="C" id="q11C">
+											<label for="q11C">C. Section 11 – Hazard Identification</label>
+										</div>
+						
+										<button class="quiz-btn" onclick="checkAnswer('answer11', 'B', 'result11')">Check Answer</button>
+										<p id="result11"></p>
+									</div>
+									
+								</section>
+					</section>
+
+<!-- Slide number 10a -->
+
+							<section data-background-gradient="linear-gradient(to bottom, #e4e5e6, #00416a)">
+								<section>
+									<div class="title-container">
+									<span class="line"></span>
+									<div class="title-box">Protective Measures Safe Handling Practices</div>
+									<span class="line"></span>
+								</div>
+							</section>
+
+<!-- Slide number 10b -->
+
+							<section>
+								<div class="title-container">
+								
+								<div class="title-box">Protective Measures</div>
+								
+							</div>
+							<div class="content">
+								<p class="title-box2">Personal Protective Equipment (PPE):</p>
+										<p>Personal Protective Equipment is your last line of defense against hazards. In a clinic, you’re likely already familiar with PPE for infection control (gloves, masks, eyewear, gowns to protect against bloodborne pathogens). Many of these also serve to protect against chemical hazards – but sometimes, different or additional PPE is needed for certain tasks. Here’s a breakdown of PPE use specifically related to chemical safety and hazardous materials.
+										</p>								
+									
+							</div>
+						</section>
+
+<!-- Slide number 10c -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">GLOVES</h3>
+							<span class="line"></span>
+						</div>
+						  </section>
+
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GLOVES</h3>
+								
+							</div>
+							<p class="content">Always wear appropriate gloves when handling chemicals. For most routine dental procedures and disinfection tasks, disposable nitrile or latex exam gloves provide a basic barrier. However, not all gloves are equal for all chemicals:</p>
+						  </section>
+
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GLOVES</h3>
+								
+							</div>
+						  <p class="content">Always wear appropriate gloves when handling chemicals. For most routine dental procedures and disinfection tasks, disposable nitrile or latex exam gloves provide a basic barrier. However, not all gloves are equal for all chemicals:</p>
+						  <p class="title-box3" style="background-color: #d9b3ff; color: black">Nitrile Gloves</p>
+						  <p style="text-align: left; font-size: 17px;">Nitrile gloves are generally resistant to many solvents and chemicals and are a good all-purpose choice in dentistry. They are typically recommended for handling things like disinfectants, cleaners, and even mercury (they resist permeation better than latex).</p>
+						</section>
+
+						<section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GLOVES</h3>
+								
+							</div>
+							<p class="content">Always wear appropriate gloves when handling chemicals. For most routine dental procedures and disinfection tasks, disposable nitrile or latex exam gloves provide a basic barrier. However, not all gloves are equal for all chemicals:</p>
+							<p class="title-box3" style="background-color: #d9b3ff; color: black">Nitrile Gloves</p>
+							<p style="text-align: left; font-size: 17px;">Nitrile gloves are generally resistant to many solvents and chemicals and are a good all-purpose choice in dentistry. They are typically recommended for handling things like disinfectants, cleaners, and even mercury (they resist permeation better than latex).</p>
+							<p class="title-box3" style="background-color: #ffe6cc; color: black">Latex Gloves</p>
+							<p style="text-align: left; font-size: 17px;">Latex gloves offer good dexterity but can degrade with certain chemicals (like solvents will make them sticky or they may allow certain chemicals through faster). Also, latex can cause allergies in some workers. Use nitrile if possible for chemical tasks, as nitrile is more chemically resistant.</p>
+						  </section>
+						  
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">GLOVES</h3>
+								
+							</div>
+							<p class="content">Always wear appropriate gloves when handling chemicals. For most routine dental procedures and disinfection tasks, disposable nitrile or latex exam gloves provide a basic barrier. However, not all gloves are equal for all chemicals:</p>
+							<p class="title-box3" style="background-color: #d9b3ff; color: black">Nitrile Gloves</p>
+							<p style="text-align: left; font-size: 17px;">Nitrile gloves are generally resistant to many solvents and chemicals and are a good all-purpose choice in dentistry. They are typically recommended for handling things like disinfectants, cleaners, and even mercury (they resist permeation better than latex).</p>
+							<p class="title-box3" style="background-color: #ffe6cc; color: black">Latex Gloves</p>
+							<p style="text-align: left; font-size: 17px;">Latex gloves offer good dexterity but can degrade with certain chemicals (like solvents will make them sticky or they may allow certain chemicals through faster). Also, latex can cause allergies in some workers. Use nitrile if possible for chemical tasks, as nitrile is more chemically resistant.</p>
+							<p class="title-box3" style="background-color: #e6e600; color: black">Utility Gloves</p>
+							<p style="text-align: left; font-size: 17px;"> Utility gloves (heavy-duty rubber gloves): For tasks like handling concentrated chemicals, scrubbing instruments in potent cleaning agents, or dealing with chemical spills, thicker neoprene or rubber utility gloves (often reusable) should be worn over or instead of exam gloves.</p>
+						</section>
+
+<!-- Slide number 10d -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">EYE / FACE</h3>
+							<span class="line"></span>
+						</div>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">EYE / FACE</h3>
+								
+							</div>
+							<p class="content">Chemical splash goggles or a face shield (with safety glasses) are vital when there’s any risk of a chemical splashing or spraying into your eyes or face. Regular prescription glasses or dental loupes are not sufficient – chemicals can go around the edges.</p>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">EYE / FACE</h3>
+								
+							</div>
+						  <p class="content">Chemical splash goggles or a face shield (with safety glasses) are vital when there’s any risk of a chemical splashing or spraying into your eyes or face. Regular prescription glasses or dental loupes are not sufficient – chemicals can go around the edges.</p>
+						  <p class="title-box3" style="background-color: #ffb366; color: black">Goggles</p>
+						  <p style="text-align: left; font-size: 17px;"> For tasks like preparing etchant, pouring acids/bases, mixing fixer or developer, or cleaning up a spill, wear goggles that seal against the face. Goggles protect from direct splashes to the eyes. Many dental staff wear safety glasses routinely for patient care (which is good for flying debris), but for chemical handling, upgrade to goggles.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">EYE / FACE</h3>
+								
+							</div>
+							<p class="content">Chemical splash goggles or a face shield (with safety glasses) are vital when there’s any risk of a chemical splashing or spraying into your eyes or face. Regular prescription glasses or dental loupes are not sufficient – chemicals can go around the edges.</p>
+							<p class="title-box3" style="background-color: #ffb366; color: black">Goggles</p>
+							<p style="text-align: left; font-size: 17px;"> For tasks like preparing etchant, pouring acids/bases, mixing fixer or developer, or cleaning up a spill, wear goggles that seal against the face. Goggles protect from direct splashes to the eyes. Many dental staff wear safety glasses routinely for patient care (which is good for flying debris), but for chemical handling, upgrade to goggles.</p>
+							<p class="title-box3" style="background-color: #d279a6; color: black">Face Shield</p>
+							<p style="text-align: left; font-size: 17px;"> If working with a volume of liquid that could splash to your whole face or if you’re pouring something overhead, use a face shield in addition to goggles (face shield alone doesn’t seal the eyes, but it adds extra splash coverage for your skin and face).</p>
+						  </section>
+
+<!-- Slide number 10e -->
+
+						  <section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">RESPIRATORY PROTECTION</h3>
+							<span class="line"></span>
+						</div>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">RESPIRATORY PROTECTION</h3>
+								
+							</div>
+							<p class="content">Most dental environments have you wearing a surgical mask or similar for infection control. These masks provide limited protection against chemical vapors – mostly they guard against splashes and large droplets.</p>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">RESPIRATORY PROTECTION</h3>
+								
+							</div>
+						  <p class="content">Most dental environments have you wearing a surgical mask or similar for infection control. These masks provide limited protection against chemical vapors – mostly they guard against splashes and large droplets.</p>
+						  <p class="title-box3" style="background-color: #00ccff; color: black">Surgical Mask</p>
+						  <p style="text-align: left; font-size: 17px;">For many dental chemicals, general room ventilation suffices and a surgical mask is enough to avoid direct splashes to nose/mouth. However, if you notice strong fumes (like when using alcohol-based solutions in quantity, or monomer fumes, or lots of spray aerosol), you may need better respiratory protection.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">RESPIRATORY PROTECTION</h3>
+								
+							</div>
+							<p class="content">Most dental environments have you wearing a surgical mask or similar for infection control. These masks provide limited protection against chemical vapors – mostly they guard against splashes and large droplets.</p>
+							<p class="title-box3" style="background-color: #00ccff; color: black">Surgical Mask</p>
+							<p style="text-align: left; font-size: 17px;">For many dental chemicals, general room ventilation suffices and a surgical mask is enough to avoid direct splashes to nose/mouth. However, if you notice strong fumes (like when using alcohol-based solutions in quantity, or monomer fumes, or lots of spray aerosol), you may need better respiratory protection.</p>
+							<p class="title-box3" style="background-color: #cc6600; color: black">Local Exhaust Ventilation (LEV):</p>
+							<p style="text-align: left; font-size: 17px;">Before resorting to respirators, use engineering controls. For example, if you’re pouring methyl methacrylate monomer for dentures, do it under a fume hood or at least near a source-extraction vacuum arm. Good HVAC and point suction (like extraoral suction devices) can reduce inhalation risks for things like monomer, formalin jars, or large volumes of disinfectant.</p>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">RESPIRATORY PROTECTION</h3>
+								
+							</div>
+							<p class="content">Most dental environments have you wearing a surgical mask or similar for infection control. These masks provide limited protection against chemical vapors – mostly they guard against splashes and large droplets.</p>
+							<p class="title-box3" style="background-color: #00ccff; color: black">Surgical Mask</p>
+							<p style="text-align: left; font-size: 17px;">For many dental chemicals, general room ventilation suffices and a surgical mask is enough to avoid direct splashes to nose/mouth. However, if you notice strong fumes (like when using alcohol-based solutions in quantity, or monomer fumes, or lots of spray aerosol), you may need better respiratory protection.</p>
+							<p class="title-box3" style="background-color: #cc6600; color: black">Local Exhaust Ventilation (LEV):</p>
+							<p style="text-align: left; font-size: 17px;">Before resorting to respirators, use engineering controls. For example, if you’re pouring methyl methacrylate monomer for dentures, do it under a fume hood or at least near a source-extraction vacuum arm. Good HVAC and point suction (like extraoral suction devices) can reduce inhalation risks for things like monomer, formalin jars, or large volumes of disinfectant.</p>
+							<p class="title-box3" style="background-color: #00e6e6; color: black">Respirators</p>
+							<p style="text-align: left; font-size: 17px;"> If ventilation isn’t enough or if a worker is particularly sensitive, a respirator might be needed. This could be an N95 mask or a half-face respirator with appropriate chemical cartridges.</p>
+						</section>
+
+<!-- Slide number 10f -->
+
+						<section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">SKIN PROTECTION</h3>
+							<span class="line"></span>
+						</div>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SKIN PROTECTION</h3>
+								
+							</div>
+							<p class="content">Wear a lab coat or gown when dealing with chemicals, preferably one that is resistant to liquids. For infection control, you likely already wear a disposable or reusable gown. Ensure it’s covering you fully (closed front, long sleeves with snug cuffs) so that if a splash occurs, it hits the gown, not your skin or your street clothes.</p>
+						  </section>
+						  <section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SKIN PROTECTION</h3>
+								
+							</div>
+						  <p class="content">Wear a lab coat or gown when dealing with chemicals, preferably one that is resistant to liquids. For infection control, you likely already wear a disposable or reusable gown. Ensure it’s covering you fully (closed front, long sleeves with snug cuffs) so that if a splash occurs, it hits the gown, not your skin or your street clothes.</p>
+						  <p class="title-box3" style="background-color: #7070db; color: black">Chemical Resistant Apron</p>
+						  <p style="text-align: left; font-size: 17px;"> For higher-risk chemical tasks, chemical-resistant aprons (e.g., rubber or plastic aprons) can be worn over your coat. Say you’re handling the hazardous waste container for fixer – wearing a vinyl apron will protect your torso from any leak.</p>
+						</section>
+						<section data-auto-animate>
+							<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SKIN PROTECTION</h3>
+								
+							</div>
+							<p class="content">Wear a lab coat or gown when dealing with chemicals, preferably one that is resistant to liquids. For infection control, you likely already wear a disposable or reusable gown. Ensure it’s covering you fully (closed front, long sleeves with snug cuffs) so that if a splash occurs, it hits the gown, not your skin or your street clothes.</p>
+							<p class="title-box3" style="background-color: #7070db; color: black">Chemical Resistant Apron</p>
+							<p style="text-align: left; font-size: 17px;"> For higher-risk chemical tasks, chemical-resistant aprons (e.g., rubber or plastic aprons) can be worn over your coat. Say you’re handling the hazardous waste container for fixer – wearing a vinyl apron will protect your torso from any leak.</p>
+							<p class="title-box3" style="background-color: #e64d00; color: black">Closed-toe shoes</p>
+							<p style="text-align: left; font-size: 17px;">  These are a must (which should already be a clinic policy). If you drop a sharp or a bit of acid, you don’t want it on your feet. Avoid mesh athletic shoes on days you work with chemicals – a solid material shoe is better as a barrier.</p>
+						  </section>
+
+<!-- Slide number 10g -->
+
+							
+							<section>
+							<div class="title-container">
+
+							<div class="title-box">Safe Handling</div>
+
+							</div>
+							<div class="content">
+							<p class="title-box2">Safe Handling and Storage of Hazardous Materials:</p>
+									<p>Preventing incidents with chemicals starts with how you handle and store them every day. A lot of this is about being organized, attentive, and following known best practices. Let’s break it into handling and storage.
+									</p>								
+								
+							</div>
+							</section>
+
+<!-- Slide number 10h -->
+
+							<section data-auto-animate>
+							<div class="title-container">
+							<span class="line"></span>
+							<h3 class="title-box" style="color: #bb1414;">SAFE HANDLING PRACTICES</h3>
+							<span class="line"></span>
+							</div>
+							</section>
+
+<!-- Slide number 10i -->							
+
+							<section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SAFE HANDLING PRACTICES</h3>
+								
+								</div>
+								<div class="container-wrapper">
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #58a6da, #6dd5fa);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Read Labels/SDS Before Use:</strong> <br><br>
+												As emphasized throughout this training, know what you’re handling. Don’t assume two different chemicals are handled the same way. For example, handling bleach vs. handling fixer – one you must avoid mixing with acids, the other you must avoid skin contact and environmental release. Quick review of instructions prevents mistakes.
+											</div>
+										</div>
+									</div>
+									</div>
+								
+							  </section>
+
+							  <section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SAFE HANDLING PRACTICES</h3>
+								
+								</div>
+								<div class="container-wrapper">
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #58a6da, #6dd5fa);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Read Labels/SDS Before Use:</strong> <br><br>
+												As emphasized throughout this training, know what you’re handling. Don’t assume two different chemicals are handled the same way. For example, handling bleach vs. handling fixer – one you must avoid mixing with acids, the other you must avoid skin contact and environmental release. Quick review of instructions prevents mistakes.
+											</div>
+										</div>
+									</div>
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #f37335, #fdc830);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Use Tools and Equipment to Minimize Contact:</strong><br><br>
+												Wherever possible, use tongs, scoops, or dispensing devices instead of your hands. E.g., when transferring instruments into a glutaraldehyde soak, use forceps to avoid dipping your gloved hands fully into the solution. Use a funnel when pouring chemicals to avoid spills. If available, use safety carriers for acid bottles (plastic totes that catch drips).
+											</div>
+										</div>
+									</div>
+									</div>
+								
+							  </section>
+
+							  <section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SAFE HANDLING PRACTICES</h3>
+								
+								</div>
+								<div class="container-wrapper">
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #58a6da, #6dd5fa);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Read Labels/SDS Before Use:</strong> <br><br>
+												As emphasized throughout this training, know what you’re handling. Don’t assume two different chemicals are handled the same way. For example, handling bleach vs. handling fixer – one you must avoid mixing with acids, the other you must avoid skin contact and environmental release. Quick review of instructions prevents mistakes.
+											</div>
+										</div>
+									</div>
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #f37335, #fdc830);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Use Tools and Equipment to Minimize Contact:</strong><br><br>
+												Wherever possible, use tongs, scoops, or dispensing devices instead of your hands. E.g., when transferring instruments into a glutaraldehyde soak, use forceps to avoid dipping your gloved hands fully into the solution. Use a funnel when pouring chemicals to avoid spills. If available, use safety carriers for acid bottles (plastic totes that catch drips).
+											</div>
+										</div>
+									</div>
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #25c18a, #78ffd6);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Pouring and Mixing:</strong><br><br>
+												When pouring liquids, do it slowly and at a manageable height – not above eye level. If you have to pour something into a smaller bottle, place the smaller container on a stable surface (not holding it in hand) and use a funnel. For powders (like mixing investment or gypsum, or a chemical powder cleaner), avoid creating dust – add powder gently, maybe moisten to prevent airborne dust, and use local ventilation if needed.
+											</div>
+										</div>
+									</div>
+									</div>
+								
+							  </section>
+
+<!-- Slide number 10j -->
+
+							  <section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SAFE HANDLING PRACTICES</h3>
+								
+								</div>
+								<div class="container-wrapper">
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #f25f5a, #fbd1d0);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Avoiding Inhalation:</strong> <br><br>
+												Work with volatile chemicals in well-ventilated areas. For example, when using monomer for acrylics or using adhesive primers with strong solvents, open them only as long as needed and recap promptly. If something has a strong odor, that’s a cue that ventilation should be improved or respiratory protection considered. Some clinics have small bench-top fume extractors or at least do tasks near the general suction inlet.
+											</div>
+										</div>
+									</div>
+									</div>
+								
+							  </section>
+
+							  <section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SAFE HANDLING PRACTICES</h3>
+								
+								</div>
+								<div class="container-wrapper">
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #f25f5a, #fbd1d0);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Avoiding Inhalation:</strong> <br><br>
+												Work with volatile chemicals in well-ventilated areas. For example, when using monomer for acrylics or using adhesive primers with strong solvents, open them only as long as needed and recap promptly. If something has a strong odor, that’s a cue that ventilation should be improved or respiratory protection considered. Some clinics have small bench-top fume extractors or at least do tasks near the general suction inlet.
+											</div>
+										</div>
+									</div>
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #43c6ac, #f8ffae);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">No Mouth Pipetting or Suctioning:</strong><br><br>
+												 It may sound obvious, but never use mouth suction to start siphoning or pipetting any chemical (this is more for labs, but just to state – always use mechanical pipettes or suction bulbs).
+											</div>
+										</div>
+									</div>
+									</div>
+								
+							  </section>
+
+							  <section data-auto-animate>
+								<div class="title-container">
+								
+								<h3 class="title-box" style="color: #bb1414;">SAFE HANDLING PRACTICES</h3>
+								
+								</div>
+								<div class="container-wrapper">
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #f25f5a, #fbd1d0);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Avoiding Inhalation:</strong> <br><br>
+												Work with volatile chemicals in well-ventilated areas. For example, when using monomer for acrylics or using adhesive primers with strong solvents, open them only as long as needed and recap promptly. If something has a strong odor, that’s a cue that ventilation should be improved or respiratory protection considered. Some clinics have small bench-top fume extractors or at least do tasks near the general suction inlet.
+											</div>
+										</div>
+									</div>
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #43c6ac, #f8ffae);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">No Mouth Pipetting or Suctioning:</strong><br><br>
+												 It may sound obvious, but never use mouth suction to start siphoning or pipetting any chemical (this is more for labs, but just to state – always use mechanical pipettes or suction bulbs).
+											</div>
+										</div>
+									</div>
+									<div data-id="box" class="container-section2">
+										<div class="box-section2" style="background: linear-gradient(to bottom, #f09819, #edde5d);">
+											
+											<div class="text-content-section2">
+												<strong class="text-decor">Care with Sharps & Chemicals:</strong><br><br>
+												If you have chemicals in combination with sharp tools (e.g., a syringe full of etchant), take care that you don't accidentally inject or puncture yourself or someone with a chemically-loaded sharp. Dispose of chemically contaminated sharps in sharps containers (e.g., a needle used to apply a formocresol cotton pellet goes in sharps – it’s both a sharp and soaked in a hazardous chemical).
+											</div>
+										</div>
+									</div>
+									</div>
+								
+							  </section>
+
+<!-- Slide number 10k -->							  
+
+							  <section data-auto-animate>
+								<div class="title-container">
+								<span class="line"></span>
+								<h3 class="title-box" style="color: #bb1414;">SAFE STORAGE PRACTICES</h3>
+								<span class="line"></span>
+								</div>
+								</section>
+
+<!-- Slide number 10l -->
+
+								<section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">SAFE STORAGE PRACTICES</h3>
+									
+									</div>
+									<div class="container-wrapper">
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #cc66cc, #df9fdf);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Designated Storage Areas:</strong> <br><br>
+													Store chemicals in a well-organized manner in cabinets or shelves meant for chemicals. Ideally, separate from areas where patients are treated or where food is stored/consumed. E.g., have a dedicated “chemical cabinet” in the sterilization or lab area. This cabinet should be labeled (e.g., “Chemical Storage – No Food”).
+												</div>
+											</div>
+										</div>
+										</div>
+									
+								  </section>
+
+<!-- Slide number 10m -->								  
+	
+								  <section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">SAFE STORAGE PRACTICES</h3>
+									
+									</div>
+									<div class="container-wrapper">
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #cc66cc, #df9fdf);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Designated Storage Areas:</strong> <br><br>
+													Store chemicals in a well-organized manner in cabinets or shelves meant for chemicals. Ideally, separate from areas where patients are treated or where food is stored/consumed. E.g., have a dedicated “chemical cabinet” in the sterilization or lab area. This cabinet should be labeled (e.g., “Chemical Storage – No Food”).
+												</div>
+											</div>
+										</div>
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #00ace6, #99e6ff);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Flammable Storage:</strong><br><br>
+													If you have significant quantities of flammable liquids (e.g., a liter of alcohol or acetone, or lots of methyl methacrylate), they should be stored in a designated flammable storage cabinet – a ventilated, fire-resistant cabinet (often yellow in color) designed to contain fires. In a small clinic with only small bottles, you may not need a formal flammable cabinet, but at least store flammables away from ignition sources. 
+												</div>
+											</div>
+										</div>
+										</div>
+									
+								  </section>
+<!-- Slide number 10n -->
+
+	
+								  <section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">SAFE STORAGE PRACTICES</h3>
+									
+									</div>
+									<div class="container-wrapper">
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #cc66cc, #df9fdf);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Designated Storage Areas:</strong> <br><br>
+													Store chemicals in a well-organized manner in cabinets or shelves meant for chemicals. Ideally, separate from areas where patients are treated or where food is stored/consumed. E.g., have a dedicated “chemical cabinet” in the sterilization or lab area. This cabinet should be labeled (e.g., “Chemical Storage – No Food”).
+												</div>
+											</div>
+										</div>
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #00ace6, #99e6ff);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Flammable Storage:</strong><br><br>
+													If you have significant quantities of flammable liquids (e.g., a liter of alcohol or acetone, or lots of methyl methacrylate), they should be stored in a designated flammable storage cabinet – a ventilated, fire-resistant cabinet (often yellow in color) designed to contain fires. In a small clinic with only small bottles, you may not need a formal flammable cabinet, but at least store flammables away from ignition sources. 
+												</div>
+											</div>
+										</div>
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #b38f00, #ffe680);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Temperature and Lighting:</strong><br><br>
+													Follow SDS storage temp recommendations. For example, some materials shouldn’t freeze or they degrade; some shouldn’t exceed a temp or they might build pressure. A dark cabinet is good for light-sensitive materials (like some monomers can polymerize if exposed to light). If refrigeration is needed (some adhesives might say store 2-8°C), use a fridge not used for food (dedicated chemical fridge with proper labeling).
+												</div>
+											</div>
+										</div>
+										</div>
+									
+								  </section>
+
+<!-- Slide number 10o -->
+
+								  <section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">SAFE STORAGE PRACTICES</h3>
+									
+									</div>
+									<div class="container-wrapper">
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #11998e, #38ef7d);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Original Containers:</strong> <br><br>
+													Keep products in their original containers whenever possible. Those containers are designed for that chemical and have proper labeling. If you must transfer to a different container for storage, make sure that container is suitable (correct material, has a tight fitting lid) and label it thoroughly (essentially giving it a workplace label with all info).
+												</div>
+											</div>
+										</div>
+										</div>
+									
+								  </section>
+
+<!-- Slide number 10p -->								  
+	
+								  <section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">SAFE STORAGE PRACTICES</h3>
+									
+									</div>
+									<div class="container-wrapper">
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #11998e, #38ef7d);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Original Containers:</strong> <br><br>
+													Keep products in their original containers whenever possible. Those containers are designed for that chemical and have proper labeling. If you must transfer to a different container for storage, make sure that container is suitable (correct material, has a tight fitting lid) and label it thoroughly (essentially giving it a workplace label with all info).
+												</div>
+											</div>
+										</div>
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #ff8766, #ffd7cc);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Avoid Overcrowding:</strong><br><br>
+													Don’t cram too many containers in a small space – this increases chance of knocking something over. Also allow air circulation if needed (especially for volatile chemicals).
+												</div>
+											</div>
+										</div>
+										</div>
+									
+								  </section>
+
+<!-- Slide number 10q -->								  
+	
+								  <section data-auto-animate>
+									<div class="title-container">
+									
+									<h3 class="title-box" style="color: #bb1414;">SAFE STORAGE PRACTICES</h3>
+									
+									</div>
+									<div class="container-wrapper">
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #11998e, #38ef7d);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Original Containers:</strong> <br><br>
+													Keep products in their original containers whenever possible. Those containers are designed for that chemical and have proper labeling. If you must transfer to a different container for storage, make sure that container is suitable (correct material, has a tight fitting lid) and label it thoroughly (essentially giving it a workplace label with all info).
+												</div>
+											</div>
+										</div>
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #ff8766, #ffd7cc);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Avoid Overcrowding:</strong><br><br>
+													Don’t cram too many containers in a small space – this increases chance of knocking something over. Also allow air circulation if needed (especially for volatile chemicals).
+												</div>
+											</div>
+										</div>
+										<div data-id="box" class="container-section2">
+											<div class="box-section2" style="background: linear-gradient(to bottom, #dd6e95, #81dcfe);">
+												
+												<div class="text-content-section2">
+													<strong class="text-decor">Ventilation for Storage:</strong><br><br>
+													Ensure the storage area is ventilated, especially if storing volatile chemicals. A build-up of vapors could be harmful. If you open a cabinet and notice strong chemical odors, that’s a sign of inadequate ventilation or a leak. Investigate and improve ventilation or containment.
+											</div>
+										</div>
+										</div>
+									
+								  </section>
+
+
+<!-- Slide number QUIZ -->
+
+								  <section data-auto-animate>
+									<div class="title-container">
+									<span class="line"></span>
+									<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+									<span class="line"></span>
+									</div>
+									</section>
+
+
+
+									<section data-auto-animate>
+										<div class="title-container">
+										
+										<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+										
+										</div>
+										
+										<div class="quiz-container">
+											<p class="info-box3" style="font-size: 30px; color: black;" id="question12">Which type of gloves generally provide the best protection against a wide range of clinical chemicals like disinfectants and solvents? </p>
+							
+											<div class="option">
+												<input type="radio" name="answer12" value="A" id="q12A">
+												<label for="q12A">A. Nitrile gloves</label>
+											</div>
+											<div class="option">
+												<input type="radio" name="answer12" value="B" id="q12B">
+												<label for="q12B">B. Latex gloves</label>
+											</div>
+											<div class="option">
+												<input type="radio" name="answer12" value="C" id="q12C">
+												<label for="q12C">C. Cotton gloves</label>
+											</div>
+											
+											<button class="quiz-btn" onclick="checkAnswer('answer12', 'A', 'result12')">Check Answer</button>
+											<p id="result12"></p>
+										</div>
+										
+									</section>
+
+									<section data-auto-animate>
+										<div class="title-container">
+										
+										<h3 class="title-box" style="color: #bb1414;">QUIZ</h3>
+										
+										</div>
+										
+										<div class="quiz-container">
+											<p class="info-box3" style="font-size: 30px; color: black;" id="question13">Where should mercury-containing waste (like amalgam scraps or spilled mercury) be disposed? </p>
+							
+											<div class="option">
+												<input type="radio" name="answer13" value="A" id="q13A">
+												<label for="q13A">A. In the regular trash, after sealing in a plastic bag</label>
+											</div>
+											<div class="option">
+												<input type="radio" name="answer13" value="B" id="q13B">
+												<label for="q13B">B. Down the drain with lots of water. </label>
+											</div>
+											<div class="option">
+												<input type="radio" name="answer13" value="C" id="q13C">
+												<label for="q13C">C. In a designated airtight container for hazardous waste, managed by a recycling/disposal service.</label>
+											</div>
+											
+											<button class="quiz-btn" onclick="checkAnswer('answer13', 'C', 'result13')">Check Answer</button>
+											<p id="result13"></p>
+										</div>
+										
+									</section>
+								
+							</section>
+
+							<section data-background-gradient="linear-gradient(to bottom, #e4e5e6, #00416a)">
+								<section>
+									<div class="title-container">
+									
+									<div class="title-box">Congratulations</div>
+									
+								</div>
+								<div class="content">
+									
+											<p style="font-size: 20px;">Congratulations on completing the WHMIS training module! It's now time to take the test to earn your certification.
+											</p>								
+										
+								
+
+								
+									
+									<p style="font-size: 20px;">Please read these instructions carefully before you begin:</p>
+									<ul class="info-box3" style=" font-size: 15px; font-style: italic;">
+										<li>
+											You have one chance to answer the question. You cannot revisit the questions. 
+										</li>
+										
+										<li>
+											You must pass the test to complete the course.
+										</li>
+										
+										<li>
+											If you do not complete the test on the first try, press Try Again Buton. You have unlimited attempts. 
+										</li>
+										
+										<li>
+											You need to score 80% or higher to pass. 
+										</li>
+										
+									</ul>
+							
+								</div>
+							
+	
+
+								<button class="quiz-btn" onclick="location.href='test.html'">Go to Test Page</button>
+							</section>
+							</section>
+
+							
+
+
+								</div>
+							</div>
+						
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
