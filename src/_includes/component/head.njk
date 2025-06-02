@@ -40,6 +40,13 @@
       }
       body {   
       }
+
+      .coming-soon{
+        flex: 1; 
+        padding: 10px;
+        text-align: center;
+        color: black;
+      }
       
       .info-box {
         flex: 1; 
@@ -145,9 +152,17 @@
            padding: 20px ;
         }
 
-         @media (max-width: 768px) {
+         @media (max-width: 1310px) {
           .info-box {
             flex-basis: 100%;
+        }
+
+        .info-box img{
+          max-width: 100px;
+        }
+
+        .coming-soon img{
+          max-width: 30em;
         }
 
         div[style*="display: flex"] {
