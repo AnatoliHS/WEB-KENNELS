@@ -5,7 +5,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 15px 30px;
+            padding: 15px 20px;
             width: calc(100% - 60px); /* give a little breathing room */
             margin: 10px auto; /* floating effect with margin */
             z-index: 100;
@@ -53,6 +53,33 @@
              width: calc(100% - 40px);
             }
         }
+
+        @media (max-width: 768px) {
+  .navbar {
+    flex-wrap: nowrap;        /* Prevent wrapping */
+    overflow-x: auto;         /* Let it scroll horizontally if needed */
+    
+  }
+
+  .navbar a {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 10px 6px;
+    margin: 0 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Optional: hide scrollbar for cleaner look */
+  .navbar::-webkit-scrollbar {
+    display: none;
+  }
+  .navbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
 
         .whmis-carousel {
   width: 300px;
