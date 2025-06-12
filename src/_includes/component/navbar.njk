@@ -1,44 +1,166 @@
     <style>
-        .navbar {
+       .navbar {
             position: sticky;
             top: 0;
             display: flex;
             justify-content: flex-start;
-            padding: 15px;
-            width: 100vw;
+            align-items: center;
+            padding: 15px 30px;
+            width: calc(100% - 60px); /* give a little breathing room */
+            margin: 10px auto; /* floating effect with margin */
             z-index: 100;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, white 0%, white 35%, #ffc34d 35%, #ffc34d 100%);
-            }
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(115deg,  white 25%,  #fdc830 45%,  #f37335 100%);
+            border-radius: 12px;
+            backdrop-filter: blur(8px); /* optional: nice floating effect on translucent bg */
+            transition: box-shadow 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); 
+        }
+
+        
+        .navbar a {
+            display: inline-block;
+            padding: 14px 20px;
+            margin: 0 5px;
+            color: black;
+            text-decoration: none;
+            text-align: center;
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+            will-change: transform;
+            transform: skew(-25deg); /* Slants left and right */
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+/* Fix the skewed text by un-skewing it */
+        .navbar a span {
+            display: inline-block;
+            transform: skew(25deg); /* Opposite of parent skew */
+            
+}
+
+/* Hover effect */
+        .navbar a:hover {
+            background-color: #465fb9;
+            color: white;
+}
 
     
     @media (max-width: 1310px) {
         .navbar {
-            background: white; /* Or any solid color */
+            
+             width: calc(100% - 40px);
             }
         }
+
+        .whmis-carousel {
+  width: 300px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  margin-left: auto;
+ 
+  
+}
+
+.whmis-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  will-change: transform;
+}
+
+.whmis-slide {
+  flex: 0 0 300px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.whmis-slide img {
+  height: 55px;
+  width: 55px;
+  object-fit: contain;
+}
+
+.whmis-caption {
+  font-size: 15px;
+  color: white;
+  max-width: 200px;
+  font-weight: bold;
+}
+
+
 
     </style>
 
     <nav class="navbar">
     
-        <a style=" --shadow-hvr: 10; --w: 110px; --p: 14px 20px; --c: black; --ta: center; --td: none; --c-hvr: white; --radius-hvr: 4px; --bg-hvr: #7091e6;" href="/index/">Home</a>
-        <a style=" --shadow-hvr: 10; --w: 110px;--p: 14px 20px; --c: black;--ta: center; --td: none;  --c-hvr: white; --radius-hvr: 4px; --bg-hvr: #7091e6;" href="/about/">About</a>
-        <a style=" --shadow-hvr: 10; --w: 110px;--p: 14px 20px; --c: black;--ta: center; --td: none; --c-hvr: white;  --radius-hvr: 4px; --bg-hvr: #7091e6;" href="/faq/">FAQ</a>
-        <a style=" --shadow-hvr: 10; --w: 110px;--p: 14px 20px; --c: black;--ta: center; --td: none; --c-hvr: white;  --radius-hvr: 4px; --bg-hvr: #7091e6;" href="/contact/">Contact</a>
+        <a href="/index/"><span>Home</span></a>
+        <a href="/about/"><span>About</span></a>
+        <a href="/faq/"><span>FAQ</span></a>
+        <a href="/contact/"><span>Contact</span></a>
     
 
-    <div style="display: flex; gap: 10px; margin-left: auto;">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/flame.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/corrosion.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/exclamation_mark.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/flame_circle.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/health_hazard.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/gas_cylinder.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/skull_crossbones.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/environment.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/exploding_bomb.png" alt="Logo">
-        <img style="--h: 60px; --mr: 10px; class="hide-on-mobile" src="/assets/biohazardous.png" alt="Logo">
-     </div>   
+   <div class="whmis-carousel">
+  <div class="whmis-track" id="whmis-track">
+    <!-- Slides injected by JS -->
+  </div>
+</div>
+
    
     </nav>
+
+    <script>
+const whmisData = [
+  { src: "/assets/flame.png", caption: "Flammable material" },
+  { src: "/assets/corrosion.png", caption: "Corrosive to skin or metals" },
+  { src: "/assets/exclamation_mark.png", caption: "Irritant or acute toxicity" },
+  { src: "/assets/flame_circle.png", caption: "Oxidizing hazard" },
+  { src: "/assets/health_hazard.png", caption: "Carcinogenic or serious health effects" },
+  { src: "/assets/gas_cylinder.png", caption: "Gases under pressure" },
+  { src: "/assets/skull_crossbones.png", caption: "Toxic or fatal effects" },
+  { src: "/assets/environment.png", caption: "Hazardous to the environment" },
+  { src: "/assets/exploding_bomb.png", caption: "Explosive hazard" },
+  { src: "/assets/biohazardous.png", caption: "Biohazardous infectious materials" }
+];
+
+const track = document.getElementById("whmis-track");
+const slideWidth = 300;
+
+// Add slides twice (for seamless loop)
+[...whmisData, ...whmisData].forEach(item => {
+  const slide = document.createElement("div");
+  slide.className = "whmis-slide";
+  slide.innerHTML = `
+    <img src="${item.src}" alt="">
+    <div class="whmis-caption">${item.caption}</div>
+  `;
+  track.appendChild(slide);
+});
+
+let index = 0;
+let pauseTime = 4000; // milliseconds
+const totalSlides = whmisData.length;
+
+// Carousel loop
+function moveSlide() {
+  index++;
+  track.style.transition = "transform 0.6s ease-in-out";
+  track.style.transform = `translateX(-${index * slideWidth}px)`;
+
+  // Reset to start instantly after first loop set is done
+  if (index === totalSlides) {
+    setTimeout(() => {
+      track.style.transition = "none";
+      track.style.transform = "translateX(0)";
+      index = 0;
+    }, 600); // Wait for slide transition to complete
+  }
+}
+
+setInterval(moveSlide, pauseTime);
+</script>
+
