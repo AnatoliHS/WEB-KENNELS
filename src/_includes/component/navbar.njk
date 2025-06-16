@@ -1,4 +1,24 @@
     <style>
+
+        @property --angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+:root {
+  --border-width: clamp(1px, 0.0625em, 4px);
+  --anim--hover-time: 400ms;
+  --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
         .navbar {
           position: sticky;
           top: 0;
@@ -22,82 +42,148 @@
       }
 
         
-        .navbar a {
-          display: inline-block;
-          padding: 12px 20px;
-          margin: 0 5px;
-          color:rgb(61, 59, 59);
-          text-decoration: none;
-          text-align: center;
+       .navbar a {
+  all: unset;
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  border-radius: 999vw;
+  background: linear-gradient(-75deg, rgba(1, 255, 203,0.05), rgba(1, 255, 203,0.2), rgba(1, 255, 203,0.05));
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0,0,0,0.05),
+    inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
+    0 0.25em 0.125em -0.125em rgba(0,0,0,0.2),
+    0 0 0.1em 0.25em inset rgba(255,255,255,0.2),
+    0 0 0 0 rgba(255,255,255,1);
+  backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+  width: 100px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #323232;
+  display: inline-block;
+}
 
-          background: linear-gradient(145deg, rgba(37, 150, 190, 0.6), rgba(9, 184, 248, 0.35));
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          border-radius: 40px;
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
+.navbar a:hover {
+  transform: scale(0.975);
+  backdrop-filter: blur(0.01em);
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0,0,0,0.05),
+    inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
+    0 0.15em 0.05em -0.1em rgba(0,0,0,0.25),
+    0 0 0.05em 0.1em inset rgba(255,255,255,0.5),
+    0 0 0 0 rgba(255,255,255,1);
+}
 
-          box-shadow:
-            inset 0 1px 2px rgba(255, 255, 255, 0.3),
-            0 4px 12px rgba(13, 54, 69, 0.3),
-            0 8px 24px rgba(13, 54, 69, 0.2);
+.navbar a span {
+  display: block;
+      position: relative;
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      color: #323232;
+      text-shadow: 0em 0.25em 0.05em rgba(0,0,0,0.1);
+      padding: 0.1em 0.1em;
+}
 
-          transform: skew(-25deg);
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
+<--!.navbar a span::after {
+  content: "";
+      position: absolute;
+      z-index: 1;
+      width: calc(100% - var(--border-width));
+      height: calc(100% - var(--border-width));
+      top: calc(var(--border-width) / 2);
+      left: calc(var(--border-width) / 2);
+      border-radius: 999vw;
+      background: linear-gradient(var(--angle-2), rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 40% 50%, rgba(255,255,255,0) 55%);
+      background-size: 200% 200%;
+      background-position: 0% 50%;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
+}
 
-          -webkit-tap-highlight-color: transparent;
-          -webkit-touch-callout: none;
-          user-select: none;
-        }
+.navbar a:hover span::after {
+  background-position: 25% 50%;
+}
 
-/* Shine effect on top of button */
-.navbar a::before {
+.navbar a:active span::after {
+  background-position: 50% 15%;
+  --angle-2: -15deg;
+} -->
+
+.navbar a::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.15) 40%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  opacity: 0.5;
+  inset: 0;
+  border-radius: 999vw;
+  width: calc(100% + var(--border-width));
+  height: calc(100% + var(--border-width));
+  top: calc(0% - var(--border-width) / 2);
+  left: calc(0% - var(--border-width) / 2);
+  padding: var(--border-width);
+  background: conic-gradient(
+    from var(--angle-1) at 50% 50%,
+    rgba(0,0,0,0.5),
+    rgba(0,0,0,0) 5% 40%,
+    rgba(0,0,0,0.5) 50%,
+    rgba(0,0,0,0) 60% 95%,
+    rgba(0,0,0,0.5)
+  ),
+  linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease;
+  box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255,255,255,0.5);
+}
+
+.navbar a:hover::after {
+  --angle-1: -125deg;
+}
+
+.navbar a:active::after {
+  --angle-1: -75deg;
+}
+
+.button-wrap {
+  position: relative;
+  z-index: 2;
+  border-radius: 999vw;
+  background: transparent;
+  pointer-events: none;
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.button-shadow {
+  --shadow-cuttoff-fix: 2em;
+  position: absolute;
+  width: calc(100% + var(--shadow-cuttoff-fix));
+  height: calc(100% + var(--shadow-cuttoff-fix));
+  top: calc(0% - var(--shadow-cuttoff-fix) / 2);
+  left: calc(0% - var(--shadow-cuttoff-fix) / 2);
+  filter: blur(clamp(2px, 0.125em, 12px));
   pointer-events: none;
 }
 
-/* Fix skewed text */
-.navbar a span {
-  display: inline-block;
-  transform: skew(25deg);
+.button-shadow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999vw;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+  width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+  height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+  top: calc(var(--shadow-cuttoff-fix) - 0.5em);
+  left: calc(var(--shadow-cuttoff-fix) - 0.875em);
+  padding: 0.125em;
+  box-sizing: border-box;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
 }
 
-
-/* Hover effect */
-      .navbar a:hover {
-          background: rgba(255, 195, 77, 0.9); /* darker blue on hover */
-          color: black;
-          box-shadow: 0 6px 18px rgba(51, 54, 56, 0.9);
-      }
-
-  .navbar a:hover::before {
-  animation: shineMove 2s ease forwards;
-}
-
-@keyframes shineMove {
-  0% {
-    transform: translateX(-100%) skewX(-20deg);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateX(200%) skewX(-20deg);
-    opacity: 0;
-  }
-}
 
 @media (hover: none) and (pointer: coarse) {
   .navbar a:hover {
@@ -114,32 +200,66 @@
             }
         }
 
-        @media (max-width: 768px) {
+        
+  @media (max-width: 768px) {
+  .hamburger {
+     display: block !important;
+     
+  }
+
+  .navbar a span::after{
+    display: none;
+  }
+
   .navbar {
-    flex-wrap: nowrap;        /* Prevent wrapping */
-    overflow-x: auto;         /* Let it scroll horizontally if needed */
-    
+    flex-direction: column;
+    align-items: flex-start;
+     padding: 2px 10px;
+  }
+
+  .navbar-links {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+  flex-direction: column;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.4s ease;
+  }
+
+  .navbar.open .navbar-links {
+    max-height: 500px;
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .navbar-links .button-wrap {
+    margin: 10px 0;
   }
 
   .navbar a {
-    flex: 1 1 0;
-    min-width: 0;
-    padding: 10px 6px;
-    margin: 0 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    width: 90%;
+    text-align: center;
+    padding: 12px 16px;
+     -webkit-tap-highlight-color: transparent;
+          -webkit-touch-callout: none;
+          user-select: none;
   }
-
-  /* Optional: hide scrollbar for cleaner look */
-  .navbar::-webkit-scrollbar {
-    display: none;
+  .mobile-navbar-image {
+   display: block !important;
   }
-  .navbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .navbar-top-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+    }
 }
+
+
 
         .whmis-carousel {
   width: 300px;
@@ -179,17 +299,58 @@
   font-weight: bold;
 }
 
+.hamburger {
+  font-size: 27px;
+  background: none;
+  border: none;
+  color: #323232;
+  cursor: pointer;
+  display: none; /* hide by default */
+  padding: 1px 5px;
+  z-index: 999;
+  position: relative;
+   -webkit-tap-highlight-color: transparent;
+          -webkit-touch-callout: none;
+          user-select: none;
+    
+}
+
+.mobile-navbar-image {
+  display: none; /* hidden by default on desktop */
+  height: 36px;
+  width: auto;
+  margin-left: auto;
+}
 
 
     </style>
 
     <nav class="navbar">
-    
+         <div class="navbar-top-row">
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
+    <img src="/assets/WW.png" alt="Mobile Icon" class="mobile-navbar-image">
+  </div>
+        <div class="navbar-links">
+        <div class="button-wrap">
         <a href="/index/"><span>Home</span></a>
+        <div class="button-shadow"></div>
+        </div>
+
+        <div class="button-wrap">
         <a href="/about/"><span>About</span></a>
+        <div class="button-shadow"></div>
+        </div>
+
+        <div class="button-wrap">
         <a href="/faq/"><span>FAQ</span></a>
+        <div class="button-shadow"></div>
+        </div>
+
+        <div class="button-wrap">
         <a href="/contact/"><span>Contact</span></a>
-    
+        <div class="button-shadow"></div>
+        </div>
+    </div>
 
    <div class="whmis-carousel">
   <div class="whmis-track" id="whmis-track">
@@ -249,5 +410,14 @@ function moveSlide() {
 }
 
 setInterval(moveSlide, pauseTime);
+</script>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navbar = document.querySelector('.navbar');
+
+  hamburger.addEventListener('click', () => {
+    navbar.classList.toggle('open');
+  });
 </script>
 
