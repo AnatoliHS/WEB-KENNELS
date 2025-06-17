@@ -213,7 +213,9 @@
   @media (max-width: 768px) {
   .hamburger {
      display: block !important;
-     
+      -webkit-tap-highlight-color: transparent; /* removes iOS tap box */
+  -webkit-touch-callout: none;
+  user-select: none;
   }
 
   .navbar a span::after{
@@ -330,9 +332,9 @@
 
 .hamburger:focus,
 .hamburger:active {
-  outline: none;
-  box-shadow: none;
-  background: none;
+   outline: none !important;
+  background: none !important;
+  box-shadow: none !important;
 }
 
 .hamburger .bar {
@@ -378,6 +380,11 @@
   height: 36px;
   width: auto;
   margin-left: auto;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 
