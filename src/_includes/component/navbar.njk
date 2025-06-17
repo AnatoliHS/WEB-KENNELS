@@ -87,32 +87,6 @@
       padding: 0.1em 0.1em;
 }
 
-<--!.navbar a span::after {
-  content: "";
-      position: absolute;
-      z-index: 1;
-      width: calc(100% - var(--border-width));
-      height: calc(100% - var(--border-width));
-      top: calc(var(--border-width) / 2);
-      left: calc(var(--border-width) / 2);
-      border-radius: 999vw;
-      background: linear-gradient(var(--angle-2), rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 40% 50%, rgba(255,255,255,0) 55%);
-      background-size: 200% 200%;
-      background-position: 0% 50%;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
-}
-
-.navbar a:hover span::after {
-  background-position: 25% 50%;
-}
-
-.navbar a:active span::after {
-  background-position: 50% 15%;
-  --angle-2: -15deg;
-} -->
-
 .navbar a::after {
   content: "";
   position: absolute;
@@ -191,15 +165,7 @@
     color: inherit;
     box-shadow: none;
   }
-  .hamburger:focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  .hamburger:active {
-    outline: none !important;
-    box-shadow: none !important;
-  }
+  
 }
     
     @media (max-width: 1310px) {
@@ -211,12 +177,7 @@
 
         
   @media (max-width: 768px) {
-  .hamburger {
-     display: block !important;
-      -webkit-tap-highlight-color: transparent; /* removes iOS tap box */
-  -webkit-touch-callout: none;
-  user-select: none;
-  }
+  
 
   .navbar a span::after{
     display: none;
@@ -264,15 +225,22 @@
   .mobile-navbar-image {
    display: block !important;
   }
+
   .navbar-top-row {
   display: flex;
   align-items: center;
   width: 100%;
+  background: transparent;
   justify-content: space-between;
+   -webkit-tap-highlight-color: transparent;
+          -webkit-touch-callout: none;
+          user-select: none;
     }
+
+    .hamburger {
+    display: flex !important;
+  }
 }
-
-
 
         .whmis-carousel {
   width: 300px;
@@ -312,68 +280,7 @@
   font-weight: bold;
 }
 
-.hamburger {
-  font-size: 24px;
-  background: none;
-  border: none;
-  outline: none;
-  box-shadow: none;
-  color: #323232;
-  cursor: pointer;
-  display: none; /* shown only on mobile via media query */
-  padding: 8px 10px;
-  z-index: 999;
-  position: relative;
 
-  -webkit-tap-highlight-color: transparent; /* removes iOS tap box */
-  -webkit-touch-callout: none;
-  user-select: none;
-}
-
-.hamburger:focus,
-.hamburger:active {
-   outline: none !important;
-  background: none !important;
-  box-shadow: none !important;
-}
-
-.hamburger .bar {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background-color: #323232;
-  border-radius: 3px;
-  transition: all 0.3s ease-in-out;
-}
-
-.hamburger .top {
-  top: 0;
-}
-
-.hamburger .middle {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.hamburger .bottom {
-  bottom: 0;
-}
-
-/* Animate to "X" when menu is open */
-.navbar.open .hamburger .top {
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.navbar.open .hamburger .middle {
-  opacity: 0;
-}
-
-.navbar.open .hamburger .bottom {
-  bottom: 50%;
-  transform: translateY(50%) rotate(-45deg);
-}
 
 .mobile-navbar-image {
   display: none; /* hidden by default on desktop */
@@ -382,9 +289,38 @@
   margin-left: auto;
 }
 
-* {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
+.hamburger {
+  display: none; /* Default: hide */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 10; /* Ensure it's on top */
+  margin-left: 10px; /* Optional spacing */
+  
+}
+
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #000;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Animate hamburger to "X" when navbar is open */
+.navbar.open .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar.open .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar.open .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
 }
 
 
@@ -392,11 +328,11 @@
 
     <nav class="navbar">
          <div class="navbar-top-row">
-    <button class="hamburger" aria-label="Toggle menu">
-    <span class="bar top"></span>
-    <span class="bar middle"></span>
-    <span class="bar bottom"></span>
-  </button>
+          <div class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
     <img src="/assets/WW.png" alt="Mobile Icon" class="mobile-navbar-image">
     
   </div>
