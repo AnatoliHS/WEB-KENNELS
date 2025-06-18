@@ -1,17 +1,17 @@
 
 
-<div class="info-box"></div>
-    <div style="--p: 20px; --bgc: rgba(255, 255, 255, 0.9); --radius: 5px;  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);  --mt:30px; --mb:30px; --m: 0 auto; --maxw: 800px; --w: 100vw;">
+
+    <div  style="--p: 20px; --bgc: rgba(255, 255, 255, 0.5); --radius: 10px;  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);  --mt:30px; --mb:30px;  --maxw: 800px; --w: 95vw;">
         <h2 style="--mt: 0; --ta: center;" >Contact Us</h2>
-        <form action="/submit-form" netlify>
+        <form action="/submit-form" method="POST" netlify>
             <label style="--mb: 8px; --weight: bold; --d: block;" for="name">Name</label>
-            <input style=" --shadow-hard:4; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc;  --radius: 5px;" type="text" id="name" name="name" required>
+            <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc;  --radius: 20px;" type="text" id="name" name="name" required>
 
             <label style="--mb: 8px; --weight: bold;" for="email">Email</label>
-            <input style=" --shadow-hard:4; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 5px;" type="email" id="email" name="email" required>
+            <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" type="email" id="email" name="email" required>
 
             <label style="--mb: 8px; --weight: bold;" for="message">Message</label>
-            <textarea style=" --shadow-hard:4; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 5px;" id="message" name="message" rows="5" required></textarea>
+            <textarea style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" id="message" name="message" rows="5" required></textarea>
 
             
            <div class="button-row">
@@ -209,6 +209,7 @@
       
     }
     @media (max-width: 768px) {
+       
         .button-row {
             flex-direction: column;
             align-items: center;
