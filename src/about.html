@@ -1,8 +1,45 @@
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.innerWidth >= 1024) { // Only run animation on large screens
+    const sections = document.querySelectorAll('.content, .content-about');
+    requestAnimationFrame(() => {
+      sections.forEach(section => {
+        section.classList.add('visible');
+      });
+    });
+  }
+});
+</script>
+    
+<style>
    
+
+@media (min-width: 1024px) {
+  .content, .content-about {
+    opacity: 0;
+    transform: translateY(300px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .content.visible, .content-about.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
     
     <div class="info-box"></div>
     <div class="content">
-        <h1><strong>About Our Dental WHMIS Training</strong></h1>
+        <h1 style="
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.3px grey;
+      background-clip: text;
+      text-fill-color: transparent;
+    "><strong>About Our Dental WHMIS Training</strong></h1>
         <p>Our Dental WHMIS Training is designed specifically for dental professionals, 
             ensuring that your team is well-equipped to handle workplace hazards unique to 
             dental clinics. Unlike generic WHMIS courses, our program focuses on the specific
@@ -10,7 +47,16 @@
             </div>
             <br>
             <div class="content">
-            <h1><strong>Why Choose Our Online WHMIS Training?</strong></h1>
+            <h1 style="
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.3px grey;
+      background-clip: text;
+      text-fill-color: transparent;
+    "><strong>Why Choose Our Online WHMIS Training?</strong></h1>
                 <ul>
                     <li> Trusted & Verified by Dental Professionals – Our course is developed and reviewed 
                         by industry experts to meet the latest safety and compliance standards.</li>

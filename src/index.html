@@ -1,23 +1,58 @@
-
-<br>
+<div class="intro-container">
+  <div class="inner-container">
+    <h1 class="gradient-text">
+      Welcome to WHMIS Training for Dental Professionals
+    </h1>
+    <p>
+      Your safety matters as much as your patients’. This course makes it simple to understand and apply WHMIS standards in your dental practice — from spotting hazards to reading labels and Safety Data Sheets. In just a short time, you’ll gain the confidence and skills to keep your workplace safe, compliant, and worry-free.
+    </p>
+  </div>
+</div>
 
 <div style="display: flex; justify-content: space-between; align-items: center; width: 99vw; padding: 10px;   border-radius: 10px; margin: 1px 0; --mt:30px; text-align: center;">
 
     <div class="info-box">
         <img src="/assets/clean.png" alt="Logo" style="width: 20%;">
-        <h1>Work-Specific Training for Dental <br> Professionals</h1>
+        <h1 style="
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      -webkit-text-stroke: 0.3px grey;
+    ">Work-Specific Training for Dental <br> Professionals</h1>
         <p style="font-size: 20px;"> Unlike generic WHMIS courses, we offers dental-focused hazard training, ensuring professionals are aware of risks like chemical disinfectants, biohazardous waste, and radiation exposure. With annual reminders, users can easily stay compliant with the latest safety standards.</p>
     </div>
 
     <div class="info-box">
         <img src="/assets/website.png" alt="Logo" style="width: 20%;">
-        <h1>Employer Training Management <br>Portal</h1>
+        <h1 style="
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.3px grey;
+      background-clip: text;
+      text-fill-color: transparent;
+    ">Employer Training Management <br>Portal</h1>
         <p style="font-size: 20px;"> Employers can track and manage employee certifications through a dedicated portal. This system allows easy bulk enrollment, certificate storage, and renewal tracking, ensuring all team members maintain up-to-date WHMIS training without the hassle of manual record-keeping.</p>
     </div>
 
     <div class="info-box">
         <img src="/assets/application.png" alt="Logo" style="width: 20%;">
-        <h1>Engaging, Easy-to-Follow <br>Course Design</h1>
+        <h1 style="
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 0.3px grey;
+      background-clip: text;
+      text-fill-color: transparent;
+    ">Engaging, Easy-to-Follow <br>Course Design</h1>
         <p style="font-size: 20px;">Our WHMIS training is built with dental professionals in mind, using clear language, professional visuals, and interactive modules to keep learners engaged. Complex safety concepts are broken down into practical, real-world examples, making it easier to retain information.</p>
     </div>
     
@@ -135,6 +170,45 @@
           dots[slideIndex-1].className += " active";
         }
         </script>
+
+        <script>
+  function animateIntro() {
+    // Add a class to trigger the CSS transition
+    document.body.classList.add("intro-animate");
+  }
+
+  // Trigger animation on page load
+  window.addEventListener("load", animateIntro);
+
+  // Trigger animation on back/forward navigation (pageshow event)
+  window.addEventListener("pageshow", function(event) {
+    if (event.persisted) { // page loaded from cache (back/forward)
+      animateIntro();
+    }
+  });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.querySelector(".hero-image");
+
+  if (window.innerWidth >= 769) { // Optional: disable on mobile
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible"); // trigger animation
+          observer.unobserve(entry.target); // stop observing after animating
+        }
+      });
+    }, { threshold: 0.2 }); // triggers when 20% of the element is visible
+
+    observer.observe(hero);
+  } else {
+    // Ensure image is visible immediately on mobile
+    hero.classList.add("visible");
+  }
+});
+</script>
 
         <style>
     @property --angle-1 {
@@ -319,7 +393,76 @@
       margin-bottom: 120px;
       margin-top: -30px;
     }
-    @media (max-width: 768px) {
+   
+
+@media (min-width: 769px) {
+  body.intro-animate .intro-container {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-image {
+    display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  padding: 0 10px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  .hero-image.visible {
+  opacity: 1;
+  transform: translateY(0); /* animates into place */
+}
+
+  .hero-image img {
+    width: 100%;
+  max-width: 1500px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: top;
+  box-shadow: -3px -4px 8px rgba(255, 255, 255, 0.9), 2px 3px 5px rgba(0, 0, 0, 0.5); 
+  }
+
+  .intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 1400px;
+  margin: 50px auto;
+  padding: 20px;
+  opacity: 0; /* start hidden for animation */
+  transform: scale(0.2); /* start slightly smaller */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.intro-container p {
+  font-size: 28px;       /* default font size for larger screens */
+  line-height: 1.6;
+}
+
+.inner-container {
+  width: 100%;       /* make it take most of the parent container */
+  max-width: 1200px; /* optional: prevent it from being too wide on huge screens */
+  margin: 0 auto;
+}
+
+.gradient-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.3px grey;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+ @media (max-width: 768px) {
 
   .button-row {
     flex-direction: column;
@@ -340,25 +483,17 @@
   .parallax {
     background-attachment: scroll;
   }
+
+  .intro-container {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    transition: none;
+  }
+
+  .intro-container p {
+    font-size: 20px;     /* smaller font size for mobile */
+  }
 }
-
-.hero-image {
-    display: flex;
-  justify-content: center;
-  margin: 10px auto;
-  padding: 0 10px;
-  
-  }
-
-  .hero-image img {
-    width: 100%;
-  max-width: 1500px;
-  height: auto;
-  border-radius: 10px;
-  object-fit: cover;
-  object-position: top;
-  box-shadow: -3px -4px 8px rgba(255, 255, 255, 0.9), 2px 3px 5px rgba(0, 0, 0, 0.5); 
-  }
   </style>
       
       

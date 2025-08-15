@@ -1,4 +1,42 @@
-
 <div class="coming-soon">
-<img src="/assets/coming-soon.png" alt="Logo" style="width: 50%; margin-top: 5em;">
+  <img src="/assets/coming-soon.png" alt="Logo" style="width: 50%; margin-top: 5em;">
 </div>
+
+<style>
+.coming-soon img {
+  display: block;
+  margin: 0 auto;
+  transform-origin: center bottom; /* pivot from bottom center */
+  animation: alarmRing 3s infinite;
+}
+
+@keyframes alarmRing {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  5% {
+    transform: translateY(-10px) rotate(-15deg); /* hover up & tilt */
+  }
+  10% {
+    transform: translateY(-10px) rotate(15deg);  /* shake right */
+  }
+  15% {
+    transform: translateY(-10px) rotate(-10deg); /* shake left */
+  }
+  20% {
+    transform: translateY(-10px) rotate(10deg);  /* shake right */
+  }
+  25% {
+    transform: translateY(-10px) rotate(-5deg);  /* shake left */
+  }
+  30% {
+    transform: translateY(-10px) rotate(5deg);   /* shake right */
+  }
+  35% {
+    transform: translateY(-10px) rotate(0deg);   /* center */
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);       /* back down */
+  }
+}
+</style>

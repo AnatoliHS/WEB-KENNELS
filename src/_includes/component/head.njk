@@ -145,11 +145,20 @@
             margin-bottom: 10px;
         }
         .faq{
-          background-color: rgba(255, 255, 255, 0.8);
+          background-color: rgba(255, 255, 255, 0.9);
+          border-color: rgba(255, 255, 255, 0.8);
            width: 100%;
            margin: 0 auto; 
            max-width: 1000px; 
-           box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+           background: linear-gradient(90deg, rgba(30, 251, 170, 0.1) 0%, rgba(30, 240, 251, 0.15) 100%);
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.3); /* frosty white border */
+
+          backdrop-filter: blur(12px); /* stronger blur */
+          -webkit-backdrop-filter: blur(12px); /* Safari support */
+
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* soft shadow */
+          transition: all 0.3s ease;
            padding: 20px ;
         }
 

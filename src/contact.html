@@ -1,32 +1,67 @@
 
 
 
-    <div  style="--p: 20px; --bgc: rgba(255, 255, 255, 0.5); --radius: 10px;  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);  --mt:30px; --mb:30px;  --maxw: 800px; --w: 95vw;">
-        <h2 style="--mt: 0; --ta: center;" >Contact Us</h2>
-        <form action="/submit-form" method="POST" netlify>
-            <label style="--mb: 8px; --weight: bold; --d: block;" for="name">Name</label>
-            <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc;  --radius: 20px;" type="text" id="name" name="name" required>
+    <div class="scene">
+  <div class="contact-box" style="--p: 20px; --bgc: rgba(255, 255, 255, 0.5); --radius: 10px;  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);  --mt:30px; --mb:30px;  --maxw: 800px; --w: 95vw;">
+      <h1 style="font-size: 2rem;
+        font-weight: bold;
+        background: linear-gradient(90deg, #00c6ff, #0072ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        --mt: 0; 
+        --ta: center;" >Contact Us</h1>
+      <form action="/submit-form" method="POST" netlify>
+          <label style="--mb: 8px; --weight: bold; --d: block;" for="name">Name</label>
+          <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc;  --radius: 20px;" type="text" id="name" name="name" required>
 
-            <label style="--mb: 8px; --weight: bold;" for="email">Email</label>
-            <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" type="email" id="email" name="email" required>
+          <label style="--mb: 8px; --weight: bold;" for="email">Email</label>
+          <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" type="email" id="email" name="email" required>
 
-            <label style="--mb: 8px; --weight: bold;" for="message">Message</label>
-            <textarea style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" id="message" name="message" rows="5" required></textarea>
+          <label style="--mb: 8px; --weight: bold;" for="message">Message</label>
+          <textarea style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" id="message" name="message" rows="5" required></textarea>
 
-            
-           <div class="button-row">
-                <div class="button-wrap">
-                    <button class="glass-button" type="submit">
-                    <span>SEND</span>
-                    </button>
-                    <div class="button-shadow"></div>
-                </div>
-                </div>
+         <div class="button-row">
+              <div class="button-wrap">
+                  <button class="glass-button" type="submit">
+                  <span>SEND</span>
+                  </button>
+                  <div class="button-shadow"></div>
+              </div>
+          </div>
 
-        </form>
-    </div>
+      </form>
+  </div>
+</div>
     
     <style>
+/* 3D Rise-up Animation */
+.scene {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.contact-box {
+  transform-origin: bottom center;
+  transform: rotateX(90deg);
+  animation: riseUp 0.5s ease-out forwards;
+}
+
+@keyframes riseUp {
+  0% {
+    transform: rotateX(90deg) translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg) translateY(0);
+    opacity: 1;
+  }
+}
+
+
     @property --angle-1 {
       syntax: "<angle>";
       inherits: false;
@@ -225,6 +260,10 @@
             width: 100%;
             
         }
+        .contact-box {
+          transform: none; /* Keep it flat in its final position */
+          animation: none;
+  }
     }
   </style>
    
