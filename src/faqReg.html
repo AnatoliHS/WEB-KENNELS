@@ -1,0 +1,129 @@
+---
+layout: reg.njk
+---
+
+    
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.innerWidth >= 768) {
+    const detailsList = document.querySelectorAll("details");
+
+    detailsList.forEach((item, index) => {
+      // Delay = index * 0.5 seconds
+      setTimeout(() => {
+        item.classList.add("visible");
+      }, index * 200); 
+    });
+  }
+});
+</script>
+
+<style>
+details {
+  opacity: 0;
+  transform: translateY(50px); /* Start lower */
+}
+
+/* When visible */
+details.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+  .intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 1400px;
+  margin: 10px auto;
+  
+}
+
+.inner-container {
+  width: 100%;       /* make it take most of the parent container */
+  max-width: 1200px; /* optional: prevent it from being too wide on huge screens */
+  margin: 0 auto;
+}
+
+.gradient-text {
+  font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.3px grey;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Mobile: instantly visible, no animation */
+@media (max-width: 767px) {
+  details {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+}
+</style>
+
+    <div class="intro-container">
+  
+    <h1 class="gradient-text">
+      F A Q
+    </h1>
+  
+</div>
+    
+    <div style="--w: 100vw; --p: 30px;">
+        <div class="info-box"></div>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black; "><strong>How is this course different from others?</strong></summary>
+<p>Our WHMIS course is designed to provide comprehensive, easy-to-understand training that applies to a wide range of workplaces. 
+Our program delivers clear, practical guidance that helps all workers identify and manage hazardous materials safely. This course focuses on:</p>
+<ul>
+    <li><strong>Understanding Hazard Classes:</strong> Learn to recognize and interpret WHMIS symbols and labels across all types of controlled products.</li>
+    <li><strong>Safety Data Sheets (SDS):</strong> Know how to read, access, and apply key information to protect yourself and your coworkers.</li>
+    <li><strong>Safe Handling & Storage:</strong> Follow best practices for storing, using, and disposing of hazardous materials in any workplace.</li>
+    <li><strong>Personal Protective Equipment (PPE):</strong> Understand how to select and properly use PPE for chemical, biological, or physical hazards.</li>
+    <li><strong>Emergency Response:</strong> Be prepared for spills, exposures, and other incidents with clear steps for first aid and containment.</li>
+</ul>
+<p>This course ensures that all workers, regardless of industry, receive the essential WHMIS training needed to maintain a safe and compliant workplace.</p>
+</details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>How long does it take?</strong></summary>
+            <p>The course typically takes around 60 minutes to complete, but the exact duration may vary depending on the individual. 
+                Some may finish more quickly, while others might take a bit longer to fully absorb the material.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>Can I do a re-take exam?</strong></summary>
+            <p>Yes, you can retake the exam as many times as needed. There are unlimited attempts to pass the exam, 
+                so you can take it at your own pace until you're confident in your results.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>When do i receive the certificate</strong></summary>
+            <p>Certificates are issued as soon as you pass the exam and will be sent to you via email.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01);--c: black; "><strong>How do we pay for the course?</strong></summary>
+            <p>The course can be purchased as an individual course or as a package if you are an employer buying courses for your employees.
+                 We accept all major credit cards for payment.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>Does this course expire after a certain time of purchaise?</strong></summary>
+            <p>Once you purchase the course, you will have a full year to complete it at your own pace. 
+                This means you can start anytime within that period and progress through the material as your schedule allows. 
+                However, after one year from the purchase date, access to the course will expire.</p>
+        </details>
+        <br>
+    </div>
+        
+    
+    
+   

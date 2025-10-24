@@ -1,0 +1,128 @@
+---
+layout: pharm.njk
+---
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.innerWidth >= 768) {
+    const detailsList = document.querySelectorAll("details");
+
+    detailsList.forEach((item, index) => {
+      // Delay = index * 0.5 seconds
+      setTimeout(() => {
+        item.classList.add("visible");
+      }, index * 200); 
+    });
+  }
+});
+</script>
+
+<style>
+details {
+  opacity: 0;
+  transform: translateY(50px); /* Start lower */
+}
+
+/* When visible */
+details.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+  .intro-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 1400px;
+  margin: 10px auto;
+  
+}
+
+.inner-container {
+  width: 100%;       /* make it take most of the parent container */
+  max-width: 1200px; /* optional: prevent it from being too wide on huge screens */
+  margin: 0 auto;
+}
+
+.gradient-text {
+  font-size: 4rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.3px grey;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Mobile: instantly visible, no animation */
+@media (max-width: 767px) {
+  details {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+  }
+}
+</style>
+
+    <div class="intro-container">
+  
+    <h1 class="gradient-text">
+      F A Q
+    </h1>
+  
+</div>
+    
+    <div style="--w: 100vw; --p: 30px;">
+        <div class="info-box"></div>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black; "><strong>How is this course different from others?</strong></summary>
+<p>Our WHMIS course for pharmacy professionals is designed to address the unique hazards and materials commonly found in community and hospital pharmacies. 
+While standard WHMIS training covers general workplace hazardous materials, our pharmacy-focused course emphasizes:</p>
+<ul>
+    <li><strong>Common Pharmacy Hazards:</strong> Understanding exposure to disinfectants, alcohol-based sanitizers, compounding agents, and hazardous drugs such as cytotoxics.</li>
+    <li><strong>Drug Handling & Compounding Safety:</strong> Safe preparation, labeling, and storage of pharmaceuticals and chemical reagents used in dispensing and compounding.</li>
+    <li><strong>Biohazard Awareness:</strong> Procedures for managing contamination risks, handling sharps, and disposing of biohazardous waste safely.</li>
+    <li><strong>Personal Protective Equipment (PPE):</strong> Proper selection and use of gloves, gowns, eye protection, and respirators specific to pharmacy environments.</li>
+    <li><strong>Emergency Procedures:</strong> Steps for spill management, exposure response, and first aid in cases of chemical or drug-related incidents.</li>
+</ul>
+<p>This course ensures that pharmacy professionals receive WHMIS training directly relevant to the materials, procedures, and safety challenges of their workplace.</p>
+</details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>How long does it take?</strong></summary>
+            <p>The course typically takes around 60 minutes to complete, but the exact duration may vary depending on the individual. 
+                Some may finish more quickly, while others might take a bit longer to fully absorb the material.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>Can I do a re-take exam?</strong></summary>
+            <p>Yes, you can retake the exam as many times as needed. There are unlimited attempts to pass the exam, 
+                so you can take it at your own pace until you're confident in your results.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>When do i receive the certificate</strong></summary>
+            <p>Certificates are issued as soon as you pass the exam and will be sent to you via email.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01);--c: black; "><strong>How do we pay for the course?</strong></summary>
+            <p>The course can be purchased as an individual course or as a package if you are an employer buying courses for your employees.
+                 We accept all major credit cards for payment.</p>
+        </details>
+        <br>
+        <details class="faq">
+            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>Does this course expire after a certain time of purchaise?</strong></summary>
+            <p>Once you purchase the course, you will have a full year to complete it at your own pace. 
+                This means you can start anytime within that period and progress through the material as your schedule allows. 
+                However, after one year from the purchase date, access to the course will expire.</p>
+        </details>
+        <br>
+    </div>
+        
+    
+    
+   
