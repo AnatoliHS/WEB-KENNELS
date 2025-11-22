@@ -48,7 +48,7 @@ layout: landing.njk
 .gradient-text { 
   font-size: 2.5rem;
   font-weight: bold;
-  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  background: linear-gradient(90deg, #0968e5, #091970);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0.3px grey;
@@ -78,11 +78,6 @@ layout: landing.njk
   display: flex;
   justify-content: center;  /* centers logo horizontally */
   
-}
-
-.site-logo {
-  max-width: 300px;        /* adjust logo size */
-  height: auto;
 }
 
 .button-row {
@@ -283,11 +278,81 @@ layout: landing.njk
       margin-top: -30px;
     }
 
+    /* Apply the animation */
+.site-logo {
+  max-width: 300px;
+  height: auto;
+  opacity: 0;
+  animation: logoReveal 1.8s ease-out forwards;
+  animation-delay: 0.3s; /* small delay after page load */
+}
+
+    /* Animation for logo reveal */
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* starts slightly below */
+    clip-path: inset(100% 0 0 0); /* hidden from bottom */
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0 0); /* fully visible */
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Keyframes for the button "spring up" effect */
+@keyframes springUp {
+  0% {
+    opacity: 0;
+    transform: translateY(80px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.05);
+  }
+  80% {
+    transform: translateY(5px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Apply animation to each button */
+.button-wrap {
+  opacity: 0;
+  animation: springUp 0.9s cubic-bezier(0.25, 1.25, 0.5, 1) forwards;
+}
+
+/* Staggered timing + global delay so logo finishes first */
+.button-wrap:nth-child(1) {
+  animation-delay: 1.0s; /* logo (1.8s) + 0.5s pause */
+}
+
+.button-wrap:nth-child(2) {
+  animation-delay: 1.3s;
+}
+
+.button-wrap:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
 
 
 @media (max-width: 768px) {
 
-
+  .button-wrap {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 
   .intro-container {
     opacity: 1 !important;
