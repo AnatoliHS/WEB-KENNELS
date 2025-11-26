@@ -17,33 +17,50 @@ layout: landing.njk
   </div>
 </div>
 
+
  <div class="button-container">
     <div class="button-row">
       <div class="button-wrap" onclick="location.href='/homeReg/'">
-        <button class="glass-button">
-          <img src="/assets/whimiswise2.png" alt="Regular WHMIS">
-        </button>
-        <div class="button-shadow"></div>
-      </div>
+  <div class="button-label">Foundational</div>
+  <button class="glass-button">
+    <img src="/assets/whimiswise2.png" alt="Foundational WHMIS">
+  </button>
+  
+</div>
 
       <div class="button-wrap" onclick="location.href='/homePharm/'">
-        <button class="glass-button">
-          <img src="/assets/pharmaWhmis2.png" alt="Regular WHMIS">
-        </button>
-        <div class="button-shadow"></div>
-      </div>
+  <div class="button-label">Pharmaceutical</div>
+  <button class="glass-button">
+    <img src="/assets/pharmaWhmis2.png" alt="Pharmaceutical WHMIS">
+  </button>
+  
+</div>
 
       <div class="button-wrap" onclick="location.href='/homeDent/'">
-        <button class="glass-button">
-          <img src="/assets/whimiswise.png" alt="Regular WHMIS">
-        </button>
-        <div class="button-shadow"></div>
-      </div>
+  <div class="button-label">Dental</div>
+  <button class="glass-button">
+    <img src="/assets/whimiswise.png" alt="Dental WHMIS">
+  </button>
+  
+</div>
     
   </div>
 
  
 <style>
+  .button-label {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #0968e5, #091970);
+   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.3px grey;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-bottom: 10px;
+  pointer-events: none; /* prevents click blocking */
+}
 /* === Gradient text (your existing style) === */
 .gradient-text { 
   font-size: 2.5rem;
@@ -263,7 +280,7 @@ layout: landing.njk
       display: flex;
       align-items: center;
       flex-direction: column;
-      margin-top: 100px;
+      margin-top: 50px;
     }
 
     .button-row {
@@ -362,6 +379,10 @@ layout: landing.njk
 
   .intro-container p {
     font-size: 20px;     /* smaller font size for mobile */
+  }
+  .button-label {
+    font-size: 18px;
+    margin-bottom: 6px;
   }
 }
 </style>
