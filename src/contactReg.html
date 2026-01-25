@@ -17,25 +17,32 @@ layout: reg.njk
         --mt: 0; 
         --ta: center;" >Contact Us</h1>
       <form action="https://formsubmit.co/cc4682acfcd262681fbc08fca894339c" method="POST">
-          <label style="--mb: 8px; --weight: bold; --d: block;" for="name">Name</label>
-          <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc;  --radius: 20px;" type="text" id="name" name="name" required>
 
-          <label style="--mb: 8px; --weight: bold;" for="email">Email</label>
-          <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" type="email" id="email" name="email" required>
+    <input type="text" name="_honey" style="display:none">
 
-          <label style="--mb: 8px; --weight: bold;" for="message">Message</label>
-          <textarea style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" id="message" name="message" rows="5" required></textarea>
+    <input type="hidden" name="_subject" value="New Inquiry - WHMIS Wise Website">
 
-         <div class="button-row">
-              <div class="button-wrap">
-                  <button class="glass-button" type="submit">
-                  <span>SEND</span>
-                  </button>
-                  <div class="button-shadow"></div>
-              </div>
-          </div>
+    <input type="hidden" name="_captcha" value="false">
 
-      </form>
+    <label style="--mb: 8px; --weight: bold; --d: block;" for="name">Name</label>
+    <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc;  --radius: 20px;" type="text" id="name" name="name" required>
+
+    <label style="--mb: 8px; --weight: bold;" for="email">Email</label>
+    <input style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" type="email" id="email" name="email" required>
+
+    <label style="--mb: 8px; --weight: bold;" for="message">Message</label>
+    <textarea style=" --shadow-hard:2; --w: 100%; --p: 10px; --mb: 10px; --b: 1px solid #ccc; --radius: 20px;" id="message" name="message" rows="5" required></textarea>
+
+    <div class="button-row">
+        <div class="button-wrap">
+            <button class="glass-button" type="submit">
+            <span>SEND</span>
+            </button>
+            <div class="button-shadow"></div>
+        </div>
+    </div>
+
+</form>
   </div>
 </div>
     
