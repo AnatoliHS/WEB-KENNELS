@@ -82,7 +82,8 @@
   @media (max-width: 1024px) {
     .navbar { flex-direction: column; align-items: flex-start; padding: 2px 10px; position: fixed; height: auto; max-height: 100vh; }
     
-    .navbar-top-row { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 5px 0; }
+    /* UPDATED: Added 'position: relative' here so the logo can center itself relative to this row */
+    .navbar-top-row { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 5px 0; position: relative; }
 
     /* Right Icons Container */
     .mobile-right-group { 
@@ -91,14 +92,34 @@
       gap: 15px; 
     }
 
-    /* --- THE NEW MOBILE BUTTON --- */
+    /* --- THE NEW MOBILE BUTTON ANIMATION --- */
     .nav-image-button-mobile { display: none; cursor: pointer; }
-    .navbar.open .nav-image-button-mobile { display: block !important; animation: fadeInSide 0.4s ease forwards; }
+    
+    /* UPDATED: Changed to Absolute Center Animation */
+    .navbar.open .nav-image-button-mobile { 
+        display: block !important; 
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        animation: slideToCenter 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
+    }
+    
     .nav-image-button-mobile img { height: 36px !important; width: auto !important; display: block !important; object-fit: contain; }
 
-    @keyframes fadeInSide {
-      0% { opacity: 0; transform: translateX(20px); }
-      100% { opacity: 1; transform: translateX(0); }
+    /* UPDATED: Animation Keyframes */
+    @keyframes slideToCenter {
+      0% { 
+        opacity: 0; 
+        left: 85%; /* Starts from the right */
+        transform: translate(-50%, -50%) scale(0.5); 
+      }
+      100% { 
+        opacity: 1; 
+        left: 50%; /* Ends in center */
+        transform: translate(-50%, -50%) scale(1); 
+      }
     }
 
     /* THE OLD MOBILE LOGO */
@@ -133,15 +154,11 @@
     .navbar.open .navbar-links { max-height: 80vh; opacity: 1; transform: scaleY(1); overflow-y: auto; }
     
     /* --- SHADOW FIX IS HERE --- */
-    
-    /* 1. Wrapper controls the geometry (90% width, Centered) */
     .navbar-links .button-wrap { 
         width: 90%; 
         margin: 10px auto; 
         display: block; 
     }
-    
-    /* 2. Link fills the wrapper completely */
     .navbar a { 
         display: block; 
         width: 100%; 
@@ -166,11 +183,11 @@
 
     <div class="mobile-right-group">
       
-      <div class="nav-image-button-mobile" onclick="location.href='https://learn.whmiswise.com/auth/login/'">
-        <img src="/assets/login1.png" alt="New Button">
+      <div class="nav-image-button-mobile" onclick="navigateToHome()">
+        <img src="/assets/WW.png" alt="Old Button">
       </div>
 
-      <img src="/assets/WW.png" alt="Old Logo" class="mobile-navbar-image" onclick="navigateToHome()">
+      <img src="/assets/login1.png" alt="New Button" class="mobile-navbar-image" onclick="location.href='https://learn.whmiswise.com/auth/login/'">
     </div>
 
   </div>
