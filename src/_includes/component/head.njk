@@ -41,6 +41,26 @@
       body {   
       }
 
+      /* Add this inside the <style> tag in head.njk */
+
+body::before {
+  content: "";
+  position: fixed; /* Locks it to the screen, preventing pixelation */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Pushes it behind all your text */
+  
+  /* Move your background settings here */
+  background: url('/assets/originalG77.png') no-repeat center center;
+  background-size: cover;
+  
+  /* Ensure no white edges */
+  margin: 0;
+  padding: 0;
+}
+
       .coming-soon{
         flex: 1; 
         padding: 10px;
