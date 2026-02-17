@@ -38,9 +38,12 @@
         --oklch-dark-gray: oklch(20%, 0+5, 150);
       
       }
-      body {   
-      }
-
+   @font-face {
+  font-family: 'lequire';
+  src: url('/leq.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
       /* Add this inside the <style> tag in head.njk */
 
 body::before {
@@ -53,7 +56,8 @@ body::before {
   z-index: -1; /* Pushes it behind all your text */
   
   /* Move your background settings here */
-  background: url('/assets/originalG77.png') no-repeat center center;
+  background: url('/assets/whiteG2.png') no-repeat center center;
+  
   background-size: cover;
   
   /* Ensure no white edges */
@@ -70,7 +74,7 @@ body::before {
       
       .info-box {
         flex: 1; 
-        padding: 10px;
+        
         text-align: center;
         color: black;
         
@@ -164,24 +168,7 @@ body::before {
             margin: 0 auto; 
             margin-bottom: 10px;
         }
-        .faq{
-          background-color: rgba(255, 255, 255, 0.9);
-          border-color: rgba(255, 255, 255, 0.8);
-           width: 100%;
-           margin: 0 auto; 
-           max-width: 1000px; 
-           background: linear-gradient(90deg, rgba(30, 251, 170, 0.1) 0%, rgba(30, 240, 251, 0.15) 100%);
-          border-radius: 16px;
-          border: 1px solid rgba(255, 255, 255, 0.3); /* frosty white border */
-
-          backdrop-filter: blur(12px); /* stronger blur */
-          -webkit-backdrop-filter: blur(12px); /* Safari support */
-
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); /* soft shadow */
-          transition: all 0.3s ease;
-           padding: 20px ;
-        }
-
+        
          @media (max-width: 1310px) {
           .info-box {
             flex-basis: 100%;

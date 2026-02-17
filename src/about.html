@@ -1,319 +1,353 @@
-   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  // We removed the 'if' check so this runs on mobile too
-  const sections = document.querySelectorAll('.content, .content-about');
-  
-  requestAnimationFrame(() => {
-    sections.forEach(section => {
-      section.classList.add('visible');
-    });
-  });
-});
-</script>
-    
 <style>
-   
-
-
-  .content, .content-about {
-    opacity: 0;
-    transform: translateY(300px);
-    transition: opacity 1.5s ease-out, transform 0.5s ease-out;
-  }
-
-  .content.visible, .content-about.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-   @property --angle-1 {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: -75deg;
+    /* --- 1. CORE LAYOUT & BREAKOUT --- */
+    @font-face {
+            font-family: 'lequire';
+            src: url('/leq.otf') format('opentype'); 
+            font-weight: normal;
+            font-style: normal;
     }
 
-    @property --angle-2 {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: -45deg;
+    .sequence-container {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 80vh;
+        margin: 120px 0;
+        display: flex; 
+        align-items: center;
+        overflow: hidden;
     }
 
-    :root {
-      --global--size: clamp(2rem, 4vw, 5rem);
-      --anim--hover-time: 400ms;
-      --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+    /* Desktop top margin for the first section */
+    #about-section {
+        margin-top: 20px !important;
     }
 
-    .button-wrap {
-      position: relative;
-      z-index: 2;
-      border-radius: 999vw;
-      background: transparent;
-      pointer-events: none;
-      transition: all var(--anim--hover-time) var(--anim--hover-ease);
+    /* --- 2. VISUAL STACK (BOX & IMAGE) --- */
+    .visual-stack {
+        position: relative;
+        width: 60%;
+        height: 100%;
+        overflow: hidden; 
     }
 
-    .button-shadow {
-      --shadow-cuttoff-fix: 2em;
-      position: absolute;
-      width: calc(100% + var(--shadow-cuttoff-fix));
-      height: calc(100% + var(--shadow-cuttoff-fix));
-      top: calc(0% - var(--shadow-cuttoff-fix) / 2);
-      left: calc(0% - var(--shadow-cuttoff-fix) / 2);
-      filter: blur(clamp(2px, 0.125em, 12px));
-      pointer-events: none;
+    .gradient-square {
+        position: absolute;
+        left: 0; 
+        top: 0;
+        width: 55vw;
+        height: 80vh;
+        background: linear-gradient(135deg, #b1aaf0 , #b1aaf0);
+        border-radius: 0 20px 20px 0; 
+        opacity: 0;
+        z-index: 1;
     }
 
-    .button-shadow::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 999vw;
-      background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
-      width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-      height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-      top: calc(var(--shadow-cuttoff-fix) - 0.5em);
-      left: calc(var(--shadow-cuttoff-fix) - 0.875em);
-      padding: 0.125em;
-      box-sizing: border-box;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
+    .sliding-image-wrap {
+        position: absolute;
+        left: 100px; 
+        top: 0;
+        height: 80vh;
+        width: 100%;
+        opacity: 0;
+        z-index: 2;
     }
 
-    .glass-button {
-      --border-width: clamp(1px, 0.0625em, 4px);
-      all: unset;
-      cursor: pointer;
-      position: relative;
-      z-index: 3;
-      pointer-events: auto;
-      border-radius: 999vw;
-      background: linear-gradient(-75deg, rgba(1, 213, 255,0.05), rgba(1, 213, 255,0.2), rgba(1, 213, 255,0.05));
-      box-shadow:
-        inset 0 0.125em 0.125em rgba(0,0,0,0.05),
-        inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
-        0 0.25em 0.125em -0.125em rgba(0,0,0,0.2),
-        0 0 0.1em 0.25em inset rgba(255,255,255,0.2),
-        0 0 0 0 rgba(255,255,255,1);
-      backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-      transition: all var(--anim--hover-time) var(--anim--hover-ease);
-      min-width: 220px;
-      text-align: center;
-      font-size: 25px;
-      -webkit-tap-highlight-color: transparent;
-          -webkit-touch-callout: none;
-          user-select: none;
+    .design-image {
+        width: 90%; 
+        height: calc(100% - 100px); 
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+        display: block;
     }
 
-    .glass-button:hover {
-      transform: scale(0.975);
-      backdrop-filter: blur(0.01em);
-      box-shadow:
-        inset 0 0.125em 0.125em rgba(0,0,0,0.05),
-        inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
-        0 0.15em 0.05em -0.1em rgba(0,0,0,0.25),
-        0 0 0.05em 0.1em inset rgba(255,255,255,0.5),
-        0 0 0 0 rgba(255,255,255,1);
+    /* --- 3. MIRROR LOGIC (SECTION 2) --- */
+    .sequence-container.mirror {
+        flex-direction: row-reverse;
     }
 
-    .glass-button span {
-      display: block;
-      position: relative;
-      font-weight: 500;
-      letter-spacing: -0.05em;
-      color: #323232;
-      text-shadow: 0em 0.25em 0.05em rgba(0,0,0,0.1);
-      padding: 0.875em 1.5em;
+    .sequence-container.mirror .gradient-square {
+        left: auto;
+        right: 0;
+        border-radius: 20px 0 0 20px;
     }
 
-    .glass-button span::after {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      width: calc(100% - var(--border-width));
-      height: calc(100% - var(--border-width));
-      top: calc(var(--border-width) / 2);
-      left: calc(var(--border-width) / 2);
-      border-radius: 999vw;
-      background: linear-gradient(var(--angle-2), rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 40% 50%, rgba(255,255,255,0) 55%);
-      background-size: 200% 200%;
-      background-position: 0% 50%;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
+    .sequence-container.mirror .sliding-image-wrap {
+        left: auto;
+        right: 100px;
     }
 
-    .glass-button:hover span::after {
-      background-position: 25% 50%;
+    /* --- 4. TEXT CONTENT --- */
+    .sequence-content {
+        width: 40%;
+        padding: 0 60px;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease-out 1.2s; 
+        z-index: 5;
     }
 
-    .glass-button:active span::after {
-      background-position: 50% 15%;
-      --angle-2: -15deg;
+    .sequence-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        background: linear-gradient(90deg, #191f4f, #436aee);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
     }
 
-    .glass-button::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 999vw;
-      width: calc(100% + var(--border-width));
-      height: calc(100% + var(--border-width));
-      top: calc(0% - var(--border-width) / 2);
-      left: calc(0% - var(--border-width) / 2);
-      padding: var(--border-width);
-      background: conic-gradient(
-        from var(--angle-1) at 50% 50%,
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0) 5% 40%,
-        rgba(0,0,0,0.5) 50%,
-        rgba(0,0,0,0) 60% 95%,
-        rgba(0,0,0,0.5)
-      ),
-      linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5));
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease;
-      box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255,255,255,0.5);
+    .about-text {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        color: #333;
     }
 
-    .glass-button:hover::after {
-      --angle-1: -125deg;
+    /* --- HERO SCROLL INDICATOR STYLES --- */
+    .hero-scroll-indicator {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .glass-button:active::after {
-      --angle-1: -75deg;
+    .scroll-text {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #191f4f;
+        font-weight: bold;
+        opacity: 0.7;
+        margin-bottom: 10px;
     }
 
-    .button-container {
-      --w: 100%;
-      --ai: center;
-      --fd: column;
-      --d: flex;
-      --mt: 50px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      margin-top: 50px;
+    .hero-arrow-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 5px;
     }
 
-    .button-row {
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      padding: 0 5vw;
-      gap: 80px;
-      
+    .hero-arrow-flow span {
+        font-family: 'lequire', sans-serif;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #436aee;
+        opacity: 0.2;
+        display: block;
+        line-height: 0.5;
+        transform: rotate(90deg);
+        animation: arrowGlowVertical 1.5s infinite;
     }
-    @media (max-width: 768px) {
-       
-        .button-row {
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            padding: 0 5vw;
-        }
-            
-        .button-wrap {
+
+    .hero-arrow-flow span:nth-child(2) { animation-delay: 0.2s; }
+    .hero-arrow-flow span:nth-child(3) { animation-delay: 0.4s; }
+
+    /* Vertical Animation (Down) */
+    @keyframes arrowGlowVertical {
+        0%, 100% { opacity: 0.2; transform: rotate(90deg) translateY(0); }
+        50% { opacity: 1; transform: rotate(90deg) translateY(8px); color: #dbbbf6; }
+    }
+
+    /* --- UPDATED LIST STYLES (Matching Arrow Logic) --- */
+    .about-list {
+        padding-left: 20px;
+        list-style: none;
+    }
+
+    .about-list li {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    /* The new animated arrow bullet point */
+    .about-list li::before {
+        content: ">>>"; /* Use the same character as hero arrows */
+        font-family: 'lequire', sans-serif; /* Ensure same font */
+        position: absolute;
+        left: -40px;
+        font-size: 1.5rem; /* Slightly smaller to fit list text */
+        font-weight: bold;
+        color: #436aee;
+        opacity: 0.4;
+        /* Apply horizontal animation */
+        animation: arrowGlowHorizontal 2s infinite; 
+    }
+
+    /* Horizontal Animation (Right) */
+    @keyframes arrowGlowHorizontal {
+        0%, 100% { opacity: 0.4; transform: translateX(0); color: #436aee; }
+        50% { opacity: 1; transform: translateX(6px); color: #dbbbf6; }
+    }
+
+    /* --- 5. ANIMATIONS --- */
+    .animate-box { animation: slideInUpCustom 1s ease-out forwards; }
+    .animate-image { animation: slideInRightCustom 1s ease-out forwards 0.7s; }
+    .mirror .animate-image { animation: slideInLeftCustom 1s ease-out forwards 0.7s; }
+    .animate-content { opacity: 1 !important; transform: translateY(0) !important; }
+
+    @keyframes slideInUpCustom {from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; }}
+    @keyframes slideInRightCustom {from { transform: translateX(100%); opacity: 0; }to { transform: translateX(-30px); opacity: 1; }}
+    @keyframes slideInLeftCustom {from { transform: translateX(-100%); opacity: 0; }to { transform: translateX(100px); opacity: 1; }}
+
+    /* --- 6. MOBILE OVERRIDES --- */
+    @media (max-width: 1024px) {
+        .hero-scroll-indicator { display: none; } /* Hide on Mobile */
+
+        .sequence-container, .sequence-container.mirror {
+            flex-direction: column !important;
+            height: auto !important;
+            margin: 40px 0 !important;
+            left: 0;
+            transform: none;
             width: 100%;
         }
 
-        .glass-button {
-            width: 100%;
-            
+        #about-section { margin-top: 80px !important; }
+
+        .visual-stack { width: 100% !important; height: 350px !important; }
+
+        .gradient-square, .sequence-container.mirror .gradient-square {
+            left: 0 !important;
+            right: auto !important;
+            width: 85% !important;
+            height: 350px !important;
+            border-radius: 0 20px 20px 0 !important;
         }
-        
+
+        .sliding-image-wrap, .sequence-container.mirror .sliding-image-wrap {
+            left: 20px !important;
+            right: auto !important;
+            height: 350px !important;
+            width: 100% !important;
+        }
+
+        .design-image { width: 90vw !important; height: 320px !important; object-fit: cover; }
+
+        .mirror .animate-image { animation: slideInRightCustom 1s ease-out forwards 0.7s !important; }
+
+        .sequence-content {
+            width: 100% !important;
+            padding: 30px 20px !important;
+            text-align: center;
+            transform: none;
+        }
+
+        .sequence-title { font-size: 2rem; }
+
+        .about-list  {
+        left: -30px;
+       text-align: left;
+       max-width: 80%;         /* Prevents it from touching the screen edges */
+    margin: 0 auto;         /* Centers the entire list block on the page */
+    padding-left: 30px;
+        }
+
+        @keyframes slideInRightCustom {from { transform: translateX(100%); opacity: 0; }to { transform: translateX(0px); opacity: 1; }}
+        @keyframes slideInLeftCustom {from { transform: translateX(-100%); opacity: 0; }to { transform: translateX(40px); opacity: 1; }}
     }
 
+
+    #why-section { margin-bottom: 0 !important; }
 </style>
-    
-    <div class="info-box"></div>
-    <div class="content">
-        <h1 style="
-      font-size: 2rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, #0968e5, #091970);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 0.3px grey;
-      background-clip: text;
-      text-fill-color: transparent;
-    "><strong>About Us</strong></h1>
-        <p>Our WHMIS course follows all current Canadian safety standards and fully aligns with WHMIS 2015 (GHS). The training was created and reviewed by a Certified WHMIS Trainer, ensuring the content is accurate, compliant, and practical for real workplace settings. Our goal is to provide clear, reliable safety education that helps workers and employers stay compliant and safe.</p>
-            </div>
-    <div class="content">
-        <h1 style="
-      font-size: 2rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, #0968e5, #091970);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 0.3px grey;
-      background-clip: text;
-      text-fill-color: transparent;
-    "><strong>About Our Dental WHMIS Training</strong></h1>
-        <p>Our Dental WHMIS Training is designed specifically for dental professionals, 
-            ensuring that your team is well-equipped to handle workplace hazards unique to 
-            dental clinics. Unlike generic WHMIS courses, our program focuses on the specific
-             chemicals, biohazards, and safety protocols relevant to dental settings.</p>
-            </div>
-            <br>
-            <div class="content">
-            <h1 style="
-      font-size: 2rem;
-      font-weight: bold;
-      background: linear-gradient(90deg, #0968e5, #091970);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke: 0.3px grey;
-      background-clip: text;
-      text-fill-color: transparent;
-    "><strong>Why Choose Our Online WHMIS Training?</strong></h1>
-                <ul>
-                    <li> Trusted & Verified by Dental Professionals – Our course is developed and reviewed 
-                        by industry experts to meet the latest safety and compliance standards.</li>
-                    <li> Convenient & Accessible – Complete the training 100% online at your own pace, 
-                        from any device, without the need for in-person sessions.</li>
-                    
-                    
-                </ul>
-            <p>By choosing our dental-specific WHMIS training, you are ensuring a safer workplace, regulatory compliance, and a 
-                seamless certification process—all tailored to the unique needs of dental professionals.</p>
-            
-            
-                </div>
-            <br>
-        
-    <br>
-    <!--<div class="content-about">
-        <h5 style="--mx:30px;"><strong>Professional Affiliations</strong></h5>
-        <br>
-        <div class="img" style="--d: flex; --ai: center; --jc: center;">
-           
-            <img src="/assets/OAHI2.png" style="width: 55px; height: auto; --p: 5px;  --w-lg: 120px;" alt="Description of Image 1">
-           
-           
-            <img src="/assets/internachi2.png" style="width: 55px; height: auto;--p: 5px;  --w-lg: 120px;"alt="Description of Image 2">
-           
-           
-            <img src="/assets/flir2.png" style="width: 55px; height: auto;--p: 5px; --w-lg: 120px;"alt="Description of Image 3">
-           
-            
-            <img src="/assets/carson2.png" style="width: 55px; height: auto;--p: 5px;  --w-lg: 120px;"alt="Description of Image 4">
-           
-           
-            <img src="/assets/homegauge2.png"style="width: 55px; height: auto;--p: 5px;  --w-lg: 120px;" alt="Description of Image 5">
-           
-           
-            <img src="/assets/iac22.png"style="width: 55px; height: auto;--p: 5px;  --w-lg: 120px;" alt="Description of Image 5">
-           
+
+<div class="sequence-container" id="about-section">
+    <div class="visual-stack">
+        <div class="gradient-square"></div>
+        <div class="sliding-image-wrap">
+            <img src="/assets/about.jpg" alt="About ChasTech" class="design-image">
         </div>
-    </div>-->
-    
-    <br>
+    </div>
+    <div class="sequence-content">
+        <h2 class="sequence-title">ABOUT US</h2>
+        <p class="about-text">
+            ChasTech Inc. creates digital experiences that refuse to blend in. Specializing in custom web development for the local market, we trade cookie-cutter layouts for unique, creative design. We are dedicated to building professional websites that showcase your brand’s true personality.
+        </p>
 
-   
-   
+        <div class="hero-scroll-indicator">
+            <span class="scroll-text">Our Process</span>
+            <div class="hero-arrow-flow">
+                <span>&gt;</span>
+                <span>&gt;</span>
+                <span>&gt;</span>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="sequence-container mirror" id="process-section">
+    <div class="visual-stack">
+        <div class="gradient-square"></div>
+        <div class="sliding-image-wrap">
+            <img src="/assets/design-work.jpg" alt="Our Process" class="design-image">
+        </div>
+    </div>
+    <div class="sequence-content">
+        <h2 class="sequence-title">OUR PROCESS</h2>
+        <p class="about-text">
+            We believe the best websites are built on collaboration, not templates. Our process centers on listening to your unique ideas and transforming them into a custom digital reality. We work alongside you to ensure your vision is reflected in every pixel.
+        </p>
+        <div class="hero-scroll-indicator">
+            <span class="scroll-text">Why ChasTech</span>
+            <div class="hero-arrow-flow">
+                <span>&gt;</span>
+                <span>&gt;</span>
+                <span>&gt;</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sequence-container" id="why-section">
+    <div class="visual-stack">
+        <div class="gradient-square"></div>
+        <div class="sliding-image-wrap">
+            <img src="/assets/why3.jpg" alt="Why Choose Us" class="design-image">
+        </div>
+    </div>
+    <div class="sequence-content">
+        <h2 class="sequence-title">WHY CHOOSE US?</h2>
+        <ul class="about-list">
+            <li><strong>Custom Designs</strong> – Every site is built from the ground up to reflect your brand identity.</li>
+            <li><strong>Local & Collaborative</strong> – Based in Belleville, we offer a personal, partnership-focused experience.</li>
+            <li><strong>Performance Driven</strong> – Sites built for speed, accessibility, and growth.</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll('.sequence-container');
+
+        const observerOptions = {
+            threshold: 0.25,
+            rootMargin: "0px 0px -10% 0px"
+        };
+
+        const sequenceObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    triggerAnimation(entry.target);
+                    sequenceObs.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        function triggerAnimation(container) {
+            container.querySelector('.gradient-square').classList.add('animate-box');
+            container.querySelector('.sliding-image-wrap').classList.add('animate-image');
+            container.querySelector('.sequence-content').classList.add('animate-content');
+        }
+
+        sections.forEach((section, index) => {
+            if (index === 0) {
+                setTimeout(() => triggerAnimation(section), 400);
+            } else {
+                sequenceObs.observe(section);
+            }
+        });
+    });
+</script>

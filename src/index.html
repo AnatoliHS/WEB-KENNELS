@@ -1,388 +1,654 @@
----
-layout: landing.njk
----
-
-<div class="logo-container">
-  <img src="/assets/WW.png" alt="Company Logo" class="site-logo">
-</div>
-
-<div class="intro-container">
-  <div class="inner-container">
-    <h1 class="gradient-text">
-      Work Smart. Stay Safe. Be WHMIS Wise
-    </h1>
-    <p>
-     We provide industry-focused WHMIS training — including Foundational, Dental, and Pharmacy streams — designed to address the unique safety needs of various work environments while ensuring workplace safety, regulatory compliance, and informed handling of hazardous materials.
-    </p>
-  </div>
-</div>
-
-
- <div class="button-container">
-    <div class="button-row">
-      <div class="button-wrap" onclick="location.href='/homeReg/'">
-  <div class="button-label">Foundational</div>
-  <button class="glass-button">
-    <img src="/assets/whimiswise2.png" alt="Foundational WHMIS">
-  </button>
-  
-</div>
-
-      <div class="button-wrap" onclick="location.href='/homePharm/'">
-  <div class="button-label">Pharmaceutical</div>
-  <button class="glass-button">
-    <img src="/assets/pharmaWhmis2.png" alt="Pharmaceutical WHMIS">
-  </button>
-  
-</div>
-
-      <div class="button-wrap" onclick="location.href='/homeDent/'">
-  <div class="button-label">Dental</div>
-  <button class="glass-button">
-    <img src="/assets/whimiswise.png" alt="Dental WHMIS">
-  </button>
-  
-</div>
-    
-  </div>
-
- 
 <style>
-  .button-label {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  background: linear-gradient(90deg, #0968e5, #091970);
-   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.3px grey;
-  background-clip: text;
-  text-fill-color: transparent;
-  margin-bottom: 10px;
-  pointer-events: none; /* prevents click blocking */
-}
-/* === Gradient text (your existing style) === */
-.gradient-text { 
-  font-size: 2.5rem;
-  font-weight: bold;
-  background: linear-gradient(90deg, #0968e5, #091970);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.3px grey;
-  background-clip: text;
-  text-fill-color: transparent;
-}
-
-.intro-container {
-  display: flex;
-  justify-content: center;   /* centers horizontally */
-  align-items: center;       /* centers vertically if you give container height */
-  text-align: center;        /* centers inline text inside */
-  padding: 20px;
-}
-
-.inner-container {
-  max-width: 900px; /* keeps text from stretching too wide */
-  margin: 0 auto;
-}
-
-.intro-container p {
-  font-size: 28px;       /* default font size for larger screens */
-  line-height: 1.6;
-}
-
-.logo-container {
-  display: flex;
-  justify-content: center;  /* centers logo horizontally */
-  
-}
-
-.button-row {
-  display: flex;
-  justify-content: center; /* centers the row */
-  gap: 20px;              /* space between buttons */
-  margin-top: 30px;       /* space above the buttons */
-  flex-wrap: wrap;        /* wraps on small screens */
-}
-
-@property --angle-1 {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: -75deg;
+    /* --- 1. FONTS & GLOBAL RESET --- */
+    @font-face {
+        font-family: 'lequire';
+        src: url('/leq.otf') format('opentype'); 
+        font-weight: normal;
+        font-style: normal;
     }
 
-    @property --angle-2 {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: -45deg;
+    img { border-radius: 20px; }
+    body { overflow-x: hidden; }
+
+    /* --- 2. HERO SHARED STYLES --- */
+    .sequence-container {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 80vh;
+        margin: 120px 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
     }
 
-    :root {
-      --global--size: clamp(2rem, 4vw, 5rem);
-      --anim--hover-time: 400ms;
-      --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+    .visual-stack { position: relative; width: 60%; height: 100%; overflow: hidden; }
+    
+    .gradient-square {
+        position: absolute; left: 0; top: 0; width: 55vw; height: 80vh;
+        background: linear-gradient(135deg, #b1aaf0 , #b1aaf0 );
+        border-radius: 0 20px 20px 0; opacity: 0; z-index: 1;
     }
 
-.button-wrap {
-      position: relative;
-      z-index: 2;
-      border-radius: 999vw;
-      background: transparent;
-      pointer-events: none;
-      transition: all var(--anim--hover-time) var(--anim--hover-ease);
+    .sliding-image-wrap { position: absolute; left: 100px; top: 0; height: 80vh; width: 100%; opacity: 0; z-index: 2; }
+    
+    .design-image { 
+        width: 90%; height: calc(100% - 100px); object-fit: cover; 
+        border-radius: 12px; box-shadow: 10px 10px 10px rgba(0,0,0,0.3); display: block; margin-top: 0; 
     }
 
-    .button-shadow {
-      --shadow-cuttoff-fix: 2em;
-      position: absolute;
-      width: calc(100% + var(--shadow-cuttoff-fix));
-      height: calc(100% + var(--shadow-cuttoff-fix));
-      top: calc(0% - var(--shadow-cuttoff-fix) / 2);
-      left: calc(0% - var(--shadow-cuttoff-fix) / 2);
-      filter: blur(clamp(2px, 0.125em, 12px));
-      pointer-events: none;
+    .sequence-content { width: 40%; padding: 0 60px; z-index: 5; }
+
+    /* --- 3. HERO STAGGERED ANIMATION STATES --- */
+    .anim-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out 1.0s; }
+    .anim-top { opacity: 0; transform: translateY(-30px); transition: all 0.8s ease-out 1.3s; }
+    .anim-bottom { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out 1.6s; }
+    .anim-arrow { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out 1.9s; }
+
+    .animate-content-active .anim-left,
+    .animate-content-active .anim-top,
+    .animate-content-active .anim-bottom,
+    .animate-content-active .anim-arrow { opacity: 1; transform: translate(0, 0); }
+
+    /* --- 4. TOP HERO --- */
+    .hero-top { flex-direction: row-reverse; margin-bottom: 50px; } 
+    .hero-top .gradient-square { left: auto; right: 0; border-radius: 20px 0 0 20px !important; }
+    .hero-top .sliding-image-wrap { left: auto; right: 100px; top: 0; }
+
+    .logo-text {
+        display: block; font-family: 'lequire', sans-serif; font-weight: bold; margin: 0 0 20px 0; line-height: 1; 
+        background: linear-gradient(to right, #191f4f 0%, #436aee 20%, #91e0fd 50%, #dbbbf6 60%, #2c3c94 100%);
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0.5px 0.5px 0 black) drop-shadow(-0.5px -0.5px 0 black); font-size: clamp(50px, 6vw, 60px);
     }
 
-    .button-shadow::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 999vw;
-      background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
-      width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-      height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-      top: calc(var(--shadow-cuttoff-fix) - 0.5em);
-      left: calc(var(--shadow-cuttoff-fix) - 0.875em);
-      padding: 0.125em;
-      box-sizing: border-box;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
+    .gradient-text { font-size:3rem; color: #191f4f; font-weight: 800; margin-bottom: 25px; line-height: 1.1; }
+    .intro-p { font-size: 20px; line-height: 1.6; color: #333; margin: 0; }
+    
+    #hero-trigger { margin-top: 20px !important; }
+
+    /* --- SCROLL DOWN INDICATOR --- */
+    .hero-scroll-indicator { margin-top: 35px; display: flex; flex-direction: column; align-items: flex-start; }
+    .scroll-text { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: #191f4f; font-weight: bold; opacity: 0.7; margin-bottom: 10px; }
+    .hero-arrow-flow { display: flex; flex-direction: column; align-items: flex-start; margin-left: 5px; }
+    .hero-arrow-flow span {
+        font-family: 'lequire', sans-serif; font-size: 1.8rem; font-weight: bold; color: #436aee;
+        opacity: 0.2; display: block; line-height: 0.5; transform: rotate(90deg); animation: arrowGlowVertical 1.5s infinite;
+    }
+    .hero-arrow-flow span:nth-child(2) { animation-delay: 0.2s; }
+    .hero-arrow-flow span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes arrowGlowVertical {
+        0%, 100% { opacity: 0.2; transform: rotate(90deg) translateY(0); }
+        50% { opacity: 1; transform: rotate(90deg) translateY(8px); color: #dbbbf6; }
     }
 
-    .glass-button {
-      --border-width: clamp(1px, 0.0625em, 4px);
-      all: unset;
-      cursor: pointer;
-      position: relative;
-      z-index: 3;
-      pointer-events: auto;
-      border-radius: 999vw;
-      background: linear-gradient(-75deg, rgba(213, 255, 1, 0.05), rgba(1, 213, 255,0.2), rgba(1, 213, 255,0.05));
-      box-shadow:
-        inset 0 0.125em 0.125em rgba(0,0,0,0.05),
-        inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
-        0 0.25em 0.125em -0.125em rgba(0,0,0,0.2),
-        0 0 0.1em 0.25em inset rgba(255,255,255,0.2),
-        0 0 0 0 rgba(255,255,255,1);
-      backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-      transition: all var(--anim--hover-time) var(--anim--hover-ease);
-      min-width: 220px;
-      text-align: center;
-      font-size: 25px;
-      -webkit-tap-highlight-color: transparent;
-          -webkit-touch-callout: none;
-          user-select: none;
+    /* ==========================================================
+       🎯 WHO WE SERVE SECTION STYLES 🎯
+       ========================================================== */
+    .niche-container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 100px auto;
+        padding: 0 5%;
+        box-sizing: border-box;
+        text-align: center;
     }
 
-    .glass-button img {
-  max-width: 150px; /* adjust as needed */
-  height: auto;
-  display: block;
-  margin: 0 auto; /* center image inside button */
-}
+    .niche-title { font-size: 4.5rem; color: #191f4f; font-weight: 800; margin-bottom: 10px; }
+    .niche-subtitle { font-size: 1.5rem; color: #666; margin-bottom: 60px; }
 
-    .glass-button:hover {
-      transform: scale(0.975);
-      backdrop-filter: blur(0.01em);
-      box-shadow:
-        inset 0 0.125em 0.125em rgba(0,0,0,0.05),
-        inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
-        0 0.15em 0.05em -0.1em rgba(0,0,0,0.25),
-        0 0 0.05em 0.1em inset rgba(255,255,255,0.5),
-        0 0 0 0 rgba(255,255,255,1);
+    .niche-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
     }
 
-    .glass-button span {
-      display: block;
-      position: relative;
-      font-weight: 500;
-      letter-spacing: -0.05em;
-      color: #323232;
-      text-shadow: 0em 0.25em 0.05em rgba(0,0,0,0.1);
-      padding: 0.875em 1.5em;
+    .niche-card {
+        height: 450px;
+        border-radius: 24px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        
+        /* Entrance animation starting point */
+        top: 50px;
+        opacity: 0;
     }
 
-    .glass-button span::after {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      width: calc(100% - var(--border-width));
-      height: calc(100% - var(--border-width));
-      top: calc(var(--border-width) / 2);
-      left: calc(var(--border-width) / 2);
-      border-radius: 999vw;
-      background: linear-gradient(var(--angle-2), rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 40% 50%, rgba(255,255,255,0) 55%);
-      background-size: 200% 200%;
-      background-position: 0% 50%;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
+    /* The Content Container inside the card */
+    .n-card-content {
+        position: absolute;
+        inset: 0; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        z-index: 20; 
+        text-align: center;
     }
 
-    .glass-button:hover span::after {
-      background-position: 25% 50%;
+    .n-card-title { font-size: 2.2rem; color: white; margin-bottom: 10px; font-weight: 800; }
+    .n-card-desc { font-size: 1.2rem; color: rgba(255,255,255,0.9); line-height: 1.5; margin-bottom: 20px; }
+    .n-card-link { font-size: 1.1rem; color: white; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid #fe97cf; padding-bottom: 5px; }
+
+    /* Scroll Trigger Entrance Animations */
+    .niche-card.is-visible { animation: cascadeUp 0.8s ease forwards; }
+    .niche-card:nth-child(1).is-visible { animation-delay: 0.1s; }
+    .niche-card:nth-child(2).is-visible { animation-delay: 0.3s; }
+    .niche-card:nth-child(3).is-visible { animation-delay: 0.5s; }
+
+    @keyframes cascadeUp {
+        from { opacity: 0; top: 50px; }
+        to { opacity: 1; top: 0; }
     }
 
-    .glass-button:active span::after {
-      background-position: 50% 15%;
-      --angle-2: -15deg;
+
+    /* ==========================================================
+       🌟 DESKTOP ONLY: "ROLLING DIAMOND" ANIMATION ENGINE & HOVERS 🌟
+       ========================================================== */
+    @media (min-width: 1025px) {
+        /* 1. Add shadow so title is readable on bare image, and center it */
+        .n-card-title {
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 0;
+            transition: all 0.4s ease;
+        }
+
+        /* 2. Hide description and link initially on desktop by crushing height */
+        .n-card-desc, .n-card-link {
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(15px);
+            margin: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        /* 3. The Uiverse Corners */
+        .niche-card::before,
+        .niche-card::after {
+            position: absolute;
+            content: "";
+            width: 20%;
+            height: 20%;
+            background: linear-gradient(135deg, rgba(67, 106, 238, 0.95), rgba(177, 170, 240, 0.95));
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+
+        .niche-card::before { top: 0; right: 0; border-radius: 0 24px 0 100%; }
+        .niche-card::after { bottom: 0; left: 0; border-radius: 0 100% 0 24px; }
+
+        /* 4. ON HOVER: Expand Corners */
+        .niche-card.is-visible:hover::before,
+        .niche-card.is-visible:hover::after {
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+        }
+
+        /* 5. ON HOVER: Remove text shadow from title (since gradient is now active) */
+        .niche-card.is-visible:hover .n-card-title {
+            text-shadow: none;
+        }
+
+        /* 6. ON HOVER: Expand description and link, smoothly pushing title up */
+        .niche-card.is-visible:hover .n-card-desc {
+            max-height: 150px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 15px;
+            margin-bottom: 20px;
+            transition-delay: 0.1s; /* Tiny delay lets background slide in first */
+        }
+
+        .niche-card.is-visible:hover .n-card-link {
+            max-height: 50px;
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+        
+        /* Slight lift effect */
+        .niche-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .niche-card.is-visible:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Slight lift effect */
+        .niche-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .niche-card.is-visible:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Rolling Diamonds Engine */
+        .mobile-info-boxes { display: none !important; } 
+        
+        .desktop-presentations { 
+            display: block; 
+            width: 100%; 
+            max-width: 1400px; 
+            margin: 0 auto; 
+        }
+        
+        .presentation-section {
+            position: relative;
+            min-height: 70vh; 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 80px 5%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .p-title { 
+            width: 100%; 
+            font-size: 4.5rem; 
+            color: #191f4f; 
+            font-weight: 800; 
+            line-height: 1.1; 
+            margin-bottom: 20px; 
+            text-align: left; 
+        }
+
+        .p-content-row { display: flex; width: 100%; align-items: center; justify-content: space-between; }
+        .p-desc-col { width: 45%; padding-right: 40px; box-sizing: border-box; z-index: 3; }
+        
+        .p-visual-col { width: 50%; height: 450px; position: relative; display: flex; align-items: center; justify-content: center; }
+
+        .presentation-section.reverse .p-content-row { flex-direction: row-reverse; }
+        .presentation-section.reverse .p-desc-col { padding-right: 0; padding-left: 40px; }
+
+        .p-desc { font-size: 2rem; line-height: 1.6; color: #333; margin: 0; }
+
+        .shape-diamond, .shape-image { position: absolute; width: 450px; height: 450px; border-radius: 40px; }
+        .shape-diamond { z-index: 1; }
+        .shape-image { object-fit: cover; box-shadow: 0 20px 50px rgba(0,0,0,0.3); z-index: 2; }
+
+        .bg-purple { background: #b1aaf0; }
+        .bg-orange { background: #f86f05; }
+        .bg-pink { background: #fe97cf; }
+
+       /* Initial Hidden States */
+        .p-title { transform: translateX(-100px); opacity: 0; }
+        .p-desc { transform: translateY(50px); opacity: 0; }
+        .p-visual-col .shape-diamond { transform: translateX(100vw) rotate(405deg); opacity: 0; }
+        .p-visual-col .shape-image { transform: translateX(100vw) rotate(360deg); opacity: 0; }
+
+       /* Reverse Layout Logic (For Box 2) */
+        .presentation-section.reverse .p-title { text-align: right; transform: translateX(100px); } 
+        .presentation-section.reverse .p-desc { text-align: right; } 
+        .presentation-section.reverse .p-visual-col .shape-diamond { transform: translateX(-100vw) rotate(-315deg); }
+        .presentation-section.reverse .p-visual-col .shape-image { transform: translateX(-100vw) rotate(-360deg); }
+        
+        /* Active Animation States */
+        .presentation-section.is-active .p-title { transform: translateX(0); opacity: 1; transition: all 0.6s ease-out 0s; }
+        .presentation-section.is-active .p-desc { transform: translateY(0); opacity: 1; transition: all 0.6s ease-out 0.3s; }
+        .presentation-section.is-active .p-visual-col .shape-diamond { transform: translateX(0) rotate(45deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.6s; }
+        .presentation-section.is-active .p-visual-col .shape-image { transform: translateX(0) rotate(0deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 1.0s; }
     }
 
-    .glass-button::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 999vw;
-      width: calc(100% + var(--border-width));
-      height: calc(100% + var(--border-width));
-      top: calc(0% - var(--border-width) / 2);
-      left: calc(0% - var(--border-width) / 2);
-      padding: var(--border-width);
-      background: conic-gradient(
-        from var(--angle-1) at 50% 50%,
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0) 5% 40%,
-        rgba(0,0,0,0.5) 50%,
-        rgba(0,0,0,0) 60% 95%,
-        rgba(0,0,0,0.5)
-      ),
-      linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5));
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease;
-      box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255,255,255,0.5);
+
+    /* ==========================================================
+       🌟 MOBILE ONLY: NEW ROLLING SHAPE STACK & NICHE CARDS 🌟
+       ========================================================== */
+    @media (max-width: 1024px) {
+        .niche-title { font-size: 3rem; }
+        .niche-grid { grid-template-columns: 1fr; gap: 30px; }
+        .niche-card { height: 350px; }
+        
+        /* Since mobile has no hover, we put a permanent dark gradient at the bottom so text is readable */
+        .niche-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(25, 31, 79, 0.95) 0%, transparent 70%);
+            z-index: 10;
+        }
+        
+        .n-card-content {
+            justify-content: flex-end; /* Pushes text to the bottom */
+            padding-bottom: 40px;
+            opacity: 1; /* Permanently visible on mobile */
+            transform: translateY(0);
+        }
+        .desktop-presentations { display: none !important; } 
+        .hero-scroll-indicator { display: none; } 
+        
+        /* Hero Resets */
+        .sequence-container, .sequence-container.hero-top { flex-direction: column !important; height: auto !important; margin: 40px 0 !important; left: 0; transform: none; width: 100%; }
+        .sequence-content { order: 1; width: 100% !important; padding: 30px 20px !important; text-align: center; transform: none; }
+        .visual-stack { order: 2; width: 100% !important; height: 350px !important; }
+        .gradient-square { width: 85% !important; height: 350px !important; left: 0 !important; right: auto !important; border-radius: 0 20px 20px 0 !important; }
+        .sliding-image-wrap { left: 20px !important; right: auto !important; height: 350px !important; width: 100% !important; top: 0 !important; }
+        .hero-top .gradient-square { left: auto !important; right: 0 !important; border-radius: 20px 0 0 20px !important; }
+        .hero-top .sliding-image-wrap { left: auto !important; right: 20px !important; }
+        .design-image { width: 90vw !important; height: 320px !important; object-fit: cover; margin-top: 0 !important; }
+        .logo-text { font-size: 50px; text-align: center; }
+        #hero-trigger { margin-top: 80px !important; }
+
+        /* Mobile Shape Sections */
+        .mobile-info-boxes { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            width: 100%; 
+            overflow: hidden; 
+            padding: 60px 0;
+            gap: 80px; 
+        }
+
+        .m-presentation-section {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            width: 90%; 
+            max-width: 500px; 
+            text-align: center; 
+            overflow: visible; 
+        }
+
+        /* Mobile Visual Container (Shapes on Top) */
+        .m-visual-col {
+            position: relative; 
+            width: 100%; 
+            height: 380px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            margin-bottom: 20px;
+        }
+
+        /* Scaled down shapes for mobile */
+        .m-shape-diamond, .m-shape-image { position: absolute; width: 260px; height: 260px; border-radius: 30px; }
+        .m-shape-diamond { z-index: 1; }
+        .m-shape-image { object-fit: cover; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 2; }
+        
+        .bg-purple { background: #b1aaf0; }
+        .bg-orange { background: #f86f05; }
+        .bg-pink { background: #fe97cf; }
+
+        /* Mobile Text Styling */
+        .m-text-content { display: flex; flex-direction: column; align-items: center; }
+        .m-title { font-size: 2.8rem; color: #191f4f; font-weight: 800; line-height: 1.1; margin: 0 0 15px 0; }
+        .m-desc { font-size: 1.2rem; line-height: 1.6; color: #444; margin: 0; }
+
+        /* MOBILE INITIAL HIDDEN STATES */
+        .m-visual-col .m-shape-diamond { transform: translateX(-100vw) rotate(-405deg); opacity: 0; }
+        .m-visual-col .m-shape-image { transform: translateX(100vw) rotate(360deg); opacity: 0; }
+        .m-text-content { transform: translateY(60px); opacity: 0; }
+
+        /* MOBILE ACTIVE ANIMATION STATES */
+        .m-presentation-section.is-active .m-visual-col .m-shape-diamond { 
+            transform: translateX(0) rotate(45deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0s; 
+        }
+        .m-presentation-section.is-active .m-visual-col .m-shape-image { 
+            transform: translateX(0) rotate(0deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.4s; 
+        }
+        .m-presentation-section.is-active .m-text-content { 
+            transform: translateY(0); opacity: 1; transition: all 0.8s ease-out 1.0s; 
+        }
+
+        /* 🌟 THE BULLETPROOF MOBILE KEYFRAME FIX 🌟 */
+        .animate-img-left { animation: m-slideInLeft 1s ease-out forwards 0.6s !important; }
+        .animate-img-right { animation: m-slideInRight 1s ease-out forwards 0.6s !important; }
+
+        @keyframes m-slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(40px); opacity: 1; } }
+        @keyframes m-slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0px); opacity: 1; } }
     }
 
-    .glass-button:hover::after {
-      --angle-1: -125deg;
+    /* --- 6. FOOTER SEQUENCE (SHARED) --- */
+    .footer-seq { margin-bottom: 0px !important; margin-top: 80px; }
+    .footer-seq .sequence-content { opacity: 0; transform: translateX(50px); transition: all 1s ease-out 1s; }
+    .sequence-title { font-size: 3.5rem; color: #191f4f; font-weight: 800; margin-bottom: 30px; }
+    .sequence-btn {
+        display: inline-block; padding: 16px 45px; background: linear-gradient(90deg, #191f4f, #436aee);
+        color: white; text-decoration: none; border-radius: 50px; font-weight: bold; transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .sequence-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(67, 106, 238, 0.4); }
 
-    .glass-button:active::after {
-      --angle-1: -75deg;
-    }
+    .animate-down { animation: slideInDown 1s ease-out forwards; }
+    .animate-up { animation: slideInUp 1s ease-out forwards; }
+    .animate-img-left { animation: slideInLeft 1s ease-out forwards 0.6s; }
+    .animate-img-right { animation: slideInRight 1s ease-out forwards 0.6s; }
+    .footer-active { opacity: 1 !important; transform: translateX(0) !important; }
 
-    .button-container {
-      --w: 100%;
-      --ai: center;
-      --fd: column;
-      --d: flex;
-      --mt: 50px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      margin-top: 50px;
-    }
+    @keyframes slideInDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideInUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(110px); opacity: 1; } }
+    @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(-30px); opacity: 1; } }
 
-    .button-row {
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      padding: 0 5vw;
-      gap: 80px;
-      margin-bottom: 120px;
-      margin-top: -30px;
-    }
-
-    /* Apply the animation */
-.site-logo {
-  max-width: 300px;
-  height: auto;
-  opacity: 0;
-  animation: logoReveal 1.8s ease-out forwards;
-  animation-delay: 0.3s; /* small delay after page load */
-}
-
-    /* Animation for logo reveal */
-@keyframes logoReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(50px); /* starts slightly below */
-    clip-path: inset(100% 0 0 0); /* hidden from bottom */
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(0);
-    clip-path: inset(0 0 0 0); /* fully visible */
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-/* Keyframes for the button "spring up" effect */
-@keyframes springUp {
-  0% {
-    opacity: 0;
-    transform: translateY(80px) scale(0.9);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.05);
-  }
-  80% {
-    transform: translateY(5px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Apply animation to each button */
-.button-wrap {
-  opacity: 0;
-  animation: springUp 0.9s cubic-bezier(0.25, 1.25, 0.5, 1) forwards;
-}
-
-/* Staggered timing + global delay so logo finishes first */
-.button-wrap:nth-child(1) {
-  animation-delay: 1.0s; /* logo (1.8s) + 0.5s pause */
-}
-
-.button-wrap:nth-child(2) {
-  animation-delay: 1.3s;
-}
-
-.button-wrap:nth-child(3) {
-  animation-delay: 1.6s;
-}
-
-
-
-@media (max-width: 768px) {
-
-  .button-wrap {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-  }
-
-  .intro-container {
-    opacity: 1 !important;
-    transform: scale(1) !important;
-    transition: none;
-  }
-
-  .intro-container p {
-    font-size: 20px;     /* smaller font size for mobile */
-  }
-  .button-label {
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-}
 </style>
+
+<div class="sequence-container hero-top" id="hero-trigger">
+    <div class="visual-stack">
+        <div class="gradient-square"></div>
+        <div class="sliding-image-wrap">
+            <img src="/assets/home21.png" alt="About ChasTech" class="design-image">
+        </div>
+    </div>
+    <div class="sequence-content">
+        <div class="logo anim-left">
+            <p class="logo-text"><span class="highlight-blue">Chas</span>Tech</p>
+        </div>
+        <h1 class="gradient-text anim-top">Your vision, built for the web.</h1>
+        <p class="intro-p anim-bottom">
+            Your digital presence is more than a website, it’s your first impression. At ChasTech, we transform your ideas into visually striking, high-performance websites built to look great and work flawlessly on every device.
+        </p>
+        <div class="hero-scroll-indicator anim-arrow">
+            <span class="scroll-text">Explore</span>
+            <div class="hero-arrow-flow"><span>&gt;</span><span>&gt;</span><span>&gt;</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="desktop-presentations">
+    
+    <div class="presentation-section">
+        <h1 class="p-title">Screen Optimization</h1>
+        
+        <div class="p-content-row">
+            <div class="p-desc-col">
+                <p class="p-desc">In today’s digital world, your content must look great on every device. Screen optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
+            </div>
+            <div class="p-visual-col">
+                <div class="shape-diamond bg-purple"></div>
+                <img src="/assets/optimize3.png" alt="Screen Optimization" class="shape-image" style="background: #f2f8fc"> 
+            </div>
+        </div>
+    </div>
+
+    <div class="presentation-section reverse">
+        <h1 class="p-title">Tailored Design</h1>
+        
+        <div class="p-content-row">
+            <div class="p-desc-col">
+                <p class="p-desc">Standing out takes more than function, it takes personality. A unique, custom design helps your project capture attention and leave a lasting impression.</p>
+            </div>
+            <div class="p-visual-col">
+                <div class="shape-diamond bg-orange"></div>
+                <img src="/assets/screen-bro3.png" alt="Creative Design" class="shape-image" style="background: #f2f8fc">
+            </div>
+        </div>
+    </div>
+
+    <div class="presentation-section">
+        <h1 class="p-title">Seamless Integration</h1>
+        
+        <div class="p-content-row">
+            <div class="p-desc-col">
+                <p class="p-desc">Great digital solutions are built to grow. Seamless integration with your existing tools ensures smooth workflows and prepare your project for future needs.</p>
+            </div>
+            <div class="p-visual-col">
+                <div class="shape-diamond bg-pink"></div>
+                <img src="/assets/integrate2.png" alt="Seamless Integration" class="shape-image" style="background: #f2f8fc">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-info-boxes">
+    
+    <div class="m-presentation-section">
+        <div class="m-visual-col">
+            <div class="m-shape-diamond bg-purple"></div>
+            <img src="/assets/optimize3.png" alt="Screen Optimization" class="m-shape-image" style="background: #f2f8fc">
+        </div>
+        <div class="m-text-content">
+            <h1 class="m-title">Screen Optimization</h1>
+            <p class="m-desc">In today’s digital world, your content must look great on every device. Screen optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
+        </div>
+    </div>
+
+    <div class="m-presentation-section">
+        <div class="m-visual-col">
+            <div class="m-shape-diamond bg-orange"></div>
+            <img src="/assets/screen-bro3.png" alt="Creative Design" class="m-shape-image" style="background: #f2f8fc">
+        </div>
+        <div class="m-text-content">
+            <h1 class="m-title">Tailored Design</h1>
+            <p class="m-desc">Standing out takes more than function, it takes personality. A unique, custom design helps your project capture attention and leave a lasting impression.</p>
+        </div>
+    </div>
+
+    <div class="m-presentation-section">
+        <div class="m-visual-col">
+            <div class="m-shape-diamond bg-pink"></div>
+            <img src="/assets/integrate2.png" alt="Seamless Integration" class="m-shape-image" style="background: #f2f8fc">
+        </div>
+        <div class="m-text-content">
+            <h1 class="m-title">Seamless Integration</h1>
+            <p class="m-desc">Great digital solutions are built to grow. Seamless integration with your existing tools ensures smooth workflows and prepare your project for future needs.</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="niche-container" id="niche-trigger">
+    <h2 class="niche-title">Who We Serve</h2>
+    <p class="niche-subtitle">Digital experiences engineered for your industry's unique demands.</p>
+    
+    <div class="niche-grid">
+        <div class="niche-card" style="background-image: url('/assets/service1.jpg');">
+            <div class="n-card-content">
+                <h3 class="n-card-title">Local Businesses</h3>
+                <p class="n-card-desc">Helping businesses increase online visibility and attract more customers.</p>
+                
+            </div>
+        </div>
+
+        <div class="niche-card" style="background-image: url('/assets/service2.jpg');">
+            <div class="n-card-content">
+                <h3 class="n-card-title">E-Commerce Brands</h3>
+                <p class="n-card-desc">Helping retailers create modern, easy-to-use online storefronts.</p>
+                
+            </div>
+        </div>
+
+        <div class="niche-card" style="background-image: url('/assets/service3.jpg');">
+            <div class="n-card-content">
+                <h3 class="n-card-title">Creative Professionals</h3>
+                <p class="n-card-desc">Photographers, artists, and agencies needing high-end, immersive visual portfolios.</p>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sequence-container footer-seq" id="footer-trigger">
+    <div class="visual-stack">
+        <div class="gradient-square"></div>
+        <div class="sliding-image-wrap">
+            <img src="/assets/contact.jpg" alt="Design Work" class="design-image">
+        </div>
+    </div>
+    <div class="sequence-content">
+        <h2 class="sequence-title">Let's get in touch.</h2>
+        <a href="/contact/" class="sequence-btn">Get Started</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const hero = document.querySelector('#hero-trigger');
+        
+        // 1. Hero Animation Trigger
+        setTimeout(() => {
+            if (hero) {
+                hero.querySelector('.gradient-square').classList.add('animate-down');
+                hero.querySelector('.sliding-image-wrap').classList.add('animate-img-left');
+                hero.querySelector('.sequence-content').classList.add('animate-content-active');
+            }
+        }, 300);
+
+        // 2. Footer Observer
+        const footerObs = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelector('.gradient-square').classList.add('animate-up');
+                    entry.target.querySelector('.sliding-image-wrap').classList.add('animate-img-right');
+                    entry.target.querySelector('.sequence-content').classList.add('footer-active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.3 });
+
+        const footerTrigger = document.querySelector('#footer-trigger');
+        if (footerTrigger) footerObs.observe(footerTrigger);
+
+        // 3. Desktop Observer: Native Scroll Triggers
+        const presentationSections = document.querySelectorAll('.presentation-section');
+        const presentationObs = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.4 }); 
+        
+        presentationSections.forEach(section => { 
+            presentationObs.observe(section); 
+        });
+
+        // 4. Mobile Observer: New Shape Stack Triggers
+        const mobileSections = document.querySelectorAll('.m-presentation-section');
+        const mobileObs = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.3 }); // Triggers when 30% of the mobile block is visible
+        
+        mobileSections.forEach(section => { 
+            mobileObs.observe(section); 
+        });
+
+        // 5. Who We Serve Observer: Staggered Cascade
+        const nicheCards = document.querySelectorAll('.niche-card');
+        const nicheObs = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.2 }); 
+
+        nicheCards.forEach(card => {
+            nicheObs.observe(card);
+        });
+    });
+</script>

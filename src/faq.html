@@ -1,318 +1,311 @@
-    
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // We removed the 'if (window.innerWidth...)' check
-  const detailsList = document.querySelectorAll("details");
+<div class="sequence-container hero-top" id="hero-trigger">
+    <div class="visual-stack">
+        <div class="gradient-square"></div>
+        <div class="sliding-image-wrap">
+            <img src="/assets/faq2.jpg" alt="FAQ ChasTech" class="design-image">
+        </div>
+    </div>
+    <div class="sequence-content">
+        
+        <h1 class="gradient-text anim-top">Frequently Asked Questions</h1>
+        <p class="intro-p anim-bottom">
+            Everything you need to know about our process, pricing, and how we bring your digital vision to life. If you don't find your answer here, feel free to reach out.
+        </p>
 
-  detailsList.forEach((item, index) => {
-    // Delay = index * 200 milliseconds
-    setTimeout(() => {
-      item.classList.add("visible");
-    }, index * 200); 
-  });
-});
-</script>
+        <div class="hero-scroll-indicator anim-arrow">
+            <span class="scroll-text">Questions</span>
+            <div class="hero-arrow-flow">
+                <span>&gt;</span>
+                <span>&gt;</span>
+                <span>&gt;</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="faq-container">
+    <div class="faq">
+        <div class="faq-question">What do you need from me to get started?</div>
+        <div class="faq-answer">
+            <div class="answer-content">
+                <p>We’ll need your content (text and images), branding assets (logo, colors), and a clear idea of your goals. Don’t worry,  we guide you through every step.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="faq-question">Can you add features like contact forms or booking systems?</div>
+        <div class="faq-answer">
+            <div class="answer-content">
+                <p>Yes, we can add custom features like contact forms, booking systems, and more. Just let us know what you need during the project planning phase.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="faq-question">Do you provide hosting and domain services?</div>
+        <div class="faq-answer">
+            <div class="answer-content">
+                <p>We can help you choose the right hosting provider and set up your domain, but hosting and domain registration are typically billed separately from web design services.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="faq-question">Can you redesign my existing website?</div>
+        <div class="faq-answer">
+            <div class="answer-content">
+                <p>Absolutely. We can refresh your current site’s design, improve performance, and make it more user-friendly while keeping your existing content and branding.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="faq-question">Will my website work on mobile devices?</div>
+        <div class="faq-answer">
+            <div class="answer-content">
+                <p>Yes! Every website we build is fully responsive, meaning it looks and works great on phones, tablets, and desktops.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq">
+        <div class="faq-question">How much does a website cost?</div>
+        <div class="faq-answer">
+            <div class="answer-content">
+                <p>Pricing depends on the size and functionality of your website. Simple websites start at a lower cost, while custom or e-commerce solutions cost more. We provide transparent quotes so you know exactly what you’re paying for.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <style>
-details {
-  opacity: 0;
-  transform: translateY(50px); /* Start lower */
-}
-
-/* When visible */
-details.visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-}
-
-  .intro-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  max-width: 1400px;
-  margin: 10px auto;
-  
-}
-
-.inner-container {
-  width: 100%;       /* make it take most of the parent container */
-  max-width: 1200px; /* optional: prevent it from being too wide on huge screens */
-  margin: 0 auto;
-}
-
-.gradient-text {
-  font-size: 4rem;
-  font-weight: bold;
-  background: linear-gradient(90deg, #0968e5, #091970);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.3px grey;
-  background-clip: text;
-  text-fill-color: transparent;
-}
-
-@property --angle-1 {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: -75deg;
+    /* --- FONTS & SHARED HERO STYLES --- */
+    @font-face {
+        font-family: 'lequire';
+        src: url('/leq.otf') format('opentype'); 
+        font-weight: normal;
+        font-style: normal;
     }
 
-    @property --angle-2 {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: -45deg;
+    img { border-radius: 20px; }
+
+    .sequence-container {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        height: 80vh;
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
     }
 
-    :root {
-      --global--size: clamp(2rem, 4vw, 5rem);
-      --anim--hover-time: 400ms;
-      --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+    .visual-stack { position: relative; width: 60%; height: 100%; overflow: hidden; }
+    
+    .gradient-square {
+        position: absolute;
+        left: 0; top: 0; width: 55vw; height: 80vh;
+        background: linear-gradient(135deg, #b1aaf0 , #b1aaf0 );
+        border-radius: 0 20px 20px 0; opacity: 0; z-index: 1;
     }
 
-    .button-wrap {
-      position: relative;
-      z-index: 2;
-      border-radius: 999vw;
-      background: transparent;
-      pointer-events: none;
-      transition: all var(--anim--hover-time) var(--anim--hover-ease);
+    .sliding-image-wrap { position: absolute; left: 100px; top: 0; height: 80vh; width: 100%; opacity: 0; z-index: 2; }
+    
+    .design-image { 
+        width: 90%; height: calc(100% - 100px); object-fit: cover; 
+        border-radius: 12px; box-shadow: 10px 10px 10px rgba(0,0,0,0.3); 
+        display: block;
     }
 
-    .button-shadow {
-      --shadow-cuttoff-fix: 2em;
-      position: absolute;
-      width: calc(100% + var(--shadow-cuttoff-fix));
-      height: calc(100% + var(--shadow-cuttoff-fix));
-      top: calc(0% - var(--shadow-cuttoff-fix) / 2);
-      left: calc(0% - var(--shadow-cuttoff-fix) / 2);
-      filter: blur(clamp(2px, 0.125em, 12px));
-      pointer-events: none;
+    .sequence-content { width: 40%; padding: 0 60px; z-index: 5; }
+
+    /* HERO ANIMATION STATES */
+    .anim-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out 1.0s; }
+    .anim-top { opacity: 0; transform: translateY(-30px); transition: all 0.8s ease-out 1.3s; }
+    .anim-bottom { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out 1.6s; }
+    .anim-arrow { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out 1.9s; }
+
+    .animate-content-active .anim-left,
+    .animate-content-active .anim-top,
+    .animate-content-active .anim-bottom,
+    .animate-content-active .anim-arrow { opacity: 1; transform: translate(0, 0); }
+
+    .hero-top { flex-direction: row-reverse; margin-bottom: 50px; } 
+    .hero-top .gradient-square { left: auto; right: 0; border-radius: 20px 0 0 20px !important; }
+    .hero-top .sliding-image-wrap { left: auto; right: 100px; top: 0; }
+
+    .logo-text {
+        display: block; font-family: 'lequire', sans-serif; font-weight: bold;
+        margin: 0 0 20px 0; line-height: 1; 
+        background: linear-gradient(to right, #191f4f 0%, #436aee 20%, #91e0fd 50%, #dbbbf6 60%, #2c3c94 100%);
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0.5px 0.5px 0 black) drop-shadow(-0.5px -0.5px 0 black);
+        font-size: clamp(50px, 6vw, 60px);
     }
 
-    .button-shadow::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 999vw;
-      background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
-      width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-      height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
-      top: calc(var(--shadow-cuttoff-fix) - 0.5em);
-      left: calc(var(--shadow-cuttoff-fix) - 0.875em);
-      padding: 0.125em;
-      box-sizing: border-box;
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
+    .gradient-text { font-size:3rem; color: #191f4f; font-weight: 800; margin-bottom: 25px; line-height: 1.1; }
+    .intro-p { font-size: 20px; line-height: 1.6; color: #333; margin: 0; }
+
+    /* --- SCROLL INDICATOR (DESKTOP VERTICAL STACK) --- */
+    .hero-scroll-indicator {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .glass-button {
-      --border-width: clamp(1px, 0.0625em, 4px);
-      all: unset;
-      cursor: pointer;
-      position: relative;
-      z-index: 3;
-      pointer-events: auto;
-      border-radius: 999vw;
-      background: linear-gradient(-75deg, rgba(1, 213, 255,0.05), rgba(1, 213, 255,0.2), rgba(1, 213, 255,0.05));
-      box-shadow:
-        inset 0 0.125em 0.125em rgba(0,0,0,0.05),
-        inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
-        0 0.25em 0.125em -0.125em rgba(0,0,0,0.2),
-        0 0 0.1em 0.25em inset rgba(255,255,255,0.2),
-        0 0 0 0 rgba(255,255,255,1);
-      backdrop-filter: blur(clamp(1px, 0.125em, 4px));
-      transition: all var(--anim--hover-time) var(--anim--hover-ease);
-      min-width: 220px;
-      text-align: center;
-      font-size: 25px;
-      -webkit-tap-highlight-color: transparent;
-          -webkit-touch-callout: none;
-          user-select: none;
+    .scroll-text {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #191f4f;
+        font-weight: bold;
+        opacity: 0.7;
+        margin-bottom: 10px;
     }
 
-    .glass-button:hover {
-      transform: scale(0.975);
-      backdrop-filter: blur(0.01em);
-      box-shadow:
-        inset 0 0.125em 0.125em rgba(0,0,0,0.05),
-        inset 0 -0.125em 0.125em rgba(255,255,255,0.5),
-        0 0.15em 0.05em -0.1em rgba(0,0,0,0.25),
-        0 0 0.05em 0.1em inset rgba(255,255,255,0.5),
-        0 0 0 0 rgba(255,255,255,1);
+    .hero-arrow-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 5px;
     }
 
-    .glass-button span {
-      display: block;
-      position: relative;
-      font-weight: 500;
-      letter-spacing: -0.05em;
-      color: #323232;
-      text-shadow: 0em 0.25em 0.05em rgba(0,0,0,0.1);
-      padding: 0.875em 1.5em;
+    .hero-arrow-flow span {
+        font-family: 'lequire', sans-serif;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #436aee;
+        opacity: 0.2;
+        display: block;
+        line-height: 0.5;
+        transform: rotate(90deg);
+        animation: arrowGlowVertical 1.5s infinite;
     }
 
-    .glass-button span::after {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      width: calc(100% - var(--border-width));
-      height: calc(100% - var(--border-width));
-      top: calc(var(--border-width) / 2);
-      left: calc(var(--border-width) / 2);
-      border-radius: 999vw;
-      background: linear-gradient(var(--angle-2), rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 40% 50%, rgba(255,255,255,0) 55%);
-      background-size: 200% 200%;
-      background-position: 0% 50%;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      transition: background-position calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease), --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
+    .hero-arrow-flow span:nth-child(2) { animation-delay: 0.2s; }
+    .hero-arrow-flow span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes arrowGlowVertical {
+        0%, 100% { opacity: 0.2; transform: rotate(90deg) translateY(0); }
+        50% { opacity: 1; transform: rotate(90deg) translateY(8px); color: #dbbbf6; }
     }
 
-    .glass-button:hover span::after {
-      background-position: 25% 50%;
+    /* --- FAQ SPECIFIC STYLING --- */
+    .faq-container { width: 100vw; padding: 30px; box-sizing: border-box; }
+    
+    .faq {
+        position: relative; z-index: 1; margin: 0 auto 20px auto; 
+        background: linear-gradient(90deg, rgba(249, 250, 250, 0.12) 0%, rgba(255, 255, 255, 0.12) 100%);
+        border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        overflow: hidden; transition: border-color 0.5s ease;
+        width: 100%; max-width: 1000px;
+        opacity: 0; transform: translateY(50px);
+    }
+    
+    .faq.visible {
+        opacity: 1; transform: translateY(0);
+        transition: transform 0.8s ease-out, opacity 0.8s ease-out, border-color 0.5s ease;
     }
 
-    .glass-button:active span::after {
-      background-position: 50% 15%;
-      --angle-2: -15deg;
+    .faq::after {
+        content: ""; position: absolute; inset: 0;
+        background: rgba(177, 170, 240, 0.400); 
+        opacity: 0; z-index: -1; transition: opacity 0.5s ease-in-out;
     }
 
-    .glass-button::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 999vw;
-      width: calc(100% + var(--border-width));
-      height: calc(100% + var(--border-width));
-      top: calc(0% - var(--border-width) / 2);
-      left: calc(0% - var(--border-width) / 2);
-      padding: var(--border-width);
-      background: conic-gradient(
-        from var(--angle-1) at 50% 50%,
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0) 5% 40%,
-        rgba(0,0,0,0.5) 50%,
-        rgba(0,0,0,0) 60% 95%,
-        rgba(0,0,0,0.5)
-      ),
-      linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.5));
-      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      mask-composite: exclude;
-      transition: all var(--anim--hover-time) var(--anim--hover-ease), --angle-1 500ms ease;
-      box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255,255,255,0.5);
-    }
+    .faq.active::after { opacity: 1; }
+    .faq-question { padding: 30px 40px; cursor: pointer; font-weight: bold; position: relative; z-index: 2; user-select: none; }
 
-    .glass-button:hover::after {
-      --angle-1: -125deg;
-    }
+    .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .answer-content { overflow: hidden; opacity: 0; transition: opacity 0.4s ease-out; padding: 0 40px; }
+    .answer-content p { margin-top: 0; margin-bottom: 30px; }
 
-    .glass-button:active::after {
-      --angle-1: -75deg;
-    }
+    .faq.active .faq-answer { grid-template-rows: 1fr; }
+    .faq.active .answer-content { opacity: 1; transition-delay: 0.2s; }
 
-    .button-container {
-      --w: 100%;
-      --ai: center;
-      --fd: column;
-      --d: flex;
-      --mt: 50px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      margin-top: 50px;
-    }
+    /* CORE KEYFRAMES */
+    .animate-down { animation: slideInDown 1s ease-out forwards; }
+    .animate-img-left { animation: slideInLeft 1s ease-out forwards 0.6s; }
+    @keyframes slideInDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(100px); opacity: 1; } }
 
-    .button-row {
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      padding: 0 5vw;
-      gap: 80px;
-      
-    }
-    @media (max-width: 768px) {
-       
-        .button-row {
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-            padding: 0 5vw;
-        }
-            
-        .button-wrap {
-            width: 100%;
-        }
-
-        .glass-button {
-            width: 100%;
-            
+    /* --- MOBILE OVERRIDES --- */
+    @media (max-width: 1024px) {
+        .hero-scroll-indicator { display: none; }
+        
+        .sequence-container, .sequence-container.hero-top { 
+            flex-direction: column !important; height: auto !important; margin: 40px 0 !important;
+            left: 0; transform: none; width: 100%; 
         }
         
+        .sequence-content { order: 1; width: 100% !important; padding: 30px 20px !important; text-align: center; }
+        .visual-stack { order: 2; width: 100% !important; height: 350px !important; }
+        .gradient-square { width: 85% !important; height: 350px !important; right: 0 !important; border-radius: 20px 0 0 20px !important; }
+        .sliding-image-wrap { right: 20px !important; left: auto !important; height: 350px !important; width: 100% !important; }
+        .design-image { width: 90vw !important; height: 320px !important; object-fit: cover; }
+        .faq-container { margin-top: 20px; }
+        #hero-trigger { margin-top: 80px !important; }
+      @keyframes slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(40px); opacity: 1; } }
     }
-
-
 </style>
 
-    <div class="intro-container">
-  
-    <h1 class="gradient-text">
-      F A Q
-    </h1>
-  
-</div>
-    
-    <div style="--w: 100vw; --p: 30px;">
-        <div class="info-box"></div>
-        <details class="faq">
-            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black; "><strong>How is this course different from others?</strong></summary>
-            <p>Our WHMIS course for dental workers is tailored to address the unique hazards found in dental clinics.
-                 While standard WHMIS training covers general workplace hazardous materials, our dental-specific course focuses on:</p>
-                <ul>
-                    <li> Common Dental Hazards: Understanding exposure to disinfectants, sterilization chemicals, mercury from amalgam fillings, and nitrous oxide.</li>
-                    <li> Biohazardous Risks: Proper handling of sharps, bloodborne pathogens, and infection control practices.</li>
-                    <li> Specialized PPE: Training on personal protective equipment (PPE) tailored to dental professionals, including face shields, respirators, and chemical-resistant gloves.</li>
-                    <li> Safe Handling & Storage: Guidance on the proper storage, use, and disposal of dental-specific chemicals like anesthetics and x-ray processing agents.</li>
-                    <li> Emergency Procedures: Effective spill response and first aid protocols for chemical exposure in dental settings.</li>                  
-                </ul>
-            <p>This course ensures that dental professionals receive the most relevant WHMIS training specific to their workplace environment.</p>
-        </details>
-        <br>
-        <details class="faq">
-            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>How long does it take?</strong></summary>
-            <p>The course typically takes around 60 minutes to complete, but the exact duration may vary depending on the individual. 
-                Some may finish more quickly, while others might take a bit longer to fully absorb the material.</p>
-        </details>
-        <br>
-        <details class="faq">
-            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>Can I do a re-take exam?</strong></summary>
-            <p>Yes, you can retake the exam as many times as needed. There are unlimited attempts to pass the exam, 
-                so you can take it at your own pace until you're confident in your results.</p>
-        </details>
-        <br>
-        <details class="faq">
-            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>When do i receive the certificate</strong></summary>
-            <p>Certificates are issued as soon as you pass the exam and will be sent to you via email.</p>
-        </details>
-        <br>
-        <details class="faq">
-            <summary style="background-color: rgba(255, 255, 255, 0.01);--c: black; "><strong>How do we pay for the course?</strong></summary>
-            <p>The course can be purchased as an individual course or as a package if you are an employer buying courses for your employees.
-                 </p>
-        </details>
-        <br>
-        <details class="faq">
-            <summary style="background-color: rgba(255, 255, 255, 0.01); --c: black;"><strong>Does this course expire after a certain time of purchaise?</strong></summary>
-            <p>Once you purchase the course, you will have a full year to complete it at your own pace. 
-                This means you can start anytime within that period and progress through the material as your schedule allows. 
-                However, after one year from the purchase date, access to the course will expire.</p>
-        </details>
-        <br>
-    </div>
-        
-    
-    
-   
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Hero Animation Trigger (Starts on Page Load)
+    const hero = document.querySelector('#hero-trigger');
+    setTimeout(() => {
+        if (hero) {
+            hero.querySelector('.gradient-square').classList.add('animate-down');
+            hero.querySelector('.sliding-image-wrap').classList.add('animate-img-left');
+            hero.querySelector('.sequence-content').classList.add('animate-content-active');
+        }
+    }, 300);
+
+    // 2. FAQ Scroll Trigger (Wait for Scroll)
+    const faqs = document.querySelectorAll(".faq");
+    const faqContainer = document.querySelector('.faq-container');
+
+    const faqObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Once container is seen, trigger the staggered waterfall
+                faqs.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add("visible");
+                    }, index * 400); // Staggered entry
+                });
+                // Stop observing once the animation has triggered
+                faqObserver.unobserve(entry.target);
+            }
+        });
+    }, { 
+        threshold: 0.2 // Trigger when 20% of the container is visible
+    });
+
+    if (faqContainer) {
+        faqObserver.observe(faqContainer);
+    }
+
+    // 3. FAQ Click Handler
+    const questions = document.querySelectorAll('.faq-question');
+    questions.forEach((question) => {
+        question.addEventListener('click', () => {
+            const parent = question.parentElement;
+            const isActive = parent.classList.contains('active');
+            
+            document.querySelectorAll('.faq.active').forEach(openFaq => {
+                openFaq.classList.remove('active');
+            });
+
+            if (!isActive) {
+                parent.classList.add('active');
+            }
+        });
+    });
+});
+</script>
