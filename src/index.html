@@ -1,14 +1,24 @@
+---
+layout: default.njk
+title: Home
+---
+
 <style>
     /* --- 1. FONTS & GLOBAL RESET --- */
     @font-face {
         font-family: 'lequire';
-        src: url('/leq.otf') format('opentype'); 
+        src: url('/leq.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }
 
-    img { border-radius: 20px; }
-    body { overflow-x: hidden; }
+    img {
+        border-radius: 20px;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
 
     /* --- 2. HERO SHARED STYLES --- */
     .sequence-container {
@@ -23,65 +33,193 @@
         overflow: hidden;
     }
 
-    .visual-stack { position: relative; width: 60%; height: 100%; overflow: hidden; }
-    
+    .visual-stack {
+        position: relative;
+        width: 60%;
+        height: 100%;
+        overflow: hidden;
+    }
+
     .gradient-square {
-        position: absolute; left: 0; top: 0; width: 55vw; height: 80vh;
-        background: linear-gradient(135deg, #b1aaf0 , #b1aaf0 );
-        border-radius: 0 20px 20px 0; opacity: 0; z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 55vw;
+        height: 80vh;
+        background: linear-gradient(135deg, #b1aaf0, #b1aaf0);
+        border-radius: 0 20px 20px 0;
+        opacity: 0;
+        z-index: 1;
     }
 
-    .sliding-image-wrap { position: absolute; left: 100px; top: 0; height: 80vh; width: 100%; opacity: 0; z-index: 2; }
-    
-    .design-image { 
-        width: 90%; height: calc(100% - 100px); object-fit: cover; 
-        border-radius: 12px; box-shadow: 10px 10px 10px rgba(0,0,0,0.3); display: block; margin-top: 0; 
+    .sliding-image-wrap {
+        position: absolute;
+        left: 100px;
+        top: 0;
+        height: 80vh;
+        width: 100%;
+        opacity: 0;
+        z-index: 2;
     }
 
-    .sequence-content { width: 40%; padding: 0 60px; z-index: 5; }
+    .design-image {
+        width: 90%;
+        height: calc(100% - 100px);
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+        display: block;
+        margin-top: 0;
+    }
+
+    .sequence-content {
+        width: 40%;
+        padding: 0 60px;
+        z-index: 5;
+    }
 
     /* --- 3. HERO STAGGERED ANIMATION STATES --- */
-    .anim-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease-out 1.0s; }
-    .anim-top { opacity: 0; transform: translateY(-30px); transition: all 0.8s ease-out 1.3s; }
-    .anim-bottom { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out 1.6s; }
-    .anim-arrow { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out 1.9s; }
+    .anim-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: all 0.8s ease-out 1.0s;
+    }
+
+    .anim-top {
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: all 0.8s ease-out 1.3s;
+    }
+
+    .anim-bottom {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out 1.6s;
+    }
+
+    .anim-arrow {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease-out 1.9s;
+    }
 
     .animate-content-active .anim-left,
     .animate-content-active .anim-top,
     .animate-content-active .anim-bottom,
-    .animate-content-active .anim-arrow { opacity: 1; transform: translate(0, 0); }
+    .animate-content-active .anim-arrow {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
 
     /* --- 4. TOP HERO --- */
-    .hero-top { flex-direction: row-reverse; margin-bottom: 50px; } 
-    .hero-top .gradient-square { left: auto; right: 0; border-radius: 20px 0 0 20px !important; }
-    .hero-top .sliding-image-wrap { left: auto; right: 100px; top: 0; }
+    .hero-top {
+        flex-direction: row-reverse;
+        margin-bottom: 50px;
+    }
+
+    .hero-top .gradient-square {
+        left: auto;
+        right: 0;
+        border-radius: 20px 0 0 20px !important;
+    }
+
+    .hero-top .sliding-image-wrap {
+        left: auto;
+        right: 100px;
+        top: 0;
+    }
 
     .logo-text {
-        display: block; font-family: 'lequire', sans-serif; font-weight: bold; margin: 0 0 20px 0; line-height: 1; 
+        display: block;
+        font-family: 'lequire', sans-serif;
+        font-weight: bold;
+        margin: 0 0 20px 0;
+        line-height: 1;
         background: linear-gradient(to right, #191f4f 0%, #436aee 20%, #91e0fd 50%, #dbbbf6 60%, #2c3c94 100%);
-        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0.5px 0.5px 0 black) drop-shadow(-0.5px -0.5px 0 black); font-size: clamp(50px, 6vw, 60px);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0.5px 0.5px 0 black) drop-shadow(-0.5px -0.5px 0 black);
+        font-size: clamp(50px, 6vw, 60px);
     }
 
-    .gradient-text { font-size:3rem; color: #191f4f; font-weight: 800; margin-bottom: 25px; line-height: 1.1; }
-    .intro-p { font-size: 20px; line-height: 1.6; color: #333; margin: 0; }
-    
-    #hero-trigger { margin-top: 20px !important; }
+    .gradient-text {
+        font-size: 3rem;
+        color: #191f4f;
+        font-weight: 800;
+        margin-bottom: 25px;
+        line-height: 1.1;
+    }
+
+    .intro-p {
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+    }
+
+    #hero-trigger {
+        margin-top: 20px !important;
+    }
 
     /* --- SCROLL DOWN INDICATOR --- */
-    .hero-scroll-indicator { margin-top: 35px; display: flex; flex-direction: column; align-items: flex-start; }
-    .scroll-text { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: #191f4f; font-weight: bold; opacity: 0.7; margin-bottom: 10px; }
-    .hero-arrow-flow { display: flex; flex-direction: column; align-items: flex-start; margin-left: 5px; }
-    .hero-arrow-flow span {
-        font-family: 'lequire', sans-serif; font-size: 1.8rem; font-weight: bold; color: #436aee;
-        opacity: 0.2; display: block; line-height: 0.5; transform: rotate(90deg); animation: arrowGlowVertical 1.5s infinite;
+    .hero-scroll-indicator {
+        margin-top: 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
-    .hero-arrow-flow span:nth-child(2) { animation-delay: 0.2s; }
-    .hero-arrow-flow span:nth-child(3) { animation-delay: 0.4s; }
+
+    .scroll-text {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #191f4f;
+        font-weight: bold;
+        opacity: 0.7;
+        margin-bottom: 10px;
+    }
+
+    .hero-arrow-flow {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 5px;
+    }
+
+    .hero-arrow-flow span {
+        font-family: 'lequire', sans-serif;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #436aee;
+        opacity: 0.2;
+        display: block;
+        line-height: 0.5;
+        transform: rotate(90deg);
+        animation: arrowGlowVertical 1.5s infinite;
+    }
+
+    .hero-arrow-flow span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .hero-arrow-flow span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
 
     @keyframes arrowGlowVertical {
-        0%, 100% { opacity: 0.2; transform: rotate(90deg) translateY(0); }
-        50% { opacity: 1; transform: rotate(90deg) translateY(8px); color: #dbbbf6; }
+
+        0%,
+        100% {
+            opacity: 0.2;
+            transform: rotate(90deg) translateY(0);
+        }
+
+        50% {
+            opacity: 1;
+            transform: rotate(90deg) translateY(8px);
+            color: #dbbbf6;
+        }
     }
 
     /* ==========================================================
@@ -96,8 +234,18 @@
         text-align: center;
     }
 
-    .niche-title { font-size: 4.5rem; color: #191f4f; font-weight: 800; margin-bottom: 10px; }
-    .niche-subtitle { font-size: 1.5rem; color: #666; margin-bottom: 60px; }
+    .niche-title {
+        font-size: 4.5rem;
+        color: #191f4f;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .niche-subtitle {
+        font-size: 1.5rem;
+        color: #666;
+        margin-bottom: 60px;
+    }
 
     .niche-grid {
         display: grid;
@@ -114,54 +262,88 @@
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         cursor: pointer;
-        
-        /* Entrance animation starting point */
         top: 50px;
         opacity: 0;
     }
 
-    /* The Content Container inside the card */
     .n-card-content {
         position: absolute;
-        inset: 0; 
+        inset: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 30px;
-        z-index: 20; 
+        z-index: 20;
         text-align: center;
     }
 
-    .n-card-title { font-size: 2.2rem; color: white; margin-bottom: 10px; font-weight: 800; }
-    .n-card-desc { font-size: 1.2rem; color: rgba(255,255,255,0.9); line-height: 1.5; margin-bottom: 20px; }
-    .n-card-link { font-size: 1.1rem; color: white; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; border-bottom: 2px solid #fe97cf; padding-bottom: 5px; }
+    .n-card-title {
+        font-size: 2.2rem;
+        color: white;
+        margin-bottom: 10px;
+        font-weight: 800;
+    }
 
-    /* Scroll Trigger Entrance Animations */
-    .niche-card.is-visible { animation: cascadeUp 0.8s ease forwards; }
-    .niche-card:nth-child(1).is-visible { animation-delay: 0.1s; }
-    .niche-card:nth-child(2).is-visible { animation-delay: 0.3s; }
-    .niche-card:nth-child(3).is-visible { animation-delay: 0.5s; }
+    .n-card-desc {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .n-card-link {
+        font-size: 1.1rem;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-bottom: 2px solid #fe97cf;
+        padding-bottom: 5px;
+    }
+
+    .niche-card.is-visible {
+        animation: cascadeUp 0.8s ease forwards;
+    }
+
+    .niche-card:nth-child(1).is-visible {
+        animation-delay: 0.1s;
+    }
+
+    .niche-card:nth-child(2).is-visible {
+        animation-delay: 0.3s;
+    }
+
+    .niche-card:nth-child(3).is-visible {
+        animation-delay: 0.5s;
+    }
 
     @keyframes cascadeUp {
-        from { opacity: 0; top: 50px; }
-        to { opacity: 1; top: 0; }
+        from {
+            opacity: 0;
+            top: 50px;
+        }
+
+        to {
+            opacity: 1;
+            top: 0;
+        }
     }
 
 
     /* ==========================================================
-       🌟 DESKTOP ONLY: "ROLLING DIAMOND" ANIMATION ENGINE & HOVERS 🌟
+       🌟 DESKTOP ONLY: "ROLLING DIAMOND" ANIMATION ENGINE 🌟
        ========================================================== */
     @media (min-width: 1025px) {
-        /* 1. Add shadow so title is readable on bare image, and center it */
+
         .n-card-title {
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
             margin-bottom: 0;
             transition: all 0.4s ease;
         }
 
-        /* 2. Hide description and link initially on desktop by crushing height */
-        .n-card-desc, .n-card-link {
+        .n-card-desc,
+        .n-card-link {
             max-height: 0;
             opacity: 0;
             transform: translateY(15px);
@@ -170,7 +352,6 @@
             transition: all 0.4s ease;
         }
 
-        /* 3. The Uiverse Corners */
         .niche-card::before,
         .niche-card::after {
             position: absolute;
@@ -182,10 +363,18 @@
             z-index: 10;
         }
 
-        .niche-card::before { top: 0; right: 0; border-radius: 0 24px 0 100%; }
-        .niche-card::after { bottom: 0; left: 0; border-radius: 0 100% 0 24px; }
+        .niche-card::before {
+            top: 0;
+            right: 0;
+            border-radius: 0 24px 0 100%;
+        }
 
-        /* 4. ON HOVER: Expand Corners */
+        .niche-card::after {
+            bottom: 0;
+            left: 0;
+            border-radius: 0 100% 0 24px;
+        }
+
         .niche-card.is-visible:hover::before,
         .niche-card.is-visible:hover::after {
             width: 100%;
@@ -193,19 +382,17 @@
             border-radius: 24px;
         }
 
-        /* 5. ON HOVER: Remove text shadow from title (since gradient is now active) */
         .niche-card.is-visible:hover .n-card-title {
             text-shadow: none;
         }
 
-        /* 6. ON HOVER: Expand description and link, smoothly pushing title up */
         .niche-card.is-visible:hover .n-card-desc {
             max-height: 150px;
             opacity: 1;
             transform: translateY(0);
             margin-top: 15px;
             margin-bottom: 20px;
-            transition-delay: 0.1s; /* Tiny delay lets background slide in first */
+            transition-delay: 0.1s;
         }
 
         .niche-card.is-visible:hover .n-card-link {
@@ -214,34 +401,30 @@
             transform: translateY(0);
             transition-delay: 0.2s;
         }
-        
-        /* Slight lift effect */
-        .niche-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
-        .niche-card.is-visible:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+
+        .niche-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        
-        /* Slight lift effect */
-        .niche-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+
         .niche-card.is-visible:hover {
             transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
         }
 
-        /* Rolling Diamonds Engine */
-        .mobile-info-boxes { display: none !important; } 
-        
-        .desktop-presentations { 
-            display: block; 
-            width: 100%; 
-            max-width: 1400px; 
-            margin: 0 auto; 
+        .mobile-info-boxes {
+            display: none !important;
         }
-        
+
+        .desktop-presentations {
+            display: block;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         .presentation-section {
             position: relative;
-            min-height: 70vh; 
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -251,63 +434,165 @@
             overflow: hidden;
         }
 
-        .p-title { 
-            width: 100%; 
-            font-size: 4.5rem; 
-            color: #191f4f; 
-            font-weight: 800; 
-            line-height: 1.1; 
-            margin-bottom: 20px; 
-            text-align: left; 
+        .p-title {
+            width: 100%;
+            font-size: 4.5rem;
+            color: #191f4f;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
-        .p-content-row { display: flex; width: 100%; align-items: center; justify-content: space-between; }
-        .p-desc-col { width: 45%; padding-right: 40px; box-sizing: border-box; z-index: 3; }
-        
-        .p-visual-col { width: 50%; height: 450px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .p-content-row {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-        .presentation-section.reverse .p-content-row { flex-direction: row-reverse; }
-        .presentation-section.reverse .p-desc-col { padding-right: 0; padding-left: 40px; }
+        .p-desc-col {
+            width: 45%;
+            padding-right: 40px;
+            box-sizing: border-box;
+            z-index: 3;
+        }
 
-        .p-desc { font-size: 2rem; line-height: 1.6; color: #333; margin: 0; }
+        .p-visual-col {
+            width: 50%;
+            height: 450px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-        .shape-diamond, .shape-image { position: absolute; width: 450px; height: 450px; border-radius: 40px; }
-        .shape-diamond { z-index: 1; }
-        .shape-image { object-fit: cover; box-shadow: 0 20px 50px rgba(0,0,0,0.3); z-index: 2; }
+        .presentation-section.reverse .p-content-row {
+            flex-direction: row-reverse;
+        }
 
-        .bg-purple { background: #b1aaf0; }
-        .bg-orange { background: #f86f05; }
-        .bg-pink { background: #fe97cf; }
+        .presentation-section.reverse .p-desc-col {
+            padding-right: 0;
+            padding-left: 40px;
+        }
 
-       /* Initial Hidden States */
-        .p-title { transform: translateX(-100px); opacity: 0; }
-        .p-desc { transform: translateY(50px); opacity: 0; }
-        .p-visual-col .shape-diamond { transform: translateX(100vw) rotate(405deg); opacity: 0; }
-        .p-visual-col .shape-image { transform: translateX(100vw) rotate(360deg); opacity: 0; }
+        .p-desc {
+            font-size: 2rem;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
 
-       /* Reverse Layout Logic (For Box 2) */
-        .presentation-section.reverse .p-title { text-align: right; transform: translateX(100px); } 
-        .presentation-section.reverse .p-desc { text-align: right; } 
-        .presentation-section.reverse .p-visual-col .shape-diamond { transform: translateX(-100vw) rotate(-315deg); }
-        .presentation-section.reverse .p-visual-col .shape-image { transform: translateX(-100vw) rotate(-360deg); }
-        
-        /* Active Animation States */
-        .presentation-section.is-active .p-title { transform: translateX(0); opacity: 1; transition: all 0.6s ease-out 0s; }
-        .presentation-section.is-active .p-desc { transform: translateY(0); opacity: 1; transition: all 0.6s ease-out 0.3s; }
-        .presentation-section.is-active .p-visual-col .shape-diamond { transform: translateX(0) rotate(45deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.6s; }
-        .presentation-section.is-active .p-visual-col .shape-image { transform: translateX(0) rotate(0deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 1.0s; }
+        .shape-diamond,
+        .shape-image {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 40px;
+        }
+
+        .shape-diamond {
+            z-index: 1;
+        }
+
+        .shape-image {
+            object-fit: cover;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .bg-purple {
+            background: #b1aaf0;
+        }
+
+        .bg-orange {
+            background: #f86f05;
+        }
+
+        .bg-pink {
+            background: #fe97cf;
+        }
+
+        .p-title {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+
+        .p-desc {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .p-visual-col .shape-diamond {
+            transform: translateX(100vw) rotate(405deg);
+            opacity: 0;
+        }
+
+        .p-visual-col .shape-image {
+            transform: translateX(100vw) rotate(360deg);
+            opacity: 0;
+        }
+
+        .presentation-section.reverse .p-title {
+            text-align: right;
+            transform: translateX(100px);
+        }
+
+        .presentation-section.reverse .p-desc {
+            text-align: right;
+        }
+
+        .presentation-section.reverse .p-visual-col .shape-diamond {
+            transform: translateX(-100vw) rotate(-315deg);
+        }
+
+        .presentation-section.reverse .p-visual-col .shape-image {
+            transform: translateX(-100vw) rotate(-360deg);
+        }
+
+        .presentation-section.is-active .p-title {
+            transform: translateX(0);
+            opacity: 1;
+            transition: all 0.6s ease-out 0s;
+        }
+
+        .presentation-section.is-active .p-desc {
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 0.6s ease-out 0.3s;
+        }
+
+        .presentation-section.is-active .p-visual-col .shape-diamond {
+            transform: translateX(0) rotate(45deg);
+            opacity: 1;
+            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
+        }
+
+        .presentation-section.is-active .p-visual-col .shape-image {
+            transform: translateX(0) rotate(0deg);
+            opacity: 1;
+            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 1.0s;
+        }
     }
 
 
     /* ==========================================================
-       🌟 MOBILE ONLY: NEW ROLLING SHAPE STACK & NICHE CARDS 🌟
+       🌟 MOBILE ONLY: NEW ROLLING SHAPE STACK 🌟
        ========================================================== */
     @media (max-width: 1024px) {
-        .niche-title { font-size: 3rem; }
-        .niche-grid { grid-template-columns: 1fr; gap: 30px; }
-        .niche-card { height: 350px; }
-        
-        /* Since mobile has no hover, we put a permanent dark gradient at the bottom so text is readable */
+        .niche-title {
+            font-size: 3rem;
+        }
+
+        .niche-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .niche-card {
+            height: 350px;
+        }
+
         .niche-card::after {
             content: "";
             position: absolute;
@@ -315,119 +600,492 @@
             background: linear-gradient(to top, rgba(25, 31, 79, 0.95) 0%, transparent 70%);
             z-index: 10;
         }
-        
+
         .n-card-content {
-            justify-content: flex-end; /* Pushes text to the bottom */
+            justify-content: flex-end;
             padding-bottom: 40px;
-            opacity: 1; /* Permanently visible on mobile */
+            opacity: 1;
             transform: translateY(0);
         }
-        .desktop-presentations { display: none !important; } 
-        .hero-scroll-indicator { display: none; } 
-        
-        /* Hero Resets */
-        .sequence-container, .sequence-container.hero-top { flex-direction: column !important; height: auto !important; margin: 40px 0 !important; left: 0; transform: none; width: 100%; }
-        .sequence-content { order: 1; width: 100% !important; padding: 30px 20px !important; text-align: center; transform: none; }
-        .visual-stack { order: 2; width: 100% !important; height: 350px !important; }
-        .gradient-square { width: 85% !important; height: 350px !important; left: 0 !important; right: auto !important; border-radius: 0 20px 20px 0 !important; }
-        .sliding-image-wrap { left: 20px !important; right: auto !important; height: 350px !important; width: 100% !important; top: 0 !important; }
-        .hero-top .gradient-square { left: auto !important; right: 0 !important; border-radius: 20px 0 0 20px !important; }
-        .hero-top .sliding-image-wrap { left: auto !important; right: 20px !important; }
-        .design-image { width: 90vw !important; height: 320px !important; object-fit: cover; margin-top: 0 !important; }
-        .logo-text { font-size: 50px; text-align: center; }
-        #hero-trigger { margin-top: 80px !important; }
 
-        /* Mobile Shape Sections */
-        .mobile-info-boxes { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            width: 100%; 
-            overflow: hidden; 
+        .desktop-presentations {
+            display: none !important;
+        }
+
+        .hero-scroll-indicator {
+            display: none;
+        }
+
+        .sequence-container,
+        .sequence-container.hero-top {
+            flex-direction: column !important;
+            height: auto !important;
+            margin: 40px 0 !important;
+            left: 0;
+            transform: none;
+            width: 100%;
+        }
+
+        .sequence-content {
+            order: 1;
+            width: 100% !important;
+            padding: 30px 20px !important;
+            text-align: center;
+            transform: none;
+        }
+
+        .visual-stack {
+            order: 2;
+            width: 100% !important;
+            height: 350px !important;
+        }
+
+        .gradient-square {
+            width: 85% !important;
+            height: 350px !important;
+            left: 0 !important;
+            right: auto !important;
+            border-radius: 0 20px 20px 0 !important;
+        }
+
+        .sliding-image-wrap {
+            left: 20px !important;
+            right: auto !important;
+            height: 350px !important;
+            width: 100% !important;
+            top: 0 !important;
+        }
+
+        .hero-top .gradient-square {
+            left: auto !important;
+            right: 0 !important;
+            border-radius: 20px 0 0 20px !important;
+        }
+
+        .hero-top .sliding-image-wrap {
+            left: auto !important;
+            right: 20px !important;
+        }
+
+        .design-image {
+            width: 90vw !important;
+            height: 320px !important;
+            object-fit: cover;
+            margin-top: 0 !important;
+        }
+
+        .logo-text {
+            font-size: 50px;
+            text-align: center;
+        }
+
+        #hero-trigger {
+            margin-top: 80px !important;
+        }
+
+        .mobile-info-boxes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
             padding: 60px 0;
-            gap: 80px; 
+            gap: 80px;
         }
 
         .m-presentation-section {
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            width: 90%; 
-            max-width: 500px; 
-            text-align: center; 
-            overflow: visible; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            overflow: visible;
         }
 
-        /* Mobile Visual Container (Shapes on Top) */
         .m-visual-col {
-            position: relative; 
-            width: 100%; 
-            height: 380px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
+            position: relative;
+            width: 100%;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
         }
 
-        /* Scaled down shapes for mobile */
-        .m-shape-diamond, .m-shape-image { position: absolute; width: 260px; height: 260px; border-radius: 30px; }
-        .m-shape-diamond { z-index: 1; }
-        .m-shape-image { object-fit: cover; box-shadow: 0 15px 40px rgba(0,0,0,0.2); z-index: 2; }
-        
-        .bg-purple { background: #b1aaf0; }
-        .bg-orange { background: #f86f05; }
-        .bg-pink { background: #fe97cf; }
-
-        /* Mobile Text Styling */
-        .m-text-content { display: flex; flex-direction: column; align-items: center; }
-        .m-title { font-size: 2.8rem; color: #191f4f; font-weight: 800; line-height: 1.1; margin: 0 0 15px 0; }
-        .m-desc { font-size: 1.2rem; line-height: 1.6; color: #444; margin: 0; }
-
-        /* MOBILE INITIAL HIDDEN STATES */
-        .m-visual-col .m-shape-diamond { transform: translateX(-100vw) rotate(-405deg); opacity: 0; }
-        .m-visual-col .m-shape-image { transform: translateX(100vw) rotate(360deg); opacity: 0; }
-        .m-text-content { transform: translateY(60px); opacity: 0; }
-
-        /* MOBILE ACTIVE ANIMATION STATES */
-        .m-presentation-section.is-active .m-visual-col .m-shape-diamond { 
-            transform: translateX(0) rotate(45deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0s; 
-        }
-        .m-presentation-section.is-active .m-visual-col .m-shape-image { 
-            transform: translateX(0) rotate(0deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.4s; 
-        }
-        .m-presentation-section.is-active .m-text-content { 
-            transform: translateY(0); opacity: 1; transition: all 0.8s ease-out 1.0s; 
+        .m-shape-diamond,
+        .m-shape-image {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 30px;
         }
 
-        /* 🌟 THE BULLETPROOF MOBILE KEYFRAME FIX 🌟 */
-        .animate-img-left { animation: m-slideInLeft 1s ease-out forwards 0.6s !important; }
-        .animate-img-right { animation: m-slideInRight 1s ease-out forwards 0.6s !important; }
+        .m-shape-diamond {
+            z-index: 1;
+        }
 
-        @keyframes m-slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(40px); opacity: 1; } }
-        @keyframes m-slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0px); opacity: 1; } }
+        .m-shape-image {
+            object-fit: cover;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .m-text-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .m-title {
+            font-size: 2.8rem;
+            color: #191f4f;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0 0 15px 0;
+        }
+
+        .m-desc {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #444;
+            margin: 0;
+        }
+
+        .m-visual-col .m-shape-diamond {
+            transform: translateX(-100vw) rotate(-405deg);
+            opacity: 0;
+        }
+
+        .m-visual-col .m-shape-image {
+            transform: translateX(100vw) rotate(360deg);
+            opacity: 0;
+        }
+
+        .m-text-content {
+            transform: translateY(60px);
+            opacity: 0;
+        }
+
+        .m-presentation-section.is-active .m-visual-col .m-shape-diamond {
+            transform: translateX(0) rotate(45deg);
+            opacity: 1;
+            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0s;
+        }
+
+        .m-presentation-section.is-active .m-visual-col .m-shape-image {
+            transform: translateX(0) rotate(0deg);
+            opacity: 1;
+            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.4s;
+        }
+
+        .m-presentation-section.is-active .m-text-content {
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 0.8s ease-out 1.0s;
+        }
+
+        .animate-img-left {
+            animation: m-slideInLeft 1s ease-out forwards 0.6s !important;
+        }
+
+        .animate-img-right {
+            animation: m-slideInRight 1s ease-out forwards 0.6s !important;
+        }
+
+        @keyframes m-slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(40px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes m-slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
     }
 
     /* --- 6. FOOTER SEQUENCE (SHARED) --- */
-    .footer-seq { margin-bottom: 0px !important; margin-top: 80px; }
-    .footer-seq .sequence-content { opacity: 0; transform: translateX(50px); transition: all 1s ease-out 1s; }
-    .sequence-title { font-size: 3.5rem; color: #191f4f; font-weight: 800; margin-bottom: 30px; }
-    .sequence-btn {
-        display: inline-block; padding: 16px 45px; background: linear-gradient(90deg, #191f4f, #436aee);
-        color: white; text-decoration: none; border-radius: 50px; font-weight: bold; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .footer-seq {
+        margin-bottom: 0px !important;
+        margin-top: 80px;
     }
-    .sequence-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(67, 106, 238, 0.4); }
 
-    .animate-down { animation: slideInDown 1s ease-out forwards; }
-    .animate-up { animation: slideInUp 1s ease-out forwards; }
-    .animate-img-left { animation: slideInLeft 1s ease-out forwards 0.6s; }
-    .animate-img-right { animation: slideInRight 1s ease-out forwards 0.6s; }
-    .footer-active { opacity: 1 !important; transform: translateX(0) !important; }
+    .footer-seq .sequence-content {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 1s ease-out 1s;
+    }
 
-    @keyframes slideInDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes slideInUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(110px); opacity: 1; } }
-    @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(-30px); opacity: 1; } }
+    .sequence-title {
+        font-size: 3.5rem;
+        color: #191f4f;
+        font-weight: 800;
+        margin-bottom: 30px;
+    }
 
+    .sequence-btn {
+        display: inline-block;
+        padding: 16px 45px;
+        background: linear-gradient(90deg, #191f4f, #436aee);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .sequence-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(67, 106, 238, 0.4);
+    }
+
+    .animate-down {
+        animation: slideInDown 1s ease-out forwards;
+    }
+
+    .animate-up {
+        animation: slideInUp 1s ease-out forwards;
+    }
+
+    .animate-img-left {
+        animation: slideInLeft 1s ease-out forwards 0.6s;
+    }
+
+    .animate-img-right {
+        animation: slideInRight 1s ease-out forwards 0.6s;
+    }
+
+    .footer-active {
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+    }
+
+    @keyframes slideInDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInUp {
+        from {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(110px);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(-30px);
+            opacity: 1;
+        }
+    }
+
+    /* ==========================================================
+       🆕 RECENT WORK SECTION (VERTICAL STACK CARDS)
+       ========================================================== */
+    .recent-work-container {
+        width: 100%;
+        max-width: 1400px;
+        margin: 100px auto;
+        padding: 0 5%;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative;
+    }
+
+    .rw-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 100px;
+        margin-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    /* The Main Card Container */
+    .rw-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 900px;
+        min-height: 350px;
+        background-color: #f2f8fc;
+        border-radius: 16px;
+        padding: 50px;
+        box-sizing: border-box;
+        text-align: left;
+
+        /* Scroll reveal animation styles */
+        opacity: 0;
+        transform: translateY(50px);
+        transition: transform 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
+    }
+
+    .rw-card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Card Hover State */
+    .rw-card.is-visible:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    /* The Offset Image Box */
+    .rw-image-box {
+        position: absolute;
+        bottom: -40px;
+        right: -40px;
+        width: 46%;
+        height: 56%;
+        border-radius: 12px;
+        background-color: #e5e7eb;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: transform 0.7s ease;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 2;
+    }
+
+    /* Image Box Hover Animation */
+    .rw-card.is-visible:hover .rw-image-box {
+        transform: translate(-16px, -16px);
+    }
+
+    /* Text Content Wrapper */
+    .rw-content {
+        position: relative;
+        z-index: 3;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rw-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #1f2937;
+        margin: 0 0 15px 0;
+    }
+
+    .rw-desc {
+        font-size: 1.1rem;
+        color: #4b5563;
+        line-height: 1.6;
+        margin: 0 0 30px 0;
+    }
+
+    /* The Explore Button */
+    .rw-btn {
+        background-color: #e5e7eb;
+        color: #1f2937;
+        padding: 10px 30px;
+        border-radius: 6px;
+        border: none;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+    }
+
+    .rw-btn:hover {
+        background-color: #d1d5db;
+    }
+
+    /* --- COMING SOON TOAST --- */
+    #coming-soon-toast {
+        position: fixed;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%) translateY(30px);
+        /* Starts slightly pushed down */
+        background: #191f4f;
+        /* Your dark blue */
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        box-shadow: 0 10px 25px rgba(25, 31, 79, 0.4);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        z-index: 9999;
+    }
+
+    /* The class JavaScript adds to make it visible */
+    #coming-soon-toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Mobile Adjustments for Stacked Cards */
+    @media (max-width: 768px) {
+        .rw-card {
+            padding: 30px;
+            padding-bottom: 220px;
+        }
+
+        .rw-content {
+            width: 100%;
+        }
+
+        .rw-image-box {
+            width: 85%;
+            height: 156px;
+            bottom: -20px;
+            right: 20px;
+        }
+    }
 </style>
 
 <div class="sequence-container hero-top" id="hero-trigger">
@@ -443,7 +1101,9 @@
         </div>
         <h1 class="gradient-text anim-top">Your vision, built for the web.</h1>
         <p class="intro-p anim-bottom">
-            Your digital presence is more than a website, it’s your first impression. At ChasTech, we transform your ideas into visually striking, high-performance websites built to look great and work flawlessly on every device.
+            Your digital presence is more than a website, it’s your first impression. At ChasTech, we transform your
+            ideas into visually striking, high-performance websites built to look great and work flawlessly on every
+            device.
         </p>
         <div class="hero-scroll-indicator anim-arrow">
             <span class="scroll-text">Explore</span>
@@ -453,60 +1113,63 @@
 </div>
 
 <div class="desktop-presentations">
-    
     <div class="presentation-section">
         <h1 class="p-title">Screen Optimization</h1>
-        
         <div class="p-content-row">
             <div class="p-desc-col">
-                <p class="p-desc">In today’s digital world, your content must look great on every device. Screen optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
+                <p class="p-desc">In today’s digital world, your content must look great on every device. Screen
+                    optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
             </div>
             <div class="p-visual-col">
                 <div class="shape-diamond bg-purple"></div>
-                <img src="/assets/optimize3.png" alt="Screen Optimization" class="shape-image" style="background: #f2f8fc"> 
+                <img src="/assets/optimize3.png" alt="Screen Optimization" class="shape-image"
+                    style="background: #f2f8fc">
             </div>
         </div>
     </div>
 
     <div class="presentation-section reverse">
         <h1 class="p-title">Tailored Design</h1>
-        
         <div class="p-content-row">
             <div class="p-desc-col">
-                <p class="p-desc">Standing out takes more than function, it takes personality. A unique, custom design helps your project capture attention and leave a lasting impression.</p>
+                <p class="p-desc">Standing out takes more than function, it takes personality. A unique, custom design
+                    helps your project capture attention and leave a lasting impression.</p>
             </div>
             <div class="p-visual-col">
                 <div class="shape-diamond bg-orange"></div>
-                <img src="/assets/screen-bro3.png" alt="Creative Design" class="shape-image" style="background: #f2f8fc">
+                <img src="/assets/screen-bro3.png" alt="Creative Design" class="shape-image"
+                    style="background: #f2f8fc">
             </div>
         </div>
     </div>
 
     <div class="presentation-section">
         <h1 class="p-title">Seamless Integration</h1>
-        
         <div class="p-content-row">
             <div class="p-desc-col">
-                <p class="p-desc">Great digital solutions are built to grow. Seamless integration with your existing tools ensures smooth workflows and prepare your project for future needs.</p>
+                <p class="p-desc">Great digital solutions are built to grow. Seamless integration with your existing
+                    tools ensures smooth workflows and prepare your project for future needs.</p>
             </div>
             <div class="p-visual-col">
                 <div class="shape-diamond bg-pink"></div>
-                <img src="/assets/integrate2.png" alt="Seamless Integration" class="shape-image" style="background: #f2f8fc">
+                <img src="/assets/integrate2.png" alt="Seamless Integration" class="shape-image"
+                    style="background: #f2f8fc">
             </div>
         </div>
     </div>
 </div>
 
 <div class="mobile-info-boxes">
-    
     <div class="m-presentation-section">
         <div class="m-visual-col">
             <div class="m-shape-diamond bg-purple"></div>
-            <img src="/assets/optimize3.png" alt="Screen Optimization" class="m-shape-image" style="background: #f2f8fc">
+            <img src="/assets/optimize3.png" alt="Screen Optimization" class="m-shape-image"
+                style="background: #f2f8fc">
         </div>
         <div class="m-text-content">
             <h1 class="m-title">Screen Optimization</h1>
-            <p class="m-desc">In today’s digital world, your content must look great on every device. Screen optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
+            <p class="m-desc">In today’s digital world, your content must look great on every device. Screen
+                optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
         </div>
     </div>
 
@@ -517,33 +1180,34 @@
         </div>
         <div class="m-text-content">
             <h1 class="m-title">Tailored Design</h1>
-            <p class="m-desc">Standing out takes more than function, it takes personality. A unique, custom design helps your project capture attention and leave a lasting impression.</p>
+            <p class="m-desc">Standing out takes more than function, it takes personality. A unique, custom design helps
+                your project capture attention and leave a lasting impression.</p>
         </div>
     </div>
 
     <div class="m-presentation-section">
         <div class="m-visual-col">
             <div class="m-shape-diamond bg-pink"></div>
-            <img src="/assets/integrate2.png" alt="Seamless Integration" class="m-shape-image" style="background: #f2f8fc">
+            <img src="/assets/integrate2.png" alt="Seamless Integration" class="m-shape-image"
+                style="background: #f2f8fc">
         </div>
         <div class="m-text-content">
             <h1 class="m-title">Seamless Integration</h1>
-            <p class="m-desc">Great digital solutions are built to grow. Seamless integration with your existing tools ensures smooth workflows and prepare your project for future needs.</p>
+            <p class="m-desc">Great digital solutions are built to grow. Seamless integration with your existing tools
+                ensures smooth workflows and prepare your project for future needs.</p>
         </div>
     </div>
-
 </div>
 
 <div class="niche-container" id="niche-trigger">
     <h2 class="niche-title">Who We Serve</h2>
     <p class="niche-subtitle">Digital experiences engineered for your industry's unique demands.</p>
-    
+
     <div class="niche-grid">
         <div class="niche-card" style="background-image: url('/assets/service1.jpg');">
             <div class="n-card-content">
                 <h3 class="n-card-title">Local Businesses</h3>
                 <p class="n-card-desc">Helping businesses increase online visibility and attract more customers.</p>
-                
             </div>
         </div>
 
@@ -551,15 +1215,63 @@
             <div class="n-card-content">
                 <h3 class="n-card-title">E-Commerce Brands</h3>
                 <p class="n-card-desc">Helping retailers create modern, easy-to-use online storefronts.</p>
-                
             </div>
         </div>
 
         <div class="niche-card" style="background-image: url('/assets/service3.jpg');">
             <div class="n-card-content">
                 <h3 class="n-card-title">Creative Professionals</h3>
-                <p class="n-card-desc">Photographers, artists, and agencies needing high-end, immersive visual portfolios.</p>
-               
+                <p class="n-card-desc">Photographers, artists, and agencies needing high-end, immersive visual
+                    portfolios.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="recent-work-container" id="recent-work-trigger">
+    <h2 class="niche-title">Recent Work</h2>
+    <p class="niche-subtitle">A showcase of our latest custom web solutions.</p>
+
+    <div class="rw-stack">
+        <div class="rw-card">
+            <div class="rw-image-box" style="background-image: url('/assets/inspection.png');"></div>
+            <div class="rw-content">
+                <h2 class="rw-title">Inspection Season</h2>
+                <p class="rw-desc">
+                    Inspection Season was designed and built to position a home inspection company as
+                    a reliable, professional service provider online. The site features a clean visual
+                    style, clear service positioning, and user-friendly navigation that encourages prospective
+                    clients to get in touch.
+                </p>
+                <a href="https://inspectionseason.com/" class="sequence-btn">Explore</a>
+            </div>
+        </div>
+
+        <div class="rw-card">
+            <div class="rw-image-box" style="background-image: url('/assets/whmis.png');"></div>
+            <div class="rw-content">
+                <h2 class="rw-title">WhmisWise</h2>
+                <p class="rw-desc">
+                    WHMIS Wise is a web-based training platform developed to present workplace safety and WHMIS
+                    course content in a structured and engaging way. The project emphasized custom content layout,
+                    clear visual hierarchy, and user-friendly navigation to improve how learners interact with
+                    training material.
+                </p>
+                <a href="https://whmiswise.com/" class="sequence-btn">Explore</a>
+            </div>
+        </div>
+
+        <div class="rw-card">
+            <div class="rw-image-box" style="background-image: url('/assets/pharm.png');"></div>
+            <div class="rw-content">
+                <h2 class="rw-title">Rideau Pharmacy</h2>
+                <p class="rw-desc">
+                    Rideau Pharmacy is a client website developed to support a local pharmacy’s digital presence
+                    and customer outreach. The project focused on a clean visual identity, well-structured page layout,
+                    and straightforward navigation to ensure visitors can quickly find key information and contact the
+                    pharmacy with ease.
+                </p>
+                <a href="#" class="sequence-btn coming-soon-btn">Explore</a>
             </div>
         </div>
     </div>
@@ -577,11 +1289,12 @@
         <a href="/contact/" class="sequence-btn">Get Started</a>
     </div>
 </div>
+<div id="coming-soon-toast">Coming Soon!</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const hero = document.querySelector('#hero-trigger');
-        
+
         // 1. Hero Animation Trigger
         setTimeout(() => {
             if (hero) {
@@ -598,7 +1311,7 @@
                     entry.target.querySelector('.gradient-square').classList.add('animate-up');
                     entry.target.querySelector('.sliding-image-wrap').classList.add('animate-img-right');
                     entry.target.querySelector('.sequence-content').classList.add('footer-active');
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.3 });
@@ -612,13 +1325,13 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-active');
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.4 }); 
-        
-        presentationSections.forEach(section => { 
-            presentationObs.observe(section); 
+        }, { threshold: 0.4 });
+
+        presentationSections.forEach(section => {
+            presentationObs.observe(section);
         });
 
         // 4. Mobile Observer: New Shape Stack Triggers
@@ -627,28 +1340,64 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-active');
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 }); // Triggers when 30% of the mobile block is visible
-        
-        mobileSections.forEach(section => { 
-            mobileObs.observe(section); 
+        }, { threshold: 0.3 });
+
+        mobileSections.forEach(section => {
+            mobileObs.observe(section);
         });
 
-        // 5. Who We Serve Observer: Staggered Cascade
+        // 5. Who We Serve Observer
         const nicheCards = document.querySelectorAll('.niche-card');
         const nicheObs = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.2 }); 
+        }, { threshold: 0.2 });
 
         nicheCards.forEach(card => {
             nicheObs.observe(card);
+        });
+
+        // 6. NEW: Recent Work Stack Observer (Fade-in on scroll)
+        const rwCards = document.querySelectorAll('.rw-card');
+        const rwObs = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        rwCards.forEach(card => {
+            rwObs.observe(card);
+        });
+        // 7. Coming Soon Popup Logic
+        const comingSoonBtns = document.querySelectorAll('.coming-soon-btn');
+        const toast = document.getElementById('coming-soon-toast');
+        let toastTimeout;
+
+        comingSoonBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Stops the browser from jumping to the top of the page
+
+                // Show the toast
+                toast.classList.add('show');
+
+                // Clear any existing timer so it doesn't hide too early if clicked twice
+                clearTimeout(toastTimeout);
+
+                // Hide the toast automatically after 3 seconds
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            });
         });
     });
 </script>
