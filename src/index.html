@@ -208,13 +208,10 @@ title: Home
     }
 
     @keyframes arrowGlowVertical {
-
-        0%,
-        100% {
+        0%, 100% {
             opacity: 0.2;
             transform: rotate(90deg) translateY(0);
         }
-
         50% {
             opacity: 1;
             transform: rotate(90deg) translateY(8px);
@@ -306,30 +303,19 @@ title: Home
         animation: cascadeUp 0.8s ease forwards;
     }
 
-    .niche-card:nth-child(1).is-visible {
-        animation-delay: 0.1s;
-    }
-
-    .niche-card:nth-child(2).is-visible {
-        animation-delay: 0.3s;
-    }
-
-    .niche-card:nth-child(3).is-visible {
-        animation-delay: 0.5s;
-    }
+    .niche-card:nth-child(1).is-visible { animation-delay: 0.1s; }
+    .niche-card:nth-child(2).is-visible { animation-delay: 0.3s; }
+    .niche-card:nth-child(3).is-visible { animation-delay: 0.5s; }
 
     @keyframes cascadeUp {
-        from {
-            opacity: 0;
-            top: 50px;
-        }
-
-        to {
-            opacity: 1;
-            top: 0;
-        }
+        from { opacity: 0; top: 50px; }
+        to { opacity: 1; top: 0; }
     }
 
+    /* --- GLOBAL SHAPE COLORS (FIX FOR MOBILE) --- */
+    .bg-purple { background: #b1aaf0; }
+    .bg-orange { background: #f86f05; }
+    .bg-pink { background: #fe97cf; }
 
     /* ==========================================================
        🌟 DESKTOP ONLY: "ROLLING DIAMOND" ANIMATION ENGINE 🌟
@@ -491,88 +477,23 @@ title: Home
             border-radius: 40px;
         }
 
-        .shape-diamond {
-            z-index: 1;
-        }
+        .shape-diamond { z-index: 1; }
+        .shape-image { object-fit: cover; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); z-index: 2; }
 
-        .shape-image {
-            object-fit: cover;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-        }
+        .p-title { transform: translateX(-100px); opacity: 0; }
+        .p-desc { transform: translateY(50px); opacity: 0; }
+        .p-visual-col .shape-diamond { transform: translateX(100vw) rotate(405deg); opacity: 0; }
+        .p-visual-col .shape-image { transform: translateX(100vw) rotate(360deg); opacity: 0; }
 
-        .bg-purple {
-            background: #b1aaf0;
-        }
+        .presentation-section.reverse .p-title { text-align: right; transform: translateX(100px); }
+        .presentation-section.reverse .p-desc { text-align: right; }
+        .presentation-section.reverse .p-visual-col .shape-diamond { transform: translateX(-100vw) rotate(-315deg); }
+        .presentation-section.reverse .p-visual-col .shape-image { transform: translateX(-100vw) rotate(-360deg); }
 
-        .bg-orange {
-            background: #f86f05;
-        }
-
-        .bg-pink {
-            background: #fe97cf;
-        }
-
-        .p-title {
-            transform: translateX(-100px);
-            opacity: 0;
-        }
-
-        .p-desc {
-            transform: translateY(50px);
-            opacity: 0;
-        }
-
-        .p-visual-col .shape-diamond {
-            transform: translateX(100vw) rotate(405deg);
-            opacity: 0;
-        }
-
-        .p-visual-col .shape-image {
-            transform: translateX(100vw) rotate(360deg);
-            opacity: 0;
-        }
-
-        .presentation-section.reverse .p-title {
-            text-align: right;
-            transform: translateX(100px);
-        }
-
-        .presentation-section.reverse .p-desc {
-            text-align: right;
-        }
-
-        .presentation-section.reverse .p-visual-col .shape-diamond {
-            transform: translateX(-100vw) rotate(-315deg);
-        }
-
-        .presentation-section.reverse .p-visual-col .shape-image {
-            transform: translateX(-100vw) rotate(-360deg);
-        }
-
-        .presentation-section.is-active .p-title {
-            transform: translateX(0);
-            opacity: 1;
-            transition: all 0.6s ease-out 0s;
-        }
-
-        .presentation-section.is-active .p-desc {
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 0.6s ease-out 0.3s;
-        }
-
-        .presentation-section.is-active .p-visual-col .shape-diamond {
-            transform: translateX(0) rotate(45deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
-        }
-
-        .presentation-section.is-active .p-visual-col .shape-image {
-            transform: translateX(0) rotate(0deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 1.0s;
-        }
+        .presentation-section.is-active .p-title { transform: translateX(0); opacity: 1; transition: all 0.6s ease-out 0s; }
+        .presentation-section.is-active .p-desc { transform: translateY(0); opacity: 1; transition: all 0.6s ease-out 0.3s; }
+        .presentation-section.is-active .p-visual-col .shape-diamond { transform: translateX(0) rotate(45deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.6s; }
+        .presentation-section.is-active .p-visual-col .shape-image { transform: translateX(0) rotate(0deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 1.0s; }
     }
 
 
@@ -608,13 +529,8 @@ title: Home
             transform: translateY(0);
         }
 
-        .desktop-presentations {
-            display: none !important;
-        }
-
-        .hero-scroll-indicator {
-            display: none;
-        }
+        .desktop-presentations { display: none !important; }
+        .hero-scroll-indicator { display: none; }
 
         .sequence-container,
         .sequence-container.hero-top {
@@ -656,32 +572,12 @@ title: Home
             top: 0 !important;
         }
 
-        .hero-top .gradient-square {
-            left: auto !important;
-            right: 0 !important;
-            border-radius: 20px 0 0 20px !important;
-        }
+        .hero-top .gradient-square { left: auto !important; right: 0 !important; border-radius: 20px 0 0 20px !important; }
+        .hero-top .sliding-image-wrap { left: auto !important; right: 20px !important; }
 
-        .hero-top .sliding-image-wrap {
-            left: auto !important;
-            right: 20px !important;
-        }
-
-        .design-image {
-            width: 90vw !important;
-            height: 320px !important;
-            object-fit: cover;
-            margin-top: 0 !important;
-        }
-
-        .logo-text {
-            font-size: 50px;
-            text-align: center;
-        }
-
-        #hero-trigger {
-            margin-top: 80px !important;
-        }
+        .design-image { width: 90vw !important; height: 320px !important; object-fit: cover; margin-top: 0 !important; }
+        .logo-text { font-size: 50px; text-align: center; }
+        #hero-trigger { margin-top: 80px !important; }
 
         .mobile-info-boxes {
             display: flex;
@@ -721,15 +617,8 @@ title: Home
             border-radius: 30px;
         }
 
-        .m-shape-diamond {
-            z-index: 1;
-        }
-
-        .m-shape-image {
-            object-fit: cover;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-        }
+        .m-shape-diamond { z-index: 1; }
+        .m-shape-image { object-fit: cover; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); z-index: 2; }
 
         .m-text-content {
             display: flex;
@@ -745,77 +634,21 @@ title: Home
             margin: 0 0 15px 0;
         }
 
-        .m-desc {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #444;
-            margin: 0;
-        }
+        .m-desc { font-size: 1.2rem; line-height: 1.6; color: #444; margin: 0; }
 
-        .m-visual-col .m-shape-diamond {
-            transform: translateX(-100vw) rotate(-405deg);
-            opacity: 0;
-        }
+        .m-visual-col .m-shape-diamond { transform: translateX(-100vw) rotate(-405deg); opacity: 0; }
+        .m-visual-col .m-shape-image { transform: translateX(100vw) rotate(360deg); opacity: 0; }
+        .m-text-content { transform: translateY(60px); opacity: 0; }
 
-        .m-visual-col .m-shape-image {
-            transform: translateX(100vw) rotate(360deg);
-            opacity: 0;
-        }
+        .m-presentation-section.is-active .m-visual-col .m-shape-diamond { transform: translateX(0) rotate(45deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0s; }
+        .m-presentation-section.is-active .m-visual-col .m-shape-image { transform: translateX(0) rotate(0deg); opacity: 1; transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.4s; }
+        .m-presentation-section.is-active .m-text-content { transform: translateY(0); opacity: 1; transition: all 0.8s ease-out 1.0s; }
 
-        .m-text-content {
-            transform: translateY(60px);
-            opacity: 0;
-        }
+        .animate-img-left { animation: m-slideInLeft 1s ease-out forwards 0.6s !important; }
+        .animate-img-right { animation: m-slideInRight 1s ease-out forwards 0.6s !important; }
 
-        .m-presentation-section.is-active .m-visual-col .m-shape-diamond {
-            transform: translateX(0) rotate(45deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0s;
-        }
-
-        .m-presentation-section.is-active .m-visual-col .m-shape-image {
-            transform: translateX(0) rotate(0deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.4s;
-        }
-
-        .m-presentation-section.is-active .m-text-content {
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 0.8s ease-out 1.0s;
-        }
-
-        .animate-img-left {
-            animation: m-slideInLeft 1s ease-out forwards 0.6s !important;
-        }
-
-        .animate-img-right {
-            animation: m-slideInRight 1s ease-out forwards 0.6s !important;
-        }
-
-        @keyframes m-slideInLeft {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(40px);
-                opacity: 1;
-            }
-        }
-
-        @keyframes m-slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0px);
-                opacity: 1;
-            }
-        }
+        @keyframes m-slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(40px); opacity: 1; } }
+        @keyframes m-slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0px); opacity: 1; } }
     }
 
     /* --- 6. FOOTER SEQUENCE (SHARED) --- */
@@ -853,74 +686,16 @@ title: Home
         box-shadow: 0 10px 20px rgba(67, 106, 238, 0.4);
     }
 
-    .animate-down {
-        animation: slideInDown 1s ease-out forwards;
-    }
+    .animate-down { animation: slideInDown 1s ease-out forwards; }
+    .animate-up { animation: slideInUp 1s ease-out forwards; }
+    .animate-img-left { animation: slideInLeft 1s ease-out forwards 0.6s; }
+    .animate-img-right { animation: slideInRight 1s ease-out forwards 0.6s; }
+    .footer-active { opacity: 1 !important; transform: translateX(0) !important; }
 
-    .animate-up {
-        animation: slideInUp 1s ease-out forwards;
-    }
-
-    .animate-img-left {
-        animation: slideInLeft 1s ease-out forwards 0.6s;
-    }
-
-    .animate-img-right {
-        animation: slideInRight 1s ease-out forwards 0.6s;
-    }
-
-    .footer-active {
-        opacity: 1 !important;
-        transform: translateX(0) !important;
-    }
-
-    @keyframes slideInDown {
-        from {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideInUp {
-        from {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideInLeft {
-        from {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(110px);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(-30px);
-            opacity: 1;
-        }
-    }
+    @keyframes slideInDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideInUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes slideInLeft { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(110px); opacity: 1; } }
+    @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(-30px); opacity: 1; } }
 
     /* ==========================================================
        🆕 RECENT WORK SECTION (VERTICAL STACK CARDS)
@@ -944,7 +719,6 @@ title: Home
         padding-bottom: 60px;
     }
 
-    /* The Main Card Container */
     .rw-card {
         position: relative;
         display: flex;
@@ -959,25 +733,14 @@ title: Home
         padding: 50px;
         box-sizing: border-box;
         text-align: left;
-
-        /* Scroll reveal animation styles */
         opacity: 0;
         transform: translateY(50px);
         transition: transform 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
     }
 
-    .rw-card.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    .rw-card.is-visible { opacity: 1; transform: translateY(0); }
+    .rw-card.is-visible:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
 
-    /* Card Hover State */
-    .rw-card.is-visible:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    /* The Offset Image Box */
     .rw-image-box {
         position: absolute;
         bottom: -40px;
@@ -994,12 +757,8 @@ title: Home
         z-index: 2;
     }
 
-    /* Image Box Hover Animation */
-    .rw-card.is-visible:hover .rw-image-box {
-        transform: translate(-16px, -16px);
-    }
+    .rw-card.is-visible:hover .rw-image-box { transform: translate(-16px, -16px); }
 
-    /* Text Content Wrapper */
     .rw-content {
         position: relative;
         z-index: 3;
@@ -1009,37 +768,8 @@ title: Home
         align-items: flex-start;
     }
 
-    .rw-title {
-        font-size: 2.2rem;
-        font-weight: 800;
-        color: #1f2937;
-        margin: 0 0 15px 0;
-    }
-
-    .rw-desc {
-        font-size: 1.1rem;
-        color: #4b5563;
-        line-height: 1.6;
-        margin: 0 0 30px 0;
-    }
-
-    /* The Explore Button */
-    .rw-btn {
-        background-color: #e5e7eb;
-        color: #1f2937;
-        padding: 10px 30px;
-        border-radius: 6px;
-        border: none;
-        font-weight: 600;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-decoration: none;
-    }
-
-    .rw-btn:hover {
-        background-color: #d1d5db;
-    }
+    .rw-title { font-size: 2.2rem; font-weight: 800; color: #1f2937; margin: 0 0 15px 0; }
+    .rw-desc { font-size: 1.1rem; color: #4b5563; line-height: 1.6; margin: 0 0 30px 0; }
 
     /* --- COMING SOON TOAST --- */
     #coming-soon-toast {
@@ -1047,9 +777,7 @@ title: Home
         bottom: 40px;
         left: 50%;
         transform: translateX(-50%) translateY(30px);
-        /* Starts slightly pushed down */
         background: #191f4f;
-        /* Your dark blue */
         color: white;
         padding: 12px 30px;
         border-radius: 50px;
@@ -1061,23 +789,33 @@ title: Home
         z-index: 9999;
     }
 
-    /* The class JavaScript adds to make it visible */
-    #coming-soon-toast.show {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-        visibility: visible;
+    #coming-soon-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+
+    /* --- TABLET & IPAD SPECIFIC FIX --- */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .rw-card {
+            padding: 40px;
+            padding-bottom: 320px; 
+        }
+        
+        .rw-content { width: 100%; }
+
+        .rw-image-box {
+            width: 65%;      
+            height: 280px;   
+            bottom: -30px;
+            right: 30px;
+        }
     }
 
     /* Mobile Adjustments for Stacked Cards */
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         .rw-card {
             padding: 30px;
             padding-bottom: 220px;
         }
 
-        .rw-content {
-            width: 100%;
-        }
+        .rw-content { width: 100%; }
 
         .rw-image-box {
             width: 85%;
@@ -1243,7 +981,7 @@ title: Home
                     style, clear service positioning, and user-friendly navigation that encourages prospective
                     clients to get in touch.
                 </p>
-                <a href="https://inspectionseason.com/" class="sequence-btn">Explore</a>
+                <a href="https://inspectionseason.com/" class="sequence-btn" target="_blank">Explore</a>
             </div>
         </div>
 
@@ -1257,7 +995,7 @@ title: Home
                     clear visual hierarchy, and user-friendly navigation to improve how learners interact with
                     training material.
                 </p>
-                <a href="https://whmiswise.com/" class="sequence-btn">Explore</a>
+                <a href="https://whmiswise.com/" class="sequence-btn" target="_blank">Explore</a>
             </div>
         </div>
 
@@ -1364,7 +1102,7 @@ title: Home
             nicheObs.observe(card);
         });
 
-        // 6. NEW: Recent Work Stack Observer (Fade-in on scroll)
+        // 6. Recent Work Stack Observer (Fade-in on scroll)
         const rwCards = document.querySelectorAll('.rw-card');
         const rwObs = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -1378,6 +1116,7 @@ title: Home
         rwCards.forEach(card => {
             rwObs.observe(card);
         });
+
         // 7. Coming Soon Popup Logic
         const comingSoonBtns = document.querySelectorAll('.coming-soon-btn');
         const toast = document.getElementById('coming-soon-toast');
@@ -1385,15 +1124,11 @@ title: Home
 
         comingSoonBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.preventDefault(); // Stops the browser from jumping to the top of the page
+                e.preventDefault(); 
 
-                // Show the toast
                 toast.classList.add('show');
-
-                // Clear any existing timer so it doesn't hide too early if clicked twice
                 clearTimeout(toastTimeout);
 
-                // Hide the toast automatically after 3 seconds
                 toastTimeout = setTimeout(() => {
                     toast.classList.remove('show');
                 }, 3000);
