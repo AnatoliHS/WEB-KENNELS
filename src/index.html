@@ -220,7 +220,7 @@ title: Home
     }
 
     /* ==========================================================
-       🎯 WHO WE SERVE SECTION STYLES 🎯
+       🎯 WHO WE SERVE SECTION STYLES (GPU ACCELERATED) 🎯
        ========================================================== */
     .niche-container {
         width: 100%;
@@ -259,8 +259,13 @@ title: Home
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         cursor: pointer;
-        top: 50px;
+        
+        /* THE FIX: GPU-Accelerated starting position */
+        transform: translateY(50px);
         opacity: 0;
+        
+        /* The silky smooth entrance transition */
+        transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, box-shadow 0.4s ease;
     }
 
     .n-card-content {
@@ -299,26 +304,26 @@ title: Home
         padding-bottom: 5px;
     }
 
+    /* THE FIX: Scroll Trigger Entrance */
     .niche-card.is-visible {
-        animation: cascadeUp 0.8s ease forwards;
+        transform: translateY(0);
+        opacity: 1;
     }
 
-    .niche-card:nth-child(1).is-visible { animation-delay: 0.1s; }
-    .niche-card:nth-child(2).is-visible { animation-delay: 0.3s; }
-    .niche-card:nth-child(3).is-visible { animation-delay: 0.5s; }
+    /* Staggered entry delays */
+    .niche-card:nth-child(1).is-visible { transition-delay: 0.1s; }
+    .niche-card:nth-child(2).is-visible { transition-delay: 0.3s; }
+    .niche-card:nth-child(3).is-visible { transition-delay: 0.5s; }
 
-    @keyframes cascadeUp {
-        from { opacity: 0; top: 50px; }
-        to { opacity: 1; top: 0; }
-    }
 
     /* --- GLOBAL SHAPE COLORS (FIX FOR MOBILE) --- */
     .bg-purple { background: #b1aaf0; }
     .bg-orange { background: #f86f05; }
     .bg-pink { background: #fe97cf; }
 
+
     /* ==========================================================
-       🌟 DESKTOP ONLY: "ROLLING DIAMOND" ANIMATION ENGINE 🌟
+       🌟 DESKTOP ONLY: "ROLLING DIAMOND" ANIMATION ENGINE & HOVERS 🌟
        ========================================================== */
     @media (min-width: 1025px) {
 
@@ -388,13 +393,12 @@ title: Home
             transition-delay: 0.2s;
         }
 
-        .niche-card {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
+        /* THE FIX: Instantly drops the entrance delay to zero so hover is snappy! */
         .niche-card.is-visible:hover {
             transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            transition-delay: 0s !important;
+            transition-duration: 0.4s !important; 
         }
 
         .mobile-info-boxes {
@@ -512,6 +516,13 @@ title: Home
 
         .niche-card {
             height: 350px;
+        }
+
+        /* Speed up the stagger on mobile scrolling */
+        .niche-card:nth-child(1).is-visible,
+        .niche-card:nth-child(2).is-visible,
+        .niche-card:nth-child(3).is-visible {
+            transition-delay: 0.1s; 
         }
 
         .niche-card::after {
