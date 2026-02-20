@@ -223,10 +223,18 @@ title: Home
        🎯 WHO WE SERVE SECTION STYLES (GPU ACCELERATED) 🎯
        ========================================================== */
     .niche-container {
-        width: 100%;
+        /* 1. Shrunk width from 100% to 90% so it floats like a giant card */
+        width: 90%; 
         max-width: 1400px;
         margin: 100px auto;
-        padding: 0 5%;
+        
+        /* 2. Added top and bottom padding (80px) so the content has breathing room */
+        padding: 80px 5%; 
+        
+        /* 3. Your requested background and rounded corners */
+        background-color: #f2f8fc; 
+        border-radius: 40px; 
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         text-align: center;
     }
