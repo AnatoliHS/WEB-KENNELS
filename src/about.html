@@ -1,3 +1,8 @@
+---
+layout: default.njk
+title: About
+---
+
 <style>
     /* --- 1. CORE LAYOUT & BREAKOUT --- */
     @font-face {
@@ -5,6 +10,11 @@
             src: url('/leq.otf') format('opentype'); 
             font-weight: normal;
             font-style: normal;
+    }
+
+    /* 🌟 NEW: Global reset to 400, including strong tags so the browser doesn't force them bold */
+    *, strong, b {
+        font-weight: 400;
     }
 
     .sequence-container {
@@ -91,7 +101,7 @@
 
     .sequence-title {
         font-size: 2.8rem;
-        font-weight: 800;
+        font-weight: 400; /* 🌟 CHANGED FROM 800 */
         background: linear-gradient(90deg, #191f4f, #436aee);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -103,6 +113,7 @@
         font-size: 1.25rem;
         line-height: 1.6;
         color: #333;
+        font-weight: 400; /* 🌟 EXPLICITLY SET */
     }
 
     /* --- HERO SCROLL INDICATOR STYLES --- */
@@ -118,7 +129,7 @@
         text-transform: uppercase;
         letter-spacing: 3px;
         color: #191f4f;
-        font-weight: bold;
+        font-weight: 400; /* 🌟 CHANGED FROM BOLD */
         opacity: 0.7;
         margin-bottom: 10px;
     }
@@ -133,7 +144,7 @@
     .hero-arrow-flow span {
         font-family: 'lequire', sans-serif;
         font-size: 1.8rem;
-        font-weight: bold;
+        font-weight: 400; /* 🌟 CHANGED FROM BOLD */
         color: #436aee;
         opacity: 0.2;
         display: block;
@@ -161,19 +172,19 @@
         font-size: 1.2rem;
         margin-bottom: 15px;
         position: relative;
+        font-weight: 400; /* 🌟 EXPLICITLY SET */
     }
 
     /* The new animated arrow bullet point */
     .about-list li::before {
-        content: ">>>"; /* Use the same character as hero arrows */
-        font-family: 'lequire', sans-serif; /* Ensure same font */
+        content: ">>>"; 
+        font-family: 'lequire', sans-serif; 
         position: absolute;
         left: -40px;
-        font-size: 1.5rem; /* Slightly smaller to fit list text */
-        font-weight: bold;
+        font-size: 1.5rem; 
+        font-weight: 400; /* 🌟 CHANGED FROM BOLD */
         color: #436aee;
         opacity: 0.4;
-        /* Apply horizontal animation */
         animation: arrowGlowHorizontal 2s infinite; 
     }
 
@@ -239,17 +250,16 @@
         .sequence-title { font-size: 2rem; }
 
         .about-list  {
-        left: -30px;
-       text-align: left;
-       max-width: 80%;         /* Prevents it from touching the screen edges */
-    margin: 0 auto;         /* Centers the entire list block on the page */
-    padding-left: 30px;
+            left: -30px;
+            text-align: left;
+            max-width: 80%;         
+            margin: 0 auto;         
+            padding-left: 30px;
         }
 
         @keyframes slideInRightCustom {from { transform: translateX(100%); opacity: 0; }to { transform: translateX(0px); opacity: 1; }}
         @keyframes slideInLeftCustom {from { transform: translateX(-100%); opacity: 0; }to { transform: translateX(40px); opacity: 1; }}
     }
-
 
     #why-section { margin-bottom: 0 !important; }
 </style>

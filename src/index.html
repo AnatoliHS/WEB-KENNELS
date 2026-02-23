@@ -12,6 +12,10 @@ title: Home
         font-style: normal;
     }
 
+    * {
+        font-weight: 400;
+    }
+
     img {
         border-radius: 20px;
     }
@@ -132,7 +136,7 @@ title: Home
     .logo-text {
         display: block;
         font-family: 'lequire', sans-serif;
-        font-weight: bold;
+        font-weight: 400; 
         margin: 0 0 20px 0;
         line-height: 1;
         background: linear-gradient(to right, #191f4f 0%, #436aee 20%, #91e0fd 50%, #dbbbf6 60%, #2c3c94 100%);
@@ -146,7 +150,7 @@ title: Home
     .gradient-text {
         font-size: 3rem;
         color: #191f4f;
-        font-weight: 800;
+        font-weight: 400; 
         margin-bottom: 25px;
         line-height: 1.1;
     }
@@ -155,6 +159,7 @@ title: Home
         font-size: 20px;
         line-height: 1.6;
         color: #333;
+        font-weight: 400; /* 🌟 EXPLICITLY SET */
         margin: 0;
     }
 
@@ -175,7 +180,7 @@ title: Home
         text-transform: uppercase;
         letter-spacing: 3px;
         color: #191f4f;
-        font-weight: bold;
+        font-weight: 400; 
         opacity: 0.7;
         margin-bottom: 10px;
     }
@@ -190,7 +195,7 @@ title: Home
     .hero-arrow-flow span {
         font-family: 'lequire', sans-serif;
         font-size: 1.8rem;
-        font-weight: bold;
+        font-weight: 400; 
         color: #436aee;
         opacity: 0.2;
         display: block;
@@ -223,15 +228,10 @@ title: Home
        🎯 WHO WE SERVE SECTION STYLES (GPU ACCELERATED) 🎯
        ========================================================== */
     .niche-container {
-        /* 1. Shrunk width from 100% to 90% so it floats like a giant card */
         width: 90%; 
         max-width: 1400px;
         margin: 100px auto;
-        
-        /* 2. Added top and bottom padding (80px) so the content has breathing room */
         padding: 80px 5%; 
-        
-        /* 3. Your requested background and rounded corners */
         background-color: #f2f8fc; 
         border-radius: 40px; 
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
@@ -242,13 +242,14 @@ title: Home
     .niche-title {
         font-size: 4.5rem;
         color: #191f4f;
-        font-weight: 800;
+        font-weight: 400; 
         margin-bottom: 10px;
     }
 
     .niche-subtitle {
         font-size: 1.5rem;
         color: #666;
+        font-weight: 400; /* 🌟 EXPLICITLY SET */
         margin-bottom: 60px;
     }
 
@@ -267,12 +268,8 @@ title: Home
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         cursor: pointer;
-        
-        /* THE FIX: GPU-Accelerated starting position */
         transform: translateY(50px);
         opacity: 0;
-        
-        /* The silky smooth entrance transition */
         transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, box-shadow 0.4s ease;
     }
 
@@ -292,37 +289,35 @@ title: Home
         font-size: 2.2rem;
         color: white;
         margin-bottom: 10px;
-        font-weight: 800;
+        font-weight: 400; 
     }
 
     .n-card-desc {
         font-size: 1.2rem;
         color: rgba(255, 255, 255, 0.9);
         line-height: 1.5;
+        font-weight: 400; /* 🌟 EXPLICITLY SET */
         margin-bottom: 20px;
     }
 
     .n-card-link {
         font-size: 1.1rem;
         color: white;
-        font-weight: bold;
+        font-weight: 400; 
         letter-spacing: 1px;
         text-transform: uppercase;
         border-bottom: 2px solid #fe97cf;
         padding-bottom: 5px;
     }
 
-    /* THE FIX: Scroll Trigger Entrance */
     .niche-card.is-visible {
         transform: translateY(0);
         opacity: 1;
     }
 
-    /* Staggered entry delays */
     .niche-card:nth-child(1).is-visible { transition-delay: 0.1s; }
     .niche-card:nth-child(2).is-visible { transition-delay: 0.3s; }
     .niche-card:nth-child(3).is-visible { transition-delay: 0.5s; }
-
 
     /* --- GLOBAL SHAPE COLORS (FIX FOR MOBILE) --- */
     .bg-purple { background: #b1aaf0; }
@@ -401,7 +396,6 @@ title: Home
             transition-delay: 0.2s;
         }
 
-        /* THE FIX: Instantly drops the entrance delay to zero so hover is snappy! */
         .niche-card.is-visible:hover {
             transform: translateY(-10px);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
@@ -436,7 +430,7 @@ title: Home
             width: 100%;
             font-size: 4.5rem;
             color: #191f4f;
-            font-weight: 800;
+            font-weight: 400;
             line-height: 1.1;
             margin-bottom: 20px;
             text-align: left;
@@ -478,6 +472,7 @@ title: Home
             font-size: 2rem;
             line-height: 1.6;
             color: #333;
+            font-weight: 400; /* 🌟 EXPLICITLY SET */
             margin: 0;
         }
 
@@ -526,7 +521,6 @@ title: Home
             height: 350px;
         }
 
-        /* Speed up the stagger on mobile scrolling */
         .niche-card:nth-child(1).is-visible,
         .niche-card:nth-child(2).is-visible,
         .niche-card:nth-child(3).is-visible {
@@ -648,12 +642,18 @@ title: Home
         .m-title {
             font-size: 2.8rem;
             color: #191f4f;
-            font-weight: 800;
+            font-weight: 400; 
             line-height: 1.1;
             margin: 0 0 15px 0;
         }
 
-        .m-desc { font-size: 1.2rem; line-height: 1.6; color: #444; margin: 0; }
+        .m-desc { 
+            font-size: 1.2rem; 
+            line-height: 1.6; 
+            color: #444; 
+            font-weight: 400; /* 🌟 EXPLICITLY SET */
+            margin: 0; 
+        }
 
         .m-visual-col .m-shape-diamond { transform: translateX(-100vw) rotate(-405deg); opacity: 0; }
         .m-visual-col .m-shape-image { transform: translateX(100vw) rotate(360deg); opacity: 0; }
@@ -685,7 +685,7 @@ title: Home
     .sequence-title {
         font-size: 3.5rem;
         color: #191f4f;
-        font-weight: 800;
+        font-weight: 400; 
         margin-bottom: 30px;
     }
 
@@ -696,7 +696,7 @@ title: Home
         color: white;
         text-decoration: none;
         border-radius: 50px;
-        font-weight: bold;
+        font-weight: 400; 
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -787,8 +787,14 @@ title: Home
         align-items: flex-start;
     }
 
-    .rw-title { font-size: 2.2rem; font-weight: 800; color: #1f2937; margin: 0 0 15px 0; }
-    .rw-desc { font-size: 1.1rem; color: #4b5563; line-height: 1.6; margin: 0 0 30px 0; }
+    .rw-title { font-size: 2.2rem; font-weight: 400; color: #1f2937; margin: 0 0 15px 0; }
+    .rw-desc { 
+        font-size: 1.1rem; 
+        color: #4b5563; 
+        line-height: 1.6; 
+        font-weight: 400; /* 🌟 EXPLICITLY SET */
+        margin: 0 0 30px 0; 
+    }
 
     /* --- COMING SOON TOAST --- */
     #coming-soon-toast {
@@ -800,7 +806,7 @@ title: Home
         color: white;
         padding: 12px 30px;
         border-radius: 50px;
-        font-weight: bold;
+        font-weight: 400; 
         box-shadow: 0 10px 25px rgba(25, 31, 79, 0.4);
         opacity: 0;
         visibility: hidden;

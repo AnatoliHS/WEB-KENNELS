@@ -1,3 +1,8 @@
+---
+layout: default.njk
+title: FAQ
+---
+
 <div class="sequence-container hero-top" id="hero-trigger">
     <div class="visual-stack">
         <div class="gradient-square"></div>
@@ -88,6 +93,11 @@
         font-style: normal;
     }
 
+    /* 🌟 NEW: Global reset to 400 */
+    *, strong, b {
+        font-weight: 400;
+    }
+
     img { border-radius: 20px; }
 
     .sequence-container {
@@ -137,7 +147,7 @@
     .hero-top .sliding-image-wrap { left: auto; right: 100px; top: 0; }
 
     .logo-text {
-        display: block; font-family: 'lequire', sans-serif; font-weight: bold;
+        display: block; font-family: 'lequire', sans-serif; font-weight: 400; /* 🌟 CHANGED */
         margin: 0 0 20px 0; line-height: 1; 
         background: linear-gradient(to right, #191f4f 0%, #436aee 20%, #91e0fd 50%, #dbbbf6 60%, #2c3c94 100%);
         -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
@@ -145,8 +155,8 @@
         font-size: clamp(50px, 6vw, 60px);
     }
 
-    .gradient-text { font-size:3rem; color: #191f4f; font-weight: 800; margin-bottom: 25px; line-height: 1.1; }
-    .intro-p { font-size: 20px; line-height: 1.6; color: #333; margin: 0; }
+    .gradient-text { font-size:3rem; color: #191f4f; font-weight: 400; /* 🌟 CHANGED */ margin-bottom: 25px; line-height: 1.1; }
+    .intro-p { font-size: 20px; line-height: 1.6; color: #333; font-weight: 400; margin: 0; }
 
     /* --- SCROLL INDICATOR (DESKTOP VERTICAL STACK) --- */
     .hero-scroll-indicator {
@@ -161,7 +171,7 @@
         text-transform: uppercase;
         letter-spacing: 3px;
         color: #191f4f;
-        font-weight: bold;
+        font-weight: 400; /* 🌟 CHANGED */
         opacity: 0.7;
         margin-bottom: 10px;
     }
@@ -176,7 +186,7 @@
     .hero-arrow-flow span {
         font-family: 'lequire', sans-serif;
         font-size: 1.8rem;
-        font-weight: bold;
+        font-weight: 400; /* 🌟 CHANGED */
         color: #436aee;
         opacity: 0.2;
         display: block;
@@ -219,11 +229,19 @@
     }
 
     .faq.active::after { opacity: 1; }
-    .faq-question { padding: 30px 40px; cursor: pointer; font-weight: bold; position: relative; z-index: 2; user-select: none; }
+    
+    .faq-question { 
+        padding: 30px 40px; 
+        cursor: pointer; 
+        font-weight: 400; /* 🌟 CHANGED FROM BOLD */ 
+        position: relative; 
+        z-index: 2; 
+        user-select: none; 
+    }
 
     .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
     .answer-content { overflow: hidden; opacity: 0; transition: opacity 0.4s ease-out; padding: 0 40px; }
-    .answer-content p { margin-top: 0; margin-bottom: 30px; }
+    .answer-content p { margin-top: 0; margin-bottom: 30px; font-weight: 400; } /* 🌟 EXPLICITLY SET */
 
     .faq.active .faq-answer { grid-template-rows: 1fr; }
     .faq.active .answer-content { opacity: 1; transition-delay: 0.2s; }

@@ -1,214 +1,219 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ title }}</title>
+  
+  <title>{{ title }} | ChasTech Web Design</title>
 
- 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="11ty Startr Site is a website dedicated to showcasing the best of Canada, 
-    from AI innovations to the arts, nature, and fun activities."
-    />
+  <meta
+    name="description"
+    content="ChasTech provides custom web design, website development, and digital solutions for businesses in Belleville, Ontario, and beyond. We build responsive, high-performance websites."
+  />
+  <meta
+    name="keywords"
+    content="ChasTech, web design Belleville, custom website development, web developer Ontario, responsive web design, local business websites, UI/UX design, ecommerce development"
+  />
+  <meta name="author" content="ChasTech Inc." />
+  <meta name="robots" content="index, follow" />
+  <meta name="revisit-after" content="7 days" />
+  <meta name="language" content="English" />
+  
+  <meta property="og:title" content="{{ title }} | ChasTech Web Design" />
+  <meta property="og:description" content="Custom web design and development by ChasTech in Belleville, Ontario." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chastech.ca/" />
+  <meta property="og:image" content="https://chastech.ca/assets/home21.png" />
+  <meta property="og:site_name" content="ChasTech" />
 
-    <meta
-      name="keywords"
-      content="Canada, AI, arts, nature, fun, technology, education, culture, landscape, festivals"
-    />
-    <meta name="author" content="11ty Startr Site" />
-    <meta name="robots" content="index, follow" />
-    <meta name="revisit-after" content="1 days" />
-    <meta name="language" content="English" />
-    <meta name="generator" content="Startr" />
-    <!-- Include Startr Style CSS -->
-    <link rel="stylesheet" href="https://startr.style/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "ChasTech Inc.",
+    "url": "https://chastech.ca",
+    "logo": "https://chastech.ca/assets/chastech.png",
+    "image": "https://chastech.ca/assets/home21.png",
+    "description": "ChasTech specializes in custom web development, responsive design, and digital solutions for local businesses.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Belleville",
+      "addressRegion": "ON",
+      "addressCountry": "CA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "44.1628",
+      "longitude": "-77.3832"
+    },
+    "priceRange": "$$",
+    "telephone": "Contact us via website"
+  }
+  </script>
+
+  <link rel="stylesheet" href="https://startr.style/style.css" />
     
-    <style>
-      :root {
-        --oklch-light-green: oklch(80%, 0.15, 145);
-        --oklch-dark-green: oklch(45%, 0.2, 145);
-        --oklch-light-blue: oklch(80%, 0.14, 250);
-        --oklch-dark-blue: oklch(15%, 0.2, 250);
-        --oklch-light-brown: oklch(60%, 0.25, 70);
-        --oklch-dark-brown: oklch(30%, 0.35, 70);
-        --oklch-light-yellow: oklch(95%, 0.1, 100);
-        --oklch-dark-yellow: oklch(75%, 0.22, 90);
-        --oklch-light-gray: oklch(90%, 0.01, 0);
-        --oklch-dark-gray: oklch(20%, 0+5, 150);
-      
-      }
-   @font-face {
-  font-family: 'lequire';
-  src: url('/leq.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-}
-      /* Add this inside the <style> tag in head.njk */
+  <style>
+    :root {
+      --oklch-light-green: oklch(80%, 0.15, 145);
+      --oklch-dark-green: oklch(45%, 0.2, 145);
+      --oklch-light-blue: oklch(80%, 0.14, 250);
+      --oklch-dark-blue: oklch(15%, 0.2, 250);
+      --oklch-light-brown: oklch(60%, 0.25, 70);
+      --oklch-dark-brown: oklch(30%, 0.35, 70);
+      --oklch-light-yellow: oklch(95%, 0.1, 100);
+      --oklch-dark-yellow: oklch(75%, 0.22, 90);
+      --oklch-light-gray: oklch(90%, 0.01, 0);
+      --oklch-dark-gray: oklch(20%, 0+5, 150);
+    }
 
-body::before {
-  content: "";
-  position: fixed; /* Locks it to the screen, preventing pixelation */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1; /* Pushes it behind all your text */
-  
-  /* Move your background settings here */
-  background: url('/assets/whiteG2.png') no-repeat center center;
-  
-  background-size: cover;
-  
-  /* Ensure no white edges */
-  margin: 0;
-  padding: 0;
-}
+    @font-face {
+      font-family: 'lequire';
+      src: url('/leq.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
 
-      .coming-soon{
-        flex: 1; 
-        padding: 10px;
-        text-align: center;
-        color: black;
-      }
+    /* Fixed global background */
+    body::before {
+      content: "";
+      position: fixed; 
+      top: 0;
+      left: 0;
+      right: 0;  
+      bottom: 0; 
+      z-index: -1; 
+      background: url('/assets/whiteG2.png') no-repeat center center;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    .coming-soon {
+      flex: 1; 
+      padding: 10px;
+      text-align: center;
+      color: black;
+    }
       
-      .info-box {
-        flex: 1; 
-        
-        text-align: center;
-        color: black;
-        
+    .info-box {
+      flex: 1; 
+      text-align: center;
+      color: black;
     }
 
     .info-box img {
-        width: 20%;
-        
+      width: 20%;
     }
-      .content{
-            width: calc(100% - 20px);
-            max-width: 1300px; /* Adjust as needed */
-            padding: 20px 5rem;
-            
-           
-            margin: 0 auto; 
-            margin-bottom: 10px;
-        }
 
-        .content2{
-            width: calc(100% - 20px);
-            max-width: 1000px; /* Adjust as needed */
-            padding: 20px 5rem;
-            background-color: rgba(255, 255, 255, 0.9); 
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-            margin: 0 auto; 
-            margin-bottom: 10px;
-        }
+    .content {
+      width: calc(100% - 20px);
+      max-width: 1300px; 
+      padding: 20px 5rem;
+      margin: 0 auto; 
+      margin-bottom: 10px;
+    }
 
-        .content3{
-            width: calc(100% - 20px);
-            max-width: 800px; /* Adjust as needed */
-            padding: 40px 5rem;
-            background: linear-gradient(to bottom, #f2f2f2, #ffffff); 
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-            margin: 0 auto; 
-            margin-bottom: 50px;
-            margin-top: -20px;
-            font-size: 20px;
-            color: black;
-            text-align: left;
-          }
+    .content2 {
+      width: calc(100% - 20px);
+      max-width: 1000px; 
+      padding: 20px 5rem;
+      background-color: rgba(255, 255, 255, 0.9); 
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+      margin: 0 auto; 
+      margin-bottom: 10px;
+    }
 
-          .cert-wrapper {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 20px;
-          }
+    .content3 {
+      width: calc(100% - 20px);
+      max-width: 800px; 
+      padding: 40px 5rem;
+      background: linear-gradient(to bottom, #f2f2f2, #ffffff); 
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+      margin: 0 auto; 
+      margin-bottom: 50px;
+      margin-top: -20px;
+      font-size: 20px;
+      color: black;
+      text-align: left;
+    }
 
-          .cert-links {
-            flex: 1;
-          }
+    .cert-wrapper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-          .cert-link {
-            display: block;
-            color: black;
-            padding-left: 30px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            background: url('https://cdn-icons-png.flaticon.com/512/845/845646.png') no-repeat left center;
-            background-size: 20px;
-          }
+    .cert-links {
+      flex: 1;
+    }
 
-          .cert-image {
-            width: 150px; /* Adjust size as needed */
-            height: auto;
-            object-fit: contain;
-          }
+    .cert-link {
+      display: block;
+      color: black;
+      padding-left: 30px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      background: url('https://cdn-icons-png.flaticon.com/512/845/845646.png') no-repeat left center;
+      background-size: 20px;
+    }
 
-        .content-fees{
-            width: calc(100% - 20px);
-            max-width: 1300px; /* Adjust as needed */
-            padding: 20px 1rem;
-            background-color: rgba(255, 255, 255, 0.9); 
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-            margin: 0 auto; 
-            margin-bottom: 10px;
-        }
+    .cert-image {
+      width: 150px; 
+      height: auto;
+      object-fit: contain;
+    }
 
-        .content-about{
-            width: calc(100% - 20px);
-            max-width: 800px; /* Adjust as needed */
-            padding: 20px 1rem;
-            background-color: rgba(255, 255, 255, 0.9); 
-            border-radius: 5px;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-            margin: 0 auto; 
-            margin-bottom: 10px;
-        }
+    .content-fees {
+      width: calc(100% - 20px);
+      max-width: 1300px; 
+      padding: 20px 1rem;
+      background-color: rgba(255, 255, 255, 0.9); 
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+      margin: 0 auto; 
+      margin-bottom: 10px;
+    }
+
+    .content-about {
+      width: calc(100% - 20px);
+      max-width: 800px; 
+      padding: 20px 1rem;
+      background-color: rgba(255, 255, 255, 0.9); 
+      border-radius: 5px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
+      margin: 0 auto; 
+      margin-bottom: 10px;
+    }
         
-         @media (max-width: 1310px) {
-          .info-box {
-            flex-basis: 100%;
-        }
+    @media (max-width: 1310px) {
+      .info-box {
+        flex-basis: 100%;
+      }
 
-        .info-box img{
-          max-width: 100px;
-        }
+      .info-box img {
+        max-width: 100px;
+      }
 
-        .coming-soon img{
-          max-width: 30em;
-        }
+      .coming-soon img {
+        max-width: 30em;
+      }
 
-        div[style*="display: flex"] {
-            flex-direction: column;
-        }
-        .content{
-             padding: 20px 1rem;
-        }
-        .content2{
-             padding: 20px 1rem;
-        }
+      div[style*="display: flex"] {
+        flex-direction: column;
+      }
+
+      .content { padding: 20px 1rem; }
+      .content2 { padding: 20px 1rem; }
            
-            nav img {
-        display: none !important;
-           }
+      nav img { display: none !important; }
+      .whmis-carousel { display: none !important; }
+      .header { min-width: 42em; }
+      .content3 img { display: none !important; }
+    }
 
-           .whmis-carousel{
-            display: none !important;
-           }
-           .header{
-            min-width: 42em;
-           }
-
-          .content3 img{
-            display: none !important;
-          }
-         }
-
-   * { box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
     .slideshow-container {
       max-width: 900px;
@@ -220,13 +225,8 @@ body::before {
       box-shadow: 5px 10px 10px rgba(0,0,0,0.6);
     }
 
-    .mySlides {
-      display: none;
-    }
-
-    .review-content {
-      text-align: center;
-    }
+    .mySlides { display: none; }
+    .review-content { text-align: center; }
 
     .review-header {
       display: flex;
@@ -242,14 +242,8 @@ body::before {
       border-radius: 50%;
     }
 
-    .stars {
-      font-size: 20px;
-      color: gold;
-    }
-
-    .google-logo {
-      height: 25px;
-    }
+    .stars { font-size: 20px; color: gold; }
+    .google-logo { height: 25px; }
 
     .review-text {
       font-size: 16px;
@@ -280,7 +274,7 @@ body::before {
       background-color: rgba(0,0,0,0.1);
     }
 
-    .text { display: none; } /* Not used here */
+    .text { display: none; } 
     .numbertext {
       color: #999;
       font-size: 12px;
@@ -305,9 +299,7 @@ body::before {
       transition: background-color 0.6s ease;
     }
 
-    .active, .dot:hover {
-      background-color: #717171;
-    }
+    .active, .dot:hover { background-color: #717171; }
 
     @keyframes fade {
       from {opacity: .4} 
@@ -318,14 +310,10 @@ body::before {
       animation-name: fade;
       animation-duration: 1s;
     }
+  </style>
 
-
-        
-    </style>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 </head>
