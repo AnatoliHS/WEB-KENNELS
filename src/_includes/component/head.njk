@@ -1,22 +1,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <title>{{ title }} | ChasTech Web Design</title>
 
-  <meta
-    name="description"
-    content="ChasTech provides custom web design, website development, and digital solutions for businesses in Belleville, Ontario, and beyond. We build responsive, high-performance websites."
-  />
-  <meta
-    name="keywords"
-    content="ChasTech, web design Belleville, custom website development, web developer Ontario, responsive web design, local business websites, UI/UX design, ecommerce development"
-  />
+  <meta name="description"
+    content="ChasTech provides custom web design, website development, and digital solutions for businesses in Belleville, Ontario, and beyond. We build responsive, high-performance websites." />
+  <meta name="keywords"
+    content="ChasTech, web design Belleville, custom website development, web developer Ontario, responsive web design, local business websites, UI/UX design, ecommerce development" />
   <meta name="author" content="ChasTech Inc." />
   <meta name="robots" content="index, follow" />
   <meta name="revisit-after" content="7 days" />
   <meta name="language" content="English" />
-  
+
   <meta property="og:title" content="{{ title }} | ChasTech Web Design" />
   <meta property="og:description" content="Custom web design and development by ChasTech in Belleville, Ontario." />
   <meta property="og:type" content="website" />
@@ -50,7 +46,7 @@
   </script>
 
   <link rel="stylesheet" href="https://startr.style/style.css" />
-    
+
   <style>
     :root {
       --oklch-light-green: oklch(80%, 0.15, 145);
@@ -75,27 +71,27 @@
     /* Fixed global background */
     body::before {
       content: "";
-      position: fixed; 
+      position: fixed;
       top: 0;
       left: 0;
       height: 100dvh;
       width: 100vw;
-      z-index: -1; 
-      background: url('/assets/whiteG2.png') no-repeat center center;
+      z-index: -1;
+      background: #f2f8fc;
       background-size: cover;
       margin: 0;
       padding: 0;
     }
 
     .coming-soon {
-      flex: 1; 
+      flex: 1;
       padding: 10px;
       text-align: center;
       color: black;
     }
-      
+
     .info-box {
-      flex: 1; 
+      flex: 1;
       text-align: center;
       color: black;
     }
@@ -106,31 +102,31 @@
 
     .content {
       width: calc(100% - 20px);
-      max-width: 1300px; 
+      max-width: 1300px;
       padding: 20px 5rem;
-      margin: 0 auto; 
+      margin: 0 auto;
       margin-bottom: 10px;
     }
 
     .content2 {
       width: calc(100% - 20px);
-      max-width: 1000px; 
+      max-width: 1000px;
       padding: 20px 5rem;
-      background-color: rgba(255, 255, 255, 0.9); 
+      background-color: rgba(255, 255, 255, 0.9);
       border-radius: 5px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-      margin: 0 auto; 
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+      margin: 0 auto;
       margin-bottom: 10px;
     }
 
     .content3 {
       width: calc(100% - 20px);
-      max-width: 800px; 
+      max-width: 800px;
       padding: 40px 5rem;
-      background: linear-gradient(to bottom, #f2f2f2, #ffffff); 
+      background: linear-gradient(to bottom, #f2f2f2, #ffffff);
       border-radius: 5px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-      margin: 0 auto; 
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+      margin: 0 auto;
       margin-bottom: 50px;
       margin-top: -20px;
       font-size: 20px;
@@ -160,33 +156,33 @@
     }
 
     .cert-image {
-      width: 150px; 
+      width: 150px;
       height: auto;
       object-fit: contain;
     }
 
     .content-fees {
       width: calc(100% - 20px);
-      max-width: 1300px; 
+      max-width: 1300px;
       padding: 20px 1rem;
-      background-color: rgba(255, 255, 255, 0.9); 
+      background-color: rgba(255, 255, 255, 0.9);
       border-radius: 5px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-      margin: 0 auto; 
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+      margin: 0 auto;
       margin-bottom: 10px;
     }
 
     .content-about {
       width: calc(100% - 20px);
-      max-width: 800px; 
+      max-width: 800px;
       padding: 20px 1rem;
-      background-color: rgba(255, 255, 255, 0.9); 
+      background-color: rgba(255, 255, 255, 0.9);
       border-radius: 5px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); 
-      margin: 0 auto; 
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+      margin: 0 auto;
       margin-bottom: 10px;
     }
-        
+
     @media (max-width: 1310px) {
       .info-box {
         flex-basis: 100%;
@@ -204,16 +200,34 @@
         flex-direction: column;
       }
 
-      .content { padding: 20px 1rem; }
-      .content2 { padding: 20px 1rem; }
-           
-      nav img { display: none !important; }
-      .whmis-carousel { display: none !important; }
-      .header { min-width: 42em; }
-      .content3 img { display: none !important; }
+      .content {
+        padding: 20px 1rem;
+      }
+
+      .content2 {
+        padding: 20px 1rem;
+      }
+
+      nav img {
+        display: none !important;
+      }
+
+      .whmis-carousel {
+        display: none !important;
+      }
+
+      .header {
+        min-width: 42em;
+      }
+
+      .content3 img {
+        display: none !important;
+      }
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     .slideshow-container {
       max-width: 900px;
@@ -222,11 +236,16 @@
       background: #fff;
       padding: 30px 20px;
       border-radius: 10px;
-      box-shadow: 5px 10px 10px rgba(0,0,0,0.6);
+      box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.6);
     }
 
-    .mySlides { display: none; }
-    .review-content { text-align: center; }
+    .mySlides {
+      display: none;
+    }
+
+    .review-content {
+      text-align: center;
+    }
 
     .review-header {
       display: flex;
@@ -242,8 +261,14 @@
       border-radius: 50%;
     }
 
-    .stars { font-size: 20px; color: gold; }
-    .google-logo { height: 25px; }
+    .stars {
+      font-size: 20px;
+      color: gold;
+    }
+
+    .google-logo {
+      height: 25px;
+    }
 
     .review-text {
       font-size: 16px;
@@ -253,7 +278,8 @@
       padding: 0 10px;
     }
 
-    .prev, .next {
+    .prev,
+    .next {
       cursor: pointer;
       position: absolute;
       top: 50%;
@@ -267,14 +293,23 @@
       color: black;
     }
 
-    .next { right: 0; }
-    .prev { left: 0; }
-
-    .prev:hover, .next:hover {
-      background-color: rgba(0,0,0,0.1);
+    .next {
+      right: 0;
     }
 
-    .text { display: none; } 
+    .prev {
+      left: 0;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .text {
+      display: none;
+    }
+
     .numbertext {
       color: #999;
       font-size: 12px;
@@ -299,11 +334,19 @@
       transition: background-color 0.6s ease;
     }
 
-    .active, .dot:hover { background-color: #717171; }
+    .active,
+    .dot:hover {
+      background-color: #717171;
+    }
 
     @keyframes fade {
-      from {opacity: .4} 
-      to {opacity: 1}
+      from {
+        opacity: .4
+      }
+
+      to {
+        opacity: 1
+      }
     }
 
     .fade {
