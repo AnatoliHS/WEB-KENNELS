@@ -10,9 +10,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "./assets/": "/",
   });
-  // Copy any image file to `_site`, via Glob pattern
+  // Copy any image or video file to `_site`, via Glob pattern
 	// Keeps the same directory structure.
-	eleventyConfig.addPassthroughCopy("**/*.{png,jpg,jpeg,gif,svg}");
+	eleventyConfig.addPassthroughCopy("**/*.{png,jpg,jpeg,gif,svg,mp4,avif,webp}");
 
 
   eleventyConfig.addPlugin(sectionizePlugin);

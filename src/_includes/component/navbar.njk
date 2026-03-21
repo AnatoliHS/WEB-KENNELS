@@ -1,236 +1,395 @@
 <style>
-/* --- 1. FONT DEFINITIONS (MUST BE AT THE VERY TOP) --- */
+  /* --- 1. FONT DEFINITIONS (MUST BE AT THE VERY TOP) --- */
 
   /* --- GLOBAL VARIABLES --- */
-  @property --angle-1 { syntax: "<angle>"; inherits: false; initial-value: -75deg; }
-  @property --angle-2 { syntax: "<angle>"; inherits: false; initial-value: -45deg; }
-  
-  :root { 
-    --border-width: clamp(1px, 0.0625em, 4px); 
-    --anim--hover-time: 400ms; 
-    --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1); 
+  @property --angle-1 {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: -75deg;
+  }
+
+  @property --angle-2 {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: -45deg;
+  }
+
+  :root {
+    --border-width: clamp(1px, 0.0625em, 4px);
+    --anim--hover-time: 400ms;
+    --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .navbar {
-    position: sticky; top: 0;
-    display: flex; justify-content: flex-start; align-items: center;
-    padding: 15px 10px;
-    width: calc(100% - 60px); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    width: 100%;
+    box-sizing: border-box;
     z-index: 100;
     background: rgba(255, 255, 255, 0.489);
-    border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     transition: all 0.3s ease;
-    overflow: hidden; 
   }
 
-  /* --- UPDATED BEAM SETTINGS --- */
-  .beam {
-    position: absolute; top: 0; right: 0; bottom: 0; width: 60%; 
-    opacity: 1; z-index: 0; pointer-events: none;
-    clip-path: polygon(50px 0, 100% 0, 100% 100%, 0% 100%);
-    background: linear-gradient(to right, rgba(var(--beam-rgb), 0) 0%, rgba(var(--beam-rgb), 1) 25%);
-    display: none; align-items: center; justify-content: center; 
-    font-weight: normal !important; 
-    color: #191f4f; letter-spacing: 4px; font-size: 50px;
-    white-space: nowrap; padding-left: 50px;      
-  }
 
-  /* Character styling for fade-in */
-  .beam span {
-    opacity: 0;
-    display: inline-block;
-    transform: translateX(-15px);
-    will-change: opacity, transform;
-  }
-  
-  /* Show only the active beam */
-  .navbar.active-page-1 .beam-1,
-  .navbar.active-page-2 .beam-2,
-  .navbar.active-page-3 .beam-3,
-  .navbar.active-page-4 .beam-4 { display: flex; }
-
-  /* Keyframe for the Fade + Slide */
-  @keyframes letterFadeIn {
-    to { opacity: 0.9; transform: translateX(0); }
-  }
-
-  /* Triggered by JS */
-  .animate-letters span {
-    animation: letterFadeIn 0.6s ease forwards;
-  }
 
   /* =========================================
      BUTTON STYLES
      ========================================= */
-  .type--A { --line_color: #555555; --back_color: #ffecf6; }
-  .type--B { --line_color: #1b1919; --back_color: #dbbbf6; }
-  .type--C { --line_color: #233d4c; --back_color: #ffb400; }
+  .type--A {
+    --line_color: #555555;
+    --back_color: #ffecf6;
+  }
+
+  .type--B {
+    --line_color: #1b1919;
+    --back_color: #dbbbf6;
+  }
+
+  .type--C {
+    --line_color: #233d4c;
+    --back_color: #ffb400;
+  }
 
   .button {
-    position: relative;
-    z-index: 5; 
-    width: 150px; 
-    height: 56px;
-    text-decoration: none;
     font-size: 14px;
-    font-weight: bold;
     color: var(--line_color);
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-    margin: 0 5px; 
-    background: transparent !important; 
-    box-shadow: none !important;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
     border: none !important;
-    -webkit-tap-highlight-color: transparent; 
+    outline: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 0 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 140px;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .button__text {
-    display: flex; justify-content: center; align-items: center;
-    width: 100%; height: 100%;
+  .btn-text {
+    position: relative;
+    display: inline-block;
+    letter-spacing: 2px;
+    padding-left: 2px;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: letter-spacing, padding-left, color;
   }
-  
-  .button::before, .button::after, .button__text::before, .button__text::after {
-    content: ""; position: absolute; height: 3px; border-radius: 2px;
-    background: var(--line_color); transition: all 0.5s ease;
+
+  .button:focus .btn-text,
+  .button:hover .btn-text,
+  .button.clicked .btn-text {
+    letter-spacing: 6px;
+    padding-left: 6px;
   }
-  
-  .button::before { top: 0; left: 54px; width: calc(100% - 56px * 2 - 16px); }
-  .button::after { top: 0; right: 54px; width: 8px; }
-  
-  .button__text::before { bottom: 0; right: 54px; width: calc(100% - 56px * 2 - 16px); }
-  .button__text::after { bottom: 0; left: 54px; width: 8px; }
-  
-  .button__line { position: absolute; top: 0; width: 56px; height: 100%; overflow: hidden; }
-  .button__line::before {
-    content: ""; position: absolute; top: 0; width: 150%; height: 100%;
-    box-sizing: border-box; border-radius: 300px; border: solid 3px var(--line_color);
+
+  .button:focus .btn-text::after,
+  .button:hover .btn-text::after,
+  .button.clicked .btn-text::after {
+    width: 100%;
+    left: 0%;
   }
-  
-  .button__line:nth-child(1), .button__line:nth-child(1)::before { left: 0; }
-  .button__line:nth-child(2), .button__line:nth-child(2)::before { right: 0; }
-  
-  .button:hover, .button.clicked { letter-spacing: 6px;}
-  .button:hover::before, .button.clicked::before, .button:hover .button__text::before, .button.clicked .button__text::before { width: 8px; }
-  .button:hover::after, .button.clicked::after, .button:hover .button__text::after, .button.clicked .button__text::after { width: calc(100% - 56px * 2 - 16px); }
-  
-  .button__drow1, .button__drow2 { position: absolute; z-index: -1; border-radius: 16px; transform-origin: 16px 16px; }
-  .button__drow1 { top: -16px; left: 20px; width: 32px; height: 0; transform: rotate(30deg); }
-  .button__drow2 { top: 44px; left: 37px; width: 32px; height: 0; transform: rotate(-127deg); }
-  
-  .button__drow1::before, .button__drow1::after, .button__drow2::before, .button__drow2::after { content: ""; position: absolute; }
-  .button__drow1::before { bottom: 0; left: 0; width: 0; height: 32px; border-radius: 16px; transform-origin: 16px 16px; transform: rotate(-60deg); }
-  .button__drow1::after { top: -10px; left: 45px; width: 0; height: 32px; border-radius: 16px; transform-origin: 16px 16px; transform: rotate(69deg); }
-  .button__drow2::before { bottom: 0; left: 0; width: 0; height: 32px; border-radius: 16px; transform-origin: 16px 16px; transform: rotate(-146deg); }
-  .button__drow2::after { bottom: 26px; left: -40px; width: 0; height: 32px; border-radius: 16px; transform-origin: 16px 16px; transform: rotate(-262deg); }
-  
-  .button__drow1, .button__drow1::before, .button__drow1::after, .button__drow2, .button__drow2::before, .button__drow2::after { background: var(--back_color); }
-  
-  .button:hover .button__drow1, .button.clicked .button__drow1 { animation: drow1 ease-in 0.06s forwards; }
-  .button:hover .button__drow1::before, .button.clicked .button__drow1::before { animation: drow2 linear 0.08s 0.06s forwards; }
-  .button:hover .button__drow1::after, .button.clicked .button__drow1::after { animation: drow3 linear 0.03s 0.14s forwards; }
-  .button:hover .button__drow2, .button.clicked .button__drow2 { animation: drow4 linear 0.06s 0.2s forwards; }
-  .button:hover .button__drow2::before, .button.clicked .button__drow2::before { animation: drow3 linear 0.03s 0.26s forwards; }
-  .button:hover .button__drow2::after, .button.clicked .button__drow2::after { animation: drow5 linear 0.06s 0.32s forwards; }
-  
-  @keyframes drow1 { 0% { height: 0; } 100% { height: 100px; } }
-  @keyframes drow2 { 0% { width: 0; opacity: 0; } 10% { opacity: 0; } 11% { opacity: 1; } 100% { width: 120px; } }
-  @keyframes drow3 { 0% { width: 0; } 100% { width: 80px; } }
-  @keyframes drow4 { 0% { height: 0; } 100% { height: 120px; } }
-  @keyframes drow5 { 0% { width: 0; } 100% { width: 110px; } }
+
+  .btn-text::after {
+    content: "";
+    pointer-events: none;
+    bottom: -5px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--line_color);
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+
+  /* --- DESKTOP LOGO --- */
+  .desktop-logo {
+    display: block;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: #1a1a1a;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .desktop-logo:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
 
   /* --- DESKTOP BUTTONS --- */
-  .nav-image-button, .nav-image-button-right { display: inline-block; cursor: pointer; margin: 0 10px; z-index: 10; position: relative; }
-  .nav-image-button img, .nav-image-button-right img { width: 60px; height: 60px; object-fit: contain; display: block; transition: transform 0.3s ease; }
-  .nav-image-button-right { margin-left: 20px; }
-  .nav-image-button img:hover, .nav-image-button-right img:hover { transform: scale(1.3); }
+  .nav-image-button,
+  .nav-image-button-right {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 10px;
+    z-index: 10;
+    position: relative;
+  }
+
+  .nav-image-button img,
+  .nav-image-button-right img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-image-button-right {
+    margin-left: 20px;
+  }
+
+  .nav-image-button img:hover,
+  .nav-image-button-right img:hover {
+    transform: scale(1.3);
+  }
 
   /* --- MOBILE ELEMENTS --- */
-  .mobile-right-group { display: none; } 
-  .hamburger { display: none; }
+  .mobile-right-group {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav-image-button-mobile {
+    display: none;
+  }
 
   /* --- MEDIA QUERIES --- */
-  @media (max-width: 1310px) { .navbar { width: calc(100% - 40px); } }
 
   /* =========================================
      MOBILE BREAKPOINT
      ========================================= */
   @media (max-width: 1024px) {
-    .navbar { margin: 10px auto; flex-direction: column; align-items: flex-start; padding: 2px 10px; position: fixed; height: auto; max-height: 100vh; }
-    .navbar-top-row { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 5px 0; position: relative; z-index: 10; }
-    
+    .desktop-logo {
+      display: none !important;
+    }
+
+    .navbar {
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: auto;
+      max-height: 100vh;
+      border: none;
+      border-radius: 0 0 0 0;
+      background: rgba(255, 255, 255, 0.489);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-radius 0.4s ease, background 0.4s ease;
+    }
+
+    .navbar.open {
+      border-radius: 0 0 30px 30px;
+    }
+
+    .navbar-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 5px 0;
+      position: relative;
+      z-index: 10;
+    }
+
     .beam {
-      width: 90%; font-size: 20px; letter-spacing: 2px;
-      justify-content: flex-end; padding-right: 20px; padding-left: 0;           
+      width: 90%;
+      font-size: 20px;
+      letter-spacing: 2px;
+      justify-content: flex-end;
+      padding-right: 20px;
+      padding-left: 0;
       background: linear-gradient(to right, rgba(var(--beam-rgb), 0) 0%, rgba(var(--beam-rgb), 1) 50%);
     }
-    .navbar.open .beam { opacity: 0; }
-    .mobile-right-group { display: flex !important; align-items: center; gap: 15px; }
 
-    .navbar-links { 
-        width: 100%; max-height: 0; overflow: hidden; display: flex; flex-direction: column; align-items: center;
-        opacity: 0; transform: scaleY(0); transform-origin: top; 
-        transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.4s ease; 
-        z-index: 10; position: relative;
-    }
-    .navbar.open .navbar-links { max-height: 100vh; opacity: 1; transform: scaleY(1); overflow-y: hidden; }
-    
-    .button { 
-        width: 240px; 
-        margin: 20px 0; 
-        display: block; 
+    .navbar.open .beam {
+      opacity: 0;
     }
 
-    .hamburger { display: flex !important; flex-direction: column; justify-content: space-between; width: 30px; height: 22px; cursor: pointer; z-index: 10; }
-    .hamburger span { display: block; height: 3px; background: #000; border-radius: 2px; transition: all 0.4s ease; }
-    .navbar.open .hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .navbar.open .hamburger span:nth-child(2) { opacity: 0; }
-    .navbar.open .hamburger span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+    .mobile-right-group {
+      display: flex !important;
+      align-items: center;
+      gap: 15px;
+    }
 
-    .nav-image-button, .nav-image-button-right { display: none !important; }
-    
-    .nav-image-button-mobile { display: none; cursor: pointer; }
-    
+    .navbar-links {
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: max-height 0.4s ease, opacity 0.3s ease, transform 0.4s ease;
+      z-index: 10;
+      position: relative;
+    }
+
+    .navbar.open .navbar-links {
+      max-height: 100vh;
+      opacity: 1;
+      transform: scaleY(1);
+      overflow-y: hidden;
+    }
+
+    .button {
+      width: 240px;
+      margin: 15px auto;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .navbar.open .button {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .navbar.open .button:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    .navbar.open .button:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .navbar.open .button:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    .navbar.open .button:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    .navbar.open .button:nth-child(5) {
+      transition-delay: 0.5s;
+    }
+
+    .hamburger {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: #000;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+    }
+
+    .navbar.open .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .navbar.open .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .navbar.open .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+    .nav-image-button,
+    .nav-image-button-right {
+      display: none !important;
+    }
+
+    .nav-image-button-mobile {
+      display: none;
+      cursor: pointer;
+    }
+
     .navbar.open .nav-image-button-mobile {
-      display: block !important; position: absolute; left: 50%; top: 50%;
-      transform: translate(-50%, -50%); 
+      display: block !important;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
       animation: slideToCenter 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
       z-index: 20;
     }
 
     .nav-image-button-mobile .logo-text {
-        display: block;
-        font-family: 'lequire', sans-serif !important;
-        font-weight: normal;
-        margin: 0; 
-        line-height: 1; 
-        filter: none !important;
-        background: linear-gradient(to right, #191f4f 0%, #436aee 20%, #91e0fd 50%, #dbbbf6 60%, #2c3c94 100%);
-        -webkit-background-clip: text; 
-        background-clip: text;         
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        font-size: 38px; 
-        white-space: nowrap;
+      display: block;
+      font-family: 'Great Vibes', cursive !important;
+      font-weight: 400;
+      margin: 0;
+      line-height: 1;
+      color: #1a1a1a;
+      font-size: 48px;
+      white-space: nowrap;
+      text-transform: none;
     }
 
     .nav-image-button-mobile .highlight-blue {
-        color: inherit;
+      color: inherit;
     }
 
     @keyframes slideToCenter {
-      0% { opacity: 0; left: 85%; transform: translate(-50%, -50%) scale(0.5); }
-      100% { opacity: 1; left: 50%; transform: translate(-50%, -50%) scale(1); }
+      0% {
+        opacity: 0;
+        left: 85%;
+        transform: translate(-50%, -50%) scale(0.5);
+      }
+
+      100% {
+        opacity: 1;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+      }
     }
   }
 </style>
 
 <nav class="navbar">
-  <div class="beam beam-1" data-text="HOME"></div>
-  <div class="beam beam-2" data-text="ABOUT"></div>
-  <div class="beam beam-3" data-text="FAQ"></div>
-  <div class="beam beam-4" data-text="CONTACT"></div>
+
+  <div class="desktop-logo" onclick="navigateToHome()">
+    Feminink
+  </div>
 
   <div class="navbar-top-row">
     <div class="hamburger" aria-label="Toggle Menu">
@@ -240,50 +399,19 @@
     </div>
 
     <div class="mobile-right-group">
-      <div class="nav-image-button-mobile" onclick="navigateToHome()">
-        <p class="logo-text">
-            <span class="highlight-blue">Chas</span>Tech
-        </p>
-      </div>
+    </div>
+
+    <div class="nav-image-button-mobile" onclick="navigateToHome()">
+      <h2 class="logo-text">Feminink</h2>
     </div>
   </div>
 
-  <div class="nav-image-button">
-    <img src="/assets/chastech.png" alt="Info">
-  </div>
-
   <div class="navbar-links">
-    <a href="/index/" class="button type--C">
-      <div class="button__line"></div>
-      <div class="button__line"></div>
-      <span class="button__text">HOME</span>
-      <div class="button__drow1"></div>
-      <div class="button__drow2"></div>
-    </a>
-
-    <a href="/about/" class="button type--C">
-      <div class="button__line"></div>
-      <div class="button__line"></div>
-      <span class="button__text">ABOUT</span>
-      <div class="button__drow1"></div>
-      <div class="button__drow2"></div>
-    </a>
-
-    <a href="/faq/" class="button type--C">
-      <div class="button__line"></div>
-      <div class="button__line"></div>
-      <span class="button__text">FAQ</span>
-      <div class="button__drow1"></div>
-      <div class="button__drow2"></div>
-    </a>
-
-    <a href="/contact/" class="button type--C">
-      <div class="button__line"></div>
-      <div class="button__line"></div>
-      <span class="button__text">CONTACT</span>
-      <div class="button__drow1"></div>
-      <div class="button__drow2"></div>
-    </a>
+    <a href="/" class="button type--C"><span class="btn-text">HOME</span></a>
+    <a href="/artists/" class="button type--C"><span class="btn-text">PORTFOLIOS</span></a>
+    <a href="/about/" class="button type--C"><span class="btn-text">ABOUT</span></a>
+    <a href="/booking/" class="button type--C"><span class="btn-text">BOOKING</span></a>
+    <a href="/policies/" class="button type--C"><span class="btn-text">POLICIES</span></a>
   </div>
 </nav>
 
@@ -294,49 +422,49 @@
 
   function navigateToHome() { window.location.href = "/index/"; }
 
-  document.addEventListener("DOMContentLoaded", function() {
-      // 1. Splitting Logic
-      const beams = document.querySelectorAll('.beam');
-      beams.forEach(beam => {
-          const text = beam.getAttribute('data-text');
-          beam.innerHTML = ''; 
-          text.split('').forEach((char, i) => {
-              const span = document.createElement('span');
-              span.textContent = char === ' ' ? '\u00A0' : char; 
-              span.style.animationDelay = `${i * 0.12}s`; 
-              beam.appendChild(span);
-          });
+  document.addEventListener("DOMContentLoaded", function () {
+    // 1. Splitting Logic
+    const beams = document.querySelectorAll('.beam');
+    beams.forEach(beam => {
+      const text = beam.getAttribute('data-text');
+      beam.innerHTML = '';
+      text.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.animationDelay = `${i * 0.12}s`;
+        beam.appendChild(span);
       });
+    });
 
-      // 2. Active Page Detection & Animation Trigger
-      const links = document.querySelectorAll('.navbar-links a');
-      const currentPath = window.location.pathname; 
+    // 2. Active Page Detection & Animation Trigger
+    const links = document.querySelectorAll('.navbar-links a');
+    const currentPath = window.location.pathname;
 
-      links.forEach((link, index) => {
-          const href = link.getAttribute('href');
-          let isActive = false;
+    links.forEach((link, index) => {
+      const href = link.getAttribute('href');
+      let isActive = false;
 
-          if (index === 0 && (currentPath === "/" || currentPath.includes("index"))) isActive = true;
-          else if (href !== "/" && currentPath.includes(href)) isActive = true;
+      if (index === 0 && (currentPath === "/" || currentPath.includes("index"))) isActive = true;
+      else if (href !== "/" && currentPath.includes(href)) isActive = true;
 
-          if (isActive) {
-              const pageNum = index + 1;
-              navbar.classList.add(`active-page-${pageNum}`);
-              
-              // Trigger character fade-in after splitting is complete
-              setTimeout(() => {
-                const activeBeam = document.querySelector(`.beam-${pageNum}`);
-                if (activeBeam) activeBeam.classList.add('animate-letters');
-              }, 150);
-          }
+      if (isActive) {
+        const pageNum = index + 1;
+        navbar.classList.add(`active-page-${pageNum}`);
 
-          link.addEventListener('click', function(e) {
-             if (window.innerWidth <= 1024) {
-                 e.preventDefault(); 
-                 this.classList.add('clicked'); 
-                 setTimeout(() => { window.location.href = href; }, 600);
-             }
-          });
+        // Trigger character fade-in after splitting is complete
+        setTimeout(() => {
+          const activeBeam = document.querySelector(`.beam-${pageNum}`);
+          if (activeBeam) activeBeam.classList.add('animate-letters');
+        }, 150);
+      }
+
+      link.addEventListener('click', function (e) {
+        if (window.innerWidth <= 1024) {
+          e.preventDefault();
+          this.classList.add('clicked');
+          setTimeout(() => { window.location.href = href; }, 600);
+        }
       });
+    });
   });
 </script>

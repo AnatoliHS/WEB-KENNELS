@@ -4,199 +4,111 @@ title: Home
 ---
 
 <style>
-    /* --- 1. FONTS & GLOBAL RESET --- */
-    @font-face {
-        font-family: 'lequire';
-        src: url('/leq.otf') format('opentype');
-        font-weight: normal;
-        font-style: normal;
+    /* --- 1. GLOBAL RESET --- */
+    html,
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100%;
+        overflow-x: hidden;
+        background-color: #ffffff;
     }
 
     * {
-        font-weight: 400;
+        box-sizing: border-box;
     }
 
-    img {
-        border-radius: 20px;
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-
-    /* --- 2. HERO SHARED STYLES --- */
-    .sequence-container {
+    /* --- 2. HERO SECTION (FULL WIDTH BREAKOUT) --- */
+    .video-hero-container {
         position: relative;
-        left: 50%;
-        transform: translateX(-50%);
         width: 100vw;
-        height: 80vh;
-        margin: 120px 0;
-        display: flex;
-        align-items: center;
-        overflow: hidden;
+        height: 180vh;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        background-color: #000;
     }
 
-    .visual-stack {
-        position: relative;
-        width: 60%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .gradient-square {
-        position: absolute;
-        left: 0;
+    .sticky-video-wrap {
+        position: sticky;
         top: 0;
-        width: 55vw;
-        height: 80vh;
-        background: linear-gradient(135deg, #b1aaf0, #b1aaf0);
-        border-radius: 0 20px 20px 0;
-        opacity: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .video-hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        object-fit: cover;
+    }
+
+    .video-hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.6) 100%);
         z-index: 1;
     }
 
-    .sliding-image-wrap {
+    .video-hero-content {
         position: absolute;
-        left: 100px;
         top: 0;
-        height: 80vh;
+        left: 0;
         width: 100%;
-        opacity: 0;
+        height: 100vh;
         z-index: 2;
+        padding-top: 35vh;
+        text-align: center;
+        pointer-events: none;
     }
 
-    .design-image {
-        width: 90%;
-        height: calc(100% - 100px);
-        object-fit: cover;
-        border-radius: 12px;
-        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-        display: block;
-        margin-top: 0;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-    .sequence-content {
-        width: 40%;
-        padding: 0 60px;
-        z-index: 5;
-    }
-
-    /* --- 3. HERO STAGGERED ANIMATION STATES --- */
-    .anim-left {
-        opacity: 0;
-        transform: translateX(-50px);
-        transition: all 0.8s ease-out 1.0s;
-    }
-
-    .anim-top {
-        opacity: 0;
-        transform: translateY(-30px);
-        transition: all 0.8s ease-out 1.3s;
-    }
-
-    .anim-bottom {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease-out 1.6s;
-    }
-
-    .anim-arrow {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.8s ease-out 1.9s;
-    }
-
-    .animate-content-active .anim-left,
-    .animate-content-active .anim-top,
-    .animate-content-active .anim-bottom,
-    .animate-content-active .anim-arrow {
-        opacity: 1;
-        transform: translate(0, 0);
-    }
-
-    /* --- 4. TOP HERO --- */
-    .hero-top {
-        flex-direction: row-reverse;
-        margin-bottom: 50px;
-    }
-
-    .hero-top .gradient-square {
-        left: auto;
-        right: 0;
-        border-radius: 20px 0 0 20px !important;
-    }
-
-    .hero-top .sliding-image-wrap {
-        left: auto;
-        right: 100px;
-        top: 0;
-    }
-
-    .logo-text {
-        display: block;
-        font-family: 'lequire', sans-serif;
-        font-weight: 400;
-        margin: 0 0 20px 0;
-        line-height: 1;
-        background: linear-gradient(to right, #191f4f 0%, #436aee 20%, #91e0fd 50%, #dbbbf6 60%, #2c3c94 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0.5px 0.5px 0 black) drop-shadow(-0.5px -0.5px 0 black);
-        font-size: clamp(50px, 6vw, 60px);
-    }
-
-    .gradient-text {
-        font-size: 3rem;
-        color: #191f4f;
-        font-weight: 400;
-        margin-bottom: 25px;
-        line-height: 1.1;
-    }
-
-    .intro-p {
-        font-size: 20px;
-        line-height: 1.6;
-        color: #333;
-        font-weight: 400;
-        /* 🌟 EXPLICITLY SET */
+    .cursive-hero-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(60px, 12vw, 150px);
+        color: #e6dbed;
         margin: 0;
+        text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.6);
+        animation: simpleFadeIn 1.5s ease forwards 0.5s;
+        opacity: 0;
     }
 
-    #hero-trigger {
-        margin-top: 20px !important;
-    }
-
-    /* --- SCROLL DOWN INDICATOR --- */
-    .hero-scroll-indicator {
-        margin-top: 35px;
+    /* --- 3. ANIMATED ARROWS --- */
+    .hero-scroll-bottom {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        opacity: 0;
+        animation: simpleFadeIn 1s ease forwards 2s;
     }
 
     .scroll-text {
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 3px;
-        color: #191f4f;
-        font-weight: 400;
-        opacity: 0.7;
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 10px;
-    }
-
-    .hero-arrow-flow {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-left: 5px;
+        font-family: sans-serif;
     }
 
     .hero-arrow-flow span {
-        font-family: 'lequire', sans-serif;
         font-size: 1.8rem;
-        font-weight: 400;
         color: #436aee;
         opacity: 0.2;
         display: block;
@@ -213,6 +125,229 @@ title: Home
         animation-delay: 0.4s;
     }
 
+    /* --- 4. INTRO SECTION --- */
+    .intro-section {
+        padding: 100px 20px;
+        text-align: center;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .intro-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(40px, 6vw, 80px);
+        color: #1a1a1a;
+        margin-bottom: 20px;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    .intro-text {
+        font-family: sans-serif;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #444;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        /* Added margin-bottom for the button */
+    }
+
+    /* --- 5. BOOKING BUTTON --- */
+    .booking-btn {
+        display: inline-block;
+        padding: 15px 40px;
+        font-family: inherit;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #351431;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .booking-btn:hover {
+        background-color: #5a2653;
+        transform: translateY(-3px);
+    }
+
+    /* --- 6. MEET THE TEAM --- */
+    .team-section {
+        padding: 80px 0 100px 0;
+        background-color: #cdb4db;
+        text-align: center;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        box-sizing: border-box;
+    }
+
+    .team-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(40px, 6vw, 70px);
+        color: #1a1a1a;
+        margin-bottom: 50px;
+        font-weight: 400;
+    }
+
+    .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+        max-width: 1600px;
+        width: 95%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .team-card {
+        width: calc(33.333% - 27px);
+        height: 480px;
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .team-card::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.8) 100%);
+        z-index: 1;
+        pointer-events: none;
+        transition: background 0.5s ease;
+    }
+
+    .team-card:hover::after {
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .team-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-img-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+    }
+
+    .team-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        border-radius: 0;
+    }
+
+    .team-card:hover .team-img-wrap img {
+        transform: scale(1.05);
+    }
+
+    .team-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .team-name {
+        position: absolute;
+        top: calc(100% - 100px);
+        font-family: 'Great Vibes', cursive;
+        font-size: 3.5rem;
+        font-weight: 400;
+        color: #ffffff;
+        margin: 0;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+        transition: top 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .team-card:hover .team-name {
+        top: 60px;
+    }
+
+    .team-role {
+        opacity: 0;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        line-height: 1.6;
+        transform: translateY(20px);
+        transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .team-card:hover .team-role {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.1s;
+    }
+
+    @media (max-width: 1024px) {
+        .team-card {
+            width: calc(50% - 20px);
+        }
+
+        .team-info {
+            justify-content: flex-end;
+            padding-bottom: 20px;
+        }
+
+        .team-name {
+            position: relative;
+            top: auto !important;
+            bottom: auto;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            position: relative;
+            bottom: auto;
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .team-card {
+            width: 100%;
+            max-width: 400px;
+        }
+    }
+
+    /* --- 7. ANIMATIONS --- */
     @keyframes arrowGlowVertical {
 
         0%,
@@ -228,1178 +363,190 @@ title: Home
         }
     }
 
-    /* ==========================================================
-       🎯 WHO WE SERVE SECTION STYLES (GPU ACCELERATED) 🎯
-       ========================================================== */
-    .niche-container {
-        width: 90%;
-        max-width: 1400px;
-        margin: 100px auto;
-        padding: 80px 5%;
-        background-color: #ffffff;
-        border-radius: 40px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
-        text-align: center;
+    @keyframes simpleFadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 
-    .niche-title {
-        font-size: 4.5rem;
-        color: #191f4f;
-        font-weight: 400;
-        margin-bottom: 10px;
-    }
-
-    .niche-subtitle {
-        font-size: 1.5rem;
-        color: #666;
-        font-weight: 400;
-        /* 🌟 EXPLICITLY SET */
-        margin-bottom: 60px;
-    }
-
-    .niche-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-    }
-
-    .niche-card {
-        height: 450px;
-        border-radius: 24px;
-        background-size: cover;
-        background-position: center;
+    /* --- 8. CONTACT & MAP SECTION --- */
+    .contact-section {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100vw;
         position: relative;
-        overflow: hidden;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        transform: translateY(50px);
-        opacity: 0;
-        transition: transform 0.9s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, box-shadow 0.4s ease;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #1a1a1a;
+        margin: 0;
     }
 
-    .n-card-content {
-        position: absolute;
-        inset: 0;
+    .contact-info-col {
+        flex: 1 1 400px;
+        padding: 80px 10%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        padding: 30px;
-        z-index: 20;
-        text-align: center;
+        background-color: #1a1a1a;
+        color: #ffffff;
     }
 
-    .n-card-title {
-        font-size: 2.2rem;
-        color: white;
-        margin-bottom: 10px;
+    .contact-map-col {
+        flex: 1 1 500px;
+        min-height: 500px;
+        display: flex;
+    }
+
+    .contact-map-col iframe {
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .contact-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(50px, 6vw, 80px);
+        margin: 0 0 20px 0;
         font-weight: 400;
+        color: #ffffff;
     }
 
-    .n-card-desc {
+    .contact-details {
+        font-family: sans-serif;
+        font-size: 1.1rem;
+        line-height: 2;
+        color: #cccccc;
+    }
+
+    .contact-details strong {
+        color: #ffffff;
+        font-weight: 600;
         font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.5;
-        font-weight: 400;
-        /* 🌟 EXPLICITLY SET */
-        margin-bottom: 20px;
-    }
-
-    .n-card-link {
-        font-size: 1.1rem;
-        color: white;
-        font-weight: 400;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        border-bottom: 2px solid #fe97cf;
-        padding-bottom: 5px;
-    }
-
-    .niche-card.is-visible {
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    .niche-card:nth-child(1).is-visible {
-        transition-delay: 0.1s;
-    }
-
-    .niche-card:nth-child(2).is-visible {
-        transition-delay: 0.3s;
-    }
-
-    .niche-card:nth-child(3).is-visible {
-        transition-delay: 0.5s;
-    }
-
-    /* --- GLOBAL SHAPE COLORS (FIX FOR MOBILE) --- */
-    .bg-purple {
-        background: #b1aaf0;
-    }
-
-    .bg-orange {
-        background: #f86f05;
-    }
-
-    .bg-pink {
-        background: #fe97cf;
-    }
-
-
-    /* ==========================================================
-       🌟 DESKTOP ONLY: "ROLLING DIAMOND" ANIMATION ENGINE & HOVERS 🌟
-       ========================================================== */
-    @media (min-width: 1025px) {
-
-        .n-card-title {
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
-            margin-bottom: 0;
-            transition: all 0.4s ease;
-        }
-
-        .n-card-desc,
-        .n-card-link {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(15px);
-            margin: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .niche-card::before,
-        .niche-card::after {
-            position: absolute;
-            content: "";
-            width: 20%;
-            height: 20%;
-            background: linear-gradient(135deg, rgba(67, 106, 238, 0.95), rgba(177, 170, 240, 0.95));
-            transition: all 0.5s ease;
-            z-index: 10;
-        }
-
-        .niche-card::before {
-            top: 0;
-            right: 0;
-            border-radius: 0 24px 0 100%;
-        }
-
-        .niche-card::after {
-            bottom: 0;
-            left: 0;
-            border-radius: 0 100% 0 24px;
-        }
-
-        .niche-card.is-visible:hover::before,
-        .niche-card.is-visible:hover::after {
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-        }
-
-        .niche-card.is-visible:hover .n-card-title {
-            text-shadow: none;
-        }
-
-        .niche-card.is-visible:hover .n-card-desc {
-            max-height: 150px;
-            opacity: 1;
-            transform: translateY(0);
-            margin-top: 15px;
-            margin-bottom: 20px;
-            transition-delay: 0.1s;
-        }
-
-        .niche-card.is-visible:hover .n-card-link {
-            max-height: 50px;
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 0.2s;
-        }
-
-        .niche-card.is-visible:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-            transition-delay: 0s !important;
-            transition-duration: 0.4s !important;
-        }
-
-        .mobile-info-boxes {
-            display: none !important;
-        }
-
-        .desktop-presentations {
-            display: block;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .presentation-section {
-            position: relative;
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            padding: 80px 5%;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .p-title {
-            width: 100%;
-            font-size: 4.5rem;
-            color: #191f4f;
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .p-content-row {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .p-desc-col {
-            width: 45%;
-            padding-right: 40px;
-            box-sizing: border-box;
-            z-index: 3;
-        }
-
-        .p-visual-col {
-            width: 50%;
-            height: 450px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .presentation-section.reverse .p-content-row {
-            flex-direction: row-reverse;
-        }
-
-        .presentation-section.reverse .p-desc-col {
-            padding-right: 0;
-            padding-left: 40px;
-        }
-
-        .p-desc {
-            font-size: 2rem;
-            line-height: 1.6;
-            color: #333;
-            font-weight: 400;
-            /* 🌟 EXPLICITLY SET */
-            margin: 0;
-        }
-
-        .shape-diamond,
-        .shape-image {
-            position: absolute;
-            width: 450px;
-            height: 450px;
-            border-radius: 40px;
-        }
-
-        .shape-diamond {
-            z-index: 1;
-        }
-
-        .shape-image {
-            object-fit: cover;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            z-index: 2;
-        }
-
-        .p-title {
-            transform: translateX(-100px);
-            opacity: 0;
-        }
-
-        .p-desc {
-            transform: translateY(50px);
-            opacity: 0;
-        }
-
-        .p-visual-col .shape-diamond {
-            transform: translateX(100vw) rotate(405deg);
-            opacity: 0;
-        }
-
-        .p-visual-col .shape-image {
-            transform: translateX(100vw) rotate(360deg);
-            opacity: 0;
-        }
-
-        .presentation-section.reverse .p-title {
-            text-align: right;
-            transform: translateX(100px);
-        }
-
-        .presentation-section.reverse .p-desc {
-            text-align: right;
-        }
-
-        .presentation-section.reverse .p-visual-col .shape-diamond {
-            transform: translateX(-100vw) rotate(-315deg);
-        }
-
-        .presentation-section.reverse .p-visual-col .shape-image {
-            transform: translateX(-100vw) rotate(-360deg);
-        }
-
-        .presentation-section.is-active .p-title {
-            transform: translateX(0);
-            opacity: 1;
-            transition: all 0.6s ease-out 0s;
-        }
-
-        .presentation-section.is-active .p-desc {
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 0.6s ease-out 0.3s;
-        }
-
-        .presentation-section.is-active .p-visual-col .shape-diamond {
-            transform: translateX(0) rotate(45deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.6s;
-        }
-
-        .presentation-section.is-active .p-visual-col .shape-image {
-            transform: translateX(0) rotate(0deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 1.0s;
-        }
-    }
-
-
-    /* ==========================================================
-       🌟 MOBILE ONLY: NEW ROLLING SHAPE STACK 🌟
-       ========================================================== */
-    @media (max-width: 1024px) {
-        .niche-title {
-            font-size: 3rem;
-        }
-
-        .niche-grid {
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        .niche-card {
-            height: 350px;
-        }
-
-        .niche-card:nth-child(1).is-visible,
-        .niche-card:nth-child(2).is-visible,
-        .niche-card:nth-child(3).is-visible {
-            transition-delay: 0.1s;
-        }
-
-        .niche-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(25, 31, 79, 0.95) 0%, transparent 70%);
-            z-index: 10;
-        }
-
-        .n-card-content {
-            justify-content: flex-end;
-            padding-bottom: 40px;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .desktop-presentations {
-            display: none !important;
-        }
-
-        .hero-scroll-indicator {
-            display: none;
-        }
-
-        .sequence-container,
-        .sequence-container.hero-top {
-            flex-direction: column !important;
-            height: auto !important;
-            margin: 40px 0 !important;
-            left: 0;
-            transform: none;
-            width: 100%;
-        }
-
-        .sequence-content {
-            order: 1;
-            width: 100% !important;
-            padding: 30px 20px !important;
-            text-align: center;
-            transform: none;
-        }
-
-        .visual-stack {
-            order: 2;
-            width: 100% !important;
-            height: 350px !important;
-        }
-
-        .gradient-square {
-            width: 85% !important;
-            height: 350px !important;
-            left: 0 !important;
-            right: auto !important;
-            border-radius: 0 20px 20px 0 !important;
-        }
-
-        .sliding-image-wrap {
-            left: 20px !important;
-            right: auto !important;
-            height: 350px !important;
-            width: 100% !important;
-            top: 0 !important;
-        }
-
-        .hero-top .gradient-square {
-            left: auto !important;
-            right: 0 !important;
-            border-radius: 20px 0 0 20px !important;
-        }
-
-        .hero-top .sliding-image-wrap {
-            left: auto !important;
-            right: 20px !important;
-        }
-
-        .design-image {
-            width: 90vw !important;
-            height: 320px !important;
-            object-fit: cover;
-            margin-top: 0 !important;
-        }
-
-        .logo-text {
-            font-size: 50px;
-            text-align: center;
-        }
-
-        #hero-trigger {
-            margin-top: 80px !important;
-        }
-
-        .mobile-info-boxes {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            overflow: hidden;
-            padding: 60px 0;
-            gap: 80px;
-        }
-
-        .m-presentation-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 90%;
-            max-width: 500px;
-            text-align: center;
-            overflow: visible;
-        }
-
-        .m-visual-col {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .m-shape-diamond,
-        .m-shape-image {
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            border-radius: 30px;
-        }
-
-        .m-shape-diamond {
-            z-index: 1;
-        }
-
-        .m-shape-image {
-            object-fit: cover;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            z-index: 2;
-        }
-
-        .m-text-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .m-title {
-            font-size: 2.8rem;
-            color: #191f4f;
-            font-weight: 400;
-            line-height: 1.1;
-            margin: 0 0 15px 0;
-        }
-
-        .m-desc {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #444;
-            font-weight: 400;
-            /* 🌟 EXPLICITLY SET */
-            margin: 0;
-        }
-
-        .m-visual-col .m-shape-diamond {
-            transform: translateX(-100vw) rotate(-405deg);
-            opacity: 0;
-        }
-
-        .m-visual-col .m-shape-image {
-            transform: translateX(100vw) rotate(360deg);
-            opacity: 0;
-        }
-
-        .m-text-content {
-            transform: translateY(60px);
-            opacity: 0;
-        }
-
-        .m-presentation-section.is-active .m-visual-col .m-shape-diamond {
-            transform: translateX(0) rotate(45deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0s;
-        }
-
-        .m-presentation-section.is-active .m-visual-col .m-shape-image {
-            transform: translateX(0) rotate(0deg);
-            opacity: 1;
-            transition: all 1.0s cubic-bezier(0.25, 1, 0.5, 1) 0.4s;
-        }
-
-        .m-presentation-section.is-active .m-text-content {
-            transform: translateY(0);
-            opacity: 1;
-            transition: all 0.8s ease-out 1.0s;
-        }
-
-        .animate-img-left {
-            animation: m-slideInLeft 1s ease-out forwards 0.6s !important;
-        }
-
-        .animate-img-right {
-            animation: m-slideInRight 1s ease-out forwards 0.6s !important;
-        }
-
-        @keyframes m-slideInLeft {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(40px);
-                opacity: 1;
-            }
-        }
-
-        @keyframes m-slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0px);
-                opacity: 1;
-            }
-        }
-    }
-
-    /* --- 6. FOOTER SEQUENCE (SHARED) --- */
-    .footer-seq {
-        margin-bottom: 0px !important;
-        margin-top: 80px;
-    }
-
-    .footer-seq .sequence-content {
-        opacity: 0;
-        transform: translateX(50px);
-        transition: all 1s ease-out 1s;
-    }
-
-    .sequence-title {
-        font-size: 3.5rem;
-        color: #191f4f;
-        font-weight: 400;
-        margin-bottom: 30px;
-    }
-
-    .sequence-btn {
         display: inline-block;
-        padding: 16px 45px;
-        background: linear-gradient(90deg, #191f4f, #436aee);
-        color: white;
+        margin-top: 15px;
+    }
+
+    .contact-details a {
+        color: #cdb4db;
         text-decoration: none;
-        border-radius: 50px;
-        font-weight: 400;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: color 0.3s ease;
     }
 
-    .sequence-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(67, 106, 238, 0.4);
-    }
-
-    .animate-down {
-        animation: slideInDown 1s ease-out forwards;
-    }
-
-    .animate-up {
-        animation: slideInUp 1s ease-out forwards;
-    }
-
-    .animate-img-left {
-        animation: slideInLeft 1s ease-out forwards 0.6s;
-    }
-
-    .animate-img-right {
-        animation: slideInRight 1s ease-out forwards 0.6s;
-    }
-
-    .footer-active {
-        opacity: 1 !important;
-        transform: translateX(0) !important;
-    }
-
-    @keyframes slideInDown {
-        from {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideInUp {
-        from {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideInLeft {
-        from {
-            transform: translateX(-100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(110px);
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideInRight {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(-30px);
-            opacity: 1;
-        }
-    }
-
-    /* ==========================================================
-       🆕 RECENT WORK SECTION (VERTICAL STACK CARDS)
-       ========================================================== */
-    .recent-work-container {
-        width: 100%;
-        max-width: 1400px;
-        margin: 100px auto;
-        padding: 0 5%;
-        box-sizing: border-box;
-        text-align: center;
-        position: relative;
-    }
-
-    .rw-stack {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 100px;
-        margin-top: 60px;
-        padding-bottom: 60px;
-    }
-
-    .rw-card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 100%;
-        max-width: 900px;
-        min-height: 350px;
-        background-color: #ffffff;
-        border-radius: 16px;
-        padding: 50px;
-        box-sizing: border-box;
-        text-align: left;
-        opacity: 0;
-        transform: translateY(50px);
-        transition: transform 0.6s ease, box-shadow 0.6s ease, opacity 0.6s ease;
-    }
-
-    .rw-card.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .rw-card.is-visible:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    .rw-image-box {
-        position: absolute;
-        bottom: -40px;
-        right: -40px;
-        width: 46%;
-        height: 56%;
-        border-radius: 12px;
-        background-color: #e5e7eb;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        transition: transform 0.7s ease;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: 2;
-    }
-
-    .rw-card.is-visible:hover .rw-image-box {
-        transform: translate(-16px, -16px);
-    }
-
-    .rw-content {
-        position: relative;
-        z-index: 3;
-        width: 60%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .rw-title {
-        font-size: 2.2rem;
-        font-weight: 400;
-        color: #1f2937;
-        margin: 0 0 15px 0;
-    }
-
-    .rw-desc {
-        font-size: 1.1rem;
-        color: #4b5563;
-        line-height: 1.6;
-        font-weight: 400;
-        /* 🌟 EXPLICITLY SET */
-        margin: 0 0 30px 0;
-    }
-
-    /* --- COMING SOON TOAST --- */
-    #coming-soon-toast {
-        position: fixed;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%) translateY(30px);
-        background: #191f4f;
-        color: white;
-        padding: 12px 30px;
-        border-radius: 50px;
-        font-weight: 400;
-        box-shadow: 0 10px 25px rgba(25, 31, 79, 0.4);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        z-index: 9999;
-    }
-
-    #coming-soon-toast.show {
-        transform: translateX(-50%) translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* --- TABLET & IPAD SPECIFIC FIX --- */
-    @media (min-width: 768px) and (max-width: 1024px) {
-        .rw-card {
-            padding: 40px;
-            padding-bottom: 320px;
-        }
-
-        .rw-content {
-            width: 100%;
-        }
-
-        .rw-image-box {
-            width: 65%;
-            height: 280px;
-            bottom: -30px;
-            right: 30px;
-        }
-    }
-
-    /* Mobile Adjustments for Stacked Cards */
-    @media (max-width: 767px) {
-        .rw-card {
-            padding: 30px;
-            padding-bottom: 220px;
-        }
-
-        .rw-content {
-            width: 100%;
-        }
-
-        .rw-image-box {
-            width: 85%;
-            height: 156px;
-            bottom: -20px;
-            right: 20px;
-        }
+    .contact-details a:hover {
+        color: #ffffff;
     }
 </style>
 
-<div class="sequence-container hero-top" id="hero-trigger">
-    <div class="visual-stack">
-        <div class="gradient-square"></div>
-        <div class="sliding-image-wrap">
-            <img src="/assets/upscaled_office.jpg" alt="About ChasTech" class="design-image">
-        </div>
+<div class="video-hero-container">
+    <div class="sticky-video-wrap">
+        <video autoplay loop muted playsinline class="video-hero-bg">
+            <source src="/assets/hero.mp4" type="video/mp4">
+        </video>
+        <div class="video-hero-overlay"></div>
     </div>
-    <div class="sequence-content">
-        <div class="logo anim-left">
-            <p class="logo-text"><span class="highlight-blue">Chas</span>Tech</p>
-        </div>
-        <h1 class="gradient-text anim-top">Your vision, built for the web.</h1>
-        <p class="intro-p anim-bottom">
-            Your digital presence is more than a website, it’s your first impression. At ChasTech, we transform your
-            ideas into visually striking, high-performance websites built to look great and work flawlessly on every
-            device.
-        </p>
-        <div class="hero-scroll-indicator anim-arrow">
+
+    <div class="video-hero-content">
+        <h1 class="cursive-hero-title">Feminink Tattoos</h1>
+        <div class="hero-scroll-bottom">
             <span class="scroll-text">Explore</span>
-            <div class="hero-arrow-flow"><span>&gt;</span><span>&gt;</span><span>&gt;</span></div>
-        </div>
-    </div>
-</div>
-
-<div class="desktop-presentations">
-    <div class="presentation-section">
-        <h1 class="p-title">Screen Optimization</h1>
-        <div class="p-content-row">
-            <div class="p-desc-col">
-                <p class="p-desc">In today’s digital world, your content must look great on every device. Screen
-                    optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
-            </div>
-            <div class="p-visual-col">
-                <div class="shape-diamond bg-purple"></div>
-                <img src="/assets/optimize3.png" alt="Screen Optimization" class="shape-image"
-                    style="background: #f2f8fc">
-            </div>
-        </div>
-    </div>
-
-    <div class="presentation-section reverse">
-        <h1 class="p-title">Tailored Design</h1>
-        <div class="p-content-row">
-            <div class="p-desc-col">
-                <p class="p-desc">Standing out takes more than function, it takes personality. A unique, custom design
-                    helps your project capture attention and leave a lasting impression.</p>
-            </div>
-            <div class="p-visual-col">
-                <div class="shape-diamond bg-orange"></div>
-                <img src="/assets/screen-bro3.png" alt="Creative Design" class="shape-image"
-                    style="background: #f2f8fc">
-            </div>
-        </div>
-    </div>
-
-    <div class="presentation-section">
-        <h1 class="p-title">Seamless Integration</h1>
-        <div class="p-content-row">
-            <div class="p-desc-col">
-                <p class="p-desc">Great digital solutions are built to grow. Seamless integration with your existing
-                    tools ensures smooth workflows and prepare your project for future needs.</p>
-            </div>
-            <div class="p-visual-col">
-                <div class="shape-diamond bg-pink"></div>
-                <img src="/assets/integrate2.png" alt="Seamless Integration" class="shape-image"
-                    style="background: #f2f8fc">
+            <div class="hero-arrow-flow">
+                <span>&gt;</span>
+                <span>&gt;</span>
+                <span>&gt;</span>
             </div>
         </div>
     </div>
 </div>
 
-<div class="mobile-info-boxes">
-    <div class="m-presentation-section">
-        <div class="m-visual-col">
-            <div class="m-shape-diamond bg-purple"></div>
-            <img src="/assets/optimize3.png" alt="Screen Optimization" class="m-shape-image"
-                style="background: #f2f8fc">
-        </div>
-        <div class="m-text-content">
-            <h1 class="m-title">Screen Optimization</h1>
-            <p class="m-desc">In today’s digital world, your content must look great on every device. Screen
-                optimization ensures responsive designs that adapt smoothly to phones, tablets, and desktops.</p>
-        </div>
-    </div>
+<section class="intro-section">
+    <h2 class="intro-title">Belleville's Premier Inclusive Body Art Studio</h2>
+    <p class="intro-text">
+        Feminink Tattoos, located in Belleville, is an inclusive body art studio where creativity and individuality are
+        celebrated.
+        Our all-female team offers custom tattoos, expert piercings, and permanent makeup.
+        We take pride in providing a safe and private space for everyone to express their unique style.
+    </p>
 
-    <div class="m-presentation-section">
-        <div class="m-visual-col">
-            <div class="m-shape-diamond bg-orange"></div>
-            <img src="/assets/screen-bro3.png" alt="Creative Design" class="m-shape-image" style="background: #f2f8fc">
-        </div>
-        <div class="m-text-content">
-            <h1 class="m-title">Tailored Design</h1>
-            <p class="m-desc">Standing out takes more than function, it takes personality. A unique, custom design helps
-                your project capture attention and leave a lasting impression.</p>
-        </div>
-    </div>
+    <a href="/booking/" class="booking-btn">Request Booking</a>
+</section>
 
-    <div class="m-presentation-section">
-        <div class="m-visual-col">
-            <div class="m-shape-diamond bg-pink"></div>
-            <img src="/assets/integrate2.png" alt="Seamless Integration" class="m-shape-image"
-                style="background: #f2f8fc">
-        </div>
-        <div class="m-text-content">
-            <h1 class="m-title">Seamless Integration</h1>
-            <p class="m-desc">Great digital solutions are built to grow. Seamless integration with your existing tools
-                ensures smooth workflows and prepare your project for future needs.</p>
-        </div>
-    </div>
-</div>
-
-<div class="niche-container" id="niche-trigger">
-    <h2 class="niche-title">Who We Serve</h2>
-    <p class="niche-subtitle">Digital experiences engineered for your industry's unique demands.</p>
-
-    <div class="niche-grid">
-        <div class="niche-card" style="background-image: url('/assets/service1.jpg');">
-            <div class="n-card-content">
-                <h3 class="n-card-title">Local Businesses</h3>
-                <p class="n-card-desc">Helping businesses increase online visibility and attract more customers.</p>
+<section class="team-section">
+    <h2 class="team-title">Meet The Team</h2>
+    <div class="team-grid">
+        <a href="/artists/" class="team-card">
+            <div class="team-img-wrap">
+                <img src="/assets/faye.avif" alt="Faye">
             </div>
-        </div>
-
-        <div class="niche-card" style="background-image: url('/assets/service2.jpg');">
-            <div class="n-card-content">
-                <h3 class="n-card-title">E-Commerce Brands</h3>
-                <p class="n-card-desc">Helping retailers create modern, easy-to-use online storefronts.</p>
+            <div class="team-info">
+                <h3 class="team-name">Faye</h3>
+                <p class="team-role">Tattoo Artist / Founder</p>
             </div>
-        </div>
-
-        <div class="niche-card" style="background-image: url('/assets/service3.jpg');">
-            <div class="n-card-content">
-                <h3 class="n-card-title">Creative Professionals</h3>
-                <p class="n-card-desc">Photographers, artists, and agencies needing high-end, immersive visual
-                    portfolios.</p>
+        </a>
+        <a href="/artists/" class="team-card">
+            <div class="team-img-wrap">
+                <img src="/assets/jaimie.avif" alt="Jaime Jolly">
             </div>
+            <div class="team-info">
+                <h3 class="team-name">Jaimie Jolly</h3>
+                <p class="team-role">Paramedical Tattooist &<br>Permanent Cosmetics Tech</p>
+            </div>
+        </a>
+        <a href="/artists/" class="team-card">
+            <div class="team-img-wrap">
+                <img src="/assets/zoe.avif" alt="Zoe Vance">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Zoe Vance</h3>
+                <p class="team-role">Junior Artist</p>
+            </div>
+        </a>
+        <a href="/artists/" class="team-card">
+            <div class="team-img-wrap">
+                <img src="/assets/sam.avif" alt="Samantha Leila">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Samantha Leila</h3>
+                <p class="team-role">Tattoo Artist</p>
+            </div>
+        </a>
+        <a href="/artists/" class="team-card">
+            <div class="team-img-wrap">
+                <img src="/assets/emma.avif" alt="Emma Smith">
+            </div>
+            <div class="team-info">
+                <h3 class="team-name">Emma Smith</h3>
+                <p class="team-role">Tattoo Artist</p>
+            </div>
+        </a>
+    </div>
+</section>
+
+<section class="contact-section">
+    <div class="contact-info-col">
+        <h2 class="contact-title">Visit Us</h2>
+        <div class="contact-details">
+            <strong>Address</strong><br>
+            470 Dundas Street East<br>
+            Belleville, ON K8N 1G1<br>
+
+            <strong>Phone</strong><br>
+            <a href="tel:+16139611661">(613) 961-1661</a><br>
+
+            <strong>Email</strong><br>
+            <a href="mailto:info@feminink.ca">info@feminink.ca</a><br>
+
+            <strong>Hours</strong><br>
+            Tuesday – Saturday: 10am – 6pm<br>
+            Sunday & Monday: Closed
         </div>
     </div>
-</div>
-
-<div class="recent-work-container" id="recent-work-trigger">
-    <h2 class="niche-title">Recent Work</h2>
-    <p class="niche-subtitle">A showcase of our latest custom web solutions.</p>
-
-    <div class="rw-stack">
-        <div class="rw-card">
-            <div class="rw-image-box" style="background-image: url('/assets/inspection.png');"></div>
-            <div class="rw-content">
-                <h2 class="rw-title">Inspection Season</h2>
-                <p class="rw-desc">
-                    Inspection Season was designed and built to position a home inspection company as
-                    a reliable, professional service provider online. The site features a clean visual
-                    style, clear service positioning, and user-friendly navigation that encourages prospective
-                    clients to get in touch.
-                </p>
-                <a href="https://inspectionseason.com/" class="sequence-btn" target="_blank">Explore</a>
-            </div>
-        </div>
-
-        <div class="rw-card">
-            <div class="rw-image-box" style="background-image: url('/assets/whmis.png');"></div>
-            <div class="rw-content">
-                <h2 class="rw-title">WhmisWise</h2>
-                <p class="rw-desc">
-                    WHMIS Wise is a web-based training platform developed to present workplace safety and WHMIS
-                    course content in a structured and engaging way. The project emphasized custom content layout,
-                    clear visual hierarchy, and user-friendly navigation to improve how learners interact with
-                    training material.
-                </p>
-                <a href="https://whmiswise.com/" class="sequence-btn" target="_blank">Explore</a>
-            </div>
-        </div>
-
-        <div class="rw-card">
-            <div class="rw-image-box" style="background-image: url('/assets/pharm.png');"></div>
-            <div class="rw-content">
-                <h2 class="rw-title">Rideau Pharmacy</h2>
-                <p class="rw-desc">
-                    Rideau Pharmacy is a client website developed to support a local pharmacy’s digital presence
-                    and customer outreach. The project focused on a clean visual identity, well-structured page layout,
-                    and straightforward navigation to ensure visitors can quickly find key information and contact the
-                    pharmacy with ease.
-                </p>
-                <a href="#" class="sequence-btn coming-soon-btn">Explore</a>
-            </div>
-        </div>
+    <div class="contact-map-col">
+        <iframe src="https://www.google.com/maps?q=470+Dundas+Street+East,+Belleville,+ON+K8N+1G1,+Canada&output=embed"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-</div>
-
-<div class="sequence-container footer-seq" id="footer-trigger">
-    <div class="visual-stack">
-        <div class="gradient-square"></div>
-        <div class="sliding-image-wrap">
-            <img src="/assets/contact.jpg" alt="Design Work" class="design-image">
-        </div>
-    </div>
-    <div class="sequence-content">
-        <h2 class="sequence-title">Let's get in touch.</h2>
-        <a href="/contact/" class="sequence-btn">Get Started</a>
-    </div>
-</div>
-<div id="coming-soon-toast">Coming Soon!</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const hero = document.querySelector('#hero-trigger');
-
-        // 1. Hero Animation Trigger
-        setTimeout(() => {
-            if (hero) {
-                hero.querySelector('.gradient-square').classList.add('animate-down');
-                hero.querySelector('.sliding-image-wrap').classList.add('animate-img-left');
-                hero.querySelector('.sequence-content').classList.add('animate-content-active');
-            }
-        }, 300);
-
-        // 2. Footer Observer
-        const footerObs = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelector('.gradient-square').classList.add('animate-up');
-                    entry.target.querySelector('.sliding-image-wrap').classList.add('animate-img-right');
-                    entry.target.querySelector('.sequence-content').classList.add('footer-active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        const footerTrigger = document.querySelector('#footer-trigger');
-        if (footerTrigger) footerObs.observe(footerTrigger);
-
-        // 3. Desktop Observer: Native Scroll Triggers
-        const presentationSections = document.querySelectorAll('.presentation-section');
-        const presentationObs = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.4 });
-
-        presentationSections.forEach(section => {
-            presentationObs.observe(section);
-        });
-
-        // 4. Mobile Observer: New Shape Stack Triggers
-        const mobileSections = document.querySelectorAll('.m-presentation-section');
-        const mobileObs = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-active');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-
-        mobileSections.forEach(section => {
-            mobileObs.observe(section);
-        });
-
-        // 5. Who We Serve Observer
-        const nicheCards = document.querySelectorAll('.niche-card');
-        const nicheObs = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        nicheCards.forEach(card => {
-            nicheObs.observe(card);
-        });
-
-        // 6. Recent Work Stack Observer (Fade-in on scroll)
-        const rwCards = document.querySelectorAll('.rw-card');
-        const rwObs = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        rwCards.forEach(card => {
-            rwObs.observe(card);
-        });
-
-        // 7. Coming Soon Popup Logic
-        const comingSoonBtns = document.querySelectorAll('.coming-soon-btn');
-        const toast = document.getElementById('coming-soon-toast');
-        let toastTimeout;
-
-        comingSoonBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-
-                toast.classList.add('show');
-                clearTimeout(toastTimeout);
-
-                toastTimeout = setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            });
-        });
-    });
-</script>
+</section>

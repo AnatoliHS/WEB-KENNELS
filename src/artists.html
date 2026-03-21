@@ -1,0 +1,71 @@
+---
+layout: default.njk
+title: Our Artists
+---
+<div class="recent-work-container" id="recent-work-trigger" style="margin-top: 100px;">
+    <h1 class="niche-title" style="font-size: 3.5rem;">Meet the Team</h1>
+    <p class="niche-subtitle">The creative minds behind the ink.</p>
+
+    <div class="rw-stack">
+        <div class="rw-card is-visible" style="opacity:1; transform:translateY(0);">
+            <div class="rw-image-box" style="background-image: url('https://images.unsplash.com/photo-1598371839696-5e5bb00d0f11?w=800&q=80');"></div>
+            <div class="rw-content">
+                <h2 class="rw-title">Sarah</h2>
+                <p class="rw-desc">
+                    Specializing in black and grey realism and intricate floral designs, Sarah brings over 10 years of experience to Feminink. Her attention to detail and gentle touch make her a client favorite.
+                </p>
+                <a href="/booking/" class="sequence-btn">Book with Sarah</a>
+            </div>
+        </div>
+
+        <div class="rw-card is-visible" style="opacity:1; transform:translateY(0);">
+            <div class="rw-image-box" style="background-image: url('https://images.unsplash.com/photo-1558220087-83eb56b0d993?w=800&q=80');"></div>
+            <div class="rw-content">
+                <h2 class="rw-title">Mike</h2>
+                <p class="rw-desc">
+                    Mike is our resident expert in traditional and neo-traditional styles. If you're looking for bold lines, bright colors, and designs that stand the test of time, Mike is your artist.
+                </p>
+                <a href="/booking/" class="sequence-btn">Book with Mike</a>
+            </div>
+        </div>
+
+        <div class="rw-card is-visible" style="opacity:1; transform:translateY(0);">
+            <div class="rw-image-box" style="background-image: url('https://images.unsplash.com/photo-1542385151-efd9000785a0?w=800&q=80');"></div>
+            <div class="rw-content">
+                <h2 class="rw-title">Elena</h2>
+                <p class="rw-desc">
+                    With a background in fine arts, Elena creates stunning fine line, minimalist, and watercolor tattoos. Her delicate approach is perfect for first-timers and subtle placements.
+                </p>
+                <a href="/booking/" class="sequence-btn">Book with Elena</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .recent-work-container { width: 100%; max-width: 1400px; margin: 100px auto; padding: 0 5%; box-sizing: border-box; text-align: center; position: relative; }
+    .rw-stack { display: flex; flex-direction: column; align-items: center; gap: 100px; margin-top: 60px; padding-bottom: 60px; }
+    .rw-card { position: relative; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; width: 100%; max-width: 900px; min-height: 350px; background-color: #ffffff; border-radius: 16px; padding: 50px; box-sizing: border-box; text-align: left; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+    .rw-image-box { position: absolute; bottom: -40px; right: -40px; width: 46%; height: 56%; border-radius: 12px; background-color: #e5e7eb; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 2; transition: transform 0.4s ease; }
+    .rw-card:hover .rw-image-box { transform: scale(1.03); }
+    .rw-content { position: relative; z-index: 3; width: 60%; display: flex; flex-direction: column; align-items: flex-start; }
+    .rw-title { font-size: 2.2rem; font-weight: 400; color: #1f2937; margin: 0 0 15px 0; }
+    .rw-desc { font-size: 1.1rem; color: #4b5563; line-height: 1.6; font-weight: 400; margin: 0 0 30px 0; }
+    .niche-title { font-size: 4.5rem; color: #191f4f; font-weight: 400; margin-bottom: 10px; }
+    .niche-subtitle { font-size: 1.5rem; color: #666; font-weight: 400; margin-bottom: 60px; }
+    .sequence-btn { display: inline-block; padding: 16px 45px; background: linear-gradient(90deg, #191f4f, #436aee); color: white; text-decoration: none; border-radius: 50px; font-weight: 400; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .sequence-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(67, 106, 238, 0.4); }
+    
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .rw-card { padding: 40px; padding-bottom: 320px; }
+        .rw-content { width: 100%; }
+        .rw-image-box { width: 65%; height: 280px; bottom: -30px; right: 30px; }
+    }
+    @media (max-width: 767px) {
+        .rw-card { padding: 30px; padding-bottom: 220px; }
+        .rw-content { width: 100%; }
+        .rw-image-box { width: 85%; height: 156px; bottom: -20px; right: 20px; }
+        .niche-title { font-size: 3rem; }
+    }
+    *, h1, h2, h3, p { font-weight: 400; }
+</style>

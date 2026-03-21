@@ -4,148 +4,98 @@ title: About
 ---
 
 <style>
-    /* --- 1. CORE LAYOUT & BREAKOUT --- */
-    @font-face {
-            font-family: 'lequire';
-            src: url('/leq.otf') format('opentype'); 
-            font-weight: normal;
-            font-style: normal;
-    }
-
-    /* 🌟 NEW: Global reset to 400, including strong tags so the browser doesn't force them bold */
-    *, strong, b {
-        font-weight: 400;
-    }
-
-    .sequence-container {
+    .about-hero {
+        width: 100vw;
+        min-height: 80vh;
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        width: 100vw;
-        height: 80vh;
-        margin: 120px 0;
-        display: flex; 
+        background-color: #351431;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        overflow: hidden;
+        padding: 120px 20px 80px;
+        box-sizing: border-box;
+        text-align: center;
     }
 
-    /* Desktop top margin for the first section */
-    #about-section {
-        margin-top: 20px !important;
+    .about-cursive-label {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(60px, 8vw, 100px);
+        color: #cdb4db;
+        margin: 0 0 20px 0;
+        font-weight: 400;
+        animation: fadeInDown 1s ease-out forwards;
     }
 
-    /* --- 2. VISUAL STACK (BOX & IMAGE) --- */
-    .visual-stack {
-        position: relative;
-        width: 60%;
-        height: 100%;
-        overflow: hidden; 
-    }
-
-    .gradient-square {
-        position: absolute;
-        left: 0; 
-        top: 0;
-        width: 55vw;
-        height: 80vh;
-        background: linear-gradient(135deg, #b1aaf0 , #b1aaf0);
-        border-radius: 0 20px 20px 0; 
-        opacity: 0;
-        z-index: 1;
-    }
-
-    .sliding-image-wrap {
-        position: absolute;
-        left: 100px; 
-        top: 0;
-        height: 80vh;
-        width: 100%;
-        opacity: 0;
-        z-index: 2;
-    }
-
-    .design-image {
-        width: 90%; 
-        height: calc(100% - 100px); 
-        object-fit: cover;
-        border-radius: 12px;
-        box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
-        display: block;
-    }
-
-    /* --- 3. MIRROR LOGIC (SECTION 2) --- */
-    .sequence-container.mirror {
-        flex-direction: row-reverse;
-    }
-
-    .sequence-container.mirror .gradient-square {
-        left: auto;
-        right: 0;
-        border-radius: 20px 0 0 20px;
-    }
-
-    .sequence-container.mirror .sliding-image-wrap {
-        left: auto;
-        right: 100px;
-    }
-
-    /* --- 4. TEXT CONTENT --- */
-    .sequence-content {
-        width: 40%;
-        padding: 0 60px;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 1s ease-out 1.2s; 
-        z-index: 5;
-    }
-
-    .sequence-title {
-        font-size: 2.8rem;
-        font-weight: 400; /* 🌟 CHANGED FROM 800 */
-        background: linear-gradient(90deg, #191f4f, #436aee);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-    }
-
-    .about-text {
-        font-size: 1.25rem;
-        line-height: 1.6;
-        color: #333;
-        font-weight: 400; /* 🌟 EXPLICITLY SET */
-    }
-
-    /* --- HERO SCROLL INDICATOR STYLES --- */
-    .hero-scroll-indicator {
-        margin-top: 35px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .scroll-text {
-        font-size: 11px;
+    .about-hero-title {
+        font-family: inherit;
+        font-size: clamp(32px, 4vw, 55px);
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 3px;
-        color: #191f4f;
-        font-weight: 400; /* 🌟 CHANGED FROM BOLD */
-        opacity: 0.7;
-        margin-bottom: 10px;
+        letter-spacing: 4px;
+        margin: 0 0 50px 0;
+        color: #ffffff;
+        animation: fadeInUp 1s ease-out 0.3s forwards;
+        opacity: 0;
     }
 
-    .hero-arrow-flow {
+    .about-hero-content {
+        max-width: 800px;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #cccccc;
+        animation: fadeInUp 1s ease-out 0.6s forwards;
+        opacity: 0;
+    }
+
+    .about-hero-content p {
+        margin-bottom: 30px;
+    }
+
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* --- HERO SCROLL ARROWS --- */
+    .hero-scroll-bottom {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        margin-left: 5px;
+        align-items: center;
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards 1.2s;
     }
 
     .hero-arrow-flow span {
-        font-family: 'lequire', sans-serif;
         font-size: 1.8rem;
-        font-weight: 400; /* 🌟 CHANGED FROM BOLD */
-        color: #436aee;
+        color: #cdb4db;
         opacity: 0.2;
         display: block;
         line-height: 0.5;
@@ -153,211 +103,326 @@ title: About
         animation: arrowGlowVertical 1.5s infinite;
     }
 
-    .hero-arrow-flow span:nth-child(2) { animation-delay: 0.2s; }
-    .hero-arrow-flow span:nth-child(3) { animation-delay: 0.4s; }
+    .hero-arrow-flow span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
 
-    /* Vertical Animation (Down) */
+    .hero-arrow-flow span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
     @keyframes arrowGlowVertical {
-        0%, 100% { opacity: 0.2; transform: rotate(90deg) translateY(0); }
-        50% { opacity: 1; transform: rotate(90deg) translateY(8px); color: #dbbbf6; }
+        0%, 100% {
+            opacity: 0.2;
+            transform: rotate(90deg) translateY(0);
+        }
+        50% {
+            opacity: 1;
+            transform: rotate(90deg) translateY(8px);
+            color: #ffffff;
+        }
     }
 
-    /* --- UPDATED LIST STYLES (Matching Arrow Logic) --- */
-    .about-list {
-        padding-left: 20px;
-        list-style: none;
+    /* --- WHAT WE STAND FOR SECTION --- */
+    .stand-for-section {
+        background-color: #f2f8fc;
+        padding: 120px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
     }
-
-    .about-list li {
-        font-size: 1.2rem;
+    .stand-for-container {
+        display: flex;
+        max-width: 1200px;
+        width: 100%;
+        gap: 80px;
+        align-items: center;
+    }
+    .stand-for-image-col {
+        flex: 1;
+        opacity: 0;
+        transform: translateX(-60px);
+        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .stand-for-image-col.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .stand-for-image-col img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        object-fit: cover;
+    }
+    .stand-for-text-col {
+        flex: 1;
+        opacity: 0;
+        transform: translateX(60px);
+        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .stand-for-text-col.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .stand-for-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(50px, 6vw, 80px);
+        color: #351431; 
+        margin-top: 0;
+        margin-bottom: 40px;
+        font-weight: 400;
+        opacity: 0;
+        transform: translateY(-40px);
+        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+    }
+    /* target specifically title visibility inside the text col spreading the animation */
+    .is-visible .stand-for-title {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .stand-for-item {
+        margin-bottom: 35px;
+    }
+    .stand-for-item h3 {
+        font-size: 1.5rem;
+        color: #1a1a1a;
         margin-bottom: 15px;
-        position: relative;
-        font-weight: 400; /* 🌟 EXPLICITLY SET */
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .stand-for-item p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #444444;
+        margin: 0;
+    }
+    .stand-for-item strong {
+        font-weight: 600;
+        color: #1a1a1a;
     }
 
-    /* The new animated arrow bullet point */
-    .about-list li::before {
-        content: ">>>"; 
-        font-family: 'lequire', sans-serif; 
-        position: absolute;
-        left: -40px;
-        font-size: 1.5rem; 
-        font-weight: 400; /* 🌟 CHANGED FROM BOLD */
-        color: #436aee;
-        opacity: 0.4;
-        animation: arrowGlowHorizontal 2s infinite; 
-    }
-
-    /* Horizontal Animation (Right) */
-    @keyframes arrowGlowHorizontal {
-        0%, 100% { opacity: 0.4; transform: translateX(0); color: #436aee; }
-        50% { opacity: 1; transform: translateX(6px); color: #dbbbf6; }
-    }
-
-    /* --- 5. ANIMATIONS --- */
-    .animate-box { animation: slideInUpCustom 1s ease-out forwards; }
-    .animate-image { animation: slideInRightCustom 1s ease-out forwards 0.7s; }
-    .mirror .animate-image { animation: slideInLeftCustom 1s ease-out forwards 0.7s; }
-    .animate-content { opacity: 1 !important; transform: translateY(0) !important; }
-
-    @keyframes slideInUpCustom {from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; }}
-    @keyframes slideInRightCustom {from { transform: translateX(100%); opacity: 0; }to { transform: translateX(-30px); opacity: 1; }}
-    @keyframes slideInLeftCustom {from { transform: translateX(-100%); opacity: 0; }to { transform: translateX(100px); opacity: 1; }}
-
-    /* --- 6. MOBILE OVERRIDES --- */
     @media (max-width: 1024px) {
-        .hero-scroll-indicator { display: none; } /* Hide on Mobile */
+        .stand-for-container {
+            flex-direction: column;
+            gap: 50px;
+        }
+        .stand-for-image-col, .stand-for-text-col {
+            width: 100%;
+        }
+        .stand-for-title {
+            text-align: center;
+        }
+    }
 
-        .sequence-container, .sequence-container.mirror {
-            flex-direction: column !important;
-            height: auto !important;
-            margin: 40px 0 !important;
-            left: 0;
-            transform: none;
+    /* --- READY TO TELL STORY SECTION --- */
+    .ready-section {
+        background-color: #e6dbed;
+        padding: 120px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+    .ready-container {
+        display: flex;
+        max-width: 1200px;
+        width: 100%;
+        gap: 80px;
+        align-items: center;
+    }
+    .ready-text-col {
+        flex: 1;
+        opacity: 0;
+        transform: translateX(-60px);
+        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ready-text-col.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .ready-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(50px, 6vw, 80px);
+        color: #351431; 
+        margin-top: 0;
+        margin-bottom: 30px;
+        font-weight: 400;
+        opacity: 0;
+        transform: translateY(-40px);
+        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+    }
+    .is-visible .ready-title {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .ready-text-col p {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: #333333;
+        margin-bottom: 20px;
+    }
+    .ready-btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 15px 40px;
+        background-color: #351431;
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .ready-btn:hover {
+        background-color: #5a2653;
+        transform: translateY(-3px);
+    }
+    .ready-image-col {
+        flex: 1;
+        opacity: 0;
+        transform: translateX(60px);
+        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .ready-image-col.is-visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .ready-image-col img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        object-fit: cover;
+    }
+
+    .mobile-title {
+        display: none;
+    }
+
+    @media (max-width: 1024px) {
+        .desktop-title {
+            display: none !important;
+        }
+        
+        .mobile-title {
+            display: block !important;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(50px, 8vw, 80px);
+            color: #351431;
+            text-align: center;
+            margin: 0 0 40px 0;
+            line-height: 1.2;
             width: 100%;
         }
 
-        #about-section { margin-top: 80px !important; }
-
-        .visual-stack { width: 100% !important; height: 350px !important; }
-
-        .gradient-square, .sequence-container.mirror .gradient-square {
-            left: 0 !important;
-            right: auto !important;
-            width: 85% !important;
-            height: 350px !important;
-            border-radius: 0 20px 20px 0 !important;
+        .stand-for-container {
+            flex-direction: column;
+            gap: 50px;
         }
-
-        .sliding-image-wrap, .sequence-container.mirror .sliding-image-wrap {
-            left: 20px !important;
-            right: auto !important;
-            height: 350px !important;
-            width: 100% !important;
+        .stand-for-image-col, .stand-for-text-col {
+            width: 100%;
         }
-
-        .design-image { width: 90vw !important; height: 320px !important; object-fit: cover; }
-
-        .mirror .animate-image { animation: slideInRightCustom 1s ease-out forwards 0.7s !important; }
-
-        .sequence-content {
-            width: 100% !important;
-            padding: 30px 20px !important;
-            text-align: center;
-            transform: none;
+        .ready-container {
+            flex-direction: column-reverse;
+            gap: 50px;
         }
-
-        .sequence-title { font-size: 2rem; }
-
-        .about-list  {
-            left: -30px;
+        .ready-image-col, .ready-text-col {
+            width: 100%;
+        }
+        .ready-text-col {
             text-align: left;
-            max-width: 80%;         
-            margin: 0 auto;         
-            padding-left: 30px;
         }
-
-        @keyframes slideInRightCustom {from { transform: translateX(100%); opacity: 0; }to { transform: translateX(0px); opacity: 1; }}
-        @keyframes slideInLeftCustom {from { transform: translateX(-100%); opacity: 0; }to { transform: translateX(40px); opacity: 1; }}
+        .ready-btn {
+            display: table;
+            margin: 30px auto 0 auto;
+        }
     }
-
-    #why-section { margin-bottom: 0 !important; }
 </style>
 
-<div class="sequence-container" id="about-section">
-    <div class="visual-stack">
-        <div class="gradient-square"></div>
-        <div class="sliding-image-wrap">
-            <img src="/assets/about.jpg" alt="About ChasTech" class="design-image">
+<section class="about-hero">
+    <h1 class="about-cursive-label">About Us</h1>
+    <h2 class="about-hero-title">Our Belleville Roots</h2>
+    <div class="about-hero-content">
+        <p>
+            Frustrated by the lack of inclusive, female-led tattoo spaces, our founder set out to build something
+            different right here in Belleville. Feminink started as a dream to create a place free from judgment, where
+            artistry and empathy lead.
+        </p>
+        <p>
+            We wanted to build a studio not just for women, but for anyone who has ever felt hesitant to step into a
+            traditional tattoo parlour. Today, that dream is a thriving reality, built on community, creativity, and a
+            whole lot of heart.
+        </p>
+    </div>
+
+    <div class="hero-scroll-bottom">
+        <div class="hero-arrow-flow">
+            <span>&gt;</span>
+            <span>&gt;</span>
+            <span>&gt;</span>
         </div>
     </div>
-    <div class="sequence-content">
-        <h2 class="sequence-title">ABOUT US</h2>
-        <p class="about-text">
-            ChasTech Inc. creates digital experiences that refuse to blend in. Specializing in custom web development for the local market, we trade cookie-cutter layouts for unique, creative design. We are dedicated to building professional websites that showcase your brand’s true personality.
-        </p>
+</section>
 
-        <div class="hero-scroll-indicator">
-            <span class="scroll-text">Our Process</span>
-            <div class="hero-arrow-flow">
-                <span>&gt;</span>
-                <span>&gt;</span>
-                <span>&gt;</span>
+<section class="stand-for-section">
+    <h2 class="mobile-title">What We Stand For</h2>
+    <div class="stand-for-container">
+        <div class="stand-for-image-col animate-on-scroll">
+            <img src="/assets/inclusive.jpg" alt="Inclusive Body Positivity Space">
+        </div>
+        <div class="stand-for-text-col animate-on-scroll">
+            <h2 class="stand-for-title desktop-title">What We Stand For</h2>
+            
+            <div class="stand-for-item">
+                <h3>Inclusivity & Body Positivity</h3>
+                <p><strong>A Space for Every Body.</strong> We are a body-positive, LGBTQ+ affirming studio. Your identity is honored here, your pronouns are respected, and your story is safe with us.</p>
+            </div>
+
+            <div class="stand-for-item">
+                <h3>Custom Artistry</h3>
+                <p><strong>Art with Intention.</strong> Your tattoo is a collaboration. We listen deeply to your ideas to ensure the final piece is a true reflection of you. Every design is crafted with care, skill, and passion.</p>
+            </div>
+
+            <div class="stand-for-item">
+                <h3>Safety & Comfort</h3>
+                <p><strong>Your Well-being First.</strong> From single-use needles to hospital-grade sterilization and private rooms, we are meticulous about your safety and comfort from the moment you walk in.</p>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="sequence-container mirror" id="process-section">
-    <div class="visual-stack">
-        <div class="gradient-square"></div>
-        <div class="sliding-image-wrap">
-            <img src="/assets/design-work.jpg" alt="Our Process" class="design-image">
+<section class="ready-section">
+    <h2 class="mobile-title">Ready to Tell Your Story?</h2>
+    <div class="ready-container">
+        <div class="ready-text-col animate-on-scroll">
+            <h2 class="ready-title desktop-title">Ready to Tell Your Story?</h2>
+            <p>We'd be honored to be a part of your journey.</p>
+            <p>Explore our artists' portfolios to find your perfect match, or reach out with any questions. We're here to help.</p>
+            <a href="/booking/" class="ready-btn">Request Booking</a>
+        </div>
+        <div class="ready-image-col animate-on-scroll">
+            <img src="/assets/consult.jpg" alt="Consultation at Feminink">
         </div>
     </div>
-    <div class="sequence-content">
-        <h2 class="sequence-title">OUR PROCESS</h2>
-        <p class="about-text">
-            We believe the best websites are built on collaboration, not templates. Our process centers on listening to your unique ideas and transforming them into a custom digital reality. We work alongside you to ensure your vision is reflected in every pixel.
-        </p>
-        <div class="hero-scroll-indicator">
-            <span class="scroll-text">Why ChasTech</span>
-            <div class="hero-arrow-flow">
-                <span>&gt;</span>
-                <span>&gt;</span>
-                <span>&gt;</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="sequence-container" id="why-section">
-    <div class="visual-stack">
-        <div class="gradient-square"></div>
-        <div class="sliding-image-wrap">
-            <img src="/assets/why3.jpg" alt="Why Choose Us" class="design-image">
-        </div>
-    </div>
-    <div class="sequence-content">
-        <h2 class="sequence-title">WHY CHOOSE US?</h2>
-        <ul class="about-list">
-            <li><strong>Custom Designs</strong> – Every site is built from the ground up to reflect your brand identity.</li>
-            <li><strong>Local & Collaborative</strong> – Based in Belleville, we offer a personal, partnership-focused experience.</li>
-            <li><strong>Performance Driven</strong> – Sites built for speed, accessibility, and growth.</li>
-        </ul>
-    </div>
-</div>
+</section>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const sections = document.querySelectorAll('.sequence-container');
-
-        const observerOptions = {
-            threshold: 0.25,
-            rootMargin: "0px 0px -10% 0px"
-        };
-
-        const sequenceObs = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    triggerAnimation(entry.target);
-                    sequenceObs.unobserve(entry.target);
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
-
-        function triggerAnimation(container) {
-            container.querySelector('.gradient-square').classList.add('animate-box');
-            container.querySelector('.sliding-image-wrap').classList.add('animate-image');
-            container.querySelector('.sequence-content').classList.add('animate-content');
-        }
-
-        sections.forEach((section, index) => {
-            if (index === 0) {
-                setTimeout(() => triggerAnimation(section), 400);
-            } else {
-                sequenceObs.observe(section);
-            }
+        }, {
+            threshold: 0.15
         });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
     });
 </script>
