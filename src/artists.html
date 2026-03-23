@@ -1,71 +1,745 @@
 ---
 layout: default.njk
-title: Our Artists
+title: Artist Portfolios
 ---
-<div class="recent-work-container" id="recent-work-trigger" style="margin-top: 100px;">
-    <h1 class="niche-title" style="font-size: 3.5rem;">Meet the Team</h1>
-    <p class="niche-subtitle">The creative minds behind the ink.</p>
 
-    <div class="rw-stack">
-        <div class="rw-card is-visible" style="opacity:1; transform:translateY(0);">
-            <div class="rw-image-box" style="background-image: url('https://images.unsplash.com/photo-1598371839696-5e5bb00d0f11?w=800&q=80');"></div>
-            <div class="rw-content">
-                <h2 class="rw-title">Sarah</h2>
-                <p class="rw-desc">
-                    Specializing in black and grey realism and intricate floral designs, Sarah brings over 10 years of experience to Feminink. Her attention to detail and gentle touch make her a client favorite.
-                </p>
-                <a href="/booking/" class="sequence-btn">Book with Sarah</a>
+<style>
+    .artists-wrapper {
+        width: 100vw;
+        min-height: 100vh;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+    }
+
+    /* --- HERO SECTION --- */
+    .artists-hero {
+        width: 100%;
+        background-color: #e6dbed;
+        padding: 180px 20px 100px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .artists-hero-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(50px, 8vw, 100px);
+        color: #351431;
+        margin: 0 0 20px 0;
+        font-weight: 400;
+        line-height: 1.1;
+        opacity: 0;
+        transform: translateY(-30px);
+        animation: fadeInHero 1s ease-out forwards;
+    }
+
+    .artists-hero-subtitle {
+        font-size: clamp(18px, 2.5vw, 24px);
+        color: #1a1a1a;
+        max-width: 800px;
+        line-height: 1.6;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInHero 1s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeInHero {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* --- PORTFOLIO SECTION --- */
+    .portfolio-section {
+        padding: 100px 20px;
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 120px;
+        box-sizing: border-box;
+    }
+
+    .artist-card {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        width: 100%;
+        opacity: 0;
+        transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+        scroll-margin-top: 100px;
+    }
+
+    .artist-card.odd {
+        flex-direction: row;
+        transform: translateX(-60px);
+    }
+
+    .artist-card.even {
+        flex-direction: row-reverse;
+        transform: translateX(60px);
+    }
+
+    .artist-card.is-visible {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    .artist-image-col {
+        flex: 1;
+        position: relative;
+    }
+
+    .artist-image-wrap {
+        width: 100%;
+        aspect-ratio: 4/5;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .artist-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .artist-card:hover .artist-image-wrap img {
+        transform: scale(1.05);
+    }
+
+    .artist-info-col {
+        flex: 1.2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: #cdb4db;
+        padding: 60px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .artist-card.even .artist-info-col {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .artist-name {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(40px, 5vw, 65px);
+        color: #351431;
+        margin: 0 0 10px 0;
+        font-weight: 400;
+    }
+
+    .artist-role {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #1a1a1a;
+        font-weight: 700;
+        margin-bottom: 25px;
+    }
+
+    .artist-bio {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 35px;
+    }
+
+    .book-artist-btn {
+        display: inline-block;
+        padding: 15px 40px;
+        background-color: #351431;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .book-artist-btn:hover {
+        background-color: #5a2653;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(53, 20, 49, 0.2);
+    }
+
+    /* --- MOBILE STYLES --- */
+    @media (max-width: 1024px) {
+
+        .artist-card,
+        .artist-card.odd,
+        .artist-card.even {
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+        }
+
+        .artist-info-col,
+        .artist-card.even .artist-info-col {
+            align-items: center;
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .artist-image-col {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .artists-hero {
+            padding-top: 150px;
+        }
+    }
+
+    /* --- PORTFOLIO MODAL --- */
+    #portfolio-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(53, 20, 49, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 2000;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .modal-scroll-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 40px 0;
+    }
+
+    .modal-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(205, 180, 219, 0.95);
+        border-radius: 40px;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        overflow: hidden;
+        transform: translateY(-120%);
+        transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        position: relative;
+    }
+
+    #portfolio-modal.active {
+        display: block;
+        opacity: 1;
+    }
+
+    #portfolio-modal.active .modal-container {
+        transform: translateY(0);
+    }
+
+    .modal-close-btn {
+        position: fixed;
+        top: 30px;
+        right: 40px;
+        background: none;
+        color: #351431;
+        border: none;
+        font-size: 44px;
+        font-weight: 300;
+        cursor: pointer;
+        z-index: 2200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0;
+        pointer-events: none;
+        padding: 0;
+        line-height: 1;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    #portfolio-modal.active .modal-close-btn {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .modal-close-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .modal-hero {
+        width: 100%;
+        padding: 100px 60px 60px;
+        display: flex;
+        gap: 80px;
+        align-items: flex-start;
+        box-sizing: border-box;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .modal-hero-left {
+        flex: 1;
+        text-align: left;
+    }
+
+    .modal-hero-right {
+        flex: 1.5;
+        text-align: left;
+    }
+
+    .modal-artist-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: clamp(40px, 6vw, 70px);
+        color: #351431;
+        margin-bottom: 30px;
+    }
+
+    .modal-metadata {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .meta-item {
+        text-align: left;
+    }
+
+    .meta-label {
+        display: block;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        color: #666;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+
+    .meta-value {
+        font-size: 1.1rem;
+        color: #1a1a1a;
+        font-weight: 500;
+    }
+
+    .meta-value a {
+        color: #351431;
+        text-decoration: underline;
+    }
+
+    .modal-bio {
+        max-width: 800px;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .modal-notes {
+        max-width: 800px;
+        background: rgba(255,255,255,0.3);
+        padding: 30px;
+        border-radius: 12px;
+        text-align: left;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #444;
+    }
+
+    .modal-gallery {
+        max-width: 1200px;
+        width: 100%;
+        margin: 80px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .gallery-landscape {
+        width: 100%;
+        margin-bottom: 40px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .gallery-landscape img {
+        width: 100%;
+        display: block;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .gallery-item {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        display: block;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        .modal-container {
+            margin: 10px;
+            border-radius: 20px;
+            transform: translateY(-120%);
+        }
+        .modal-hero {
+            flex-direction: column;
+            gap: 30px;
+            padding: 80px 20px 40px;
+        }
+        .modal-artist-title {
+            font-size: 3rem;
+            line-height: 1.1;
+        }
+        .modal-metadata {
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .modal-bio {
+            font-size: 1rem;
+        }
+        .meta-label {
+            font-size: 0.8rem;
+        }
+        .meta-value {
+            font-size: 1.1rem;
+        }
+        .modal-notes {
+            padding: 20px;
+            font-size: 0.95rem;
+        }
+        .gallery-grid {
+            grid-template-columns: 1fr;
+        }
+        .modal-close-btn {
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            background: rgba(255, 255, 255, 0.9);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: #351431;
+        }
+    }
+</style>
+
+<div class="artists-wrapper">
+    <header class="artists-hero">
+        <h1 class="artists-hero-title">Feminink Tattoos - Artist Portfolios</h1>
+        <p class="artists-hero-subtitle">Explore the collected works of our talented all-female staff of tattoo artists
+        </p>
+    </header>
+
+    <div class="portfolio-section" id="portfolio-trigger">
+        <!-- FAYE -->
+        <article id="faye" class="artist-card odd animate-on-scroll">
+            <div class="artist-image-col">
+                <div class="artist-image-wrap">
+                    <img src="/assets/faye.avif" alt="Faye">
+                </div>
             </div>
-        </div>
-
-        <div class="rw-card is-visible" style="opacity:1; transform:translateY(0);">
-            <div class="rw-image-box" style="background-image: url('https://images.unsplash.com/photo-1558220087-83eb56b0d993?w=800&q=80');"></div>
-            <div class="rw-content">
-                <h2 class="rw-title">Mike</h2>
-                <p class="rw-desc">
-                    Mike is our resident expert in traditional and neo-traditional styles. If you're looking for bold lines, bright colors, and designs that stand the test of time, Mike is your artist.
+            <div class="artist-info-col">
+                <h2 class="artist-name">Faye</h2>
+                <p class="artist-role">Tattoo Artist / Founder</p>
+                <p class="artist-bio">
+                    As the founder of Feminink, Faye specializes in bold, custom designs that blend traditional
+                    techniques with a modern, inclusive aesthetic. Her vision for the studio was to create a safe,
+                    professional, and inspiring environment for both artists and clients alike.
                 </p>
-                <a href="/booking/" class="sequence-btn">Book with Mike</a>
+                <button onclick="openPortfolio('faye')" class="book-artist-btn">View Portfolio</button>
             </div>
-        </div>
+        </article>
 
-        <div class="rw-card is-visible" style="opacity:1; transform:translateY(0);">
-            <div class="rw-image-box" style="background-image: url('https://images.unsplash.com/photo-1542385151-efd9000785a0?w=800&q=80');"></div>
-            <div class="rw-content">
-                <h2 class="rw-title">Elena</h2>
-                <p class="rw-desc">
-                    With a background in fine arts, Elena creates stunning fine line, minimalist, and watercolor tattoos. Her delicate approach is perfect for first-timers and subtle placements.
+        <!-- JAIMIE JOLLY -->
+        <article id="jaimie" class="artist-card even animate-on-scroll">
+            <div class="artist-image-col">
+                <div class="artist-image-wrap">
+                    <img src="/assets/jaimie.avif" alt="Jaimie Jolly">
+                </div>
+            </div>
+            <div class="artist-info-col">
+                <h2 class="artist-name">Jaimie Jolly</h2>
+                <p class="artist-role">Paramedical Tattooist & Permanent Cosmetics Tech</p>
+                <p class="artist-bio">
+                    Jaimie is a specialist in paramedical tattooing and permanent cosmetics, helping clients feel
+                    confident and beautiful through expert restorative techniques. Her precision and dedication to the
+                    craft have made her a leader in aesthetic enhancement.
                 </p>
-                <a href="/booking/" class="sequence-btn">Book with Elena</a>
+                <button onclick="openPortfolio('jaimie')" class="book-artist-btn">View Portfolio</button>
+            </div>
+        </article>
+
+        <!-- ZOE VANCE -->
+        <article id="zoe" class="artist-card odd animate-on-scroll">
+            <div class="artist-image-col">
+                <div class="artist-image-wrap">
+                    <img src="/assets/zoe.avif" alt="Zoe Vance">
+                </div>
+            </div>
+            <div class="artist-info-col">
+                <h2 class="artist-name">Zoe Vance</h2>
+                <p class="artist-role">Junior Artist</p>
+                <p class="artist-bio">
+                    Our talented junior artist, Zoe is passionate about fine-line work and minimalist designs, bringing
+                    a fresh perspective and meticulous detail to every piece. She is dedicated to creating subtle,
+                    meaningful art that resonates with her clients.
+                </p>
+                <button onclick="openPortfolio('zoe')" class="book-artist-btn">View Portfolio</button>
+            </div>
+        </article>
+
+        <!-- SAMANTHA LEILA -->
+        <article id="sam" class="artist-card even animate-on-scroll">
+            <div class="artist-image-col">
+                <div class="artist-image-wrap">
+                    <img src="/assets/sam.avif" alt="Samantha Leila">
+                </div>
+            </div>
+            <div class="artist-info-col">
+                <h2 class="artist-name">Samantha Leila</h2>
+                <p class="artist-role">Tattoo Artist</p>
+                <p class="artist-bio">
+                    Samantha excels in illustrative and neo-traditional styles, creating vibrant, storytelling pieces
+                    that are as unique as her clients. Her use of color and flow ensures that every tattoo is a dynamic
+                    work of art.
+                </p>
+                <button onclick="openPortfolio('sam')" class="book-artist-btn">View Portfolio</button>
+            </div>
+        </article>
+
+        <!-- EMMA SMITH -->
+        <article id="emma" class="artist-card odd animate-on-scroll">
+            <div class="artist-image-col">
+                <div class="artist-image-wrap">
+                    <img src="/assets/emma.avif" alt="Emma Smith">
+                </div>
+            </div>
+            <div class="artist-info-col">
+                <h2 class="artist-name">Emma Smith</h2>
+                <p class="artist-role">Tattoo Artist</p>
+                <p class="artist-bio">
+                    Emma's work focuses on delicate floral and geometric designs, with a mastery of shading and
+                    precision that results in timeless body art. Her approach is calm and focused, perfect for large,
+                    intricate pieces.
+                </p>
+                <button onclick="openPortfolio('emma')" class="book-artist-btn">View Portfolio</button>
+            </div>
+        </article>
+    </div>
+</div>
+
+<!-- PORTFOLIO MODAL -->
+<div id="portfolio-modal">
+    <button class="modal-close-btn" onclick="closePortfolio()">×</button>
+    <div class="modal-scroll-wrapper">
+        <div class="modal-container">
+            <div id="modal-content">
+                <!-- Content Injected via JS -->
             </div>
         </div>
     </div>
 </div>
 
-<style>
-    .recent-work-container { width: 100%; max-width: 1400px; margin: 100px auto; padding: 0 5%; box-sizing: border-box; text-align: center; position: relative; }
-    .rw-stack { display: flex; flex-direction: column; align-items: center; gap: 100px; margin-top: 60px; padding-bottom: 60px; }
-    .rw-card { position: relative; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; width: 100%; max-width: 900px; min-height: 350px; background-color: #ffffff; border-radius: 16px; padding: 50px; box-sizing: border-box; text-align: left; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
-    .rw-image-box { position: absolute; bottom: -40px; right: -40px; width: 46%; height: 56%; border-radius: 12px; background-color: #e5e7eb; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); background-size: cover; background-position: center; background-repeat: no-repeat; z-index: 2; transition: transform 0.4s ease; }
-    .rw-card:hover .rw-image-box { transform: scale(1.03); }
-    .rw-content { position: relative; z-index: 3; width: 60%; display: flex; flex-direction: column; align-items: flex-start; }
-    .rw-title { font-size: 2.2rem; font-weight: 400; color: #1f2937; margin: 0 0 15px 0; }
-    .rw-desc { font-size: 1.1rem; color: #4b5563; line-height: 1.6; font-weight: 400; margin: 0 0 30px 0; }
-    .niche-title { font-size: 4.5rem; color: #191f4f; font-weight: 400; margin-bottom: 10px; }
-    .niche-subtitle { font-size: 1.5rem; color: #666; font-weight: 400; margin-bottom: 60px; }
-    .sequence-btn { display: inline-block; padding: 16px 45px; background: linear-gradient(90deg, #191f4f, #436aee); color: white; text-decoration: none; border-radius: 50px; font-weight: 400; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .sequence-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(67, 106, 238, 0.4); }
-    
-    @media (min-width: 768px) and (max-width: 1024px) {
-        .rw-card { padding: 40px; padding-bottom: 320px; }
-        .rw-content { width: 100%; }
-        .rw-image-box { width: 65%; height: 280px; bottom: -30px; right: 30px; }
+<script>
+    const artistData = {
+        faye: {
+            title: "Faye - Tattoo Artist and Founder",
+            projectType: "Tattoos",
+            link: "https://www.instagram.com/femininktattoos",
+            linkLabel: "Feminink Instagram",
+            location: "Belleville, Ontario, Canada",
+            bio: "Artist and owner Faye has been tattooing for over 15 years and takes pride in providing a comfortable space for you to get tattooed! She loves doing illustrative black and grey or small colour pieces.",
+            specializations: "Illustrative, black and grey, small colour tattoos",
+            bookingNotes: "Faye doesn’t typically offer consultations or take deposits. Drawings are not typically shared in advance, but changes can be made to the design in person.",
+            bookingLink: "https://www.femininktattoos.ca/home/book-appointment"
+        },
+        jaimie: {
+            title: "Jaimie - Permanent Makeup Belleville",
+            projectType: "Cosmetic Ink",
+            links: [
+                { url: "#", label: "Jaimie's Instagram" },
+                { url: "#", label: "Jaimie's Website" }
+            ],
+            bio: "Enhance your natural beauty with Jaimie Jolly’s expert permanent makeup. View stunning before & after results for eyebrows, eyeliner, and lip blush. Achieve flawless, long-lasting looks in Belleville—browse the gallery for inspiration and book your transformation today!",
+            specializations: "Eyebrows, Eyeliner, Lip Blush",
+            bookingLink: "/booking/"
+        },
+        zoe: {
+            title: "Zoe - Tattoo Artist Belleville",
+            projectType: "Tattoos",
+            location: "Belleville, Ontario, Canada",
+            bio: "Zoe began her professional journey in 2021 with a co-op placement as a tattoo artist at Feminink in Belleville, and made a lasting impression. A few years later, she began her apprenticeship with us and we couldn't be happier.",
+            extraBio: "Zoe has a cheery demeanor and excellent bedside manner. Her favourite style is trad, but is evolving into something uniquely her own. For bold Blackwood and cute colour pieces, Zoe is your girl!",
+            specializations: "Traditional, Bold Blackwood, Cute Colour Pieces",
+            bookingLink: "/booking/"
+        },
+        sam: {
+            title: "Sam - Tattoo Artist Belleville",
+            projectType: "Tattoos",
+            link: "#",
+            linkLabel: "Sam's Instagram",
+            bio: "Sam has been tattooing since 2021 and is personable and easy to get along with. She does beautiful black and grey illustrative designs and enjoys anime, manga, and traditional styles.",
+            specializations: "Fine line, black and grey illustrative, anime, manga, traditional",
+            bookingNotes: "Contact Sam via Instagram or email for appointments. A deposit is required to book. Cancellation with less than 24 hours notice may result in forfeiture of deposit.",
+            bookingLink: "https://www.femininktattoos.ca/home/book-appointment"
+        },
+        emma: {
+            title: "Em - Tattoo Artist Belleville",
+            projectType: "Tattoos",
+            link: "#",
+            linkLabel: "Emma's Instagram",
+            bio: "Emma has been tattooing since 2019 and has a very comforting presence with excellent bedside manner. She excels in black and grey floral and illustrative compositions and enjoys American traditional and anime styles. Emma loves to make genuine connections with her clients.",
+            specializations: "Fine line, black and grey floral, illustrative, American traditional, anime",
+            bookingNotes: "Contact Emma via email or Instagram for appointments. Deposits are required. Cancellation with less than 24 hours notice may result in forfeiture of your deposit.",
+            bookingLink: "https://www.thefemininktattoos.ca/book-appointment"
+        }
+    };
+
+    function openPortfolio(artistKey) {
+        const data = artistData[artistKey];
+        if (!data) return;
+
+        const modal = document.getElementById('portfolio-modal');
+        const content = document.getElementById('modal-content');
+
+        let linksHtml = '';
+        if (data.links) {
+            linksHtml = data.links.map(l => `<a href="${l.url}">${l.label}</a>`).join(' | ');
+        } else if (data.link) {
+            linksHtml = `<a href="${data.link}">${data.linkLabel}</a>`;
+        }
+
+        content.innerHTML = `
+            <section class="modal-hero">
+                <div class="modal-hero-left">
+                    <h1 class="modal-artist-title">${data.title}</h1>
+                    <div class="modal-metadata">
+                        <div class="meta-item">
+                            <span class="meta-label">Project Type</span>
+                            <span class="meta-value">${data.projectType}</span>
+                        </div>
+                        ${linksHtml ? `
+                        <div class="meta-item">
+                            <span class="meta-label">Links</span>
+                            <span class="meta-value">${linksHtml}</span>
+                        </div>` : ''}
+                        ${data.location ? `
+                        <div class="meta-item">
+                            <span class="meta-label">Location</span>
+                            <span class="meta-value">${data.location}</span>
+                        </div>` : ''}
+                    </div>
+                </div>
+                <div class="modal-hero-right">
+                    <div class="modal-bio">
+                        <p>${data.bio}</p>
+                        ${data.extraBio ? `<p>${data.extraBio}</p>` : ''}
+                    </div>
+                    <div class="modal-notes">
+                        <strong>Specializations:</strong> ${data.specializations}<br><br>
+                        ${data.bookingNotes ? `<strong>Booking Notes:</strong> ${data.bookingNotes}<br><br>` : ''}
+                        <strong>Book an appointment here:</strong> <a href="${data.bookingLink}" target="_blank">${data.bookingLink}</a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="modal-gallery">
+                <div class="gallery-landscape">
+                    <img src="/assets/${artistKey}1.png" alt="Featured Work">
+                </div>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="/assets/${artistKey}2.png" alt="Portfolio 2"></div>
+                    <div class="gallery-item"><img src="/assets/${artistKey}3.png" alt="Portfolio 3"></div>
+                    <div class="gallery-item"><img src="/assets/${artistKey}4.png" alt="Portfolio 4"></div>
+                    <div class="gallery-item"><img src="/assets/${artistKey}5.png" alt="Portfolio 5"></div>
+                    <div class="gallery-item"><img src="/assets/${artistKey}6.png" alt="Portfolio 6"></div>
+                    <div class="gallery-item"><img src="/assets/${artistKey}7.png" alt="Portfolio 7"></div>
+                </div>
+            </div>
+        `;
+
+        modal.style.display = 'block';
+        
+        // Reset scroll position after display is set to block
+        const scrollWrapper = modal.querySelector('.modal-scroll-wrapper');
+        if (scrollWrapper) {
+            scrollWrapper.scrollTop = 0;
+            // Backup for some browsers
+            setTimeout(() => { scrollWrapper.scrollTop = 0; }, 0);
+        }
+
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+        document.body.style.overflow = 'hidden';
     }
-    @media (max-width: 767px) {
-        .rw-card { padding: 30px; padding-bottom: 220px; }
-        .rw-content { width: 100%; }
-        .rw-image-box { width: 85%; height: 156px; bottom: -20px; right: 20px; }
-        .niche-title { font-size: 3rem; }
+
+    function closePortfolio() {
+        const modal = document.getElementById('portfolio-modal');
+        modal.classList.remove('active');
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            // Also reset on close to be 100% sure for next open
+            const scrollWrapper = modal.querySelector('.modal-scroll-wrapper');
+            if (scrollWrapper) scrollWrapper.scrollTop = 0;
+        }, 700); 
+        document.body.style.overflow = '';
     }
-    *, h1, h2, h3, p { font-weight: 400; }
-</style>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        const cards = document.querySelectorAll('.animate-on-scroll');
+        cards.forEach(el => observer.observe(el));
+
+        // Check for hash on load to show target artist immediately
+        const hash = window.location.hash;
+        if (hash) {
+            const target = document.querySelector(hash);
+            if (target && target.classList.contains('animate-on-scroll')) {
+                target.classList.add('is-visible');
+            }
+        }
+    });
+</script>

@@ -112,10 +112,13 @@ title: About
     }
 
     @keyframes arrowGlowVertical {
-        0%, 100% {
+
+        0%,
+        100% {
             opacity: 0.2;
             transform: rotate(90deg) translateY(0);
         }
+
         50% {
             opacity: 1;
             transform: rotate(90deg) translateY(8px);
@@ -133,6 +136,7 @@ title: About
         align-items: center;
         overflow: hidden;
     }
+
     .stand-for-container {
         display: flex;
         max-width: 1200px;
@@ -140,36 +144,42 @@ title: About
         gap: 80px;
         align-items: center;
     }
+
     .stand-for-image-col {
         flex: 1;
         opacity: 0;
         transform: translateX(-60px);
         transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
+
     .stand-for-image-col.is-visible {
         opacity: 1;
         transform: translateX(0);
     }
+
     .stand-for-image-col img {
         width: 100%;
         border-radius: 12px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         object-fit: cover;
     }
+
     .stand-for-text-col {
         flex: 1;
         opacity: 0;
         transform: translateX(60px);
         transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
+
     .stand-for-text-col.is-visible {
         opacity: 1;
         transform: translateX(0);
     }
+
     .stand-for-title {
         font-family: 'Great Vibes', cursive;
         font-size: clamp(50px, 6vw, 80px);
-        color: #351431; 
+        color: #351431;
         margin-top: 0;
         margin-bottom: 40px;
         font-weight: 400;
@@ -177,14 +187,17 @@ title: About
         transform: translateY(-40px);
         transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
     }
+
     /* target specifically title visibility inside the text col spreading the animation */
     .is-visible .stand-for-title {
         opacity: 1;
         transform: translateY(0);
     }
+
     .stand-for-item {
         margin-bottom: 35px;
     }
+
     .stand-for-item h3 {
         font-size: 1.5rem;
         color: #1a1a1a;
@@ -192,12 +205,14 @@ title: About
         text-transform: uppercase;
         letter-spacing: 2px;
     }
+
     .stand-for-item p {
         font-size: 1.15rem;
         line-height: 1.8;
         color: #444444;
         margin: 0;
     }
+
     .stand-for-item strong {
         font-weight: 600;
         color: #1a1a1a;
@@ -208,9 +223,12 @@ title: About
             flex-direction: column;
             gap: 50px;
         }
-        .stand-for-image-col, .stand-for-text-col {
+
+        .stand-for-image-col,
+        .stand-for-text-col {
             width: 100%;
         }
+
         .stand-for-title {
             text-align: center;
         }
@@ -226,6 +244,7 @@ title: About
         align-items: center;
         overflow: hidden;
     }
+
     .ready-container {
         display: flex;
         max-width: 1200px;
@@ -233,20 +252,23 @@ title: About
         gap: 80px;
         align-items: center;
     }
+
     .ready-text-col {
         flex: 1;
         opacity: 0;
         transform: translateX(-60px);
         transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
+
     .ready-text-col.is-visible {
         opacity: 1;
         transform: translateX(0);
     }
+
     .ready-title {
         font-family: 'Great Vibes', cursive;
         font-size: clamp(50px, 6vw, 80px);
-        color: #351431; 
+        color: #351431;
         margin-top: 0;
         margin-bottom: 30px;
         font-weight: 400;
@@ -254,16 +276,19 @@ title: About
         transform: translateY(-40px);
         transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
     }
+
     .is-visible .ready-title {
         opacity: 1;
         transform: translateY(0);
     }
+
     .ready-text-col p {
         font-size: 1.25rem;
         line-height: 1.8;
         color: #333333;
         margin-bottom: 20px;
     }
+
     .ready-btn {
         display: inline-block;
         margin-top: 20px;
@@ -278,24 +303,28 @@ title: About
         border-radius: 4px;
         transition: background-color 0.3s ease, transform 0.3s ease;
     }
+
     .ready-btn:hover {
         background-color: #5a2653;
         transform: translateY(-3px);
     }
+
     .ready-image-col {
         flex: 1;
         opacity: 0;
         transform: translateX(60px);
         transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
+
     .ready-image-col.is-visible {
         opacity: 1;
         transform: translateX(0);
     }
+
     .ready-image-col img {
         width: 100%;
         border-radius: 12px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         object-fit: cover;
     }
 
@@ -307,7 +336,7 @@ title: About
         .desktop-title {
             display: none !important;
         }
-        
+
         .mobile-title {
             display: block !important;
             font-family: 'Great Vibes', cursive;
@@ -323,19 +352,26 @@ title: About
             flex-direction: column;
             gap: 50px;
         }
-        .stand-for-image-col, .stand-for-text-col {
+
+        .stand-for-image-col,
+        .stand-for-text-col {
             width: 100%;
         }
+
         .ready-container {
             flex-direction: column-reverse;
             gap: 50px;
         }
-        .ready-image-col, .ready-text-col {
+
+        .ready-image-col,
+        .ready-text-col {
             width: 100%;
         }
+
         .ready-text-col {
             text-align: left;
         }
+
         .ready-btn {
             display: table;
             margin: 30px auto 0 auto;
@@ -376,20 +412,24 @@ title: About
         </div>
         <div class="stand-for-text-col animate-on-scroll">
             <h2 class="stand-for-title desktop-title">What We Stand For</h2>
-            
+
             <div class="stand-for-item">
                 <h3>Inclusivity & Body Positivity</h3>
-                <p><strong>A Space for Every Body.</strong> We are a body-positive, LGBTQ+ affirming studio. Your identity is honored here, your pronouns are respected, and your story is safe with us.</p>
+                <p><strong>A Space for Every Body.</strong> We are a body-positive, LGBTQ+ affirming studio. Your
+                    identity is honored here, your pronouns are respected, and your story is safe with us.</p>
             </div>
 
             <div class="stand-for-item">
                 <h3>Custom Artistry</h3>
-                <p><strong>Art with Intention.</strong> Your tattoo is a collaboration. We listen deeply to your ideas to ensure the final piece is a true reflection of you. Every design is crafted with care, skill, and passion.</p>
+                <p><strong>Art with Intention.</strong> Your tattoo is a collaboration. We listen deeply to your ideas
+                    to ensure the final piece is a true reflection of you. Every design is crafted with care, skill, and
+                    passion.</p>
             </div>
 
             <div class="stand-for-item">
                 <h3>Safety & Comfort</h3>
-                <p><strong>Your Well-being First.</strong> From single-use needles to hospital-grade sterilization and private rooms, we are meticulous about your safety and comfort from the moment you walk in.</p>
+                <p><strong>Your Well-being First.</strong> From single-use needles to hospital-grade sterilization and
+                    private rooms, we are meticulous about your safety and comfort from the moment you walk in.</p>
             </div>
         </div>
     </div>
@@ -401,7 +441,8 @@ title: About
         <div class="ready-text-col animate-on-scroll">
             <h2 class="ready-title desktop-title">Ready to Tell Your Story?</h2>
             <p>We'd be honored to be a part of your journey.</p>
-            <p>Explore our artists' portfolios to find your perfect match, or reach out with any questions. We're here to help.</p>
+            <p>Explore our artists' portfolios to find your perfect match, or reach out with any questions. We're here
+                to help.</p>
             <a href="/booking/" class="ready-btn">Request Booking</a>
         </div>
         <div class="ready-image-col animate-on-scroll">
