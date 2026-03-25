@@ -1,455 +1,281 @@
 ---
-layout: default.njk
-title: About
+layout: default
+title: About Us
 ---
 
 <style>
-    .about-hero {
-        width: 100vw;
-        min-height: 80vh;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #351431;
-        color: #ffffff;
+    .about-page-section {
+        background-color: #eff0e4;
+        min-height: 100vh;
+        width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        padding: 120px 20px 80px;
+        padding: 120px 20px 100px;
         box-sizing: border-box;
+        color: #2f2b27;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .about-container {
+        max-width: 900px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .about-main-title {
+        font-family: 'Satisfy', cursive;
+        font-size: clamp(3rem, 8vw, 5rem);
+        margin-bottom: 20px;
+        color: #2f2b27;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: fadeInDown 1.2s ease forwards 0.5s;
+    }
+
+    .section-title {
+        font-family: 'Satisfy', cursive;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin-top: 40px;
+        margin-bottom: 30px;
+        color: #1a1a1a;
         text-align: center;
     }
 
-    .about-cursive-label {
-        font-family: 'Great Vibes', cursive;
-        font-size: clamp(60px, 8vw, 100px);
-        color: #cdb4db;
-        margin: 0 0 20px 0;
-        font-weight: 400;
-        animation: fadeInDown 1s ease-out forwards;
-    }
-
-    .about-hero-title {
-        font-family: inherit;
-        font-size: clamp(32px, 4vw, 55px);
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        margin: 0 0 50px 0;
-        color: #ffffff;
-        animation: fadeInUp 1s ease-out 0.3s forwards;
-        opacity: 0;
-    }
-
-    .about-hero-content {
-        max-width: 800px;
-        font-size: 1.2rem;
+    .story-content {
         line-height: 1.8;
-        color: #cccccc;
-        animation: fadeInUp 1s ease-out 0.6s forwards;
+        font-size: 1.15rem;
         opacity: 0;
+        animation: simpleFadeIn 1s ease forwards 1s;
     }
 
-    .about-hero-content p {
-        margin-bottom: 30px;
+    .story-content p {
+        margin-bottom: 25px;
+    }
+
+    .image-block {
+        width: 100%;
+        border-radius: 40px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        margin: 40px 0;
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .image-block.is-visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .image-block img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .quote-box {
+        background: rgba(159, 168, 156, 0.1);
+        border-left: 6px solid #9fa89c;
+        padding: 40px;
+        margin: 60px 0;
+        border-radius: 0 30px 30px 0;
+        font-style: italic;
+        font-size: 1.3rem;
+        line-height: 1.6;
+        color: #1a1a1a;
+    }
+
+    .story-split {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        margin: 60px 0;
+        flex-wrap: wrap;
+    }
+
+    .story-split-text {
+        flex: 1;
+        min-width: 350px;
+    }
+
+    .story-split-image {
+        flex: 1;
+        min-width: 350px;
+        border-radius: 40px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    .story-split-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .keystone-wrap {
+        text-align: center;
+        padding: 80px 40px;
+        background-color: #9fa89c;
+        color: #ffffff;
+        border-radius: 40px;
+        margin: 80px 0;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .keystone-wrap p {
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin: 0;
+        font-style: italic;
     }
 
     @keyframes fadeInDown {
-        0% {
-            opacity: 0;
-            transform: translateY(-30px);
-        }
-
-        100% {
+        to {
             opacity: 1;
             transform: translateY(0);
         }
     }
 
-    @keyframes fadeInUp {
-        0% {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        100% {
+    @keyframes simpleFadeIn {
+        to {
             opacity: 1;
-            transform: translateY(0);
         }
     }
 
-    /* --- HERO SCROLL ARROWS --- */
-    .hero-scroll-bottom {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .anim-scroll {
         opacity: 0;
-        animation: fadeInUp 1s ease forwards 1.2s;
+        transform: translateY(30px);
+        transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    .hero-arrow-flow span {
-        font-size: 1.8rem;
-        color: #cdb4db;
-        opacity: 0.2;
-        display: block;
-        line-height: 0.5;
-        transform: rotate(90deg);
-        animation: arrowGlowVertical 1.5s infinite;
-    }
-
-    .hero-arrow-flow span:nth-child(2) {
-        animation-delay: 0.2s;
-    }
-
-    .hero-arrow-flow span:nth-child(3) {
-        animation-delay: 0.4s;
-    }
-
-    @keyframes arrowGlowVertical {
-
-        0%,
-        100% {
-            opacity: 0.2;
-            transform: rotate(90deg) translateY(0);
-        }
-
-        50% {
-            opacity: 1;
-            transform: rotate(90deg) translateY(8px);
-            color: #ffffff;
-        }
-    }
-
-    /* --- WHAT WE STAND FOR SECTION --- */
-    .stand-for-section {
-        background-color: #f2f8fc;
-        padding: 120px 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .stand-for-container {
-        display: flex;
-        max-width: 1200px;
-        width: 100%;
-        gap: 80px;
-        align-items: center;
-    }
-
-    .stand-for-image-col {
-        flex: 1;
-        opacity: 0;
-        transform: translateX(-60px);
-        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .stand-for-image-col.is-visible {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .stand-for-image-col img {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        object-fit: cover;
-    }
-
-    .stand-for-text-col {
-        flex: 1;
-        opacity: 0;
-        transform: translateX(60px);
-        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .stand-for-text-col.is-visible {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .stand-for-title {
-        font-family: 'Great Vibes', cursive;
-        font-size: clamp(50px, 6vw, 80px);
-        color: #351431;
-        margin-top: 0;
-        margin-bottom: 40px;
-        font-weight: 400;
-        opacity: 0;
-        transform: translateY(-40px);
-        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
-    }
-
-    /* target specifically title visibility inside the text col spreading the animation */
-    .is-visible .stand-for-title {
+    .anim-scroll.is-visible {
         opacity: 1;
         transform: translateY(0);
     }
 
-    .stand-for-item {
-        margin-bottom: 35px;
+    /* Override body/main constraints */
+    body {
+        align-items: stretch !important;
+        justify-content: flex-start !important;
     }
 
-    .stand-for-item h3 {
-        font-size: 1.5rem;
-        color: #1a1a1a;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
+    main {
+        width: 100% !important;
     }
 
-    .stand-for-item p {
-        font-size: 1.15rem;
-        line-height: 1.8;
-        color: #444444;
-        margin: 0;
-    }
-
-    .stand-for-item strong {
-        font-weight: 600;
-        color: #1a1a1a;
-    }
-
-    @media (max-width: 1024px) {
-        .stand-for-container {
-            flex-direction: column;
-            gap: 50px;
+    @media (max-width: 768px) {
+        .about-page-section {
+            padding-top: 100px;
         }
 
-        .stand-for-image-col,
-        .stand-for-text-col {
-            width: 100%;
+        .quote-box {
+            padding: 25px;
+            font-size: 1.1rem;
         }
 
-        .stand-for-title {
-            text-align: center;
-        }
-    }
-
-    /* --- READY TO TELL STORY SECTION --- */
-    .ready-section {
-        background-color: #e6dbed;
-        padding: 120px 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    .ready-container {
-        display: flex;
-        max-width: 1200px;
-        width: 100%;
-        gap: 80px;
-        align-items: center;
-    }
-
-    .ready-text-col {
-        flex: 1;
-        opacity: 0;
-        transform: translateX(-60px);
-        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .ready-text-col.is-visible {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .ready-title {
-        font-family: 'Great Vibes', cursive;
-        font-size: clamp(50px, 6vw, 80px);
-        color: #351431;
-        margin-top: 0;
-        margin-bottom: 30px;
-        font-weight: 400;
-        opacity: 0;
-        transform: translateY(-40px);
-        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s, transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
-    }
-
-    .is-visible .ready-title {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .ready-text-col p {
-        font-size: 1.25rem;
-        line-height: 1.8;
-        color: #333333;
-        margin-bottom: 20px;
-    }
-
-    .ready-btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 15px 40px;
-        background-color: #351431;
-        color: #ffffff;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-decoration: none;
-        border-radius: 4px;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .ready-btn:hover {
-        background-color: #5a2653;
-        transform: translateY(-3px);
-    }
-
-    .ready-image-col {
-        flex: 1;
-        opacity: 0;
-        transform: translateX(60px);
-        transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .ready-image-col.is-visible {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .ready-image-col img {
-        width: 100%;
-        border-radius: 12px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        object-fit: cover;
-    }
-
-    .mobile-title {
-        display: none;
-    }
-
-    @media (max-width: 1024px) {
-        .desktop-title {
-            display: none !important;
-        }
-
-        .mobile-title {
-            display: block !important;
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(50px, 8vw, 80px);
-            color: #351431;
-            text-align: center;
-            margin: 0 0 40px 0;
-            line-height: 1.2;
-            width: 100%;
-        }
-
-        .stand-for-container {
-            flex-direction: column;
-            gap: 50px;
-        }
-
-        .stand-for-image-col,
-        .stand-for-text-col {
-            width: 100%;
-        }
-
-        .ready-container {
-            flex-direction: column-reverse;
-            gap: 50px;
-        }
-
-        .ready-image-col,
-        .ready-text-col {
-            width: 100%;
-        }
-
-        .ready-text-col {
-            text-align: left;
-        }
-
-        .ready-btn {
-            display: table;
-            margin: 30px auto 0 auto;
+        .keystone-wrap p {
+            font-size: 1.2rem;
         }
     }
 </style>
 
-<section class="about-hero">
-    <h1 class="about-cursive-label">About Us</h1>
-    <h2 class="about-hero-title">Our Belleville Roots</h2>
-    <div class="about-hero-content">
-        <p>
-            Frustrated by the lack of inclusive, female-led tattoo spaces, our founder set out to build something
-            different right here in Belleville. Feminink started as a dream to create a place free from judgment, where
-            artistry and empathy lead.
-        </p>
-        <p>
-            We wanted to build a studio not just for women, but for anyone who has ever felt hesitant to step into a
-            traditional tattoo parlour. Today, that dream is a thriving reality, built on community, creativity, and a
-            whole lot of heart.
-        </p>
-    </div>
+<div class="about-page-section">
+    <div class="about-container">
+        <h1 class="about-main-title">Discovery of the Shiloh Breed</h1>
 
-    <div class="hero-scroll-bottom">
-        <div class="hero-arrow-flow">
-            <span>&gt;</span>
-            <span>&gt;</span>
-            <span>&gt;</span>
-        </div>
-    </div>
-</section>
+        <div class="story-content">
+            <p class="anim-scroll">
+                Growing up I was lucky enough to have owned a distant descendent of Tina Barber's famous dogs, long
+                before I had ever heard of the original "Shiloh Shepherd" name. This dog was named Titan, a 130 pound,
+                farm-born King Shepherd/Border Collie cross from Cambridge Ontario. He was a true angel, especially with
+                all the children in my mother's daycare. Instinctually he always kept a watchful eye on young children.
+                Often carefully placing himself in between the child and any potential threat, gently guiding them past.
+                A truly special quality you just can't train.
+            </p>
 
-<section class="stand-for-section">
-    <h2 class="mobile-title">What We Stand For</h2>
-    <div class="stand-for-container">
-        <div class="stand-for-image-col animate-on-scroll">
-            <img src="/assets/inclusive.jpg" alt="Inclusive Body Positivity Space">
-        </div>
-        <div class="stand-for-text-col animate-on-scroll">
-            <h2 class="stand-for-title desktop-title">What We Stand For</h2>
-
-            <div class="stand-for-item">
-                <h3>Inclusivity & Body Positivity</h3>
-                <p><strong>A Space for Every Body.</strong> We are a body-positive, LGBTQ+ affirming studio. Your
-                    identity is honored here, your pronouns are respected, and your story is safe with us.</p>
+            <div class="image-block anim-scroll">
+                <img src="/assets/titan.avif" alt="Titan">
             </div>
 
-            <div class="stand-for-item">
-                <h3>Custom Artistry</h3>
-                <p><strong>Art with Intention.</strong> Your tattoo is a collaboration. We listen deeply to your ideas
-                    to ensure the final piece is a true reflection of you. Every design is crafted with care, skill, and
-                    passion.</p>
+            <p class="anim-scroll">
+                Many years after I graduated from college, the fond memories of Titan are what started me on the long
+                journey to where I am today. I manage to stumble upon the opportunity to adopt a large mellow "King
+                shepherd mix" in the quaint town of Gibsons BC (Many may know this town as the home of Molly's reach
+                from the "Beachcombers" having aired from 1972 till 1990). Having many of the same qualities I
+                remembered my beloved Titan, I decided to DNA test him through Embark and oh was I in for a surprise!!!
+                He came back as a mix of 4 breeds: Shiloh Shepherd, Saint Bernard, Great Pyrenees, and German shepherd.
+                So after many hours of researching each of the four breeds, I came to the exciting conclusion that those
+                amazing family-oriented qualities and that distinct mellow, and intelligent temperament I loved about my
+                previous dog were rooted in their Shiloh Shepherd ancestry. So what did I do? I started researching
+                reputable Shiloh Shepherd breeders, and got on a waiting list for an ISSA puppy, from Guardian Kennels!
+                And I have to say I feel blessed to have found everything I was dreaming of in my girl Mixal! Plus
+                countless other great qualities that I didn't even know I was missing out on!
+            </p>
+
+            <h2 class="section-title anim-scroll">How did I decide I wanted to work and breed dogs?</h2>
+
+            <p class="anim-scroll">
+                Compared to most other dog breeders my journey into the canine world originated from very peculiar
+                roots! I started out getting a college degree as a Fish & Wildlife Technician, at Fleming College in
+                Lindsay Ontario. I knew that I loved working with animals, and as a child in kindergarten, my answer to
+                the famous question of "What do you want to be when you grow up?" was always met with an enthusiastic
+                answer of "A BIOLOGIST!" After working in the nature center at Presquile Provincial Park, caring for the
+                captive animals, I was convinced my childhood fantasy was the right path inspiring me to get my degree
+                as a Fish & Wildlife technician.
+            </p>
+
+            <div class="quote-box anim-scroll">
+                I worked for the Lower Tent Conservation authority helping to manage the spread of invasive species
+                while helping monitor Benthic health in local creeks and streams. While working in the environmental
+                sector I was lucky enough to meet a wonderful working dog, trained to find endangered turtles in
+                wetlands. It was always amazing to watch him tirelessly work, carefully bring us each turtle to be
+                measured and tagged! He was so effective at finding these endangered turtles in areas that field
+                technicians had previously failed.
             </div>
 
-            <div class="stand-for-item">
-                <h3>Safety & Comfort</h3>
-                <p><strong>Your Well-being First.</strong> From single-use needles to hospital-grade sterilization and
-                    private rooms, we are meticulous about your safety and comfort from the moment you walk in.</p>
+            <div class="story-split anim-scroll">
+                <div class="story-split-text">
+                    <p>
+                        We were able to collect enough data to protect an even larger conservation area to help with the
+                        habitat restoration and long term species management plans. Working with a dog had made a world
+                        of difference! It was a few more years before the idea of becoming a breeder would ever pop into
+                        my mind though! And it was my experience working on a fish farm that brought it to light. On the
+                        farm, they had a very successful captive-bred population of endangered white sturgeon. These are
+                        MASSIVE prehistoric species weighing up to 500 pounds in captivity and over 1000 in the wild!
+                    </p>
+                </div>
+                <div class="story-split-image">
+                    <img src="/assets/dog-dance.avif" alt="Dog Dance">
+                </div>
             </div>
-        </div>
-    </div>
-</section>
 
-<section class="ready-section">
-    <h2 class="mobile-title">Ready to Tell Your Story?</h2>
-    <div class="ready-container">
-        <div class="ready-text-col animate-on-scroll">
-            <h2 class="ready-title desktop-title">Ready to Tell Your Story?</h2>
-            <p>We'd be honored to be a part of your journey.</p>
-            <p>Explore our artists' portfolios to find your perfect match, or reach out with any questions. We're here
-                to help.</p>
-            <a href="/booking/" class="ready-btn">Request Booking</a>
-        </div>
-        <div class="ready-image-col animate-on-scroll">
-            <img src="/assets/consult.jpg" alt="Consultation at Feminink">
+            <div class="story-content anim-scroll">
+                <p>
+                    I found the Biodiversity program amazing, pit tagging every single breeding fish on-site (upwards of
+                    30,000+ between the white Sturgeon and Coho on-site), while tanking a unique DNA test sample from a
+                    simple fin clip. The data gained from DNA testing was then used to maximize biodiversity and prevent
+                    hereditary mutations by developing new tests to screen for illnesses such as malformed caudle fins.
+                    So when I relocated in 2017 after purchasing my first home, an exciting new prospect occurred to me.
+                    It was possible to blend my love of science, and endangered species management, with my fondness of
+                    animals, care and husbandry. With love and passion, I already had for my own dogs!
+                </p>
+            </div>
+
+            <div class="keystone-wrap anim-scroll">
+                <p>
+                    "Like a Keystone falling into place, interconnecting multiple aspects of my life."
+                </p>
+            </div>
+
+
         </div>
     </div>
-</section>
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -457,13 +283,10 @@ title: About
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.15
-        });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        document.querySelectorAll('.anim-scroll').forEach(el => observer.observe(el));
     });
 </script>

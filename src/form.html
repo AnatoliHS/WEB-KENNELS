@@ -1,0 +1,834 @@
+---
+layout: default.njk
+title: Puppy Application Form
+---
+
+<style>
+    :root {
+        --accent-gold: #9fa89c;
+        --text-dark: #1a1a1a;
+        --bg-cream: #eff0e4;
+        --glass-bg: rgba(255, 255, 255, 0.85);
+    }
+
+    body {
+        background-color: #eff0e4;
+        color: var(--text-dark);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+    }
+
+    .form-container {
+        max-width: 900px;
+        margin: 120px auto 100px;
+        padding: 60px 40px;
+        background: #ffffff;
+        border-radius: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 1;
+    }
+
+    .form-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .form-header h1 {
+        font-family: 'Satisfy', cursive;
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        margin: 0;
+        color: var(--text-dark);
+    }
+
+    .form-header p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-top: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .form-intro {
+        margin-bottom: 60px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .form-intro p {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        color: #444;
+    }
+
+    .form-section {
+        margin-bottom: 60px;
+        padding-bottom: 60px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .form-section:last-of-type {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .section-title {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: var(--accent-gold);
+    }
+
+    .input-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .full-width {
+        grid-column: span 2;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: #333;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="email"],
+    .form-group select,
+    .form-group textarea {
+        padding: 15px 20px;
+        border: 2px solid rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.5);
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent-gold);
+        background: #ffffff;
+        box-shadow: 0 5px 15px rgba(159, 168, 156, 0.1);
+    }
+
+    /* Steps / Multi-step logic styling - REMOVED */
+
+    .submit-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 2px solid var(--accent-gold);
+    }
+
+    .btn {
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+    }
+
+    .btn-next {
+        background: var(--text-dark);
+        color: #fff;
+    }
+
+    .btn-next:hover {
+        background: var(--accent-gold);
+        transform: translateY(-2px);
+    }
+
+    .btn-prev {
+        background: transparent;
+        color: #666;
+        border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-prev:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* --- SELECTION CARDS --- */
+    .selection-group {
+        margin-bottom: 40px;
+    }
+
+    .selection-group>label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        color: var(--text-dark);
+    }
+
+    .card-selector {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .checkbox-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+
+    .selection-card {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .selection-card input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .card-content {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.4);
+        border: 2px solid rgba(0, 0, 0, 0.05);
+        border-radius: 15px;
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .selection-card.small .card-content {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .selection-card input:checked+.card-content {
+        background: #eff0e4;
+        border-color: var(--accent-gold);
+        color: var(--text-dark);
+        box-shadow: 0 10px 20px rgba(159, 168, 156, 0.2);
+        transform: translateY(-3px);
+    }
+
+    .selection-card:hover .card-content {
+        border-color: rgba(159, 168, 156, 0.5);
+    }
+
+    @media (max-width: 768px) {
+        .form-container {
+            margin: 80px 15px 60px;
+            padding: 40px 20px;
+        }
+
+        .input-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .full-width {
+            grid-column: span 1;
+        }
+    }
+</style>
+
+<div class="form-container">
+    <div class="form-header">
+        <h1>Wilderness Kennels</h1>
+        <p>Puppy Pre-Adoption Application</p>
+    </div>
+
+    <div class="form-intro">
+        <p>
+            Please answer the following questions with care as this information is used later on to help identify the
+            best fit puppy for you and your unique lifestyle. There is an amazing matching process that cross
+            compares your pre-adoption application and the results of the pups Litter Evaluation Results (LER) to
+            help identify the puppy who best meet your specific needs and wants.
+        </p>
+        <p>
+            Filling out an application is a critical first step in the process. Deposits are only accepted AFTER pups
+            are born.
+            Standard puppy price is <strong>$3500 USD</strong>.
+        </p>
+        <p style="margin-top: 30px; text-align: center;">
+            <a href="/policies/" class="policy-link" style="display: inline-block; padding: 14px 28px; border: 2px solid var(--accent-gold); background: rgba(159, 168, 156, 0.05); color: var(--accent-gold); text-decoration: none; border-radius: 40px; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(159, 168, 156, 0.1);">
+                Before you apply: Please read our Health & Biodiversity Policies →
+            </a>
+        </p>
+        <style>
+            .policy-link:hover {
+                background: var(--accent-gold) !important;
+                color: #fff !important;
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(159, 168, 156, 0.3);
+            }
+        </style>
+    </div>
+
+    <!-- Step Indicator Removed -->
+
+    <form id="puppyApplication" action="#" method="POST"
+        onsubmit="alert('Thank you for your application!'); return false;">
+        <!-- Section 1: Personal Info -->
+        <div class="form-section">
+            <h2 class="section-title">Personal Information</h2>
+            <div class="input-grid">
+                <div class="form-group full-width">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group full-width">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required placeholder="123 Wilderness Lane">
+                </div>
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" name="city" required placeholder="Smiths Falls">
+                </div>
+                <div class="form-group">
+                    <label for="provState">Prov/State</label>
+                    <input type="text" id="provState" name="provState" required placeholder="Ontario">
+                </div>
+                <div class="form-group">
+                    <label for="postalCode">Postal Code</label>
+                    <input type="text" id="postalCode" name="postalCode" required placeholder="K7A 4S4">
+                </div>
+                <div class="form-group">
+                    <label for="homePhone">Home Phone</label>
+                    <input type="tel" id="homePhone" name="homePhone" placeholder="(555) 000-0000">
+                </div>
+                <div class="form-group">
+                    <label for="cellPhone">Cell Phone</label>
+                    <input type="tel" id="cellPhone" name="cellPhone" required placeholder="(555) 000-0000">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Puppy Preferences -->
+        <div class="form-section" data-step="2">
+            <h2 class="section-title">Puppy Preferences</h2>
+
+            <div class="selection-group">
+                <label>I would like a:</label>
+                <div class="card-selector">
+                    <label class="selection-card">
+                        <input type="radio" name="sex" value="Male">
+                        <div class="card-content">Male</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="sex" value="Female">
+                        <div class="card-content">Female</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="sex" value="No Preference" checked>
+                        <div class="card-content">No Preference</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Coat color pattern preference: (Select all that apply)</label>
+                <div class="checkbox-grid">
+                    <label class="selection-card small">
+                        <input type="checkbox" name="pattern" value="Wolf Sable">
+                        <div class="card-content">Wolf Sable</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="pattern" value="Clear Sable">
+                        <div class="card-content">Clear Sable</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="pattern" value="Solid Black">
+                        <div class="card-content">Solid Black</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="pattern" value="Solid White">
+                        <div class="card-content">Solid White</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="pattern" value="Bi-coloured">
+                        <div class="card-content">Bi-coloured</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="pattern" value="Black & Tan">
+                        <div class="card-content">Black & Tan</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="pattern" value="No Preference">
+                        <div class="card-content">No Preference</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Coat color shade preference: (Select all that apply)</label>
+                <div class="checkbox-grid">
+                    <label class="selection-card small">
+                        <input type="checkbox" name="shade" value="Red/Brown">
+                        <div class="card-content">Red/Brown</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="shade" value="Cream/Golden">
+                        <div class="card-content">Cream/Golden</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="shade" value="Grey/Silver">
+                        <div class="card-content">Grey/Silver</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="shade" value="No Preference">
+                        <div class="card-content">No Preference</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="input-grid" style="margin-top: 30px;">
+                <div class="form-group">
+                    <label>Interest in Breed Quality/Show pup?</label>
+                    <select name="breedQuality" id="breedQuality">
+                        <option value="NO">NO</option>
+                        <option value="YES">YES</option>
+                    </select>
+                    <small style="margin-top: 5px; color: #777;"><em>*A co-ownership or guardian agreement may
+                            apply.</em></small>
+                </div>
+                <div class="form-group">
+                    <label>Just a pet & plan to spay/neuter?</label>
+                    <select name="petOnly" id="petOnly">
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                </div>
+                <div class="form-group full-width">
+                    <label>Do you agree to have hips/elbows x-rayed between 12-30 months?</label>
+                    <select name="xrayAgreement" id="xrayAgreement">
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Temperament & Social -->
+        <div class="form-section" data-step="3">
+            <h2 class="section-title">Temperament & Social</h2>
+
+            <div class="selection-group">
+                <label>The mailman knocks at the door with a package delivery, I want my dog to:</label>
+                <div class="card-selector">
+                    <label class="selection-card">
+                        <input type="radio" name="mailman" value="Make friends">
+                        <div class="card-content">Make friends</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="mailman" value="Alert Bark, make friends">
+                        <div class="card-content">Alert Bark & Friends</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="mailman" value="Alert Bark, no friends">
+                        <div class="card-content">Alert Bark Only</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="mailman" value="Ignore">
+                        <div class="card-content">Ignore</div>
+                    </label>
+                    <label class="selection-card full-width">
+                        <input type="radio" name="mailman" value="Other">
+                        <div class="card-content">Other (Specify below)</div>
+                    </label>
+                </div>
+                <div class="form-group" style="margin-top: 15px;">
+                    <input type="text" name="mailman_other" placeholder="Please specify...">
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Meeting old friends in the park, I want my dog to:</label>
+                <div class="card-selector">
+                    <label class="selection-card">
+                        <input type="radio" name="park" value="Wag tail">
+                        <div class="card-content">Wag his/her tail</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="park" value="Ignore">
+                        <div class="card-content">Ignore them</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="park" value="Get excited">
+                        <div class="card-content">Get excited</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="park" value="Be cautious">
+                        <div class="card-content">Be cautious</div>
+                    </label>
+                    <label class="selection-card full-width">
+                        <input type="radio" name="park" value="Other">
+                        <div class="card-content">Other (Specify below)</div>
+                    </label>
+                </div>
+                <div class="form-group" style="margin-top: 15px;">
+                    <input type="text" name="park_other" placeholder="Please specify...">
+                </div>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Tell us more about the temperament you are seeking:</label>
+                <textarea name="temp_details" rows="4" placeholder="Describe your ideal companion..."></textarea>
+            </div>
+        </div>
+
+        <!-- Step 4: Home & Environment -->
+        <div class="form-section" data-step="4">
+            <h2 class="section-title">Home & Environment</h2>
+
+            <div class="selection-group">
+                <label>Housing Type:</label>
+                <div class="card-selector" style="grid-template-columns: repeat(3, 1fr);">
+                    <label class="selection-card">
+                        <input type="radio" name="housing" value="Apt/condo">
+                        <div class="card-content">Apt/Condo</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="housing" value="Town House">
+                        <div class="card-content">Town House</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="housing" value="Single Family">
+                        <div class="card-content">Single Family</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Location:</label>
+                <div class="card-selector" style="grid-template-columns: repeat(4, 1fr);">
+                    <label class="selection-card">
+                        <input type="radio" name="location" value="City">
+                        <div class="card-content">City</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="location" value="Sub Urban">
+                        <div class="card-content">Suburban</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="location" value="Acreage">
+                        <div class="card-content">Acreage</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="location" value="Farm">
+                        <div class="card-content">Farm/Ranch</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Property Status:</label>
+                <div class="card-selector">
+                    <label class="selection-card">
+                        <input type="radio" name="propertyStatus" value="Owned" onchange="toggleRental(false)">
+                        <div class="card-content">Owned</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="propertyStatus" value="Rented" onchange="toggleRental(true)">
+                        <div class="card-content">Rented</div>
+                    </label>
+                </div>
+            </div>
+
+            <div id="rentalInfo"
+                style="display: none; margin-bottom: 30px; padding: 25px; background: rgba(0,0,0,0.02); border-radius: 20px;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Landlord Information</h3>
+                <div class="input-grid">
+                    <div class="form-group">
+                        <label>Landlord Email</label>
+                        <input type="email" name="landlordEmail">
+                    </div>
+                    <div class="form-group">
+                        <label>Landlord Phone</label>
+                        <input type="tel" name="landlordPhone">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Landlord Address</label>
+                        <input type="text" name="landlordAddress">
+                    </div>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Do you have a fenced yard?</label>
+                <div class="card-selector">
+                    <label class="selection-card">
+                        <input type="radio" name="fenced" value="Yes" onchange="toggleFence(true)">
+                        <div class="card-content">Yes</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="fenced" value="No" onchange="toggleFence(false)">
+                        <div class="card-content">No</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group full-width" id="fenceDetails" style="display: none; margin-bottom: 30px;">
+                <label>Describe material type, height, and size of enclosed area:</label>
+                <textarea name="fence_info" rows="3"
+                    placeholder="e.g. 6ft wooden privacy fence, 50x50ft area..."></textarea>
+            </div>
+
+            <div class="selection-group">
+                <label>Where will the dog spend most of its time?</label>
+                <div class="checkbox-grid">
+                    <label class="selection-card small">
+                        <input type="checkbox" name="timeSpent" value="In the house">
+                        <div class="card-content">In the house</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="timeSpent" value="Outdoor's In a fenced yard">
+                        <div class="card-content">Fenced yard</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="timeSpent" value="Running on acreage">
+                        <div class="card-content">Running on acreage</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="timeSpent" value="In a kennel run">
+                        <div class="card-content">In a kennel run</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="timeSpent" value="With owner(s)">
+                        <div class="card-content">With owner(s)</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Experience & Household -->
+        <div class="form-section" data-step="5">
+            <h2 class="section-title">Experience & Household</h2>
+
+            <div class="selection-group">
+                <label>How many hours of the day would the dog normally be left alone?</label>
+                <div class="card-selector">
+                    <label class="selection-card">
+                        <input type="radio" name="hoursAlone" value="0-3 Hours">
+                        <div class="card-content">0-3 Hours</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="hoursAlone" value="4-6 Hours">
+                        <div class="card-content">4-6 Hours</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="hoursAlone" value="7-10 Hours">
+                        <div class="card-content">7-10 Hours</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="hoursAlone" value="10+ Hours">
+                        <div class="card-content">10+ Hours</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group full-width" style="margin-bottom: 30px;">
+                <label>Please list current dogs in household (Age, Breed, Sex, Spayed/Neutered):</label>
+                <textarea name="current_dogs" rows="3"
+                    placeholder="e.g. 5yr, Golden Retriever, Male, Neutered..."></textarea>
+            </div>
+
+            <div class="input-grid" style="margin-bottom: 30px;">
+                <div class="form-group">
+                    <label>Number of Adults</label>
+                    <input type="text" name="numAdults" placeholder="e.g. 2">
+                </div>
+                <div class="form-group">
+                    <label>Number of Children</label>
+                    <input type="text" name="numChildren" placeholder="e.g. 0">
+                </div>
+                <div class="form-group">
+                    <label>Ages of Children</label>
+                    <input type="text" name="agesChildren" placeholder="e.g. N/A">
+                </div>
+                <div class="form-group">
+                    <label>Expect children in the future?</label>
+                    <select name="futureChildren">
+                        <option value="NO">NO</option>
+                        <option value="YES">YES</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Number of Cats</label>
+                    <input type="text" name="numCats" placeholder="e.g. 1">
+                </div>
+                <div class="form-group">
+                    <label>Other Animals</label>
+                    <input type="text" name="otherAnimals" placeholder="e.g. Birds">
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>I am interested in training my dog in:</label>
+                <div class="checkbox-grid">
+                    <label class="selection-card small">
+                        <input type="checkbox" name="training" value="Obedience">
+                        <div class="card-content">Obedience</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="training" value="Agility">
+                        <div class="card-content">Agility</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="training" value="Therapy">
+                        <div class="card-content">Therapy</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="training" value="Scent Work">
+                        <div class="card-content">Scent Work</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="training" value="Search & Rescue">
+                        <div class="card-content">Search & Rescue</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Your experience with large breed dogs:</label>
+                <div class="card-selector" style="grid-template-columns: repeat(2, 1fr);">
+                    <label class="selection-card">
+                        <input type="radio" name="experience" value="Never">
+                        <div class="card-content">Never owned a large dog</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="experience" value="Indirect">
+                        <div class="card-content">Indirect Experience</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="experience" value="Some">
+                        <div class="card-content">Some Experience</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="experience" value="Experienced">
+                        <div class="card-content">Experienced Professional</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Lifestyle Description:</label>
+                <div class="checkbox-grid">
+                    <label class="selection-card small">
+                        <input type="checkbox" name="lifestyle" value="Couch potato">
+                        <div class="card-content">Couch potato</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="lifestyle" value="Relaxed walks">
+                        <div class="card-content">Relaxed walks</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="lifestyle" value="Weekend hiker">
+                        <div class="card-content">Weekend hiker</div>
+                    </label>
+                    <label class="selection-card small">
+                        <input type="checkbox" name="lifestyle" value="Daily runner">
+                        <div class="card-content">Daily runner</div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: References & Signature -->
+        <div class="form-section" data-step="6">
+            <h2 class="section-title">References & Final Steps</h2>
+
+            <p style="margin-bottom: 30px; font-weight: 600; color: var(--accent-gold);">Please supply at least two
+                references (one may be your veterinarian):</p>
+
+            <div id="references">
+                <div style="margin-bottom: 30px; padding: 20px; border-radius: 15px; background: rgba(0,0,0,0.02);">
+                    <h3 style="font-size: 1rem; margin-bottom: 15px;">Reference #1</h3>
+                    <div class="input-grid">
+                        <div class="form-group"><input type="text" name="ref1_name" placeholder="Name"></div>
+                        <div class="form-group"><input type="tel" name="ref1_phone" placeholder="Phone"></div>
+                        <div class="form-group full-width"><input type="email" name="ref1_email" placeholder="Email">
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 30px; padding: 20px; border-radius: 15px; background: rgba(0,0,0,0.02);">
+                    <h3 style="font-size: 1rem; margin-bottom: 15px;">Reference #2</h3>
+                    <div class="input-grid">
+                        <div class="form-group"><input type="text" name="ref2_name" placeholder="Name"></div>
+                        <div class="form-group"><input type="tel" name="ref2_phone" placeholder="Phone"></div>
+                        <div class="form-group full-width"><input type="email" name="ref2_email" placeholder="Email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group full-width" style="margin-bottom: 40px;">
+                <label>Additional Comments:</label>
+                <textarea name="additional_comments" rows="4"
+                    placeholder="Anything else you'd like us to know?"></textarea>
+            </div>
+
+            <div class="form-group full-width"
+                style="margin-bottom: 40px; padding: 25px; background: #fff; border: 2px solid var(--accent-gold); border-radius: 20px;">
+                <label style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 15px;">Application Deposit
+                    Policy</label>
+                <p style="font-size: 0.9rem; color: #555;">
+                    NOTE: Prior to sending any deposits, please contact myself (Kristina Osborne) to check for litter
+                    availability and to give me a chance to review your request. A Shiloh Shepherd is not for everyone,
+                    and I
+                    would like a chance to determine that the upcoming breedings will have a reasonable probability of
+                    producing what you are seeking prior to committing to accepting any deposits. Please understand that
+                    all deposits are only refundable or transferable if the breeder determines that they are unable to
+                    produce
+                    a puppy that matches your requirements. The deposit is NON-REFUNDABLE if buyer changes there
+                    mind, or changes to another breeder and/or breed. Deposits may be carried over to a subsequent
+                    litter
+                    for a maximum of TWO (2) years, unless special arrangements are made in advance.
+                </p>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Digital Signature (Type your full name)</label>
+                <input type="text" name="signature" required placeholder="Full Name">
+                <small style="margin-top: 5px; color: #777;"><em>By typing your name, you agree to the terms
+                        above.</em></small>
+            </div>
+        </div>
+
+        <div class="submit-container">
+            <button type="submit" class="btn btn-next">Submit Application</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function toggleRental(show) {
+        document.getElementById('rentalInfo').style.display = show ? 'block' : 'none';
+    }
+
+    function toggleFence(show) {
+        document.getElementById('fenceDetails').style.display = show ? 'block' : 'none';
+    }
+</script>

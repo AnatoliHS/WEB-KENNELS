@@ -4,21 +4,30 @@ title: Policies
 ---
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Satisfy&display=swap');
+
+    :root {
+        --accent-gold: #9fa89c;
+        --text-dark: #1a1a1a;
+        --bg-cream: #eff0e4;
+    }
+
     .policies-wrapper {
         width: 100vw;
         min-height: 100vh;
-        background-color: #e6dbed;
+        background-color: var(--bg-cream);
         padding: 120px 20px 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
         overflow-x: hidden;
+        font-family: 'Inter', sans-serif;
     }
 
     .policy-section {
         width: 100%;
-        max-width: 1000px;
+        max-width: 900px;
         margin-bottom: 80px;
         display: flex;
         flex-direction: column;
@@ -27,56 +36,63 @@ title: Policies
     }
 
     .section-cursive-title {
-        font-family: 'Great Vibes', cursive;
-        font-size: clamp(45px, 6vw, 70px);
-        color: #351431;
+        font-family: 'Satisfy', cursive;
+        font-size: clamp(45px, 6vw, 75px);
+        color: var(--text-dark);
         margin-bottom: 25px;
         text-align: center;
-        opacity: 0;
-        transform: translateY(-30px);
         transition: all 0.8s ease-out;
     }
 
     .section-subtitle {
-        font-size: clamp(18px, 2.5vw, 24px);
-        color: #1a1a1a;
-        font-weight: 700;
+        font-size: clamp(16px, 2vw, 20px);
+        color: var(--text-dark);
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 2px;
         margin-bottom: 30px;
         text-align: center;
-        opacity: 0;
-        transform: translateX(-40px);
         transition: all 0.8s ease-out 0.3s;
     }
 
-    /* Solid-ish Light Blue Card Style for Static Sections */
+    /* Premium White Card Style */
     .policies-static-content {
         width: 100%;
-        background: #f2f8fc;
-        padding: 50px;
-        border-radius: 16px;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        background: #ffffff;
+        padding: 60px 50px;
+        border-radius: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
         box-sizing: border-box;
+        transition: all 0.8s ease-out 0.6s;
+    }
+
+    /* Initial hidden states only for animated sections */
+    .animate-on-scroll .section-cursive-title {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    .animate-on-scroll .section-subtitle {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    .animate-on-scroll .policies-static-content {
         opacity: 0;
         transform: translateY(40px);
-        transition: all 0.8s ease-out 0.6s;
     }
 
     /* Scroll Activation */
     .policy-section.is-visible .section-cursive-title,
     .policy-section.is-visible .section-subtitle,
-    .policy-section.is-visible .policies-static-content,
-    .policy-section.is-visible .faq {
+    .policy-section.is-visible .policies-static-content {
         opacity: 1;
         transform: translate(0, 0);
     }
 
     .policy-item {
-        margin-bottom: 35px;
+        margin-bottom: 40px;
     }
 
     .policy-item:last-child {
@@ -84,21 +100,19 @@ title: Policies
     }
 
     .policy-item h3 {
-        font-size: 1.2rem;
-        color: #351431;
+        font-size: 1.1rem;
+        color: var(--accent-gold);
         margin-bottom: 12px;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 1.5px;
         font-weight: 700;
-        border-bottom: 2px solid rgba(53, 20, 49, 0.1);
-        padding-bottom: 5px;
-        display: inline-block;
+        display: block;
     }
 
     .policy-item p {
         font-size: 1.05rem;
-        line-height: 1.7;
-        color: #1a1a1a;
+        line-height: 1.8;
+        color: #444;
         margin: 0 0 15px 0;
     }
 
@@ -110,19 +124,21 @@ title: Policies
 
     .policy-item ul li {
         font-size: 1.05rem;
-        line-height: 1.7;
-        color: #1a1a1a;
-        margin-bottom: 12px;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 15px;
         padding-left: 25px;
         position: relative;
     }
 
     .policy-item ul li::before {
-        content: "→";
-        color: #351431;
+        content: "•";
+        color: var(--accent-gold);
         position: absolute;
         left: 0;
         font-weight: bold;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
     }
 
     /* FAQ / Accordion Style */
@@ -135,12 +151,10 @@ title: Policies
 
     .faq {
         position: relative;
-        background: #f2f8fc;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        background: #ffffff;
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
         overflow: hidden;
         transition: all 0.5s ease;
         opacity: 0;
@@ -148,16 +162,15 @@ title: Policies
     }
 
     .faq.active {
-        background: #ffffff;
-        border-color: rgba(53, 20, 49, 0.2);
+        border-color: var(--accent-gold);
     }
 
     .faq-question {
-        padding: 25px 40px;
+        padding: 30px 40px;
         cursor: pointer;
-        font-weight: 700;
-        font-size: 1.3rem;
-        color: #351431;
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: var(--text-dark);
         position: relative;
         display: flex;
         justify-content: space-between;
@@ -166,13 +179,14 @@ title: Policies
     }
 
     .faq-question::after {
-        content: '+';
-        font-size: 1.5rem;
+        content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%239fa89c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
         transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
     }
 
     .faq.active .faq-question::after {
-        transform: rotate(45deg);
+        transform: rotate(180deg);
     }
 
     .faq-answer {
@@ -199,11 +213,12 @@ title: Policies
     }
 
     .inner-subtitle {
-        font-size: 1.1rem;
-        color: #351431;
-        margin: 25px 0 15px 0;
+        font-size: 1rem;
+        color: var(--accent-gold);
+        margin: 30px 0 15px 0;
         font-weight: 700;
         text-transform: uppercase;
+        letter-spacing: 1px;
     }
 
     .inner-subtitle:first-child {
@@ -212,139 +227,91 @@ title: Policies
 
     .policy-footer {
         text-align: center;
-        margin-top: 40px;
+        margin-top: 50px;
         font-style: italic;
-        color: #555;
-        border-top: 1px solid rgba(0,0,0,0.05);
-        padding-top: 25px;
+        color: #888;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding-top: 30px;
     }
 
     @media (max-width: 768px) {
         .policies-static-content {
             padding: 40px 25px;
+            border-radius: 20px;
         }
 
-        /* 🌟 Reduced height for mobile dropdowns */
         .faq-question {
-            padding: 15px 20px;
+            padding: 20px 25px;
             font-size: 1.1rem;
         }
 
         .answer-content {
-            padding: 0 20px;
+            padding: 0 25px;
         }
 
-        .faq.active .answer-content {
-            padding-bottom: 25px;
-        }
-
-        .policies-cursive-title {
-            font-size: 45px;
+        .section-cursive-title {
+            font-size: 50px;
         }
     }
 </style>
-
 <div class="policies-wrapper">
-    <!-- Section 1: Age Requirements -->
+    <!-- Header Section -->
     <section class="policy-section animate-on-scroll">
-        <h2 class="section-cursive-title">Things to Know Before You Book</h2>
+        <h1 class="section-cursive-title">What We Ask of All Our Puppy Buyers!</h1>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <p style="color: #c44545; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; font-size: 1.2rem; margin: 0;">
+                WARNING: We ask a lot! But we cover most of it!
+            </p>
+        </div>
+
+        <!-- Health Testing Section -->
         <div class="policies-static-content">
-            <h3 class="section-subtitle">Age Requirements for Tattooing and Piercing Services</h3>
-            
+            <h3 class="section-subtitle">Health Testing & Assessments</h3>
             <div class="policy-item">
-                <h3>Tattooing</h3>
-                <p>We strictly adhere to the legal age requirement for tattoos, which is 18 years and older. We will not tattoo anyone under the age of 18, regardless of parental consent.</p>
+                <h3>Hip & Elbow Assessments</h3>
+                <p>All Breeding Shilohs must pass hip/elbow assessments for Canine Hip Dysplasia (CHD) through OFA or PennHip prior to becoming part of our breeding program.</p>
+                <p>We also require all "Pet quality" Shilohs from Wilderness Kennels to have their Hips/Elbows X-rayed. This should be done between <strong>12-16 months</strong> of age for males, and <strong>18-24 months</strong> for females. <em>(Wilderness Kennels will reimburse OFA charges.)</em></p>
             </div>
-
+        </div>
+    </section>    <!-- Holter Monitoring Section -->
+    <section class="policy-section">
+        <div class="policies-static-content">
+            <h3 class="section-subtitle">Mandatory Holter Monitoring at 6 Months</h3>
             <div class="policy-item">
-                <h3>Pregnancy and Nursing</h3>
-                <p>We do not offer tattooing or piercing services to individuals who are pregnant or nursing. This is a precautionary measure to ensure the health and safety of both the client and their child. We are happy to assist with jewelry removal or changes during this time.</p>
+                <h3>Fighting GSDIVA (The Invisible Killer)</h3>
+                <p>German Shepherd Dog Inherited Ventricular Arrhythmia (GSDIVA) is an inherited heart condition that can cause sudden death in Shiloh Shepherd puppies. This is a <strong>DEVASTATING</strong> disease that is deeply rooted in the foundation lines of all Shilohs alive today.</p>
+                <p>Before becoming a Shiloh Breeder, I personally witnessed a confirmed GSDIVA death of a devastatingly handsome young Shiloh Shepherd. His memory is what drives me to always do the absolute best by my own dogs (and their descendants) and take this invisible killer very seriously!</p>
+                <p>Because of this life-changing experience, the Holter monitoring of <strong>EVERY</strong> Shiloh Shepherd puppy produced at, or by, Wilderness Kennels is absolutely mandatory via our contract.</p>
             </div>
-
-            <div class="policy-item">
-                <h3>Identification</h3>
-                <p>All clients will be required to present valid government-issued identification to verify their age before any tattooing or piercing service is performed.</p>
+            <div class="policy-item" style="background: var(--bg-cream); padding: 30px; border-radius: 20px; margin-top: 20px;">
+                <p style="margin-bottom: 0;"><strong>Don't worry, it's an easy test:</strong> Your puppy simply wears a heart monitor vest for a period of 24 hours. We will mail you the Holter and cover the full cost of submitting the data results.</p>
             </div>
-
-            <div class="policy-item">
-                <h3>Piercing</h3>
-                <ul>
-                    <li><strong>Earlobes:</strong> We pierce earlobes for individuals aged 5 years and older, with parental consent and presence required for those under 18.</li>
-                    <li><strong>Helix:</strong> Helix piercings are available for individuals aged 12 years and older, with parental consent and presence required for those under 18.</li>
-                    <li><strong>Other Piercings:</strong> Most other piercings are available for individuals aged 14 years and older, with parental consent and presence required for those under 18.</li>
-                    <li><strong>Tongue and Nipple Piercings:</strong> These piercings are strictly for individuals aged 18 years and older, regardless of parental consent.</li>
-                </ul>
-            </div>
-
-            <footer class="policy-footer">
-                <p>Thank you for your understanding and cooperation.</p>
-            </footer>
+            <p style="text-align: center; margin-top: 30px; font-weight: 600; color: var(--accent-gold);">We NEED the help of all our puppy buyers to reach our dream of a GSDIVA-free future!</p>
         </div>
     </section>
-
-    <!-- Section 2: Preparation -->
-    <section class="policy-section animate-on-scroll">
-        <h2 class="section-cursive-title">Tips to Prepare for Your Tattoo</h2>
-        <div class="faq-container">
-            <div class="faq">
-                <div class="faq-question">Preparation Tips</div>
-                <div class="faq-answer">
-                    <div class="answer-content">
-                        <div class="policy-item">
-                            <ul>
-                                <li>Exfoliate the area with a loofah or washcloth for 3 days leading up to your appointment</li>
-                                <li>Moisturize the week prior to your appointment but NOT the morning of</li>
-                                <li>Please avoid drinking alcohol the night before and day of your appointment (24 hours before)</li>
-                                <li>Get a good night's rest the day before</li>
-                                <li>Eat a healthy breakfast the morning of your appointment</li>
-                                <li>Stay well hydrated and minimize caffeine intake</li>
-                                <li>Please inform your artist of any medications you may be taking, especially blood thinners, immune suppressants, or antibiotics</li>
-                                <li>If you would like to use a topical numbing agent, please ask your artist beforehand to see if it's okay to apply</li>
-                            </ul>
-                            
-                            <h4 class="inner-subtitle">Things You Can Bring:</h4>
-                            <ul>
-                                <li>Drink and snacks (water, juice, chocolate, crackers, granola bars, etc.)</li>
-                                <li>Pillow and blanket for larger pieces</li>
-                                <li>Phone, tablet, or book for entertainment</li>
-                                <li>Appropriate clothing that provides access to the area being tattooed</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+ 
+    <!-- DM Section -->
+    <section class="policy-section">
+        <div class="policies-static-content">
+            <h3 class="section-subtitle">Degenerative Myelopathy (DM)</h3>
+            <div class="policy-item">
+                <p>All our own dogs are 100% clear of Degenerative Myelopathy by parentage. In rare cases where a stud is a confirmed carrier, Wilderness Kennels will test the entire litter before they are matched to their new families at 8 weeks.</p>
+                <p>Even in breedings with males that are confirmed carriers, I assure you there is <strong>no chance</strong> of a puppy being physically affected by this illness, as DM requires two copies of the gene to manifest.</p>
             </div>
         </div>
     </section>
-
-    <!-- Section 3: Aftercare -->
-    <section class="policy-section animate-on-scroll">
-        <h2 class="section-cursive-title">Tattoo Care Instructions</h2>
-        <div class="faq-container">
-            <div class="faq">
-                <div class="faq-question">Aftercare Instructions</div>
-                <div class="faq-answer">
-                    <div class="answer-content">
-                        <div class="policy-item">
-                            <h4 class="inner-subtitle">Absorbent Style Bandage:</h4>
-                            <p>Remove bandage after 1-6 hours. Wash with warm water and fragrance-free soap, pat dry, and apply a thin layer of Aquaphor or fragrance-free lotion. Repeat the wash/dry/moisturize process 2-3 times on the first day.</p>
-                            
-                            <h4 class="inner-subtitle">Second Skin Style Bandage:</h4>
-                            <p>Leave bandage on for 3-5 days. Remove in a warm shower by peeling from one corner. Wash with warm water and fragrance-free soap, pat dry, and apply a thin layer of Aquaphor or fragrance-free lotion.</p>
-                            
-                            <p><strong>For both bandage types:</strong> Wash, dry, and moisturize once in the morning and once at night for 5-7 days, then once daily until fully healed.</p>
-                            
-                            <h4 class="inner-subtitle">Important Aftercare Notes:</h4>
-                            <ul>
-                                <li>Avoid wearing jewelry that touches your fresh tattoo</li>
-                                <li>Do NOT use Polysporin or Vaseline on your tattoo</li>
-                                <li>Avoid sun and tanning on your new tattoo</li>
-                                <li>Avoid swimming, hot tubs, baths, and saunas for 2 weeks</li>
-                                <li>Areas that bend and stretch take longer to heal and may experience more pain, redness, swelling, and scabbing</li>
-                                <li>Tattoos on hands, feet, elbows, and knees are prone to poor healing and we do not offer any guarantees on them</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+ 
+    <!-- Biodiversity Section -->
+    <section class="policy-section">
+        <div class="policies-static-content" style="background: var(--text-dark); color: #fff;">
+            <h3 class="section-subtitle" style="color: #fff;">Biodiversity Management Project</h3>
+            <div class="policy-item">
+                <p style="color: #ccc;">All our puppies are DNA tested with <strong>Betterbred</strong> as soon as they are born to confirm parentage and their unique biodiversity value within the breed. We strive with every generation to lower COIs while maintaining the old Shiloh lines.</p>
+            </div>
+            <div class="policy-item">
+                <h3 style="color: var(--accent-gold);">Special Genetic Diversity Clause</h3>
+                <p style="color: #ccc;">Sometimes in rare cases, a male puppy sold to a "Pet" home will be included in our genetic diversity project. Included in the contracts for these special boys will be a clause to have the dog's sperm frozen at 16-18 months of age (dependent on OFA/PennHip and Holter results).</p>
+                <p style="color: var(--accent-gold); font-weight: 600;">Sperm freezing will be paid by, and property of, Wilderness Kennels. This is a great opportunity to get a beautiful show-quality male for a "pet" price!</p>
             </div>
         </div>
     </section>

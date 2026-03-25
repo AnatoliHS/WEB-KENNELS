@@ -1,0 +1,872 @@
+---
+layout: default
+title: Litter Information and Pricing
+---
+
+<style>
+    :root {
+        --hero-bg: #eff0e4;
+        --card-bg: #ffffff;
+        --text-dark: #2f2b27;
+        --accent-gold: #9fa89c;
+        --page-bg: #ffffff;
+    }
+
+    body {
+        background-color: var(--page-bg);
+        margin: 0;
+        padding: 0;
+    }
+
+    .litter-hero {
+        background-color: var(--hero-bg);
+        padding: 140px 20px;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        box-sizing: border-box;
+    }
+
+    .litter-title {
+        font-family: 'Satisfy', cursive;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 80px;
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: fadeInDown 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .litter-cards-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        max-width: 1400px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .litter-card {
+        background-color: var(--card-bg);
+        border-radius: 40px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateX(100px);
+        transition: transform 0.5s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Staggered Animations */
+    .litter-card:nth-child(1) {
+        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+    }
+
+    .litter-card:nth-child(2) {
+        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
+    }
+
+    .litter-card:nth-child(3) {
+        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.9s forwards;
+    }
+
+    .litter-card:nth-child(4) {
+        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1.1s forwards;
+    }
+
+    .litter-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .card-icon-container {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card-icon-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .card-title {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.2rem;
+        color: var(--text-dark);
+        margin-bottom: 20px;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #555;
+        font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes fadeInDown {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @media (max-width: 1100px) {
+        .litter-cards-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .pricing-section {
+        padding: 100px 20px;
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: var(--page-bg);
+    }
+
+    .pricing-title {
+        font-family: 'Satisfy', cursive;
+        font-size: 4rem;
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .pricing-content {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+    }
+
+    .pricing-content p {
+        margin-bottom: 30px;
+    }
+
+    .price-highlight {
+        font-weight: 700;
+        color: var(--text-dark);
+        font-size: 1.25rem;
+        display: block;
+        margin: 40px 0;
+        padding-left: 20px;
+        border-left: 4px solid var(--accent-gold);
+    }
+
+    .discount-box {
+        background-color: #f9faf5;
+        border: 1px solid rgba(159, 168, 156, 0.2);
+        border-radius: 30px;
+        padding: 50px;
+        margin-top: 60px;
+    }
+
+    .discount-title {
+        font-family: 'Satisfy', cursive;
+        font-size: 3rem;
+        color: var(--accent-gold);
+        margin-bottom: 25px;
+        text-align: center;
+    }
+
+    .breeding-section {
+        padding: 100px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+        background-color: var(--page-bg);
+    }
+
+    .breeding-subtitle {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.2rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 60px;
+        line-height: 1.4;
+    }
+
+    .breeding-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    .breeding-card {
+        background: #eff0e4;
+        border-radius: 40px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .breeding-photo-container {
+        width: 100%;
+        height: 450px;
+        overflow: hidden;
+    }
+
+    .breeding-photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .breeding-info {
+        padding: 40px;
+    }
+
+    .breeding-name {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.5rem;
+        color: var(--text-dark);
+        margin-bottom: 30px;
+        border-bottom: 2px solid var(--hero-bg);
+        padding-bottom: 15px;
+    }
+
+    .breeding-stats-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .breeding-stats-list li {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        color: #444;
+        margin-bottom: 8px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .breeding-stats-list li strong {
+        color: var(--text-dark);
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .application-section {
+        padding: 100px 20px;
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: var(--page-bg);
+        text-align: center;
+    }
+
+    .application-title {
+        font-family: 'Satisfy', cursive;
+        font-size: 4rem;
+        color: var(--text-dark);
+        margin-bottom: 50px;
+    }
+
+    .upcoming-content {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+        text-align: left;
+    }
+
+    .upcoming-content p {
+        margin-bottom: 30px;
+    }
+
+    .health-note {
+        background-color: #f2f3e9;
+        border-left: 5px solid var(--accent-gold);
+        padding: 30px;
+        margin-bottom: 40px;
+        font-style: italic;
+    }
+
+    .health-note strong {
+        color: var(--text-dark);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .app-button-container {
+        margin-top: 60px;
+        text-align: center;
+        margin-bottom: 100px;
+    }
+
+    .app-button {
+        display: inline-block;
+        background-color: var(--text-dark);
+        color: #ffffff !important;
+        padding: 22px 50px;
+        border-radius: 50px;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        cursor: pointer;
+        border: none;
+    }
+
+    .app-button:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        background-color: var(--accent-gold);
+    }
+
+    .breeding-story-container {
+        max-width: 900px;
+        margin: 80px auto 0 auto;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+    }
+
+    .breeding-story-container p {
+        margin-bottom: 35px;
+    }
+
+    .f2-highlight {
+        font-weight: 600;
+        color: var(--text-dark);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding-top: 30px;
+        margin-top: 40px;
+    }
+
+    @media (max-width: 1024px) {
+        .breeding-grid {
+            grid-template-columns: 1fr;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .breeding-photo-container {
+            height: 350px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .litter-cards-container {
+            grid-template-columns: 1fr;
+        }
+
+        .litter-hero {
+            padding: 180px 20px 80px 20px;
+        }
+
+        .pricing-section,
+        .application-section,
+        .breeding-section {
+            padding: 60px 20px;
+        }
+
+        .pricing-title,
+        .application-title {
+            font-size: 3rem;
+        }
+
+        .breeding-subtitle {
+            font-size: 1.8rem;
+        }
+
+        .discount-box {
+            padding: 30px 20px;
+        }
+
+        .discount-title {
+            font-size: 2.5rem;
+        }
+
+        .app-button {
+            padding: 18px 35px;
+            font-size: 1rem;
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="litter-hero">
+    <h1 class="litter-title">Litter Information and Pricing</h1>
+
+    <div class="litter-cards-container">
+        <!-- Card 1: Pet Quality -->
+        <div class="litter-card">
+            <div class="card-icon-container">
+                <img src="/assets/paws.png" alt="Pet Quality Icon">
+            </div>
+            <h2 class="card-title">Pet Quality</h2>
+            <p class="card-text">
+                These are the unique puppies that can't be part of the breeding program for one reason or another. Be it
+                that they have a miss mark, line-specific breeding restriction, or a disqualifying fault via the breed
+                standard (Kinked tail, Missing tooth, etc).
+            </p>
+        </div>
+
+        <!-- Card 2: Pet Upgradable -->
+        <div class="litter-card">
+            <div class="card-icon-container">
+                <img src="/assets/upgrade.png" alt="Pet Upgradable Icon">
+            </div>
+            <h2 class="card-title">Pet Upgradable</h2>
+            <p class="card-text">
+                These are the Wonderfull pup's that meet the requirment's to be breakable, but might have one or two
+                minor fault's via the breed standard, that they may - or may not, grow out of.
+            </p>
+        </div>
+
+        <!-- Card 3: Breed Quality -->
+        <div class="litter-card">
+            <div class="card-icon-container">
+                <img src="/assets/mixal.avif" alt="Breed Quality Icon">
+            </div>
+            <h2 class="card-title">Breed Quality</h2>
+            <p class="card-text">
+                These pup's are the future of the breed. They are the puppies that best embody the breed standard in
+                conformation/structure, gait, and Temperment. These puppies will go out on generder specific
+                co-ownership contracts.
+            </p>
+        </div>
+
+        <!-- Card 4: Special Circumstances -->
+        <div class="litter-card">
+            <div class="card-icon-container">
+                <img src="/assets/unique.png" alt="Special Circumstances Icon">
+            </div>
+            <h2 class="card-title">Special Circumstances</h2>
+            <p class="card-text">
+                Occasionally puppies with specific need's, may be placed in approved "Foster homes" at no charge to
+                their adoptive families - very specific requirments and contract's go with these puppies.
+            </p>
+        </div>
+    </div>
+</div>
+
+<section class="pricing-section anim-scroll">
+    <h2 class="pricing-title">Pricing</h2>
+    <div class="pricing-content">
+        <p>
+            Despite being located just a bit north of the southern Canadian border, all prices at Wilderness Kennels are
+            listed in American dollars. This has been decided by two separate factors. The first is that the majority of
+            my buyers, historically have been from the united states. The second is that the breed club itself is an
+            American-based organization at this time. So all fees/dues that I owe to the registry for litter/puppy
+            registration, memberships fees, or club events costs are charged in American. So to keep financing simple on
+            my end, I have chosen to do all my kennel budgeting in US dollars. But I do accept both Canadian, and
+            American currencies as payment types.
+        </p>
+
+        <p class="price-highlight">
+            Shiloh Shepherd pups are $3000-3500 US each depending on the specific litter.
+            <span style="font-size: 0.9rem; display: block; font-weight: 400; margin-top: 5px; color: #666;">
+                (Please inquire directly for Canadian pricing, as some processing fees which are incorporated into the
+                US prices are not applicable for pups staying domestically.)
+            </span>
+        </p>
+
+        <p>
+            Wilderness Kennels also does not believe in pricing puppies based on size, gender, or coat colour. As a
+            result, there will be no differences in price between littermates. The time and resources I invested into
+            each individual puppy is identical no matter how the puppies end up scoring at their litter evaluation.
+            Instead, I focus on matching the right puppy to the right owners. I want to see each one of these pups
+            thrive, growing up to be their very best selves.
+        </p>
+
+        <p>
+            Each puppy, depending on how they are scored by the certified litter evaluators, will come with specific
+            contracts and responsibilities for the new owners. (Any puppy discovered to have inherited a life-altering
+            health condition prior to 8 weeks will be placed in a responsible "foster home" at no charge to the adopter.
+            (Foster homes are extensively vetted, and specific experience might be required in some situations.) If you
+            are interested in possibly being a foster home to a special needs puppy in the rare event one comes
+            available, please specify on your "General Puppy Application".
+        </p>
+
+        <div class="discount-box anim-scroll">
+            <h3 class="discount-title">Discounts!</h3>
+            <p>
+                Here at Wilderness Kennels, we offer a reward system for dedicated owners, that wish to become repeat
+                buyers. For each championship title earned in either canine conformation, or sporting events with their
+                present Wilderness Kennels Shiloh(s). I will offer a discount of $100 off the purchase price of the
+                owners' future puppy purchase. (With a maximum of $1000 at this time)
+            </p>
+            <p style="text-align: center; font-weight: 600; font-style: italic; color: var(--accent-gold);">
+                If you are curious about this discount program ask for a copy of the list of approved "discount" titles
+                you can earn with your Wilderness puppy! Let's get these dogs out there and show the world how amazing,
+                intelligent, and versatile Shiloh Shepherds truly are!
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Litters Section -->
+<section class="breeding-section anim-scroll">
+    <h2 class="pricing-title">Upcoming Litters</h2>
+    <div class="breeding-subtitle">
+        Róka & Winchester<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            This litter is due at the end of February 2026
+        </span>
+    </div>
+
+    <div class="breeding-grid">
+        <!-- Roka Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/roka-breeding.avif" alt="Róka Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Wilderness' Vixen of Fortune TT</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Call Name:</strong> Róka</li>
+                    <li><strong>Sire:</strong> Blackfyre My Wyld Fortune</li>
+                    <li><strong>Dam:</strong> Wilderness' Reflection of Wildfire</li>
+                    <li><strong>Outcross Generation:</strong> F1</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 @ 6 months</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>PennHip:</strong> Right DI = 0.29, Len DI = 0.24</li>
+                    <li><strong>Elbows:</strong> OFA Normal</li>
+                    <li><strong>Height:</strong> 28” at the withers</li>
+                    <li><strong>Weight:</strong> 92 lbs</li>
+                    <li><strong>DM:</strong> Clear via Parentage & DNA testing</li>
+                    <li><strong>Embark:</strong> (COI 0%) <a href="http://embk.me/roka14" target="_blank"
+                            style="color: var(--accent-gold); text-decoration: none;">http://embk.me/roka14</a></li>
+                    <li><strong>UC Davis DNA:</strong> NCD231038</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Winchester Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/win-breeding.avif" alt="Winchester Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Mystery of Zion's Emerald Dream...</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Call Name:</strong> Winchester</li>
+                    <li><strong>Full Title:</strong> NS WBCH - Gold irsbCH NFS Mystery of Zion's Emerald Dream BCAT,
+                        CGC,
+                        TKI, SBA, BH-VT, VN</li>
+                    <li><strong>Sire:</strong> Zion’s Breaking The Rumor</li>
+                    <li><strong>Dam:</strong> Zion’s Spicy Aspen</li>
+                    <li><strong>Height/Weight:</strong> 28.25″ 94lbs</li>
+                    <li><strong>Hips:</strong> PH L 0.28 R 0.31 Rpt #200252</li>
+                    <li><strong>OFA:</strong> Good SLH-1267G24M-C-VPI</li>
+                    <li><strong>Elbows:</strong> OFA Normal SLH-EL1048M24-C-VPI</li>
+                    <li><strong>Heart:</strong> Holter (0,0,0) 8M</li>
+                    <li><strong>OFA Heart:</strong> Normal SLH-ACA167/28M-VPI (echo)</li>
+                    <li><strong>Thyroid:</strong> OFA Normal SLH-TH404/28M-VPI, 2024</li>
+                    <li><strong>Eyes:</strong> OFA Normal SLH-EYE128/28M-VPI, 2024</li>
+                    <li><strong>EPI:</strong> TLI Normal 19.7 ug/L, Texas A&M, 2024</li>
+                    <li><strong>Dentation:</strong> OFA Normal SLH-DE17/34M-VPI</li>
+                    <li><strong>DM:</strong> OFA Normal SLH-DM412/4M-PI, Embark 7/2022</li>
+                    <li><strong>Add’l tests:</strong> Em/Em, Aw/At, n/In</li>
+                    <li><strong>CHIC:</strong> 193706</li>
+                    <li><strong>DNA:</strong> NCD225155 w/ Diversity</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breeding-story-container anim-scroll">
+        <p>
+            Róka is my heart dog. She tests me, regularly pushing me outside my comfort zone, while constantly inspiring
+            me to try new things, or learn skills I hadn’t realized I needed. She has been a catalyst of self discovery
+            since the day she decided she was staying. She has an inspiring zest for life, and is always up for an
+            adventure. With incredible biddability, a wicked sharp mind, and maybe a little more working drive than I
+            bargained for - thanks to Fortune, her jaw droopingly handsome Belgian Tervuren father. I honestly wouldn’t
+            trade this incredible girl for anything!
+        </p>
+
+        <p>
+            Winchester from Nocturnal Shilohs. I have had the pleasure of meeting this boy in person a few times now at
+            shows out east. He has one of the most genuinely “Shiloh” temperaments I have seen, he is wonderfully
+            neutral in new environments, medium to low energy, biddable and social with both family and strangers.
+            Making him such an easy boy to travel anywhere with. And an excellent combination of traits to perfectly
+            balance out Roka’s sporty girl vibes. This boy also has it ALL when it comes to health testing! Darcy goes
+            above and beyond at every opportunity. These two have an incredible combination of traits that make me
+            confident he and Róka will produce some truly one of a kind puppies! Who won’t disappoint if they are
+            anything like their STUNNING half siblings from Roka’s 2024 litter with Riggs.
+        </p>
+
+        <p class="f2-highlight">
+            I am incredibly excited to see what these two special dogs produced. We are expecting all plush coats with a
+            wide range of Sables possible. With the sables having the incredible potential to range from Róka’s bright
+            fiery red coat, all the way to deep black sables, and anything in between! Sorry no chance of whites with
+            this match. Please note that these 2nd generation Foundation line (F2) pups will be a registered part of the
+            ISSA’s Biodiversity project and a strong preference will be given to families who are willing to keep them
+            intact. As they are playing an incredible part in bettering the breed by lowering genetic COIs, decreasing
+            breed specific health risks, and refining/improving various conformation traits.
+        </p>
+    </div>
+
+    <!-- Tundra & Barry Breeding Section -->
+    <div class="breeding-subtitle" style="margin-top: 100px;">
+        Tundra & Barry<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            This breeding is estimated for Spring 2026
+        </span>
+    </div>
+
+    <div class="breeding-grid">
+        <!-- Tundra Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/tundra-breeding.avif" alt="Tundra Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Greystone's Dark Frozen Wilderness</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Sire:</strong> Zion's White Island Sailor</li>
+                    <li><strong>Dam:</strong> Greystone-Zion Court of Thorns</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 @ 6 months for 48 hours</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>PennHip:</strong> Right DI = 0.43, Len DI = 0.38</li>
+                    <li><strong>OFA Elbows:</strong> Normal</li>
+                    <li><strong>Size:</strong> 25" at the withers, and 73 lbs</li>
+                    <li><strong>DM:</strong> Clear via Parentage & DNA testing</li>
+                    <li><strong>Embark Link:</strong> <a href="#" target="_blank"
+                            style="color: var(--accent-gold); text-decoration: none;">Available upon request</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Barry Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/barry-breeding.avif" alt="Barry Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Bear Hug From Samson</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Sire:</strong> AZ's Hobo Conley FCS</li>
+                    <li><strong>Dam:</strong> Guardian's Going The Distance</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 @ 5 Months 24 hours</li>
+                    <li><strong>Basic Cardiac:</strong> NORMAL-PRACTITIONER SLH-BCA80/24M/P-VPI</li>
+                    <li><strong>OFA Hips:</strong> Good SLH-1205G24M-C-VPI</li>
+                    <li><strong>OFA Elbows:</strong> Normal SLH-EL979M24-C-VPI</li>
+                    <li><strong>Size:</strong> 31" at the wither's and 110 lbs</li>
+                    <li><strong>DM:</strong> Clear via Parentage</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breeding-story-container anim-scroll">
+        <p>
+            Now this is a interesting match! Barry's father Conley carried a very diverse pedigree from the Jes/Killian
+            breeding that we came far too close to losing all together a few years back! So I am excited to help carry
+            forward this rare ancestry for another generation. Barry also is one of the best looking smoothies I have
+            seen in recent years, having great size and beautiful movement, while also sporting some eye catching
+            facial markings to boot.
+        </p>
+
+        <p>
+            Tundra is the newest addition to my program, and I could not be more excited about it. She is independent,
+            intelligent, self confident, and very social with both humans and other dogs. She is a bit of a home body
+            preferring not to travel by vehicle. Additionally, not only does she happen to be the beautiful elusive
+            silvery-gray that folks love to share stories about, but she also has a few other colourful surprises
+            buried in her genetics as well! It's taken me many years of searching before I finally found a girl with the
+            right combination of traits to complement Mixal, as the 2nd foundation girl for my program. I look forward
+            to meeting Tundra's future pups and grandpups. And I can't wait to see how her linage combines with Mixal's
+            progeny one day in the distant future!
+        </p>
+
+        <p class="f2-highlight">
+            Pup's are expected to be predominantly grey or silver bi-colours, in both plush and smooth coat lengths.
+            Barry also has a 66% chance of being a recessive white carrier, but has not yet been tested for the gene.
+            If he did inherit the recessive white gene from either of his parents, puppies will have a be a 25% chance
+            of being born white.
+        </p>
+    </div>
+
+    <!-- Ivy & Blu Breeding Section -->
+    <div class="breeding-subtitle" style="margin-top: 100px;">
+        Ivy & Blu<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Estimated Breeding for Summer 2026
+        </span>
+    </div>
+
+    <div class="breeding-grid">
+        <!-- Ivy Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/ivy-breeding.avif" alt="Ivy Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Rocky Moutain Shadow of Blu</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Sire:</strong> RP's Rocky Mtn. Koal Miner</li>
+                    <li><strong>Dam:</strong> Guardian's Rocky Mtn. Atara</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 @ 6 months</li>
+                    <li><strong>Heart Auscultation:</strong> Normal - Practitioner</li>
+                    <li><strong>OFA Hips:</strong> Good - SLH-952G30M-VPI</li>
+                    <li><strong>OFA Elbows:</strong> Normal SLH-EL714M30-VPI</li>
+                    <li><strong>DM:</strong> Clear/Clear</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Blu Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/blu-breeding.avif" alt="Blu Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Wilderness' Dark Helix</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Sire:</strong> Echo's Donnie Darko</li>
+                    <li><strong>Dam:</strong> Guardian's Reflection of Wildfire</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 @ 6 months</li>
+                    <li><strong>Heart Auscultation:</strong> Normal - Practitioner</li>
+                    <li><strong>PennHip:</strong> Right 0.31, Left 0.38</li>
+                    <li><strong>Elbows:</strong> OFA Normal (18 Months)</li>
+                    <li><strong>DM:</strong> Clear via Parentage & Embark</li>
+                    <li><strong>Colour:</strong> Aw/at + Em/e</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Róka & Bapu Breeding Section -->
+    <div class="breeding-subtitle" style="margin-top: 100px;">
+        F2 Pairing: Róka & Bapu<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Estimated Breeding Date Winter 2026
+        </span>
+    </div>
+
+    <div class="breeding-grid">
+        <!-- Roka Card (Repeated with slight text variation) -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/roka-breeding.avif" alt="Róka Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Wilderness' Vixen of Fortune</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Sire:</strong> Blackfyre My Wyld Fortune</li>
+                    <li><strong>Dam:</strong> Wilderness' Reflection of Wildfire</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>PennHip:</strong> Right DI = 0.29, Len DI = 0.24</li>
+                    <li><strong>OFA:</strong> Elbows Normal</li>
+                    <li><strong>DM:</strong> Clear via Parentage & DNA testing (Embark)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bapu Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/bapu-breeding.avif" alt="Bapu Breeding Visual">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">DPS-Noa's Deeply Loved Helios</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Sire:</strong> Zion’s Utah of Holtan</li>
+                    <li><strong>Dam:</strong> Noa Zion’s Love For Victory</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>OFA Hips:</strong> Good</li>
+                    <li><strong>OFA:</strong> Elbow's Normal</li>
+                    <li><strong>DM:</strong> Clear/Clear</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breeding-story-container anim-scroll">
+        <p>
+            Do you enjoy canine sports like scent work, herding, or agility? Or being part of the breed's history? If
+            you
+            do, this might be the perfect litter for you! Wilderness Kennels is excited to announce the one-time pairing
+            of Róka & Bapu! These pups will be F2 outcrosses meaning that these pups will be approximately 75% Shiloh
+            Shepherd and 25% Belgian Shepherd.
+        </p>
+
+        <p>
+            Róka is affectionately referred to as the "Duchess of Chaos" at home. She enters the room with a clear royal
+            vibrance about her, radiating grace in every movement. And man does this girl love to move! In traditional
+            Tervuren fashion, she is perpetually in motion. She adores her agility classes and long walks in the back
+            40. At home, her favourite past times include keeping the Canadian geese off of the grass, beach walks, and
+            playing with her pack mates. This past spring when raising the Mixal/Darko litter, I also got an opportunity
+            to see an incredible window into Róka's parenting skills. She was so gentile and careful with her growing
+            half-siblings and genuinely enjoyed having them around. This girl truly loves being in the presence of
+            puppies.
+        </p>
+
+        <p>
+            Bapu resides in the Netherlands, bringing to the table a very traditional Shiloh look to this pairing with a
+            wonderful stable temperament and a diverse mostly European Pedigree. He enjoys trotting off-leash alongside
+            his owner's bike. He is fantastic at ignoring environmental distractions. He has a low-maintenance smooth
+            coat, and lovely heavy bone structure, matched with effortless movement. He displays a lovely, friendly
+            disposition. Bapu's mother Noa was also born in Ontario at Victory Shilohs some years ago, so it’s nice to
+            have an opportunity to bring the line full circle since this Róka/Bapu litter will most likely be whelped
+            and raised in British Columbia, Canada.
+        </p>
+
+        <p class="f2-highlight">
+            Pups are expected to arrive in both smooth and plush coats, with either Wolf Sable (Aw) like their father,
+            or the eye-catching (Ay) Clear Sable of their mother. With a good possibility of beautiful light golden
+            coats, with a small chance of Silvery greys like their father. Whites are not expected. But Bapu has not
+            been DNA tested for coat colour genes, so one never really knows for sure.
+        </p>
+    </div>
+</section>
+
+<!-- Puppy Application Section -->
+<section id="application" class="application-section anim-scroll">
+    <h2 class="application-title">Puppy Application</h2>
+    <div class="upcoming-content">
+        <div class="health-note">
+            <p>
+                <strong>NOTE:</strong> All of the pups from the following litters will be required to complete our
+                health testing (24 hour holter, OFA or PennHip hip/elbow x-rays). Since I generally request that pets
+                not be altered (neutered or spayed) prior to 18-24 months for the health of the dog, I may opt to
+                collect semen for shipping or Cryogenic freezing on some of the males in order to further preserve these
+                lines.
+            </p>
+        </div>
+
+        <p>
+            Preference to breeding homes (or homes that are willing to leave a dog intact or whelp a co-owned litter) in
+            order to move these genetics forward will be given priority.
+        </p>
+
+        <p>
+            If you are interested in applying for any future litters please fill out this application and email it to
+            <strong>wildernesskennels@outlook.com</strong>.
+        </p>
+
+        <div class="app-button-container">
+            <a href="/form/" class="app-button">Puppy Application</a>
+        </div>
+    </div>
+</section>

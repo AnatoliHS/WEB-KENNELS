@@ -1,13 +1,11 @@
 <footer class="site-footer">
     <div class="footer-content">
         <div class="footer-col left-col">
-            <h3 class="footer-logo">Feminink Tattoo Studio</h3>
+            <h3 class="footer-logo">Wilderness Kennels</h3>
             <div class="contact-details-footer">
-                <p class="footer-address">470 Dundas Street East, Belleville, ON K8N 1G1</p>
+                <p class="footer-address">Pender Harbour, British Columbia, Canada</p>
                 <div class="footer-contact-row">
-                    <a href="tel:+16139611661">(613) 961-1661</a>
-                    <span class="footer-sep">|</span>
-                    <a href="mailto:info@feminink.ca">info@feminink.ca</a>
+                    <a href="mailto:Wildernesskennels@outlook.com">Wildernesskennels@outlook.com</a>
                 </div>
             </div>
         </div>
@@ -18,16 +16,18 @@
                 <a href="#" aria-label="Facebook"><img src="/assets/facebook.png" alt="FB"></a>
                 <a href="#" aria-label="TikTok"><img src="/assets/tik-tok.png" alt="TT"></a>
             </div>
-            <p class="copyright-text">&copy; 2026 Feminink Studio</p>
+            <p class="copyright-text">&copy; 2026 Wilderness Kennels &bull; <a href="/policies/" class="footer-link">Policies</a></p>
         </div>
     </div>
 </footer>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
     .site-footer {
         width: 100%;
-        background-color: #cdb4db;
-        padding: 35px 20px; 
+        background-color: #9fa89c;
+        padding: 35px 20px;
         box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
         box-sizing: border-box;
         border-top: none;
@@ -38,23 +38,25 @@
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        align-items: center; 
+        align-items: center;
         gap: 30px;
     }
 
-    .footer-col { flex: 1; }
-    
+    .footer-col {
+        flex: 1;
+    }
+
     .left-col {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px; 
+        gap: 8px;
     }
 
     .footer-logo {
-        font-family: 'Great Vibes', cursive;
-        font-size: 2rem; 
-        color: #351431;
+        font-family: 'Satisfy', cursive;
+        font-size: 2rem;
+        color: #2f2b27;
         margin: 0;
         font-weight: 400;
         line-height: 1;
@@ -66,11 +68,11 @@
         gap: 4px;
     }
 
-    .contact-details-footer p, 
+    .contact-details-footer p,
     .footer-contact-row {
         margin: 0;
         font-size: 0.95rem;
-        color: #351431;
+        color: #2f2b27;
     }
 
     .footer-contact-row {
@@ -85,13 +87,13 @@
     }
 
     .contact-details-footer a {
-        color: #351431;
+        color: #2f2b27;
         text-decoration: none;
         transition: 0.2s;
     }
 
     .contact-details-footer a:hover {
-        color: #5a2653;
+        color: #1a1a1a;
         text-decoration: underline;
     }
 
@@ -108,23 +110,37 @@
     }
 
     .social-icons img {
-        width: 22px; 
+        width: 22px;
         height: 22px;
         object-fit: contain;
         opacity: 0.8;
         transition: 0.3s ease;
     }
 
-    .social-icons img:hover { 
-        opacity: 1; 
-        transform: translateY(-2px); 
+    .social-icons img:hover {
+        opacity: 1;
+        transform: translateY(-2px);
     }
 
     .copyright-text {
         margin: 0;
         font-size: 0.8rem;
-        color: #5a2653;
+        color: #2f2b27;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer-link {
+        color: #2f2b27;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+        color: #1a1a1a;
+        text-decoration: underline;
     }
 
     @media (max-width: 768px) {
@@ -134,8 +150,9 @@
             gap: 20px;
         }
 
-        .left-col, .right-col { 
-            align-items: center; 
+        .left-col,
+        .right-col {
+            align-items: center;
         }
 
         .footer-contact-row {

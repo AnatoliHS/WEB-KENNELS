@@ -4,32 +4,62 @@ title: Thank You
 ---
 
 <div class="scene">
-  <div class="contact-box" style="--p: 40px; --bgc: rgba(255, 255, 255, 0.5); --radius: 10px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); --mt:50px; --mb:30px; --maxw: 600px; --w: 90vw; text-align: center;">
-      
-      <h1 style="font-size: 2.5rem; margin-bottom: 20px; font-weight: bold; background: linear-gradient(90deg, #0968e5, #091970); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;">
-          Message Sent!
-      </h1>
-      
-      <p style="font-size: 1.2rem; margin-bottom: 40px; color: #323232; font-weight: 500;">
-          Thank you for contacting Feminink. We have received your inquiry and will be in touch shortly.
-      </p>
+  <div class="contact-box"
+    style="--p: 40px; --bgc: rgba(255, 255, 255, 0.5); --radius: 10px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25); --mt:50px; --mb:30px; --maxw: 600px; --w: 90vw; text-align: center;">
 
-      
+    <h1
+      style="font-size: 2.5rem; margin-bottom: 20px; font-weight: bold; background: linear-gradient(90deg, #0968e5, #091970); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;">
+      Message Sent!
+    </h1>
+
+    <p style="font-size: 1.2rem; margin-bottom: 40px; color: #323232; font-weight: 500;">
+      Thank you for contacting Wilderness Kennels. We have received your inquiry and will be in touch shortly.
+    </p>
+
+
 
   </div>
 </div>
 
 <style>
-/* 3D Animation */
-.scene { perspective: 1000px; display: flex; justify-content: center; margin-top: 50px; }
-.contact-box { transform-origin: center center; animation: flipInX 1s ease-out forwards; }
-@keyframes flipInX {
-  0% { transform: rotateX(90deg); opacity: 0; }
-  40% { transform: rotateX(-20deg); }
-  60% { transform: rotateX(10deg); opacity: 1; }
-  80% { transform: rotateX(-5deg); }
-  100% { transform: rotateX(0deg); }
-}
+  /* 3D Animation */
+  .scene {
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
 
+  .contact-box {
+    transform-origin: center center;
+    animation: flipInX 1s ease-out forwards;
+  }
 
+  @keyframes flipInX {
+    0% {
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+
+    40% {
+      transform: rotateX(-20deg);
+    }
+
+    60% {
+      transform: rotateX(10deg);
+      opacity: 1;
+    }
+
+    80% {
+      transform: rotateX(-5deg);
+    }
+
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+
+  body {
+    background-color: #eff0e4;
+  }
 </style>
