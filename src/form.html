@@ -184,12 +184,14 @@ title: Puppy Application Form
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 15px;
+        align-items: stretch;
     }
 
     .checkbox-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
         gap: 12px;
+        align-items: stretch;
     }
 
     .selection-card {
@@ -212,14 +214,17 @@ title: Puppy Application Form
         font-weight: 600;
         transition: all 0.3s ease;
         height: 100%;
+        min-height: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-sizing: border-box;
     }
 
     .selection-card.small .card-content {
-        padding: 12px;
+        padding: 15px 12px;
         font-size: 0.9rem;
+        min-height: 60px;
     }
 
     .selection-card input:checked+.card-content {
@@ -238,6 +243,9 @@ title: Puppy Application Form
         .form-container {
             margin: 80px 15px 60px;
             padding: 40px 20px;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         .input-grid {
@@ -246,6 +254,30 @@ title: Puppy Application Form
 
         .full-width {
             grid-column: span 1;
+        }
+
+        .card-selector {
+            grid-template-columns: 1fr !important;
+            gap: 10px;
+        }
+
+        .checkbox-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px;
+        }
+
+        .card-content {
+            min-height: 50px;
+            padding: 14px 12px;
+        }
+
+        .selection-card.small .card-content {
+            min-height: 50px;
+            padding: 12px 10px;
+        }
+
+        .section-title {
+            font-size: 2rem;
         }
     }
 </style>
@@ -402,6 +434,29 @@ title: Puppy Application Form
                         <div class="card-content">No Preference</div>
                     </label>
                 </div>
+            </div>
+
+            <div class="selection-group">
+                <label>Coat length preference:</label>
+                <div class="card-selector">
+                    <label class="selection-card">
+                        <input type="radio" name="coatLength" value="Smooth">
+                        <div class="card-content">Smooth</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="coatLength" value="Plush">
+                        <div class="card-content">Plush</div>
+                    </label>
+                    <label class="selection-card">
+                        <input type="radio" name="coatLength" value="No Preference" checked>
+                        <div class="card-content">No Preference</div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group full-width" style="margin-bottom: 30px;">
+                <label>Preferred Upcoming Pair:</label>
+                <input type="text" name="preferredPair" placeholder="e.g. Mixal & Fortune">
             </div>
 
             <div class="input-grid" style="margin-top: 30px;">

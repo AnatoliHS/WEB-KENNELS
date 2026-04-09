@@ -1,0 +1,330 @@
+---
+layout: default
+title: Breed Standard
+---
+
+<style>
+    :root {
+        --bg-color: #eff0e4;
+        --accent-color: #9fa89c;
+        --text-color: #2f2b27;
+        --container-bg: #ffffff;
+    }
+
+    .standard-section {
+        padding: 140px 20px 100px;
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: var(--bg-color);
+    }
+
+    .standard-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .standard-title {
+        font-family: 'Satisfy', cursive;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        color: var(--text-color);
+        margin-bottom: 20px;
+        opacity: 0;
+        transform: translateY(-30px);
+        animation: fadeInDown 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .standard-subtitle {
+        font-size: 1.2rem;
+        color: var(--accent-color);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: 600;
+        opacity: 0;
+        animation: simpleFadeIn 1s ease 0.5s forwards;
+    }
+
+    .standard-content {
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 40px;
+        padding: 60px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    }
+
+    .section-block {
+        margin-bottom: 60px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+    }
+
+    .section-block.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .section-title {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.2rem;
+        color: var(--text-color);
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding-bottom: 10px;
+    }
+
+    .section-text {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.8;
+        font-size: 1.1rem;
+        color: #4a4540;
+    }
+
+    .section-text p {
+        margin-bottom: 20px;
+    }
+
+    @keyframes fadeInDown {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes simpleFadeIn {
+        to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+        .standard-section {
+            padding: 100px 15px 40px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .standard-title {
+            font-family: 'Satisfy', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            color: #2f2b27;
+            text-align: center;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s ease forwards 0.5s !important;
+        }
+        .standard-content {
+            padding: 30px 20px;
+            border-radius: 30px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            text-align: center;
+        }
+    }
+
+    body {
+        background-color: #eff0e4 !important;
+        align-items: stretch !important;
+        overflow-x: hidden !important;
+    }
+
+    main {
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+</style>
+
+<div class="standard-section">
+    <header class="standard-header anim-scroll">
+        <h1 class="standard-title">Breed Standard</h1>
+        <p class="standard-subtitle">ISSA Shiloh Shepherd</p>
+    </header>
+
+    <div class="standard-content">
+        <!-- Purpose -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Breed Purpose</h2>
+            <div class="section-text">
+                <p>The Shiloh Shepherd is an excellent family-friendly companion breed, gentle with children and other animals. The Shiloh can excel as a Therapy or Service dog prospect. Some lines retain working ability paralleling the purposes of its forebears: as a guardian of home and family; as a breed with scenting aptitude able to work in demanding disciplines such as search and rescue; and even as a herding dog.</p>
+            </div>
+        </div>
+
+        <!-- Character -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Character and Temperament</h2>
+            <div class="section-text">
+                <p>The Shiloh should be confident, with an attentive, intelligent air and a majestic bearing that catches the eye. The temperament may be friendly and outgoing or aloof and self-possessed, but must never be shy, reactive, or fearful. The ideal Shiloh is human-focused, eager to please, and happy to be with its people.</p>
+            </div>
+        </div>
+
+        <!-- Height -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Height</h2>
+            <div class="section-text">
+                <p>The Shiloh male is at least 28 inches (71 cm) in height at the withers. Height of over 30” (76 cm) is preferred. The Shiloh female is at least 26 inches (66 cm) in height at the withers. Height for females of over 28” (71 cm) is preferred.</p>
+            </div>
+        </div>
+
+        <!-- Head -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">The Head, General Impression and Proportions</h2>
+            <div class="section-text">
+                <p>The head overall is broad and wolfish, with a striking appearance that commands attention. The skull is as wide as it is long, slightly domed, and is equal in length to the muzzle, which is predominantly black. The stop should be moderately defined. The lips should be close-fitting, and the lower jaw should have a consistent thickness to the end of the muzzle.</p>
+                <p>Males and females should be identifiable, though masculine females should not be faulted.</p>
+            </div>
+        </div>
+
+        <!-- Ears -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Ears</h2>
+            <div class="section-text">
+                <p>The ears should be triangular and fully erect, slightly pointed at the tip. They are set high on the head, medium to small in size, with smaller preferred. The height should be equal to width at the base of the ear. Ears that are not fully standing at 18 months of age should be considered a fault.</p>
+            </div>
+        </div>
+
+        <!-- Eyes and Nose -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Eyes and Nose</h2>
+            <div class="section-text">
+                <p>The eyes should be almond-shaped and are shades of dark brown through amber to very light brown. The nose and eye rims should be black. Protruding eyes are not desired and should be considered a fault.</p>
+            </div>
+        </div>
+
+        <!-- Muzzle -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Muzzle</h2>
+            <div class="section-text">
+                <p>The nasal bridge should ideally be straight, without bulge or dip. A slight bulge is permitted but a Roman nose is a fault. The end of the muzzle should appear squared off, with a well-developed chin. Nose and lip pigmentation should be black.</p>
+            </div>
+        </div>
+
+        <!-- Bite -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Bite and Dentition</h2>
+            <div class="section-text">
+                <p>The adult Shiloh possesses 42 teeth, 21 above and below. The proper bite is a scissors bite, with the upper front teeth closely overlapping the lowers. Missing teeth are a fault unless due to trauma. Undershot, overshot, or wry bites are a disqualifying fault in the ring.</p>
+            </div>
+        </div>
+
+        <!-- Neck -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Neck</h2>
+            <div class="section-text">
+                <p>The neck should be moderately long, well-arched and strong. The line of the neck should blend seamlessly into the withers, which should slope slightly and blend smoothly into the back line.</p>
+                <p>When a line is drawn up the front leg, the entire neck should be in front of that line.</p>
+            </div>
+        </div>
+
+        <!-- Chest -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Chest and Front Assembly</h2>
+            <div class="section-text">
+                <p>The chest should be broad and well-filled. Viewed from the side, the chest should be visible in front of the shoulder assembly. The shoulder blade should be well laid back to give the dog the desired length of reach.</p>
+            </div>
+        </div>
+
+        <!-- Top Line -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Top Line</h2>
+            <div class="section-text">
+                <p>The back line should be strong and level, without sag or roach. A sloping top line, where even the back line has slope, is not desirable in this breed.</p>
+            </div>
+        </div>
+
+        <!-- Body Proportions -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Body, Proportions</h2>
+            <div class="section-text">
+                <p>The ideal body proportions are slightly longer than tall, a 9:10 height to length ratio. Longer proportions are permitted but not as desirable.</p>
+            </div>
+        </div>
+
+        <!-- Build and Bone -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Body, Build and Bone</h2>
+            <div class="section-text">
+                <p>The body should be wide and of average depth, with the brisket at the same level as the elbow joint. The ribs should be well-sprung. The loin should be moderately short to create the desirable 9:10 body proportions. The ideal bone is medium to heavy, oval in shape. However, the dog should never be so heavy-boned as to appear ponderous.</p>
+            </div>
+        </div>
+
+        <!-- Croup and Rear -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Croup, and Rear Assembly</h2>
+            <div class="section-text">
+                <p>The croup should be long and gently sloping, the natural progression of a level and stable top line. The ideal angle is somewhere around 25 degrees off the back line, with some variance acceptable. A steep croup is only a fault if it interferes with the movement of the dog.</p>
+                <p>The rear thigh should be wide and muscular, with the stifle well-bent at an angle ideally approaching 90 degrees. The hocks are straight and vertical; cow hocks are considered a fault scaling with the severity of the defect. When the leg is stretched out and the hock is perpendicular to the ground, the hind foot may extend past the point of the buttock. However, it should not do so extremely, nor should this stance cause the top line to slope.</p>
+            </div>
+        </div>
+
+        <!-- Feet -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Feet and Pasterns</h2>
+            <div class="section-text">
+                <p>The feet should be tight and oval, with well-sprung toes. Pasterns should be short, strong, and slightly angled. Soft pasterns are a fault.</p>
+            </div>
+        </div>
+
+        <!-- Tail -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Tail, Set, Length, and Carriage</h2>
+            <div class="section-text">
+                <p>The tail should be set smoothly into the croup, be well-furred, and hang like a plume at rest, either straight or slightly curved as a saber. The ideal length should be one bone past the hock joint, with slightly longer or shorter acceptable. Very long tails are not faulty in themselves but are less desirable.</p>
+                <p>In motion, the tail should be carried no higher than the line of the back, with lower carriage preferred. A curve in motion is acceptable but screw, ring, or fishhook-shaped tails are faults. A tail that is consistently carried up and forward over the back is a disqualifying fault in the ring.</p>
+            </div>
+        </div>
+
+        <!-- Movement -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Movement, General Impression</h2>
+            <div class="section-text">
+                <p>Correct movement should be considered a top priority in judging the overall quality of these dogs. The stride should be long and effortless, giving the impression of power and grace. Despite their size, these dogs should never appear heavy or clumsy. Each stride should cover a great deal of ground.</p>
+                <p>The Shiloh shepherd seeks to achieve a moderate, balanced, and stable structure. Extreme movement should never be sought at the cost of a well-balanced dog.</p>
+            </div>
+        </div>
+
+        <!-- Gait -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Gait, Physical Characteristics</h2>
+            <div class="section-text">
+                <p><strong>Top line and transmission:</strong> The top line should remain stable at speed, without excessive motion, looseness, sag, roach, or any other instability.</p>
+                <p><strong>Front movement:</strong> As the dog comes toward the observer the legs should converge slightly, moving toward single tracking in a “V” shape. Pinched elbows or moving out at the elbows are faults.</p>
+                <p><strong>Side Gait, Front Assembly:</strong> At the trot the dog should reach from the shoulder, and the front foot at full extension should be seen to reach past the nose. The feet should stay close to the ground and a dog that pads, paddles, or exhibits other wasted motion, lacks efficiency in the stride and should be faulted.</p>
+                <p><strong>Side Gait, Rear Assembly:</strong> The rear foot moving forward will reach inside or outside and cross over the front foot slightly at full extension. The dog should open well at the hock, the drive should be powerful and the rear foot should stay close to the ground.</p>
+                <p><strong>Rear movement:</strong> Viewed moving away from the observer the rear legs should naturally converge slightly, moving toward single-tracking in a “V” shape. The observer should be able to see the pads of the rear feet clearly as the foot leaves the ground. Moving cow-hocked, moving wide, or “egg beater” motion where the hocks interfere with each other are faults.</p>
+            </div>
+        </div>
+
+        <!-- Coat Types -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Coat Types, Characteristics</h2>
+            <div class="section-text">
+                <p><strong>Smooth Coat:</strong> The smooth-coated Shiloh possesses a double coat of medium length. The outer coat is harsher and weather-repellent over the softer undercoat. Hair over the body does not exceed two inches in length, with longer hair on the ruff of the neck and longer feathering of the tail.</p>
+                <p><strong>Plush Coat:</strong> The plush-coated Shiloh possesses a double-coat with hairs not exceeding four inches in length on the body and five inches on the neck ruff and tail. Longer hair is also expected on the feathering of the legs. Like the smooth, the outer coat should be coarser and weather-repellent over the softer undercoat.</p>
+            </div>
+        </div>
+
+        <!-- Coat Color -->
+        <div class="section-block anim-scroll">
+            <h2 class="section-title">Coat Color, Markings, and Pigmentation</h2>
+            <div class="section-text">
+                <p>Shilohs may be sable, saddle-marked, or in solid colors. The sables range from grey through golden to brown, in various shades of light or dark. The saddle-marked duals range from silver or cream through golden to a reddish-tan. Bi-colored dogs are mostly black in coat with color on the legs and sometimes the chest or face. Solid colors permitted include white and black. The white may exhibit buff or apricot markings.</p>
+                <p>White or cream markings on toes, throat, or chest are permitted. It is preferred that they blend into the rest of the coat, though this may not be possible in a dark dog. A white tip on the tail is not preferred but should be considered only a minor fault.</p>
+                <p>Coat color should be only a small consideration next to the overall quality of the dog.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.anim-scroll').forEach(el => observer.observe(el));
+    });
+</script>

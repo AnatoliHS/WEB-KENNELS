@@ -161,14 +161,22 @@ title: Home
         animation: arrowGlow 2s infinite;
     }
 
-    .arrow-down:nth-child(2) { animation-delay: 0.3s; }
-    .arrow-down:nth-child(3) { animation-delay: 0.6s; }
+    .arrow-down:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+
+    .arrow-down:nth-child(3) {
+        animation-delay: 0.6s;
+    }
 
     @keyframes arrowGlow {
-        0%, 100% {
+
+        0%,
+        100% {
             opacity: 0.2;
             filter: drop-shadow(0 0 0 white);
         }
+
         50% {
             opacity: 1;
             filter: drop-shadow(0 0 8px white);
@@ -176,9 +184,14 @@ title: Home
     }
 
     @media (max-width: 900px) {
+        .hero-scroll-bottom {
+            bottom: 100px;
+        }
+
         .hero-dog-icon {
             display: none;
         }
+
         .hero-arrows-container {
             display: flex;
         }
@@ -678,7 +691,7 @@ title: Home
 <div class="video-hero-container">
     <div class="sticky-video-wrap">
         <video autoplay loop muted playsinline class="video-hero-bg">
-            <source src="/assets/dog2.mp4" type="video/mp4">
+            <source src="/assets/mixal.mp4" type="video/mp4">
         </video>
         <div class="video-hero-overlay"></div>
     </div>
@@ -769,24 +782,33 @@ title: Home
 
 <section class="detailed-info-section">
     <div class="detailed-section-header">
-        <h2 class="detailed-section-title">Proudly Raising Shiloh Shepherds<br>on the West Coast with Love & Science!</h2>
-        
+        <h2 class="detailed-section-title">Proudly Raising Shiloh Shepherds<br>on the West Coast with Love & Science!
+        </h2>
+
         <div class="detailed-section-intro">
             <p class="intro-paragraph">
-                At Wilderness Kennels, we specialize in breeding for more than just looks; we focus on intelligent, family-friendly companions. I hand-select each of our dogs for superior problem-solving, dexterity, and focus. These are the unique qualities that I love to see and nurture in all my Shilohs, young and old!
+                At Wilderness Kennels, we specialize in breeding for more than just looks; we focus on intelligent,
+                family-friendly companions. I hand-select each of our dogs for superior problem-solving, dexterity, and
+                focus. These are the unique qualities that I love to see and nurture in all my Shilohs, young and old!
             </p>
 
             <div class="intro-sub-block">
                 <h3 class="intro-sub-title">Striving for the Ideal Shiloh</h3>
                 <p class="intro-sub-text">
-                    I believe that to produce the ideal Shiloh Shepherd, a breeder must strive for excellence in every litter. This means balancing optimum health and temperament with intelligence and conformation. This careful balance gives our dogs the potential to succeed in many roles—whether as a loyal family companion, a competitor in canine sports, or even a dedicated service dog.
+                    I believe that to produce the ideal Shiloh Shepherd, a breeder must strive for excellence in every
+                    litter. This means balancing optimum health and temperament with intelligence and conformation. This
+                    careful balance gives our dogs the potential to succeed in many roles—whether as a loyal family
+                    companion, a competitor in canine sports, or even a dedicated service dog.
                 </p>
             </div>
 
             <div class="intro-sub-block">
                 <h3 class="intro-sub-title">Proven Pedigrees & Our Community</h3>
                 <p class="intro-sub-text">
-                    Our dogs come from outstanding bloodlines that maximize biodiversity and are backed by pedigrees full of health testing and titles. I spend a great deal of time researching these lines to truly understand the dogs we are producing today. But a great pedigree isn't enough! Our dogs must prove themselves through conformation shows, temperament testing, and our mandatory health program.
+                    Our dogs come from outstanding bloodlines that maximize biodiversity and are backed by pedigrees
+                    full of health testing and titles. I spend a great deal of time researching these lines to truly
+                    understand the dogs we are producing today. But a great pedigree isn't enough! Our dogs must prove
+                    themselves through conformation shows, temperament testing, and our mandatory health program.
                 </p>
             </div>
 
@@ -803,20 +825,27 @@ title: Home
             </div>
 
             <p class="intro-paragraph" style="margin-top: 60px;">
-                Our puppies are raised within our Culture program, surrounded by a wide circle of dog-loving family and friends, and introduced to varied indoor and outdoor environments from an early age.
+                Our puppies are raised within our Culture program, surrounded by a wide circle of dog-loving family and
+                friends, and introduced to varied indoor and outdoor environments from an early age.
             </p>
 
             <div class="intro-sub-block">
                 <h3 class="intro-sub-title">Our Passion and Commitment</h3>
                 <p class="intro-sub-text">
-                    Wilderness Kennels is a small, home-run facility. We intentionally limit the number of dogs and litters we have so that we can spend quality time with each one individually. For me, breeding beautiful, healthy puppies is more than a hobby—it is a lifelong passion. We are committed to producing amazing new generations of Shilohs based on groundbreaking science and proven bloodlines, ensuring every puppy is conformationally sound and true to the breed standard.
+                    Wilderness Kennels is a small, home-run facility. We intentionally limit the number of dogs and
+                    litters we have so that we can spend quality time with each one individually. For me, breeding
+                    beautiful, healthy puppies is more than a hobby—it is a lifelong passion. We are committed to
+                    producing amazing new generations of Shilohs based on groundbreaking science and proven bloodlines,
+                    ensuring every puppy is conformationally sound and true to the breed standard.
                 </p>
             </div>
 
             <div class="promise-container">
                 <h3 class="promise-title">Our Promise</h3>
                 <p class="promise-text">
-                    We know our adoptive families are counting on us to bring beauty, character, and health to every puppy. As breeders, we prove our commitment through standardized temperament and health testing, as well as in the conformation show ring.
+                    We know our adoptive families are counting on us to bring beauty, character, and health to every
+                    puppy. As breeders, we prove our commitment through standardized temperament and health testing, as
+                    well as in the conformation show ring.
                 </p>
             </div>
         </div>
@@ -878,16 +907,15 @@ title: Home
         <h2 class="contact-title">Visit Us</h2>
         <div class="contact-details">
             <strong>Address</strong><br>
-            Pender Harbour,<br>
-            British Columbia, Canada<br>
+            Carrying Place ON, Canada<br>
 
             <strong>Email</strong><br>
             <a href="mailto:Wildernesskennels@outlook.com">Wildernesskennels@outlook.com</a>
         </div>
     </div>
     <div class="contact-map-col">
-        <iframe src="https://www.google.com/maps?q=Pender+Harbour,+British+Columbia,+Canada&output=embed"
-            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps?q=Carrying+Place+ON,+Canada&output=embed" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </section>
 

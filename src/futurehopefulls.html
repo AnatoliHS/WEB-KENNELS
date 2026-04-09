@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Our Shilohs
+title: Future Hopefuls
 ---
 
 <style>
     :root {
-        --bg-color: #eff0e4; /* Page background reversed */
+        --bg-color: #eff0e4;
         --accent-color: #9fa89c;
         --text-color: #2f2b27;
-        --container-bg: #ffffff; /* Profile cards now white */
+        --container-bg: #ffffff;
     }
 
     .shilohs-section {
@@ -33,228 +33,9 @@ title: Our Shilohs
         animation: fadeInDown 1s ease forwards;
     }
 
-    .shiloh-titles {
-        font-size: 1.2rem;
-        color: var(--accent-color);
-        font-weight: 600;
-        letter-spacing: 1px;
-        opacity: 0;
-        animation: simpleFadeIn 1s ease 0.5s forwards;
-    }
-
-    /* Profile Row with Colored Container */
-    .profile-container {
-        background-color: var(--container-bg);
-        border-radius: 40px;
-        padding: 60px;
-        display: flex;
-        align-items: center;
-        gap: 60px;
-        margin-bottom: 80px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease;
-    }
-
-    .profile-container.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .profile-image-col {
-        flex: 1;
-    }
-
-    .profile-image-col img {
-        width: 100%;
-        height: auto;
-        border-radius: 30px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    .profile-stats-col {
-        flex: 1;
-    }
-
-    .stats-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .stats-list li {
-        margin-bottom: 5px; /* Reduced spacing */
-        font-size: 1.05rem;
-        line-height: 1.4; /* Tighter line height */
-    }
-
-    .stats-label {
-        font-weight: 600;
-        color: var(--accent-color);
-        display: block;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 1px;
-    }
-
-    .stats-group {
-        margin-top: 15px; /* Reduced spacing */
-        padding-top: 12px;
-        border-top: 1px solid rgba(0,0,0,0.05);
-    }
-
-    /* Description */
-    .shiloh-description {
-        max-width: 900px;
-        margin: 0 auto 80px;
-        text-align: center;
-        line-height: 1.8;
-        font-size: 1.15rem;
-        color: #4a4540;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.8s ease;
-    }
-
-    .shiloh-description.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Image Grid */
-    .image-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
-        margin-bottom: 100px;
-    }
-
-    .grid-item {
-        border-radius: 30px;
-        overflow: hidden;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        aspect-ratio: 4 / 3; /* Fixed aspect ratio to ensure uniform grid */
-        opacity: 0;
-        transform: scale(0.95);
-        transition: all 0.6s ease;
-    }
-
-    .grid-item.is-visible {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .grid-item:hover {
-        transform: translateY(-10px);
-    }
-
-    .grid-item img {
-        width: 100%;
-        height: 100%; /* Fill the container completely */
-        object-fit: cover; /* Zoom in to fit without leaving gaps */
-        display: block;
-    }
-
-    /* Achievement Rows */
-    .achievement-row {
-        display: flex;
-        align-items: center;
-        gap: 60px;
-        margin-bottom: 100px;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease;
-    }
-
-    .achievement-row.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .achievement-row.reverse {
-        flex-direction: row-reverse;
-    }
-
-    .achievement-text-col {
-        flex: 1;
-    }
-
-    .achievement-image-col {
-        flex: 1;
-    }
-
-    .achievement-image-col img {
-        width: 100%;
-        height: auto;
-        border-radius: 30px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
-    .achievement-title {
-        font-family: 'Satisfy', cursive;
-        font-size: 2.5rem;
-        margin-bottom: 20px;
-    }
-
-    .achievement-details {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        white-space: pre-line;
-    }
-
-    @keyframes fadeInDown {
-        from { opacity: 0; transform: translateY(-30px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes simpleFadeIn {
-        to { opacity: 1; }
-    }
-
-    @media (max-width: 900px) {
-        .profile-container, .achievement-row, .achievement-row.reverse {
-            flex-direction: column;
-            padding: 40px 20px;
-            gap: 40px;
-            text-align: center;
-        }
-
-        .image-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .stats-list li {
-            text-align: center;
-        }
-    }
-
-    .majestic-view {
-        margin-top: 80px;
-        border-radius: 40px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
-    }
-
-    .majestic-view.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .majestic-view img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    /* Stud Grid layout (3 cols: img - text - img) */
     .stud-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 33.3% each as requested */
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         align-items: stretch;
         margin-bottom: 100px;
@@ -287,33 +68,49 @@ title: Our Shilohs
     .stud-text-card {
         background-color: var(--container-bg);
         border-radius: 30px;
-        padding: 15px 20px; /* More compact padding */
+        padding: 15px 20px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        font-size: 0.8rem; /* Further reduced overall font */
+        font-size: 0.8rem;
     }
 
-    .stud-text-card .stats-list li {
+    .stats-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .stats-list li {
         text-align: left;
-        font-size: 0.75rem; /* Specific smaller font for stats */
+        font-size: 0.75rem;
         margin-bottom: 2px;
-        line-height: 1.2; /* Tighter leading */
+        line-height: 1.2;
     }
 
-    .stud-text-card .stats-label {
-        font-size: 0.65rem; /* Very compact labels */
+    .stats-label {
+        font-weight: 600;
+        color: var(--accent-color);
+        display: block;
+        font-size: 0.65rem;
+        text-transform: uppercase;
         letter-spacing: 0.5px;
         margin-bottom: 0;
     }
 
+    .stats-group {
+        margin-top: 15px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
     .stud-section-title {
         font-family: 'Satisfy', cursive;
-        font-size: 4.5rem;
+        font-size: clamp(2.5rem, 8vw, 5rem);
         text-align: center;
         margin-bottom: 20px;
-        margin-top: 100px;
+        margin-top: 40px;
     }
 
     .stud-section-desc {
@@ -325,20 +122,22 @@ title: Our Shilohs
         opacity: 0.9;
     }
 
-    /* Mobile adjustments for stud grid */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 1024px) {
         .stud-grid {
             grid-template-columns: 1fr;
             gap: 20px;
             width: 100%;
-            margin: 0 auto 60px;
-            padding: 0 10px;
         }
 
         .stud-img-col {
-            aspect-ratio: 3 / 4; /* Portrait scaling on mobile */
+            aspect-ratio: 3 / 4;
             width: 100%;
-            max-width: 400px; /* Keep it centered and centered on screen */
+            max-width: 400px;
             margin: 0 auto;
         }
 
@@ -352,13 +151,37 @@ title: Our Shilohs
         }
     }
 
-    /* Layout overrides for reversed background */
+    @media (max-width: 768px) {
+        .shilohs-section { 
+            padding: 100px 15px 40px; 
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .stud-section-title {
+            font-family: 'Satisfy', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            margin-top: 0;
+            color: #2f2b27;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s ease forwards 0.5s;
+        }
+        .stud-section-desc {
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            padding: 0 10px;
+        }
+    }
+
+    /* Override body/main constraints to prevent shifting */
     body {
         background-color: #eff0e4 !important;
         align-items: stretch !important;
-        overflow-x: hidden !important; /* Prevent white strip/side scroll */
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
     }
-
     main {
         width: 100% !important;
         max-width: 100vw !important;
@@ -366,342 +189,7 @@ title: Our Shilohs
 </style>
 
 <div class="shilohs-section">
-    <header class="shiloh-header">
-        <h1 class="shiloh-name">Mixal</h1>
-        <p class="shiloh-titles">GV intCH Guardian's Reflection of Wildfire OFA TT NTD</p>
-    </header>
-
-    <section class="profile-container anim-scroll">
-        <div class="profile-image-col">
-            <img src="/assets/mixal-profile.avif" alt="Mixal Profile">
-        </div>
-        <div class="profile-stats-col">
-            <ul class="stats-list">
-                <li><span class="stats-label">Call Name</span> Mixal</li>
-                <li><span class="stats-label">Registered Name</span> GV intCH Guardian's Reflection of Wildfire</li>
-                <li><span class="stats-label">Date of Birth</span> May 29th, 2018</li>
-                <li><span class="stats-label">Sire</span> Guardian's Noble Atticus</li>
-                <li><span class="stats-label">Dam</span> Kyla of Guardian Kennels</li>
-                <li><span class="stats-label">Height</span> 29" Inches</li>
-                <li><span class="stats-label">Weight</span> 112 pounds</li>
-            </ul>
-            <div class="stats-group">
-                <ul class="stats-list">
-                    <li><span class="stats-label">DM</span> Clear by Parentage & DNA testing</li>
-                    <li><span class="stats-label">Holter Tested</span> Clear (at 6 months)</li>
-                    <li><span class="stats-label">OFA</span> Good</li>
-                    <li><span class="stats-label">PennHip</span> Right ID 0.24, Left ID 0.26</li>
-                </ul>
-            </div>
-            <div class="stats-group">
-                <span class="stats-label">Coat colour Genetics (Embark)</span>
-                <ul class="stats-list" style="margin-top: 10px;">
-                    <li>Em/e (Masked/Carries for White)</li>
-                    <li>Aw/Aw (Wolf Sable/Agouti)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="shiloh-description anim-scroll">
-        <p>
-            This girl is bursting with character, personality, and confidence. She is most at home in the backcountry of British Columbia conquering mountains and rainforest. But when back in civilization she sure does love to soak in the affections from the curious people in town. Being 29" inches at the withers, and a graceful 105 pounds her size alone is often enough to draw a crowd. Mixal's most shining feature is definitely her intelligence! This girl has mastered 4 styles of door handles, gate latches, and even opening the car doors on occasion. She is a master problem-solver.
-        </p>
-    </section>
-
-    <section class="image-grid">
-        <div class="grid-item anim-scroll">
-            <img src="/assets/mixal-profile3.avif" alt="Mixal Profile 3">
-        </div>
-        <div class="grid-item anim-scroll">
-            <img src="/assets/mixal-profile4.avif" alt="Mixal Profile 4">
-        </div>
-        <div class="grid-item anim-scroll">
-            <img src="/assets/mixal-profile5.avif" alt="Mixal Profile 5">
-        </div>
-        <div class="grid-item anim-scroll">
-            <img src="/assets/mixal-profile6.avif" alt="Mixal Profile 6">
-        </div>
-    </section>
-
-    <section class="achievement-row reverse anim-scroll">
-        <div class="achievement-text-col">
-            <h3 class="achievement-title">Puppy Championship</h3>
-            <div class="achievement-details">
-                Achievements - October 2019, Mixal has Achieved her Puppy Championship!
-                
-                ISSA NATIONAL EVENT AND SPECIALTY,
-                Saint Louis, MO.
-
-                Two Time:    Best in Show 2019 
-                                      Best of Breed 2019 
-                                      Best of Winners 2019
-                                      Winner Bitch 2019
-                                 
-                Three time: 1st Place senior puppy 2019
-            </div>
-        </div>
-        <div class="achievement-image-col">
-            <img src="/assets/achievements.avif" alt="Mixal Achievements" onerror="this.src='/assets/mixal-fortune.avif'; this.alt='Mixal Achievements (Placeholder)';">
-        </div>
-    </section>
-
-    <section class="achievement-row anim-scroll">
-        <div class="achievement-text-col" style="text-align: left;">
-            <h3 class="achievement-title">Adult Championship</h3>
-            <div class="achievement-details">
-                Mixal Achieved her Adult Championship!                
-                
-                2020 PEACE ARCH SIEGER, Lynden Washington.     
-
-                Winning:    Best in Show - Rare Breed Adult 2020!  
-                                     Best of Breed.                                          
-                                   Best of Winners (4x)                                
-                                   Winner Bitch (4x).                                    
-                                   Best of Opposite Sex (3x)
-            </div>
-        </div>
-        <div class="achievement-image-col">
-            <img src="/assets/mixal-profile2.jpg" alt="Mixal Profile 2">
-        </div>
-    </section>
-
-    <section class="majestic-view anim-scroll">
-        <img src="/assets/mixal-majestic.avif" alt="Mixal Majestic View">
-    </section>
-
-    <!-- Separator -->
-    <div style="margin: 100px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
-
-    <!-- Róka Profile -->
-    <header class="shiloh-header anim-scroll">
-        <h1 class="shiloh-name">Róka</h1>
-        <p class="shiloh-titles">Wilderness' Vixen of Fortune</p>
-    </header>
-
-    <section class="profile-container anim-scroll">
-        <div class="profile-image-col">
-            <img src="/assets/roka-profile.avif" alt="Róka Profile">
-        </div>
-        <div class="profile-stats-col">
-            <ul class="stats-list">
-                <li><span class="stats-label">Call Name</span> Róka</li>
-                <li><span class="stats-label">Registered Name</span> Wilderness' Vixen of Fortune</li>
-                <li><span class="stats-label">Date of Birth</span> February 8th, 2022</li>
-                <li><span class="stats-label">Sire</span> Blackfyre My Wyld Fortune</li>
-                <li><span class="stats-label">Dam</span> Guardian's Reflection of Wildfire</li>
-                <li><span class="stats-label">Height</span> 27" at the withers (@ 11 months)</li>
-            </ul>
-            <div class="stats-group">
-                <ul class="stats-list">
-                    <li><span class="stats-label">Holter Tested</span> 0,0,0</li>
-                    <li><span class="stats-label">OFA/PennHip</span> Pending</li>
-                    <li><span class="stats-label">DM</span> Clear/Clear</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="shiloh-description anim-scroll">
-        <h3 class="achievement-title" style="text-align: center; font-size: 2.2rem;">Róka's Story</h3>
-        <p>
-            Róka is bursting with life, she has a beautiful vibrancy about her in every way. Be it her shining personality, her eye-catching good looks or her graceful movement. She is incredibly in tune with her surroundings, and quick to learn new skills. She undoubtedly inherited her mother's intelligence and great problem-solving skills, as well as her father's working drive. Looking forward to exploring a variety of canine sports with this girl, including Agility, and Scent work for the purpose of conservation biology work. 
-        </p>
-        <p style="margin-top: 30px; font-size: 1rem; opacity: 0.9;">
-            <strong>Important note:</strong> Róka is registered with the ISSA as F1 foundation stock. She is part of an incredibly important biodiversity project to better the Shiloh Shepherd breed. <a href="/breed/" style="color: var(--accent-color); font-weight: 600;">(Read about it here)</a> Due to the breeding restrictions on this line. I will be exceedingly selective about the placement of any breed-quality F2 progeny.
-        </p>
-    </section>
-
-    <section class="majestic-view anim-scroll" style="margin-bottom: 60px;">
-        <img src="/assets/roka-profile2.avif" alt="Róka Profile 2">
-    </section>
-
-    <section class="majestic-view anim-scroll">
-        <img src="/assets/roka-profile3.avif" alt="Róka Profile 3">
-    </section>
-
-    <!-- Separator -->
-    <div style="margin: 100px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
-
-    <!-- Available Studs Section -->
-    <h2 class="stud-section-title anim-scroll">Available Studs</h2>
-    <p class="stud-section-desc anim-scroll">
-        Wilderness Kennels lists both its active and cryogenically frozen studs. <br>
-        Please email <a href="mailto:Wildernesskennels@outlook.com" style="color: var(--accent-color); font-weight: 600;">Wildernesskennels@outlook.com</a> if you are interested in inquiring about the breeding unit price for a stud, or if you would like to know more about any given stud.
-    </p>
-
-    <!-- Stud 1: Major -->
-    <header class="shiloh-header anim-scroll" style="margin-top: 60px;">
-        <h2 class="shiloh-name" style="font-size: 3rem;">Major</h2>
-    </header>
-    <div class="stud-grid anim-scroll">
-        <div class="stud-img-col">
-            <img src="/assets/stud1.avif" alt="Major Stud 1">
-        </div>
-        <div class="stud-text-card">
-            <ul class="stats-list">
-                <li><span class="stats-label">Registered Name</span> Guardian's Major Heartbreaker_WLDNS CGC THDA</li>
-                <li><span class="stats-label">Call Name</span> Major</li>
-                <li><span class="stats-label">Sire</span> Guardian's Johnny Cash of Sentinel</li>
-                <li><span class="stats-label">Dam</span> Guardian's Reflection of Wildfire</li>
-                <li><span class="stats-label">Birthdate</span> 06.27.2021</li>
-                <li><a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.9rem;">Pedigree Link</a></li>
-                <li><span class="stats-label">15 Generation Pedigree COI</span> Pending</li>
-            </ul>
-            <div class="stats-group">
-                <span class="stats-label">Availability</span>
-                <ul class="stats-list">
-                    <li>Status: Frozen Only</li>
-                    <li>Number of available units: 11</li>
-                    <li>Storage Location: Texas USA</li>
-                </ul>
-            </div>
-            <div class="stats-group">
-                <span class="stats-label">Health</span>
-                <ul class="stats-list">
-                    <li>Holter: 0,0,0 (24 hours @ 5.5 months)</li>
-                    <li>OFA hips: Good - SLH-1231G24M-C-VPI</li>
-                    <li>Elbows: Normal - SLH-EL1007M24-C-VPI</li>
-                    <li>Heart: Auscultation - "Clear"</li>
-                    <li>DM: Clear/Clear</li>
-                    <li>Temperament Test: CGC + Working Therapy Dog</li>
-                    <li><a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.85rem;">Embark Link</a> | <a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.85rem;">UC Davis Certificate</a></li>
-                </ul>
-            </div>
-            <div class="stats-group">
-                <span class="stats-label">Phenotype</span>
-                <ul class="stats-list">
-                    <li>Weight: Pending. Height: Pending</li>
-                    <li>Coat Colour: Brown Sable</li>
-                    <li>Genes: Aw/at + Em/e</li>
-                    <li>Coat Length: Plush</li>
-                </ul>
-            </div>
-        </div>
-        <div class="stud-img-col">
-            <img src="/assets/stud1-2.avif" alt="Major Stud 2">
-        </div>
-    </div>
-
-    <!-- Separator -->
-    <div style="margin: 80px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
-
-    <!-- Stud 2: Rodan -->
-    <header class="shiloh-header anim-scroll">
-        <h2 class="shiloh-name" style="font-size: 3rem;">Rodan</h2>
-    </header>
-    <div class="stud-grid anim-scroll">
-        <div class="stud-img-col">
-            <img src="/assets/stud2.avif" alt="Rodan Stud 1">
-        </div>
-        <div class="stud-text-card">
-            <ul class="stats-list">
-                <li><span class="stats-label">Registered Name</span> Vanguard's Kaiju Born of WILDfyre</li>
-                <li><span class="stats-label">Call Name</span> Rodan</li>
-                <li><span class="stats-label">Sire</span> Blackfyre My Wyld Fortune</li>
-                <li><span class="stats-label">Dam</span> Guardian's Reflection of Wildfire</li>
-                <li><span class="stats-label">Birthdate</span> 02.08.2022</li>
-                <li><span class="stats-label">Resides at</span> Vanguard Kennels, Colorado, USA</li>
-                <li><a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.9rem;">Pedigree Link</a></li>
-                <li><span class="stats-label">Pedigree & Genetic COI</span> 0%</li>
-            </ul>
-            <div class="stats-group">
-                <span class="stats-label">Availability</span>
-                <ul class="stats-list">
-                    <li>Status: Live, Fresh Chilled, and Frozen</li>
-                    <li>Number of available units: 20</li>
-                    <li>Storage Location: Colorado, USA</li>
-                    <li style="font-size: 0.9rem; font-style: italic;">Available to approved ISSA Shiloh's only at this time. Outcross proposals from other breeds may be considered.</li>
-                </ul>
-            </div>
-            <div class="stats-group">
-                <span class="stats-label">Health</span>
-                <ul class="stats-list">
-                    <li>Holter: 95 hours @ 6 months (63,0,0) - Daily Avg: 16,0,0</li>
-                    <li>OFA hips: Good - SLH-1317G31M-C-VPI</li>
-                    <li>Pennhip: R = 0.25 | L = 0.25</li>
-                    <li>Elbows: Normal - SLH-EL1101M31-C-VPI</li>
-                    <li>Cardiac (Ausc+Echo): Normal - SLH-ACA150/23M-VPI</li>
-                    <li>CHIC: 199712</li>
-                    <li><a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.85rem;">Embark Link</a> | <a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.85rem;">UC Davis Link</a></li>
-                </ul>
-            </div>
-            <div class="stats-group">
-                <span class="stats-label">Phenotype</span>
-                <ul class="stats-list">
-                    <li>Weight: 103lbs, Height: 29.5"</li>
-                    <li>Coat Colour: Brown Sable</li>
-                    <li>Genes: Ay/Aw + Em/e</li>
-                    <li>Coat Length: Plush</li>
-                </ul>
-            </div>
-        </div>
-        <div class="stud-img-col">
-            <img src="/assets/stud2-2.avif" alt="Rodan Stud 2">
-        </div>
-    </div>
-
-    <!-- Separator -->
-    <div style="margin: 80px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
-
-    <!-- Stud 3: Zevik -->
-    <header class="shiloh-header anim-scroll">
-        <h2 class="shiloh-name" style="font-size: 3rem;">Zevik</h2>
-    </header>
-    <div class="stud-grid anim-scroll">
-        <div class="stud-img-col">
-            <img src="/assets/stud3.avif" alt="Zevik Stud 1">
-        </div>
-        <div class="stud-text-card">
-            <ul class="stats-list">
-                <li><span class="stats-label">Registered Name</span> Wilderness' Crown Jewel TT</li>
-                <li><span class="stats-label">Call Name</span> Zevik</li>
-                <li><span class="stats-label">Sire</span> Echo's Donnie Darko</li>
-                <li><span class="stats-label">Dam</span> Guardian's Reflection of Wildfire</li>
-                <li><span class="stats-label">Birthdate</span> 02/28/2023</li>
-                <li><span class="stats-label">Resides in</span> The Netherlands</li>
-                <li><a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.9rem;">Breeding Pedigree Link</a></li>
-            </ul>
-            <div class="stats-group">
-                <span class="stats-label">Availability</span>
-                <ul class="stats-list">
-                    <li>Status: Fresh Chilled/Live/Frozen</li>
-                    <li>Number of available units: Pending</li>
-                    <li>Storage Location: Netherlands</li>
-                </ul>
-            </div>
-            <div class="stats-group">
-                <span class="stats-label">Health</span>
-                <ul class="stats-list">
-                    <li>Holter: 0,0,0 (24 hours @ 5.5 months)</li>
-                    <li>PennHip: Left 0.24 - Right: 0.24</li>
-                    <li>Elbows: Normal (@27 months by Radiology Specialist)</li>
-                    <li>Spine: Normal (@27 Months by Radiology Specialist)</li>
-                    <li>Heart: Auscultation Clear 28 Months</li>
-                    <li>DM: Clear/Clear | Temperament Tested</li>
-                    <li><a href="#" style="color: var(--accent-color); font-weight: 600; font-size: 0.85rem;">UC Davis Certificate</a></li>
-                </ul>
-            </div>
-            <div class="stats-group">
-                <span class="stats-label">Phenotype</span>
-                <ul class="stats-list">
-                    <li>Weight: Pending. Height: Pending</li>
-                    <li>Coat Colour: Black Sable</li>
-                    <li>Genes: Aw/(Aw or at) + Em/(Em or e)</li>
-                    <li>Coat Length: Plush</li>
-                </ul>
-            </div>
-        </div>
-        <div class="stud-img-col">
-            <img src="/assets/stud3-2.avif" alt="Zevik Stud 2">
-        </div>
-    </div>
-
-    <!-- Separator -->
-    <div style="margin: 100px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
-
-    <!-- Future Hopefuls Section -->
-    <h2 class="stud-section-title anim-scroll" style="margin-top: 0;">Future Hopefuls</h2>
+    <h2 class="stud-section-title anim-scroll">Future Hopefuls</h2>
     <p class="stud-section-desc anim-scroll">
         Our "Future Hopefuls" represent the next chapter of Wilderness Kennels. These are the promising young dogs hand-selected to potentially carry our legacy forward. We watch them closely as they mature, ensuring they meet our rigorous benchmarks for health, temperament, and breed standards before joining our breeding program.
     </p>
@@ -885,6 +373,7 @@ title: Our Shilohs
             <img src="/assets/valeria2.avif" alt="Valeria 2">
         </div>
     </div>
+
     <!-- Separator -->
     <div style="margin: 80px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
 
@@ -1066,6 +555,7 @@ title: Our Shilohs
             <img src="/assets/goose2.avif" alt="Goose 2">
         </div>
     </div>
+
     <!-- Separator -->
     <div style="margin: 80px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
 
@@ -1245,6 +735,7 @@ title: Our Shilohs
             <img src="/assets/kaeya2.avif" alt="Kaeya 2">
         </div>
     </div>
+
     <!-- Separator -->
     <div style="margin: 80px 0; border-top: 1px solid rgba(0,0,0,0.05);"></div>
 

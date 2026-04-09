@@ -172,13 +172,26 @@ title: Breed History
     /* Mobile adjustments */
     @media (max-width: 768px) {
         .breed-history-section {
-            padding: 100px 15px 60px;
+            padding: 100px 15px 40px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .breed-history-title {
+            font-family: 'Satisfy', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            color: #2f2b27;
+            text-align: center;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s ease forwards 0.5s !important;
         }
         .section-subtitle {
             font-size: 2rem;
-        }
-        .dog-item {
-            padding: 20px;
+            text-align: center;
         }
     }
 

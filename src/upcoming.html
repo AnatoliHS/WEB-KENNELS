@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Litter Information and Pricing
+title: Upcoming Litters
 ---
 
 <style>
@@ -20,18 +20,15 @@ title: Litter Information and Pricing
 
     .litter-hero {
         background-color: var(--hero-bg);
-        padding: 140px 20px;
+        padding: 140px 20px 80px 20px;
         min-height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow: hidden;
         width: 100vw;
         position: relative;
         left: 50%;
-        right: 50%;
         margin-left: -50vw;
-        margin-right: -50vw;
         box-sizing: border-box;
     }
 
@@ -40,155 +37,10 @@ title: Litter Information and Pricing
         font-size: clamp(2.5rem, 8vw, 5rem);
         color: var(--text-dark);
         text-align: center;
-        margin-bottom: 80px;
+        margin-bottom: 20px;
         opacity: 0;
         transform: translateY(-50px);
         animation: fadeInDown 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
-
-    .litter-cards-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
-        max-width: 1400px;
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .litter-card {
-        background-color: var(--card-bg);
-        border-radius: 40px;
-        padding: 40px 30px;
-        text-align: center;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        transform: translateX(100px);
-        transition: transform 0.5s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* Staggered Animations */
-    .litter-card:nth-child(1) {
-        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
-    }
-
-    .litter-card:nth-child(2) {
-        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
-    }
-
-    .litter-card:nth-child(3) {
-        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.9s forwards;
-    }
-
-    .litter-card:nth-child(4) {
-        animation: slideInRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1.1s forwards;
-    }
-
-    .litter-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .card-icon-container {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 25px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .card-icon-container img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .card-title {
-        font-family: 'Satisfy', cursive;
-        font-size: 2.2rem;
-        color: var(--text-dark);
-        margin-bottom: 20px;
-    }
-
-    .card-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        color: #555;
-        font-family: 'Inter', sans-serif;
-    }
-
-    @keyframes fadeInDown {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideInRight {
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    @media (max-width: 1100px) {
-        .litter-cards-container {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    .pricing-section {
-        padding: 100px 20px;
-        max-width: 900px;
-        margin: 0 auto;
-        background-color: var(--page-bg);
-    }
-
-    .pricing-title {
-        font-family: 'Satisfy', cursive;
-        font-size: 4rem;
-        color: var(--text-dark);
-        text-align: center;
-        margin-bottom: 50px;
-    }
-
-    .pricing-content {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #444;
-    }
-
-    .pricing-content p {
-        margin-bottom: 30px;
-    }
-
-    .price-highlight {
-        font-weight: 700;
-        color: var(--text-dark);
-        font-size: 1.25rem;
-        display: block;
-        margin: 40px 0;
-        padding-left: 20px;
-        border-left: 4px solid var(--accent-gold);
-    }
-
-    .discount-box {
-        background-color: #f9faf5;
-        border: 1px solid rgba(159, 168, 156, 0.2);
-        border-radius: 30px;
-        padding: 50px;
-        margin-top: 60px;
-    }
-
-    .discount-title {
-        font-family: 'Satisfy', cursive;
-        font-size: 3rem;
-        color: var(--accent-gold);
-        margin-bottom: 25px;
-        text-align: center;
     }
 
     .breeding-section {
@@ -233,9 +85,7 @@ title: Litter Information and Pricing
         object-fit: cover;
     }
 
-    .breeding-info {
-        padding: 40px;
-    }
+    .breeding-info { padding: 40px; }
 
     .breeding-name {
         font-family: 'Satisfy', cursive;
@@ -246,12 +96,7 @@ title: Litter Information and Pricing
         padding-bottom: 15px;
     }
 
-    .breeding-stats-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
+    .breeding-stats-list { list-style: none; padding: 0; margin: 0; }
     .breeding-stats-list li {
         font-family: 'Inter', sans-serif;
         font-size: 0.95rem;
@@ -261,15 +106,29 @@ title: Litter Information and Pricing
         padding-bottom: 4px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     }
+    .breeding-stats-list li strong { color: var(--text-dark); font-weight: 600; margin-right: 8px; }
 
-    .breeding-stats-list li strong {
-        color: var(--text-dark);
+    .breeding-story-container {
+        max-width: 900px;
+        margin: 80px auto 0 auto;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #444;
+    }
+
+    .breeding-story-container p { margin-bottom: 35px; }
+
+    .f2-highlight {
         font-weight: 600;
-        margin-right: 8px;
+        color: var(--text-dark);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        padding-top: 30px;
+        margin-top: 40px;
     }
 
     .application-section {
-        padding: 100px 20px;
+        padding: 50px 20px 100px 20px;
         max-width: 900px;
         margin: 0 auto;
         background-color: var(--page-bg);
@@ -291,10 +150,6 @@ title: Litter Information and Pricing
         text-align: left;
     }
 
-    .upcoming-content p {
-        margin-bottom: 30px;
-    }
-
     .health-note {
         background-color: #f2f3e9;
         border-left: 5px solid var(--accent-gold);
@@ -303,16 +158,9 @@ title: Litter Information and Pricing
         font-style: italic;
     }
 
-    .health-note strong {
-        color: var(--text-dark);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-
     .app-button-container {
         margin-top: 60px;
         text-align: center;
-        margin-bottom: 100px;
     }
 
     .app-button {
@@ -330,217 +178,63 @@ title: Litter Information and Pricing
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         cursor: pointer;
-        border: none;
     }
 
-    .app-button:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-        background-color: var(--accent-gold);
-    }
+    .app-button:hover { background-color: var(--accent-gold); transform: translateY(-5px); }
 
-    .breeding-story-container {
-        max-width: 900px;
-        margin: 80px auto 0 auto;
-        font-family: 'Inter', sans-serif;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #444;
-    }
-
-    .breeding-story-container p {
-        margin-bottom: 35px;
-    }
-
-    .f2-highlight {
-        font-weight: 600;
-        color: var(--text-dark);
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-        padding-top: 30px;
-        margin-top: 40px;
-    }
+    @keyframes fadeInDown { to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 1024px) {
-        .breeding-grid {
-            grid-template-columns: 1fr;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .breeding-photo-container {
-            height: 350px;
-        }
+        .breeding-grid { grid-template-columns: 1fr; max-width: 700px; margin: 0 auto; }
+        .breeding-photo-container { height: 350px; }
     }
 
     @media (max-width: 600px) {
-        .litter-cards-container {
-            grid-template-columns: 1fr;
-        }
-
-        .litter-hero {
-            padding: 180px 20px 80px 20px;
-        }
-
-        .pricing-section,
-        .application-section,
-        .breeding-section {
-            padding: 60px 20px;
-        }
-
-        .pricing-title,
-        .application-title {
-            font-size: 3rem;
-        }
-
-        .breeding-subtitle {
-            font-size: 1.8rem;
-        }
-
-        .discount-box {
-            padding: 30px 20px;
-        }
-
-        .discount-title {
-            font-size: 2.5rem;
-        }
-
-        .app-button {
-            padding: 18px 35px;
-            font-size: 1rem;
+        .litter-hero { 
+            padding: 100px 20px 60px 20px; 
             width: 100%;
+            left: 0;
+            right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            position: relative;
         }
+        .litter-title {
+            font-family: 'Satisfy', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            color: #2f2b27;
+            text-align: center;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s ease forwards 0.5s;
+        }
+        .breeding-section, .application-section { padding: 60px 20px; }
+        .application-title { font-size: 3rem; }
+        .app-button { padding: 18px 35px; width: 100%; }
+    }
+
+    /* Override body/main constraints to prevent shifting */
+    body {
+        background-color: #eff0e4 !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
+    }
+    main {
+        width: 100% !important;
+        max-width: 100vw !important;
     }
 </style>
 
 <div class="litter-hero">
-    <h1 class="litter-title">Litter Information and Pricing</h1>
-
-    <div class="litter-cards-container">
-        <!-- Card 1: Pet Quality -->
-        <div class="litter-card">
-            <div class="card-icon-container">
-                <img src="/assets/paws.png" alt="Pet Quality Icon">
-            </div>
-            <h2 class="card-title">Pet Quality</h2>
-            <p class="card-text">
-                These are the unique puppies that can't be part of the breeding program for one reason or another. Be it
-                that they have a miss mark, line-specific breeding restriction, or a disqualifying fault via the breed
-                standard (Kinked tail, Missing tooth, etc).
-            </p>
-        </div>
-
-        <!-- Card 2: Pet Upgradable -->
-        <div class="litter-card">
-            <div class="card-icon-container">
-                <img src="/assets/upgrade.png" alt="Pet Upgradable Icon">
-            </div>
-            <h2 class="card-title">Pet Upgradable</h2>
-            <p class="card-text">
-                These are the Wonderfull pup's that meet the requirment's to be breakable, but might have one or two
-                minor fault's via the breed standard, that they may - or may not, grow out of.
-            </p>
-        </div>
-
-        <!-- Card 3: Breed Quality -->
-        <div class="litter-card">
-            <div class="card-icon-container">
-                <img src="/assets/mixal.avif" alt="Breed Quality Icon">
-            </div>
-            <h2 class="card-title">Breed Quality</h2>
-            <p class="card-text">
-                These pup's are the future of the breed. They are the puppies that best embody the breed standard in
-                conformation/structure, gait, and Temperment. These puppies will go out on generder specific
-                co-ownership contracts.
-            </p>
-        </div>
-
-        <!-- Card 4: Special Circumstances -->
-        <div class="litter-card">
-            <div class="card-icon-container">
-                <img src="/assets/unique.png" alt="Special Circumstances Icon">
-            </div>
-            <h2 class="card-title">Special Circumstances</h2>
-            <p class="card-text">
-                Occasionally puppies with specific need's, may be placed in approved "Foster homes" at no charge to
-                their adoptive families - very specific requirments and contract's go with these puppies.
-            </p>
-        </div>
-    </div>
+    <h1 class="litter-title">Upcoming Litters</h1>
 </div>
 
-<section class="pricing-section anim-scroll">
-    <h2 class="pricing-title">Pricing</h2>
-    <div class="pricing-content">
-        <p>
-            While many of our clients are from the United States and our breed club is American-based, Wilderness Kennels is located in Canada. To simplify logistics for our domestic families, we list our pricing in Canadian dollars (CAD). However, we continue to welcome our American families and accept both Canadian and American currencies for all payments.
-        </p>
-
-        <p class="price-highlight price-ca" style="display: none;">
-            Shiloh Shepherd pups are $4,000 CAD, plus an approximate domestic shipping cost of $250 and additional flight expenses.
-            <span style="font-size: 0.9rem; display: block; font-weight: 400; margin-top: 5px; color: #666;">
-                (For our US &amp; international clients, please inquire directly for USD pricing and international transport requirements.)
-            </span>
-        </p>
-
-        <p class="price-highlight price-intl" style="display: none;">
-            Shiloh Shepherd pups are $3,000 USD, plus $400 for international shipping and additional flight expenses.
-            <span style="font-size: 0.9rem; display: block; font-weight: 400; margin-top: 5px; color: #666;">
-                (Canadian pricing is also available — please inquire if you are located within Canada.)
-            </span>
-        </p>
-
-        <p>
-            Wilderness Kennels also does not believe in pricing puppies based on size, gender, or coat colour. As a
-            result, there will be no differences in price between littermates. The time and resources I invested into
-            each individual puppy is identical no matter how the puppies end up scoring at their litter evaluation.
-            Instead, I focus on matching the right puppy to the right owners. I want to see each one of these pups
-            thrive, growing up to be their very best selves.
-        </p>
-
-        <p>
-            Each puppy, depending on how they are scored by the certified litter evaluators, will come with specific
-            contracts and responsibilities for the new owners. (Any puppy discovered to have inherited a life-altering
-            health condition prior to 8 weeks will be placed in a responsible "foster home" at no charge to the adopter.
-            (Foster homes are extensively vetted, and specific experience might be required in some situations.) If you
-            are interested in possibly being a foster home to a special needs puppy in the rare event one comes
-            available, please specify on your "General Puppy Application".
-        </p>
-
-        <!-- Puppy Application Section moved here -->
-        <section id="application" class="application-section anim-scroll" style="padding-top: 40px; padding-bottom: 0;">
-            <h2 class="application-title">Puppy Application</h2>
-            <div class="upcoming-content">
-                <div class="health-note">
-                    <p>
-                        <strong>NOTE:</strong> All of the pups from the following litters will be required to complete our
-                        health testing (24 hour holter, OFA or PennHip hip/elbow x-rays). Since I generally request that pets
-                        not be altered (neutered or spayed) prior to 18-24 months for the health of the dog, I may opt to
-                        collect semen for shipping or Cryogenic freezing on some of the males in order to further preserve these
-                        lines.
-                    </p>
-                </div>
-
-                <p>
-                    Preference to breeding homes (or homes that are willing to leave a dog intact or whelp a co-owned litter) in
-                    order to move these genetics forward will be given priority.
-                </p>
-
-                <p>
-                    If you are interested in applying for any future litters please fill out this application and email it to
-                    <strong>wildernesskennels@outlook.com</strong>.
-                </p>
-
-                <div class="app-button-container" style="margin-bottom: 40px;">
-                    <a href="/form/" class="app-button">Puppy Application</a>
-                </div>
-            </div>
-        </section>
-    </div>
-</section>
-
-<!-- Upcoming Litters Section -->
 <section class="breeding-section anim-scroll">
-    <h2 class="pricing-title">Upcoming Litters</h2>
+    <h2 class="pricing-title" style="display: none;">Upcoming Litters</h2>
     <div class="breeding-subtitle">
         Róka & Winchester<br>
         <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
@@ -856,48 +550,4 @@ title: Litter Information and Pricing
     </div>
 </section>
 
-<!-- Discounts Section moved here -->
-<section class="pricing-section anim-scroll" style="padding-top: 0;">
-    <div class="discount-box anim-scroll">
-        <h3 class="discount-title">Discounts!</h3>
-        <p>
-            Here at Wilderness Kennels, we offer a reward system for dedicated owners, that wish to become repeat
-            buyers. For each championship title earned in either canine conformation, or sporting events with their
-            present Wilderness Kennels Shiloh(s). I will offer a discount of $100 off the purchase price of the
-            owners' future puppy purchase. (With a maximum of $1000 at this time)
-        </p>
-        <p style="text-align: center; font-weight: 600; font-style: italic; color: var(--accent-gold);">
-            If you are curious about this discount program ask for a copy of the list of approved "discount" titles
-            you can earn with your Wilderness puppy! Let's get these dogs out there and show the world how amazing,
-            intelligent, and versatile Shiloh Shepherds truly are!
-        </p>
-    </div>
-</section>
 
-<script>
-(function() {
-    function showPricing(isCanada) {
-        var caEls = document.querySelectorAll('.price-ca');
-        var intlEls = document.querySelectorAll('.price-intl');
-        for (var i = 0; i < caEls.length; i++) {
-            caEls[i].style.display = isCanada ? '' : 'none';
-        }
-        for (var i = 0; i < intlEls.length; i++) {
-            intlEls[i].style.display = isCanada ? 'none' : '';
-        }
-    }
-
-    // Default to Canadian pricing while we detect
-    showPricing(true);
-
-    fetch('https://ipapi.co/json/')
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-            showPricing(data.country_code === 'CA');
-        })
-        .catch(function() {
-            // If geolocation fails, default to Canadian pricing
-            showPricing(true);
-        });
-})();
-</script>

@@ -1,0 +1,1088 @@
+---
+layout: default
+title: Past Litters
+---
+
+<style>
+    :root {
+        --hero-bg: #eff0e4;
+        --card-bg: #ffffff;
+        --text-dark: #2f2b27;
+        --accent-gold: #9fa89c;
+        --page-bg: #ffffff;
+    }
+
+    body {
+        background-color: var(--page-bg);
+        margin: 0;
+        padding: 0;
+    }
+
+    .litter-hero {
+        background-color: var(--hero-bg);
+        padding: 140px 20px 80px 20px;
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        box-sizing: border-box;
+    }
+
+    .litter-title {
+        font-family: 'Satisfy', cursive;
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        color: var(--text-dark);
+        text-align: center;
+        margin-bottom: 20px;
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: fadeInDown 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .breeding-section {
+        padding: 100px 20px;
+        max-width: 1400px;
+        margin: 0 auto;
+        background-color: var(--page-bg);
+    }
+
+    .breeding-subtitle {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.2rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 60px;
+        line-height: 1.4;
+    }
+
+    .breeding-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+    .breeding-card {
+        background: #eff0e4;
+        border-radius: 40px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .breeding-photo-container {
+        width: 100%;
+        height: 450px;
+        overflow: hidden;
+    }
+
+    .breeding-photo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .breeding-info {
+        padding: 40px;
+    }
+
+    .breeding-name {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.5rem;
+        color: var(--text-dark);
+        margin-bottom: 30px;
+        border-bottom: 2px solid var(--hero-bg);
+        padding-bottom: 15px;
+    }
+
+    .breeding-stats-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .breeding-stats-list li {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        color: #444;
+        margin-bottom: 8px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .breeding-stats-list li strong {
+        color: var(--text-dark);
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .litter-footer {
+        text-align: center;
+        margin-top: 40px;
+        font-family: 'Satisfy', cursive;
+        font-size: 2.2rem;
+        color: var(--accent-gold);
+        opacity: 0.9;
+    }
+
+    .intro-text {
+        max-width: 800px;
+        margin: 0 auto 80px;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #444;
+    }
+
+    @keyframes fadeInDown {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .breeding-grid {
+            grid-template-columns: 1fr;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .breeding-photo-container {
+            height: 350px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .litter-hero {
+            padding: 120px 20px 60px 20px;
+        }
+
+        .breeding-section {
+            padding: 60px 20px;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+        }
+    }
+
+    /* Puppy Carousel Styles */
+    .carousel-container {
+        position: relative;
+        max-width: 1400px;
+        margin: 60px auto;
+        padding: 0 80px;
+        display: flex;
+        align-items: center;
+        overflow: visible;
+    }
+
+    .carousel-viewport {
+        overflow: hidden;
+        width: 100%;
+        border-radius: 40px;
+    }
+
+    .carousel-track {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        gap: 30px;
+        padding: 40px 0;
+    }
+
+    .puppy-photo {
+        flex: 0 0 500px;
+        /* Large squares */
+        border-radius: 40px;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        /* Tighter, more subtle shadow */
+        opacity: 0.3;
+        transform: scale(0.9);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        background-color: var(--hero-bg);
+        pointer-events: none;
+    }
+
+    .puppy-photo.active {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        /* Tighter active shadow */
+        z-index: 10;
+        pointer-events: auto;
+    }
+
+    .puppy-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Carousel Buttons */
+    .carousel-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: var(--text-dark);
+        transition: all 0.3s ease;
+        z-index: 20;
+        position: absolute;
+    }
+
+    .carousel-btn:hover {
+        background: var(--accent-gold);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .carousel-btn.prev {
+        left: 0;
+    }
+
+    .carousel-btn.next {
+        right: 0;
+    }
+
+    @media (max-width: 1100px) {
+        .puppy-photo {
+            flex: 0 0 400px;
+        }
+
+        .carousel-container {
+            padding: 0 60px;
+        }
+    }
+
+    .swipe-cue {
+        display: none;
+    }
+
+    /* Mobile: single image at a time — stacked, no translateX, zero overflow */
+    @media (max-width: 768px) {
+        .carousel-container {
+            padding: 0 20px;
+            margin: 20px auto;
+            overflow: visible;
+        }
+
+        .carousel-viewport {
+            position: relative;
+            border-radius: 25px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+        }
+
+        .carousel-track {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: none !important;
+            /* Disable translateX on mobile */
+            transition: none !important;
+            padding: 0;
+        }
+
+        .puppy-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            flex: none;
+            border-radius: 0;
+            opacity: 0;
+            transform: none;
+            box-shadow: none;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            aspect-ratio: auto;
+        }
+
+        .puppy-photo.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 2;
+        }
+
+        .carousel-btn {
+            display: none;
+        }
+
+        .swipe-cue {
+            display: block;
+            text-align: center;
+            font-family: 'Satisfy', cursive;
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            margin: 15px 0 30px;
+            letter-spacing: 2px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .litter-hero { 
+            padding: 100px 20px 60px 20px; 
+            width: 100%;
+            left: 0;
+            right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            position: relative;
+        }
+        .litter-title {
+            font-family: 'Satisfy', cursive;
+            font-size: clamp(3rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            color: #2f2b27;
+            text-align: center;
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            transform: translateY(-20px);
+            animation: fadeInDown 1.2s ease forwards 0.5s !important;
+        }
+    }
+
+    /* Override body/main constraints to prevent shifting */
+    body {
+        background-color: #eff0e4 !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        overflow-x: hidden !important;
+    }
+    main {
+        width: 100% !important;
+        max-width: 100vw !important;
+    }
+</style>
+
+<div class="litter-hero">
+    <h1 class="litter-title">Past Litters</h1>
+</div>
+
+<section class="breeding-section anim-scroll">
+    <div class="intro-text">
+        <p>This page is to feature past litters we have had at Wilderness Kennels over the years.</p>
+        <p style="font-style: italic; opacity: 0.7;">(This page is still under construction, more to come!)</p>
+    </div>
+
+    <!-- Reya & Sailor Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Reya & Sailor<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born June 27th, 2025
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Reya Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal.avif" alt="Reya (Moonshine's Margarita)">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Moonshine's Margarita</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>OFA:</strong> Good + Normal Elbows</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 (6 months)</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>Sire:</strong> Echo's Dallas Odie Blue</li>
+                    <li><strong>Dam:</strong> River Pack's Wynn for Victory</li>
+                    <li><strong>DM:</strong> Clear By Parentage</li>
+                    <li><strong>Embark:</strong> Available</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sailor Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/sailor.avif" alt="Zion's White Island Sailor">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Zion's White Island Sailor</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>OFA:</strong> Good + Normal Elbows</li>
+                    <li><strong>Holter Tested:</strong> 1,0,0 (6 months) 24 hours</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>Sire:</strong> Zion's Breaking The Rumor</li>
+                    <li><strong>Dam:</strong> Zion's Sweet Angel Girl</li>
+                    <li><strong>DM:</strong> Clear/Clear</li>
+                    <li><strong>Embark:</strong> Available</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 4 Males</div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Ivy & Kävik Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Ivy & Kävik<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born February 17th, 2025
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Ivy Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/ivy.avif" alt="Wilderness' Dark Helix (Ivy)">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Wilderness' Dark Helix</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Call Name:</strong> Ivy</li>
+                    <li><strong>Sire:</strong> Echo's Donnie Darko</li>
+                    <li><strong>Dam:</strong> Guardian's Reflection of Wildfire</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 @ 6 months</li>
+                    <li><strong>Heart Auscultation:</strong> Normal - Practitioner</li>
+                    <li><strong>PennHip:</strong> Right 0.31, Left 0.38</li>
+                    <li><strong>Elbows:</strong> OFA Normal (18 Months)</li>
+                    <li><strong>DM:</strong> Clear via Parentage & Embark</li>
+                    <li><strong>Colour:</strong> Aw/at + Em/e</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Kavik Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/kavik.avif" alt="King of The North Sworn Oath to SNS (Kävik)">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">King of The North Sworn Oath to SNS</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Call Name:</strong> Kävik</li>
+                    <li><strong>OFA:</strong> Good - SLH-1126G24M-C-VPI</li>
+                    <li><strong>Elbows:</strong> OFA Normal - SLH-EL892M24-C-VPI</li>
+                    <li><strong>OFA Thyroid:</strong> SLH-TH389/39M-VPI</li>
+                    <li><strong>Holter Tested:</strong> 0,0,0 (6 months) 24 hours</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>Dam:</strong> Willow Rock's Windy November</li>
+                    <li><strong>Sire:</strong> Echo's Big League Fire Storm</li>
+                    <li><strong>DM:</strong> Clear/Clear</li>
+                    <li><strong>Colour:</strong> Aw/at + Em/e</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 1 Male, 7 Females</div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Róka/Riggs Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Róka & Riggs<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born December 9th, 2024
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Riggs Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal.avif" alt="Rigged up to Rock (Riggs)">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Rigged up to Rock (Riggs)</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 0,0,0 (10 months)</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>OFA Hips:</strong> Good</li>
+                    <li><strong>OFA Elbows:</strong> Normal</li>
+                    <li><strong>Sire:</strong> Epic's Majestic Rockstar</li>
+                    <li><strong>Dam:</strong> Epic's Matrix's of SHS</li>
+                    <li><strong>DM:</strong> Clear by Embark</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Roka Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/roka-breeding.avif" alt="Wilderness' Vixen of Fortune (Róka)">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Wilderness' Vixen of Fortune (Róka)</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 0,0,0 (6 months)</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>PennHip:</strong> Right ID = 0.29 Left ID = 0.24</li>
+                    <li><strong>OFA Elbows:</strong> Normal</li>
+                    <li><strong>Sire:</strong> Blackfyre My Wyld Fortune</li>
+                    <li><strong>Dam:</strong> Guardian's Reflection of Wildfire</li>
+                    <li><strong>DM:</strong> Clear by Embark</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 5 Males, 6 Females</div>
+
+    <div class="carousel-container anim-scroll">
+        <button class="carousel-btn prev" id="prevPuppy" aria-label="Previous Puppy"> &larr; </button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="puppyTrack">
+                <div class="puppy-photo">
+                    <img src="/assets/roka-riggs-1.avif" alt="Roka & Riggs Puppy 1">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/roka-riggs-2.avif" alt="Roka & Riggs Puppy 2">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/roka-riggs-3.avif" alt="Roka & Riggs Puppy 3">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/roka-riggs-4.avif" alt="Roka & Riggs Puppy 4">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/roka-riggs-5.avif" alt="Roka & Riggs Puppy 5">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next" id="nextPuppy" aria-label="Next Puppy"> &rarr; </button>
+    </div>
+    <div class="swipe-cue">&lt; swipe &gt;</div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Mixal/Valla Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Mixal & Valla<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born September 27th, 2024
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Valla Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/valla.avif" alt="Shahayla's Vallavaraiyan 'Valla'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Shahayla's Vallavaraiyan "Valla"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 0,0,0 (6 months)</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>OFA:</strong> Good + Normal Elbows</li>
+                    <li><strong>Sire:</strong> Guardian's Onyx Jewel</li>
+                    <li><strong>Dam:</strong> Shahayla's Piper Pot</li>
+                    <li><strong>DM:</strong> Clear by Embark</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mixal Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal3.avif" alt="Guardian's Reflection of Wildfire 'Mixal'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Reflection of Wildfire "Mixal"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 4,0,0 (7 months)</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>PennHip:</strong> Right ID 0.24, Left ID 0.26</li>
+                    <li><strong>OFA Hips:</strong> Excellent SLH-1121E84F-C-VPI</li>
+                    <li><strong>Sire:</strong> Guardian's Noble Atticus</li>
+                    <li><strong>Dam:</strong> Kyla of Guardian Kennels</li>
+                    <li><strong>DM:</strong> Clear by Parentage & DNA testing (Embark)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 4 Females</div>
+
+    <div class="carousel-container anim-scroll">
+        <button class="carousel-btn prev" id="prevPuppy2" aria-label="Previous Puppy"> &larr; </button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="puppyTrack2">
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-valla-1.avif" alt="Mixal &amp; Valla Puppy 1">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-valla-2.avif" alt="Mixal &amp; Valla Puppy 2">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-valla-3.avif" alt="Mixal &amp; Valla Puppy 3">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-valla-4.avif" alt="Mixal &amp; Valla Puppy 4">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next" id="nextPuppy2" aria-label="Next Puppy"> &rarr; </button>
+    </div>
+    <div class="swipe-cue">&lt; swipe &gt;</div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Mixal/Zoran Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Mixal & Zoran<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born March 17th, 2024
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Zoran Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/zoran.avif" alt="DPS-HeMa's Handsome Warrior 'Zoran'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">DPS-HeMa's Handsome Warrior "Zoran"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 0,0,0 (5 months)</li>
+                    <li><strong>PennHip:</strong> Right ID 0.24, Left ID 0.26</li>
+                    <li><strong>Elbows:</strong> Normal</li>
+                    <li><strong>Sire:</strong> Jewel's Amazing Macho</li>
+                    <li><strong>Dam:</strong> DPS-Noa's Deeply Loved Macho</li>
+                    <li><strong>DM:</strong> Clear/Clear</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mixal Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal4.avif" alt="Guardian's Reflection of Wildfire 'Mixal'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Reflection of Wildfire "Mixal"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 4,0,0 (7 months)</li>
+                    <li><strong>Heart Auscultation:</strong> Clear</li>
+                    <li><strong>PennHip:</strong> Right ID 0.24, Left ID 0.26</li>
+                    <li><strong>OFA Hips:</strong> Excellent - SLH-1121E84F-C-VPI</li>
+                    <li><strong>Sire:</strong> Guardian's Noble Atticus</li>
+                    <li><strong>Dam:</strong> Kyla of Guardian Kennels</li>
+                    <li><strong>DM:</strong> Clear by Parentage & DNA testing (Embark)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Special Singleton Male</div>
+
+    <div class="carousel-container anim-scroll">
+        <div class="carousel-viewport">
+            <div class="carousel-track" style="justify-content: center;">
+                <div class="puppy-photo active">
+                    <img src="/assets/mixal-zoran-1.avif" alt="Mixal &amp; Zoran Singleton Male">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Zuva/Zoran Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Zuva & Zoran<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born March 15th, 2024
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Zoran Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/zoran.avif" alt="DPS-HeMa's Handsome Warrior 'Zoran'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">DPS-HeMa's Handsome Warrior "Zoran"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 0,0,0 (5 months)</li>
+                    <li><strong>PennHip:</strong> Right ID 0.24, Left ID 0.26</li>
+                    <li><strong>Elbows:</strong> Normal</li>
+                    <li><strong>Sire:</strong> Jewel's Amazing Macho</li>
+                    <li><strong>Dam:</strong> DPS-Noa's Deeply Loved Macho</li>
+                    <li><strong>DM:</strong> Clear/Clear</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Zuva Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/zuva.avif" alt="Guardian's Sunshine of Wilderness 'Zuva'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Sunshine of Wilderness "Zuva"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 6,0,0 (6 months)</li>
+                    <li><strong>Hips:</strong> OFA Good - SLH-1233G24F-C-VPI</li>
+                    <li><strong>Elbows:</strong> OFA Normal - SLH-EL1011F24-C-VPI</li>
+                    <li><strong>Sire:</strong> Guardian's Johnny Cash of Sentinel</li>
+                    <li><strong>Dam:</strong> Guardian's Reflection of Wildfire</li>
+                    <li><strong>DM:</strong> Clear/Clear by Parentage & Embark</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 1 Male, 1 Female</div>
+
+    <div class="carousel-container anim-scroll">
+        <button class="carousel-btn prev" id="prevPuppy3" aria-label="Previous Puppy"> &larr; </button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="puppyTrack3">
+                <div class="puppy-photo">
+                    <img src="/assets/zuva-zoran-1.avif" alt="Zuva &amp; Zoran Puppy 1">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/zuva-zoran-2.avif" alt="Zuva &amp; Zoran Puppy 2">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next" id="nextPuppy3" aria-label="Next Puppy"> &rarr; </button>
+    </div>
+    <div class="swipe-cue">&lt; swipe &gt;</div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Mixal/Darko Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Mixal & Darko<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born February 28th, 2023
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Darko Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/darko.avif" alt="Echo's Donnie Darko">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Echo's Donnie Darko</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 0,0,0 (6 months)</li>
+                    <li><strong>OFA:</strong> Good + Normal Elbows</li>
+                    <li><strong>Sire:</strong> Echo's All Fired Up (Doja)</li>
+                    <li><strong>Dam:</strong> Echo's Starr on the Horizon (Lyric)</li>
+                    <li><strong>DM:</strong> Clear by Parentage & DNA testing (Embark)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Mixal Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal5.avif" alt="Guardian's Reflection of Wildfire 'Mixal'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Reflection of Wildfire "Mixal"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 4,0,0 (7 months)</li>
+                    <li><strong>PennHip:</strong> Right ID 0.24, Left ID 0.26</li>
+                    <li><strong>OFA Hips:</strong> Excellent - SLH-1121E84F-C-VPI</li>
+                    <li><strong>Sire:</strong> Guardian's Noble Atticus</li>
+                    <li><strong>Dam:</strong> Kyla of Guardian Kennels</li>
+                    <li><strong>DM:</strong> Clear by Parentage & DNA testing (Embark)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 3 Males, 6 Females</div>
+
+    <div class="carousel-container anim-scroll">
+        <button class="carousel-btn prev" id="prevPuppy4" aria-label="Previous Puppy"> &larr; </button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="puppyTrack4">
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-darko-1.avif" alt="Mixal &amp; Darko Puppy 1">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-darko-2.avif" alt="Mixal &amp; Darko Puppy 2">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-darko-3.avif" alt="Mixal &amp; Darko Puppy 3">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next" id="nextPuppy4" aria-label="Next Puppy"> &rarr; </button>
+    </div>
+    <div class="swipe-cue">&lt; swipe &gt;</div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Mixal/Fortune Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Mixal & Fortune<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born February 8th, 2022
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Mixal Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal5.avif" alt="Guardian's Reflection of Wildfire 'Mixal'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Reflection of Wildfire "Mixal"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 4,0,0 (7 months)</li>
+                    <li><strong>PennHip:</strong> Right ID 0.24, Left ID 0.26</li>
+                    <li><strong>OFA Hips:</strong> Excellent - SLH-1121E84F-C-VPI</li>
+                    <li><strong>Sire:</strong> Guardian's Noble Atticus</li>
+                    <li><strong>Dam:</strong> Kyla of Guardian Kennels</li>
+                    <li><strong>DM:</strong> Clear by Parentage & DNA testing (Embark)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Fortune Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal.avif" alt="Blackfyre's My Wyld Fortune 'Fortune'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Blackfyre's My Wyld Fortune "Fortune"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Hips:</strong> OFA Good</li>
+                    <li><strong>Sire:</strong> Blackfyre's Wyld Kazmanian Devil</li>
+                    <li><strong>Dam:</strong> Arlequin Lil Keepsake</li>
+                    <li><strong>Health:</strong> BT-6502G33M-VPI, BT-EL3674M33-VPI, BT-EYE695/20M-VPI, BT-TH977/33M-VPI
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 2 Males, 2 Females</div>
+
+    <div class="carousel-container anim-scroll">
+        <button class="carousel-btn prev" id="prevPuppy5" aria-label="Previous Puppy"> &larr; </button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="puppyTrack5">
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-fortune-1.avif" alt="Mixal &amp; Fortune Puppy 1">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-fortune-2.avif" alt="Mixal &amp; Fortune Puppy 2">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-fortune-3.avif" alt="Mixal &amp; Fortune Puppy 3">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-fortune-4.avif" alt="Mixal &amp; Fortune Puppy 4">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next" id="nextPuppy5" aria-label="Next Puppy"> &rarr; </button>
+    </div>
+    <div class="swipe-cue">&lt; swipe &gt;</div>
+
+    <hr style="margin: 100px 0; border: none; border-top: 1px solid rgba(0,0,0,0.05);">
+
+    <!-- Mixal/Johnny Cash Section -->
+    <div class="breeding-subtitle anim-scroll">
+        Mixal & Johnny Cash<br>
+        <span style="font-size: 1.2rem; font-family: 'Inter', sans-serif; font-weight: 400; color: #666;">
+            Born June 27th, 2021
+        </span>
+    </div>
+
+    <div class="breeding-grid anim-scroll">
+        <!-- Mixal Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/mixal7.avif" alt="Guardian's Reflection of Wildfire 'Mixal'">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Reflection of Wildfire "Mixal"</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 4,0,0 (7 months)</li>
+                    <li><strong>PennHip:</strong> Right ID 0.24, Left ID 0.26</li>
+                    <li><strong>OFA Hips:</strong> Excellent - SLH-1121E84F-C-VPI</li>
+                    <li><strong>Sire:</strong> Guardian's Noble Atticus</li>
+                    <li><strong>Dam:</strong> Kyla of Guardian Kennels</li>
+                    <li><strong>DM:</strong> Clear by Parentage & DNA tested via Embark</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Cash Card -->
+        <div class="breeding-card">
+            <div class="breeding-photo-container">
+                <img src="/assets/cash.avif" alt="Guardian's Johnny Cash">
+            </div>
+            <div class="breeding-info">
+                <h3 class="breeding-name">Guardian's Johnny Cash</h3>
+                <ul class="breeding-stats-list">
+                    <li><strong>Holter Tested:</strong> 0,0,0 (7 months)</li>
+                    <li><strong>PennHip:</strong> Right ID 0.23, Left ID 0.22</li>
+                    <li><strong>OFA:</strong> Good + Normal Elbows</li>
+                    <li><strong>Sire:</strong> Guardian's Noble Atticus</li>
+                    <li><strong>Dam:</strong> Kyla of Guardian Kennels</li>
+                    <li><strong>DM:</strong> Clear by Parentage & DNA testing (Embark)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="litter-footer anim-scroll">Their Puppies - 4 Males, 3 Females</div>
+
+    <div class="carousel-container anim-scroll" style="margin-bottom: 60px;">
+        <button class="carousel-btn prev" id="prevPuppy6" aria-label="Previous Puppy"> &larr; </button>
+        <div class="carousel-viewport">
+            <div class="carousel-track" id="puppyTrack6">
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-cash-1.avif" alt="Mixal &amp; Johnny Cash Puppy 1">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-cash-2.avif" alt="Mixal &amp; Johnny Cash Puppy 2">
+                </div>
+                <div class="puppy-photo">
+                    <img src="/assets/mixal-cash-3.avif" alt="Mixal &amp; Johnny Cash Puppy 3">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-btn next" id="nextPuppy6" aria-label="Next Puppy"> &rarr; </button>
+    </div>
+    <div class="swipe-cue">&lt; swipe &gt;</div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.anim-scroll').forEach(el => observer.observe(el));
+
+        // Reusable Carousel Initializer
+        function initCarousel(trackId, prevId, nextId) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+
+            const originalSlides = Array.from(track.children);
+            const slideCount = originalSlides.length;
+            const nextButton = document.getElementById(nextId);
+            const prevButton = document.getElementById(prevId);
+
+            // Clone first 2 and last 2 slides for seamless "infinite" feel
+            const clonesBefore = originalSlides.slice(-2).map(s => s.cloneNode(true));
+            const clonesAfter = originalSlides.slice(0, 2).map(s => s.cloneNode(true));
+
+            clonesBefore.reverse().forEach(clone => track.prepend(clone));
+            clonesAfter.forEach(clone => track.appendChild(clone));
+
+            const allSlides = Array.from(track.children);
+            let currentIndex = 2;
+            let isTransitioning = false;
+
+            function updateCarousel(instant = false) {
+                const isMobile = window.innerWidth <= 768;
+                const slides = Array.from(track.children);
+                if (slides.length === 0) return;
+
+                if (!isMobile) {
+                    const viewportWidth = track.parentElement.offsetWidth;
+                    const slideWidth = slides[0].offsetWidth;
+                    const gap = 30;
+
+                    if (instant) {
+                        track.style.transition = 'none';
+                    } else {
+                        track.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                    }
+
+                    const offset = (slideWidth + gap) * currentIndex;
+                    const centerX = (viewportWidth / 2) - (slideWidth / 2);
+                    track.style.transform = `translateX(${centerX - offset}px)`;
+                }
+
+                const logicalCurrentIndex = (currentIndex - 2 + slideCount) % slideCount;
+                slides.forEach((slide, index) => {
+                    const slideLogicalIndex = (index - 2 + slideCount) % slideCount;
+                    slide.classList.toggle('active', slideLogicalIndex === logicalCurrentIndex);
+                });
+            }
+
+            track.addEventListener('transitionend', () => {
+                isTransitioning = false;
+                if (currentIndex >= allSlides.length - 2) {
+                    currentIndex = 2;
+                    updateCarousel(true);
+                } else if (currentIndex <= 1) {
+                    currentIndex = allSlides.length - 3;
+                    updateCarousel(true);
+                }
+            });
+
+            const moveNext = () => {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex++;
+                updateCarousel();
+            };
+
+            const movePrev = () => {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex--;
+                updateCarousel();
+            };
+
+            nextButton.addEventListener('click', moveNext);
+            prevButton.addEventListener('click', movePrev);
+
+            let startX = 0;
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const delta = startX - endX;
+                if (Math.abs(delta) > 50) {
+                    if (delta > 0) moveNext();
+                    else movePrev();
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', () => updateCarousel(true));
+            setTimeout(() => updateCarousel(true), 150);
+        }
+
+        // Initialize all carousels
+        initCarousel('puppyTrack', 'prevPuppy', 'nextPuppy');
+        initCarousel('puppyTrack2', 'prevPuppy2', 'nextPuppy2');
+        initCarousel('puppyTrack3', 'prevPuppy3', 'nextPuppy3');
+        initCarousel('puppyTrack4', 'prevPuppy4', 'nextPuppy4');
+        initCarousel('puppyTrack5', 'prevPuppy5', 'nextPuppy5');
+        initCarousel('puppyTrack6', 'prevPuppy6', 'nextPuppy6');
+    });
+</script>
