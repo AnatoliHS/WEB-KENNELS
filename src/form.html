@@ -126,8 +126,6 @@ title: Puppy Application Form
         box-shadow: 0 5px 15px rgba(159, 168, 156, 0.1);
     }
 
-    /* Steps / Multi-step logic styling - REMOVED */
-
     .submit-container {
         display: flex;
         justify-content: center;
@@ -167,7 +165,6 @@ title: Puppy Application Form
         background: rgba(0, 0, 0, 0.05);
     }
 
-    /* --- SELECTION CARDS --- */
     .selection-group {
         margin-bottom: 40px;
     }
@@ -301,27 +298,23 @@ title: Puppy Application Form
             Standard puppy price is <strong>$3500 USD</strong>.
         </p>
         <p style="margin-top: 30px; text-align: center;">
-            <a href="/policies/" class="policy-link" style="display: inline-block; padding: 14px 28px; border: 2px solid var(--accent-gold); background: rgba(159, 168, 156, 0.05); color: var(--accent-gold); text-decoration: none; border-radius: 40px; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(159, 168, 156, 0.1);">
+            <a href="/policies/" class="policy-link"
+                style="display: inline-block; padding: 14px 28px; border: 2px solid var(--accent-gold); background: rgba(159, 168, 156, 0.05); color: var(--accent-gold); text-decoration: none; border-radius: 40px; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(159, 168, 156, 0.1);">
                 Before you apply: Please read our Health & Biodiversity Policies →
             </a>
         </p>
-        <style>
-            .policy-link:hover {
-                background: var(--accent-gold) !important;
-                color: #fff !important;
-                transform: translateY(-3px);
-                box-shadow: 0 8px 20px rgba(159, 168, 156, 0.3);
-            }
-        </style>
     </div>
 
-    <!-- Step Indicator Removed -->
+    <!-- UPDATED: Using random key action to prevent 405 error -->
+    <form id="puppyApplication" action="https://formsubmit.co/e8e9edb58586b242aa6a0e3755cb76f2" method="POST">
 
-    <form id="puppyApplication" action="https://formsubmit.co/wildernesskennels@outlook.com" method="POST">
         <!-- FormSubmit Configuration -->
+        <input type="text" name="_honey" style="display:none">
         <input type="hidden" name="_subject" value="New Puppy Application!">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://wildernesskennels.ca/thanks">
+
         <!-- Section 1: Personal Info -->
         <div class="form-section">
             <h2 class="section-title">Personal Information</h2>
@@ -469,8 +462,6 @@ title: Puppy Application Form
                         <option value="NO">NO</option>
                         <option value="YES">YES</option>
                     </select>
-                    <small style="margin-top: 5px; color: #777;"><em>*A co-ownership or guardian agreement may
-                            apply.</em></small>
                 </div>
                 <div class="form-group">
                     <label>Just a pet & plan to spay/neuter?</label>
@@ -819,7 +810,7 @@ title: Puppy Application Form
             <h2 class="section-title">References & Final Steps</h2>
 
             <p style="margin-bottom: 30px; font-weight: 600; color: var(--accent-gold);">Please supply at least two
-                references (one may be your veterinarian):</p>
+                references:</p>
 
             <div id="references">
                 <div style="margin-bottom: 30px; padding: 20px; border-radius: 15px; background: rgba(0,0,0,0.02);">
@@ -853,25 +844,14 @@ title: Puppy Application Form
                 <label style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 15px;">Application Deposit
                     Policy</label>
                 <p style="font-size: 0.9rem; color: #555;">
-                    NOTE: Prior to sending any deposits, please contact myself (Kristina Osborne) to check for litter
-                    availability and to give me a chance to review your request. A Shiloh Shepherd is not for everyone,
-                    and I
-                    would like a chance to determine that the upcoming breedings will have a reasonable probability of
-                    producing what you are seeking prior to committing to accepting any deposits. Please understand that
-                    all deposits are only refundable or transferable if the breeder determines that they are unable to
-                    produce
-                    a puppy that matches your requirements. The deposit is NON-REFUNDABLE if buyer changes there
-                    mind, or changes to another breeder and/or breed. Deposits may be carried over to a subsequent
-                    litter
-                    for a maximum of TWO (2) years, unless special arrangements are made in advance.
+                    Please contact Kristina Osborne prior to sending deposits. Deposits are only refundable if the
+                    breeder cannot produce a matching puppy.
                 </p>
             </div>
 
             <div class="form-group full-width">
                 <label>Digital Signature (Type your full name)</label>
                 <input type="text" name="signature" required placeholder="Full Name">
-                <small style="margin-top: 5px; color: #777;"><em>By typing your name, you agree to the terms
-                        above.</em></small>
             </div>
         </div>
 

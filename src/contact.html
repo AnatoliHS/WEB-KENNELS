@@ -20,11 +20,18 @@ title: Contact Us
         </div>
 
         <div class="contact-form-panel">
-            <form action="https://formsubmit.co/wildernesskennels@outlook.com" method="POST" class="modern-contact-form">
+            <!-- UPDATED: Using random key endpoint to prevent 405 Method Not Allowed errors -->
+            <form action="https://formsubmit.co/e8e9edb58586b242aa6a0e3755cb76f2" method="POST"
+                class="modern-contact-form">
+
                 <!-- FormSubmit Configuration -->
+                <input type="text" name="_honey" style="display:none">
                 <input type="hidden" name="_subject" value="New Contact Form Submission!">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_captcha" value="false">
+
+                <!-- UPDATED: Added explicit redirect to ensure the host doesn't hang -->
+                <input type="hidden" name="_next" value="https://wildernesskennels.ca/thanks">
 
                 <div class="form-group">
                     <label for="name">Name</label>
