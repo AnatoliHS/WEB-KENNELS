@@ -23,7 +23,7 @@ title: Home
     }
 
     /* --- 2. HERO SECTION (FULL WIDTH BREAKOUT) --- */
-    .video-hero-container {
+    .hero-reveal-container {
         position: relative;
         width: 100vw;
         height: 180vh;
@@ -34,7 +34,7 @@ title: Home
         background-color: #000;
     }
 
-    .sticky-video-wrap {
+    .sticky-hero-wrap {
         position: sticky;
         top: 0;
         left: 0;
@@ -44,7 +44,7 @@ title: Home
         overflow: hidden;
     }
 
-    .video-hero-bg {
+    .hero-bg-img {
         position: absolute;
         top: 0;
         left: 0;
@@ -53,9 +53,23 @@ title: Home
         z-index: 0;
         object-fit: cover;
         transform: scale(1.05);
+        opacity: 0;
+        animation: heroZoomOut 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
-    .video-hero-overlay {
+    @keyframes heroZoomOut {
+        from {
+            transform: scale(1.15);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+    }
+
+    .hero-overlay {
         position: absolute;
         top: 0;
         left: 0;
@@ -65,7 +79,7 @@ title: Home
         z-index: 1;
     }
 
-    .video-hero-content {
+    .hero-content {
         position: absolute;
         top: 0;
         left: 0;
@@ -689,15 +703,13 @@ title: Home
     }
 </style>
 
-<div class="video-hero-container">
-    <div class="sticky-video-wrap">
-        <video autoplay loop muted playsinline class="video-hero-bg">
-            <source src="/assets/mixal.mp4" type="video/mp4">
-        </video>
-        <div class="video-hero-overlay"></div>
+<div class="hero-reveal-container">
+    <div class="sticky-hero-wrap">
+        <img src="/assets/mixal-majestic.avif" alt="Wilderness Kennels Hero" class="hero-bg-img">
+        <div class="hero-overlay"></div>
     </div>
 
-    <div class="video-hero-content">
+    <div class="hero-content">
         <h1 class="cursive-hero-title">Wilderness Kennels</h1>
         <div class="hero-scroll-bottom">
             <span class="scroll-text">Scroll To Explore</span>
