@@ -559,12 +559,21 @@
     .hamburger {
       display: flex !important;
       align-items: center;
-      justify-content: center;
-      width: 45px;
+      justify-content: flex-start;
+      width: auto;
       height: 45px;
       cursor: pointer;
       z-index: 10;
       position: relative;
+    }
+
+    .hamburger-icon-wrap {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .hamburger-icon {
@@ -665,6 +674,21 @@
         transform: translate(-50%, -50%) scale(1);
       }
     }
+
+    .hamburger-text {
+      font-family: 'Satisfy', cursive;
+      font-size: 24px;
+      color: #1a1a1a;
+      margin-left: 10px;
+      line-height: 1;
+      display: inline-block;
+      transition: opacity 0.3s ease;
+    }
+
+    .navbar.open .hamburger-text {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 </style>
 
@@ -677,11 +701,14 @@
 
   <div class="navbar-top-row">
     <div class="hamburger" aria-label="Toggle Menu">
-      <img src="/assets/mixal.avif" class="hamburger-icon" alt="Menu">
-      <div class="hamburger-close">
-        <span></span>
-        <span></span>
+      <div class="hamburger-icon-wrap">
+        <img src="/assets/mixal.avif" class="hamburger-icon" alt="Menu">
+        <div class="hamburger-close">
+          <span></span>
+          <span></span>
+        </div>
       </div>
+      <span class="hamburger-text">Menu</span>
     </div>
 
     <div class="mobile-right-group">
