@@ -906,13 +906,19 @@ title: Puppy Application Form
             const hiddenInputs = element.querySelectorAll('.selection-card input');
             hiddenInputs.forEach(input => input.style.display = 'none');
 
-            // 2. Normalize any other elements returning unsupported 'color(' syntax
-            const allElements = element.querySelectorAll('*');
+            // 2. Normalize any other elements returning unsupported 'color(' syntax across the whole page
+            if (document.activeElement) document.activeElement.blur(); // Remove focus rings
+
+            const allElements = document.querySelectorAll('*');
             const originalStyles = new Map();
             
             allElements.forEach(el => {
                 const computed = window.getComputedStyle(el);
-                const propsToCheck = ['color', 'backgroundColor', 'borderColor', 'outlineColor'];
+                const propsToCheck = [
+                    'color', 'backgroundColor', 'borderColor', 'outlineColor', 
+                    'textDecorationColor', 'caretColor', 'columnRuleColor',
+                    'boxShadow', 'textShadow', 'fill', 'stroke'
+                ];
                 
                 let changed = false;
                 propsToCheck.forEach(prop => {
@@ -923,7 +929,11 @@ title: Puppy Application Form
                             changed = true;
                         }
                         // Replace unsupported color function with a safe fallback
-                        el.style[prop] = prop.includes('background') ? 'transparent' : '#1a1a1a';
+                        if (prop === 'boxShadow' || prop === 'textShadow') {
+                            el.style[prop] = 'none';
+                        } else {
+                            el.style[prop] = prop.includes('background') ? 'transparent' : '#1a1a1a';
+                        }
                     }
                 });
             });

@@ -191,10 +191,12 @@ function handleMouseOut(event) {
 }
 
 var toggleDragButton = document.getElementById("toggleDrag");
-toggleDragButton.addEventListener("click", function () {
-  toggleDraggableElements();
-  toggleDragButton.textContent = isDragMode ? "Stop Drag" : "Drag";
-});
+if (toggleDragButton) {
+  toggleDragButton.addEventListener("click", function () {
+    toggleDraggableElements();
+    toggleDragButton.textContent = isDragMode ? "Stop Drag" : "Drag";
+  });
+}
 
 document.addEventListener("dragstart", handleDragStart);
 document.addEventListener("dragover", handleDragOver);
