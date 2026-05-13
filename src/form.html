@@ -900,6 +900,34 @@ title: Puppy Application Form
                 }
             });
 
+            // WORKAROUND: html2canvas crashes on Safari/iOS when encountering 'color(display-p3 ...)' 
+            // from native form elements or computed styles.
+            // 1. Hide the natively styled radio/checkbox inputs completely since we rely on custom labels visually.
+            const hiddenInputs = element.querySelectorAll('.selection-card input');
+            hiddenInputs.forEach(input => input.style.display = 'none');
+
+            // 2. Normalize any other elements returning unsupported 'color(' syntax
+            const allElements = element.querySelectorAll('*');
+            const originalStyles = new Map();
+            
+            allElements.forEach(el => {
+                const computed = window.getComputedStyle(el);
+                const propsToCheck = ['color', 'backgroundColor', 'borderColor', 'outlineColor'];
+                
+                let changed = false;
+                propsToCheck.forEach(prop => {
+                    const val = computed[prop];
+                    if (val && val.includes('color(')) {
+                        if (!changed) {
+                            originalStyles.set(el, el.getAttribute('style'));
+                            changed = true;
+                        }
+                        // Replace unsupported color function with a safe fallback
+                        el.style[prop] = prop.includes('background') ? 'transparent' : '#1a1a1a';
+                    }
+                });
+            });
+
             // Temporarily hide the submit button container so it doesn't appear in the PDF
             const submitContainer = document.querySelector('.submit-container');
             submitContainer.style.display = 'none';
@@ -915,8 +943,16 @@ title: Puppy Application Form
             
             const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
             
-            // Restore the submit button container
+            // RESTORE ALL STYLES
             submitContainer.style.display = 'flex';
+            hiddenInputs.forEach(input => input.style.display = '');
+            for (const [el, origStyle] of originalStyles.entries()) {
+                if (origStyle === null) {
+                    el.removeAttribute('style');
+                } else {
+                    el.setAttribute('style', origStyle);
+                }
+            }
             
             // Create FormData and append the standard form data plus the PDF
             const formData = new FormData(form);
