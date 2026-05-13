@@ -849,9 +849,28 @@ title: Puppy Application Form
         </div>
 
         <div class="submit-container">
-            <button type="submit" class="btn btn-next">Submit Application</button>
+            <button type="submit" class="btn btn-next">Preview Application</button>
         </div>
     </form>
+
+    <div id="previewSection" style="display: none; background: #ffffff; padding: 40px; border-radius: 20px; margin-top: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;" id="previewHeader">
+            <img src="/assets/mixal.avif" alt="Logo Left" style="width: 80px; height: 80px; object-fit: contain;">
+            <div style="text-align: center;">
+                <h1 style="font-family: 'Satisfy', cursive; font-size: 2.5rem; margin: 0; color: #1a1a1a;">Wilderness Kennels</h1>
+                <p style="margin: 5px 0 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Carrying Place ON, Canada</p>
+                <p style="margin: 0; font-weight: bold; font-size: 1.1rem; margin-top: 10px; color: #9fa89c;">Puppy Pre-Adoption Application</p>
+            </div>
+            <img src="/assets/mixal.avif" alt="Logo Right" style="width: 80px; height: 80px; object-fit: contain;">
+        </div>
+        
+        <div id="previewContent"></div>
+        
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee;" id="previewButtons">
+            <button type="button" id="backToEditBtn" class="btn btn-prev">Edit Application</button>
+            <button type="button" id="finalSubmitBtn" class="btn btn-next">Final Submit</button>
+        </div>
+    </div>
 </div>
 
 <!-- html2pdf Library -->
@@ -866,177 +885,184 @@ title: Puppy Application Form
         document.getElementById('fenceDetails').style.display = show ? 'block' : 'none';
     }
 
-    document.getElementById('puppyApplication').addEventListener('submit', async function (e) {
-        e.preventDefault();
+    let globalFormData = null; // Store formData for final submission
+
+    const questionMap = {
+        name: 'Full Name',
+        address: 'Address',
+        city: 'City',
+        provState: 'Prov/State',
+        postalCode: 'Postal Code',
+        homePhone: 'Home Phone',
+        cellPhone: 'Cell Phone',
+        email: 'E-mail',
+        sex: 'I would like a (Sex):',
+        pattern: 'Coat color pattern preference:',
+        shade: 'Coat color shade preference:',
+        coatLength: 'Coat length preference:',
+        preferredPair: 'Preferred Upcoming Pair:',
+        breedQuality: 'Interest in Breed Quality/Show pup?',
+        petOnly: 'Just a pet & plan to spay/neuter?',
+        xrayAgreement: 'Do you agree to have hips/elbows x-rayed between 12-30 months?',
+        mailman: 'The mailman knocks at the door with a package delivery, I want my dog to:',
+        mailman_other: 'Mailman Reaction (Other):',
+        park: 'Meeting old friends in the park, I want my dog to:',
+        park_other: 'Park Reaction (Other):',
+        temp_details: 'Tell us more about the temperament you are seeking:',
+        housing: 'Housing Type:',
+        location: 'Location:',
+        propertyStatus: 'Property Status:',
+        landlordEmail: 'Landlord Email',
+        landlordPhone: 'Landlord Phone',
+        landlordAddress: 'Landlord Address',
+        fenced: 'Do you have a fenced yard?',
+        fence_info: 'Describe material type, height, and size of enclosed area:',
+        timeSpent: 'Where will the dog spend most of its time?',
+        hoursAlone: 'How many hours of the day would the dog normally be left alone?',
+        current_dogs: 'Please list current dogs in household (Age, Breed, Sex, Spayed/Neutered):',
+        numAdults: 'Number of Adults',
+        numChildren: 'Number of Children',
+        agesChildren: 'Ages of Children',
+        futureChildren: 'Expect children in the future?',
+        numCats: 'Number of Cats',
+        otherAnimals: 'Other Animals',
+        training: 'I am interested in training my dog in:',
+        experience: 'Your experience with large breed dogs:',
+        lifestyle: 'Lifestyle Description:',
+        ref1_name: 'Reference #1 Name',
+        ref1_phone: 'Reference #1 Phone',
+        ref1_email: 'Reference #1 Email',
+        ref2_name: 'Reference #2 Name',
+        ref2_phone: 'Reference #2 Phone',
+        ref2_email: 'Reference #2 Email',
+        additional_comments: 'Additional Comments',
+        signature: 'Digital Signature'
+    };
+
+    document.getElementById('puppyApplication').addEventListener('submit', function (e) {
+        e.preventDefault(); // Stop standard submission
         
         const form = this;
-        const submitBtn = form.querySelector('button[type="submit"]');
+        globalFormData = new FormData(form);
+        const dataObj = {};
+        
+        for (const [key, value] of globalFormData.entries()) {
+            if (dataObj[key]) {
+                if (!Array.isArray(dataObj[key])) dataObj[key] = [dataObj[key]];
+                dataObj[key].push(value);
+            } else {
+                dataObj[key] = value;
+            }
+        }
+
+        // Generate Preview HTML
+        let html = '<table style="width:100%; border-collapse: collapse; text-align: left; font-family: \'Inter\', sans-serif;">';
+        for (const [key, value] of Object.entries(dataObj)) {
+            if(key.startsWith('_')) continue;
+            const formattedKey = questionMap[key] || key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+            const displayValue = Array.isArray(value) ? value.join(', ') : value;
+            html += `
+                <tr style="page-break-inside: avoid;">
+                    <td style="padding: 12px 10px; border-bottom: 1px solid #eeeeee; font-weight: 600; width: 45%; color: #333; vertical-align: top;">${formattedKey}</td>
+                    <td style="padding: 12px 10px; border-bottom: 1px solid #eeeeee; color: #1a1a1a; vertical-align: top;">${displayValue || 'N/A'}</td>
+                </tr>
+            `;
+        }
+        html += '</table>';
+        
+        document.getElementById('previewContent').innerHTML = html;
+
+        // Hide Form Elements, Show Preview
+        document.querySelector('.form-header').style.display = 'none';
+        document.querySelector('.form-intro').style.display = 'none';
+        document.getElementById('puppyApplication').style.display = 'none';
+        document.getElementById('previewSection').style.display = 'block';
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('backToEditBtn').addEventListener('click', function() {
+        document.querySelector('.form-header').style.display = 'block';
+        document.querySelector('.form-intro').style.display = 'block';
+        document.getElementById('puppyApplication').style.display = 'block';
+        document.getElementById('previewSection').style.display = 'none';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('finalSubmitBtn').addEventListener('click', async function() {
+        const submitBtn = this;
         const originalBtnText = submitBtn.innerText;
-        
-        // Visual feedback
-        submitBtn.innerText = 'Generating Application...';
+        submitBtn.innerText = 'Submitting...';
         submitBtn.disabled = true;
+        document.getElementById('backToEditBtn').disabled = true;
+
+        let overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.backgroundColor = 'rgba(239, 240, 228, 0.9)';
+        overlay.style.zIndex = '999999';
+        overlay.style.display = 'flex';
+        overlay.style.flexDirection = 'column';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
         
-        let overlay;
+        const loadingMsg = document.createElement('h2');
+        loadingMsg.innerText = 'Finalizing Application...';
+        loadingMsg.style.fontFamily = "'Inter', sans-serif";
+        loadingMsg.style.color = '#333';
+        overlay.appendChild(loadingMsg);
+        document.body.appendChild(overlay);
 
         try {
-            // Read form data and group multiple checkboxes
-            const formData = new FormData(form);
-            const dataObj = {};
-            for (const [key, value] of formData.entries()) {
-                if (dataObj[key]) {
-                    if (!Array.isArray(dataObj[key])) dataObj[key] = [dataObj[key]];
-                    dataObj[key].push(value);
-                } else {
-                    dataObj[key] = value;
-                }
-            }
+            // Hide buttons temporarily so they don't appear in the PDF
+            const buttonsDiv = document.getElementById('previewButtons');
+            buttonsDiv.style.display = 'none';
 
-            // Map of field names to full questions
-            const questionMap = {
-                name: 'Full Name',
-                address: 'Address',
-                city: 'City',
-                provState: 'Prov/State',
-                postalCode: 'Postal Code',
-                homePhone: 'Home Phone',
-                cellPhone: 'Cell Phone',
-                email: 'E-mail',
-                sex: 'I would like a (Sex):',
-                pattern: 'Coat color pattern preference:',
-                shade: 'Coat color shade preference:',
-                coatLength: 'Coat length preference:',
-                preferredPair: 'Preferred Upcoming Pair:',
-                breedQuality: 'Interest in Breed Quality/Show pup?',
-                petOnly: 'Just a pet & plan to spay/neuter?',
-                xrayAgreement: 'Do you agree to have hips/elbows x-rayed between 12-30 months?',
-                mailman: 'The mailman knocks at the door with a package delivery, I want my dog to:',
-                mailman_other: 'Mailman Reaction (Other):',
-                park: 'Meeting old friends in the park, I want my dog to:',
-                park_other: 'Park Reaction (Other):',
-                temp_details: 'Tell us more about the temperament you are seeking:',
-                housing: 'Housing Type:',
-                location: 'Location:',
-                propertyStatus: 'Property Status:',
-                landlordEmail: 'Landlord Email',
-                landlordPhone: 'Landlord Phone',
-                landlordAddress: 'Landlord Address',
-                fenced: 'Do you have a fenced yard?',
-                fence_info: 'Describe material type, height, and size of enclosed area:',
-                timeSpent: 'Where will the dog spend most of its time?',
-                hoursAlone: 'How many hours of the day would the dog normally be left alone?',
-                current_dogs: 'Please list current dogs in household (Age, Breed, Sex, Spayed/Neutered):',
-                numAdults: 'Number of Adults',
-                numChildren: 'Number of Children',
-                agesChildren: 'Ages of Children',
-                futureChildren: 'Expect children in the future?',
-                numCats: 'Number of Cats',
-                otherAnimals: 'Other Animals',
-                training: 'I am interested in training my dog in:',
-                experience: 'Your experience with large breed dogs:',
-                lifestyle: 'Lifestyle Description:',
-                ref1_name: 'Reference #1 Name',
-                ref1_phone: 'Reference #1 Phone',
-                ref1_email: 'Reference #1 Email',
-                ref2_name: 'Reference #2 Name',
-                ref2_phone: 'Reference #2 Phone',
-                ref2_email: 'Reference #2 Email',
-                additional_comments: 'Additional Comments',
-                signature: 'Digital Signature'
-            };
-
-            // 1. Create and show ONLY the loading overlay
-            overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100vw';
-            overlay.style.height = '100vh';
-            overlay.style.backgroundColor = '#eff0e4';
-            overlay.style.zIndex = '999999';
-            overlay.style.display = 'flex';
-            overlay.style.flexDirection = 'column';
-            overlay.style.alignItems = 'center';
-            overlay.style.justifyContent = 'center';
-            
-            const loadingMsg = document.createElement('h2');
-            loadingMsg.innerText = 'Finalizing Application...';
-            loadingMsg.style.fontFamily = 'sans-serif';
-            loadingMsg.style.color = '#333';
-            overlay.appendChild(loadingMsg);
-            document.body.appendChild(overlay);
-
-            // 2. Build the HTML string for the PDF (DO NOT attach to DOM)
-            // Notice we wrap it in a div with a white background so the PDF itself has a clean background
-            let html = '<div style="padding: 40px; background: #ffffff; color: #000000; font-family: sans-serif; width: 800px;">';
-            html += '<h1 style="text-align:center; margin-bottom: 30px;">Wilderness Kennels - Puppy Application</h1>';
-            html += '<table style="width:100%; border-collapse: collapse; text-align: left;">';
-            
-            for (const [key, value] of Object.entries(dataObj)) {
-                if(key.startsWith('_')) continue;
-                const formattedKey = questionMap[key] || key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-                const displayValue = Array.isArray(value) ? value.join(', ') : value;
-                html += `
-                    <tr>
-                        <td style="padding: 12px 10px; border-bottom: 1px solid #eeeeee; font-weight: bold; width: 40%; color: #333;">${formattedKey}</td>
-                        <td style="padding: 12px 10px; border-bottom: 1px solid #eeeeee; color: #000;">${displayValue || 'N/A'}</td>
-                    </tr>
-                `;
-            }
-            html += '</table></div>';
-            
-            // 3. Pass the HTML to html2pdf via a hidden DOM element
+            // Generate PDF from the visible DOM element
+            const previewSection = document.getElementById('previewSection');
             const opt = {
-                margin:       10,
+                margin:       [10, 10, 10, 10], // top, left, bottom, right
                 filename:     'Puppy_Application.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2, useCORS: true, logging: false },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
-            
-            const pdfContainer = document.createElement('div');
-            pdfContainer.innerHTML = html;
-            pdfContainer.style.position = 'absolute';
-            pdfContainer.style.left = '-9999px';
-            pdfContainer.style.top = '0';
-            pdfContainer.style.background = '#fff';
 
-            document.body.appendChild(pdfContainer);
+            const pdfBlob = await html2pdf().set(opt).from(previewSection).output('blob');
 
-            const pdfBlob = await html2pdf()
-                .set(opt)
-                .from(pdfContainer)
-                .output('blob');
+            // Restore buttons
+            buttonsDiv.style.display = 'flex';
 
-            document.body.removeChild(pdfContainer);
-            
-            // 4. Cleanup the overlay now that the PDF is generated
-            document.body.removeChild(overlay);
-            
-            // Append the PDF blob to the FormData
-            formData.append('applicationPdf', pdfBlob, 'Puppy_Application.pdf');
-            
-            // Submit data to Cloudflare Function
-            const response = await fetch(form.action, {
+            // Append PDF to FormData
+            globalFormData.append('applicationPdf', pdfBlob, 'Puppy_Application.pdf');
+
+            // Submit
+            const response = await fetch(document.getElementById('puppyApplication').action, {
                 method: 'POST',
-                body: formData
+                body: globalFormData
             });
-            
+
             if (response.ok) {
-                // If the fetch didn't follow the redirect automatically, manually redirect
                 window.location.href = '/thanks';
             } else {
                 const errorText = await response.text();
                 alert('There was an error submitting the form: ' + errorText);
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
+                document.getElementById('backToEditBtn').disabled = false;
+                document.body.removeChild(overlay);
             }
+
         } catch (error) {
             console.error('Error:', error);
             alert('An unexpected error occurred. Please try again.');
             submitBtn.innerText = originalBtnText;
             submitBtn.disabled = false;
-            
+            document.getElementById('backToEditBtn').disabled = false;
+            document.getElementById('previewButtons').style.display = 'flex';
             if (overlay?.parentNode) {
                 overlay.parentNode.removeChild(overlay);
             }
