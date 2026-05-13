@@ -1023,15 +1023,39 @@ title: Puppy Application Form
 
             // Generate PDF from the visible DOM element
             const previewSection = document.getElementById('previewSection');
+            
+            // Fix for html2canvas scroll offset rendering bugs
+            const originalScrollY = window.scrollY;
+            window.scrollTo(0, 0);
+
+            // Temporarily remove overflow constraints to prevent clipping
+            const formContainer = document.querySelector('.form-container');
+            const origOverflow = formContainer.style.overflow;
+            const origOverflowX = formContainer.style.overflowX;
+            formContainer.style.overflow = 'visible';
+            formContainer.style.overflowX = 'visible';
+
             const opt = {
                 margin:       [10, 10, 10, 10], // top, left, bottom, right
                 filename:     'Puppy_Application.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    logging: false,
+                    scrollY: 0,
+                    windowWidth: document.documentElement.offsetWidth
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: 'css' }
             };
 
             const pdfBlob = await html2pdf().set(opt).from(previewSection).output('blob');
+
+            // Restore scroll and styles
+            formContainer.style.overflow = origOverflow;
+            formContainer.style.overflowX = origOverflowX;
+            window.scrollTo(0, originalScrollY);
 
             // Restore buttons
             buttonsDiv.style.display = 'flex';
