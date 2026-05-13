@@ -892,10 +892,12 @@ title: Puppy Application Form
 
             // Create a simple, clean, hidden summary div to avoid Safari CSS parsing bugs
             const printDiv = document.createElement('div');
-            // We use fixed width and position off-screen so it doesn't affect the user's view
+            // We use fixed width and position it behind everything so it doesn't affect the user's view,
+            // while still allowing html2canvas to render it properly.
             printDiv.style.position = 'absolute';
-            printDiv.style.left = '-9999px';
+            printDiv.style.left = '0';
             printDiv.style.top = '0';
+            printDiv.style.zIndex = '-1000';
             printDiv.style.width = '800px';
             printDiv.style.backgroundColor = '#ffffff';
             printDiv.style.color = '#000000';
@@ -925,7 +927,7 @@ title: Puppy Application Form
                 margin:       10,
                 filename:     'Puppy_Application.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
+                html2canvas:  { scale: 2, useCORS: true, logging: false, scrollX: 0, scrollY: 0, windowWidth: 800 },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             
