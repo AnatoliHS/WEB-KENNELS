@@ -878,94 +878,63 @@ title: Puppy Application Form
         submitBtn.disabled = true;
         
         try {
-            const element = document.querySelector('.form-container');
-            
-            // Update input attributes so html2canvas renders the typed values
-            const inputs = element.querySelectorAll('input, textarea, select');
-            inputs.forEach(input => {
-                if (input.tagName === 'INPUT') {
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        if (input.checked) input.setAttribute('checked', 'checked');
-                        else input.removeAttribute('checked');
-                    } else {
-                        input.setAttribute('value', input.value);
-                    }
-                } else if (input.tagName === 'TEXTAREA') {
-                    input.textContent = input.value;
-                } else if (input.tagName === 'SELECT') {
-                    Array.from(input.options).forEach(option => {
-                        if (option.selected) option.setAttribute('selected', 'selected');
-                        else option.removeAttribute('selected');
-                    });
+            // Read form data and group multiple checkboxes
+            const formData = new FormData(form);
+            const dataObj = {};
+            for (const [key, value] of formData.entries()) {
+                if (dataObj[key]) {
+                    if (!Array.isArray(dataObj[key])) dataObj[key] = [dataObj[key]];
+                    dataObj[key].push(value);
+                } else {
+                    dataObj[key] = value;
                 }
-            });
+            }
 
-            // WORKAROUND: html2canvas crashes on Safari/iOS when encountering 'color(display-p3 ...)' 
-            // from native form elements or computed styles.
-            // 1. Hide the natively styled radio/checkbox inputs completely since we rely on custom labels visually.
-            const hiddenInputs = element.querySelectorAll('.selection-card input');
-            hiddenInputs.forEach(input => input.style.display = 'none');
-
-            // 2. Normalize any other elements returning unsupported 'color(' syntax across the whole page
-            if (document.activeElement) document.activeElement.blur(); // Remove focus rings
-
-            const allElements = document.querySelectorAll('*');
-            const originalStyles = new Map();
+            // Create a simple, clean, hidden summary div to avoid Safari CSS parsing bugs
+            const printDiv = document.createElement('div');
+            // We use fixed width and position off-screen so it doesn't affect the user's view
+            printDiv.style.position = 'absolute';
+            printDiv.style.left = '-9999px';
+            printDiv.style.top = '0';
+            printDiv.style.width = '800px';
+            printDiv.style.backgroundColor = '#ffffff';
+            printDiv.style.color = '#000000';
+            printDiv.style.fontFamily = 'sans-serif';
+            printDiv.style.padding = '40px';
             
-            allElements.forEach(el => {
-                const computed = window.getComputedStyle(el);
-                const propsToCheck = [
-                    'color', 'backgroundColor', 'borderColor', 'outlineColor', 
-                    'textDecorationColor', 'caretColor', 'columnRuleColor',
-                    'boxShadow', 'textShadow', 'fill', 'stroke'
-                ];
-                
-                let changed = false;
-                propsToCheck.forEach(prop => {
-                    const val = computed[prop];
-                    if (val && val.includes('color(')) {
-                        if (!changed) {
-                            originalStyles.set(el, el.getAttribute('style'));
-                            changed = true;
-                        }
-                        // Replace unsupported color function with a safe fallback
-                        if (prop === 'boxShadow' || prop === 'textShadow') {
-                            el.style[prop] = 'none';
-                        } else {
-                            el.style[prop] = prop.includes('background') ? 'transparent' : '#1a1a1a';
-                        }
-                    }
-                });
-            });
-
-            // Temporarily hide the submit button container so it doesn't appear in the PDF
-            const submitContainer = document.querySelector('.submit-container');
-            submitContainer.style.display = 'none';
+            let html = '<h1 style="text-align:center; color:#000; margin-bottom: 30px;">Wilderness Kennels - Puppy Application</h1>';
+            html += '<table style="width:100%; border-collapse: collapse; text-align: left;">';
             
-            // Generate PDF as blob
+            for (const [key, value] of Object.entries(dataObj)) {
+                if(key.startsWith('_')) continue;
+                const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                const displayValue = Array.isArray(value) ? value.join(', ') : value;
+                html += `
+                    <tr>
+                        <td style="padding: 12px 10px; border-bottom: 1px solid #eeeeee; font-weight: bold; width: 40%; color: #333;">${formattedKey}</td>
+                        <td style="padding: 12px 10px; border-bottom: 1px solid #eeeeee; color: #000;">${displayValue || 'N/A'}</td>
+                    </tr>
+                `;
+            }
+            html += '</table>';
+            printDiv.innerHTML = html;
+            document.body.appendChild(printDiv);
+            
+            // Generate PDF from the simple div
             const opt = {
                 margin:       10,
                 filename:     'Puppy_Application.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             
-            const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
+            const pdfBlob = await html2pdf().set(opt).from(printDiv).output('blob');
             
-            // RESTORE ALL STYLES
-            submitContainer.style.display = 'flex';
-            hiddenInputs.forEach(input => input.style.display = '');
-            for (const [el, origStyle] of originalStyles.entries()) {
-                if (origStyle === null) {
-                    el.removeAttribute('style');
-                } else {
-                    el.setAttribute('style', origStyle);
-                }
-            }
+            // Cleanup
+            document.body.removeChild(printDiv);
             
-            // Create FormData and append the standard form data plus the PDF
-            const formData = new FormData(form);
+            // Append the PDF blob to the FormData
             formData.append('applicationPdf', pdfBlob, 'Puppy_Application.pdf');
             
             // Submit data to Cloudflare Function
