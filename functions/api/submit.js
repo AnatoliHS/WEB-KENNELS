@@ -9,11 +9,14 @@ export async function onRequestPost(context) {
       if (value instanceof File) {
         const arrayBuffer = await value.arrayBuffer();
         
-        // Safely convert ArrayBuffer to Base64
+        // Safely and efficiently convert ArrayBuffer to Base64 using chunks
         let binary = '';
         const bytes = new Uint8Array(arrayBuffer);
-        for (let i = 0; i < bytes.byteLength; i++) {
-            binary += String.fromCharCode(bytes[i]);
+        const chunkSize = 8192; // Process 8KB chunks at a time
+        
+        for (let i = 0; i < bytes.length; i += chunkSize) {
+            const chunk = bytes.subarray(i, i + chunkSize);
+            binary += String.fromCharCode.apply(null, chunk);
         }
         
         attachments.push({

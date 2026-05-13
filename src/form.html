@@ -890,26 +890,67 @@ title: Puppy Application Form
                 }
             }
 
-            // Create a simple, clean, hidden summary div to avoid Safari CSS parsing bugs
-            const printDiv = document.createElement('div');
-            // We use fixed width and position it behind everything so it doesn't affect the user's view,
-            // while still allowing html2canvas to render it properly.
-            printDiv.style.position = 'absolute';
-            printDiv.style.left = '0';
-            printDiv.style.top = '0';
-            printDiv.style.zIndex = '-1000';
-            printDiv.style.width = '800px';
-            printDiv.style.backgroundColor = '#ffffff';
-            printDiv.style.color = '#000000';
-            printDiv.style.fontFamily = 'sans-serif';
-            printDiv.style.padding = '40px';
-            
-            let html = '<h1 style="text-align:center; color:#000; margin-bottom: 30px;">Wilderness Kennels - Puppy Application</h1>';
+            // Map of field names to full questions
+            const questionMap = {
+                name: 'Full Name',
+                address: 'Address',
+                city: 'City',
+                provState: 'Prov/State',
+                postalCode: 'Postal Code',
+                homePhone: 'Home Phone',
+                cellPhone: 'Cell Phone',
+                email: 'E-mail',
+                sex: 'I would like a (Sex):',
+                pattern: 'Coat color pattern preference:',
+                shade: 'Coat color shade preference:',
+                coatLength: 'Coat length preference:',
+                preferredPair: 'Preferred Upcoming Pair:',
+                breedQuality: 'Interest in Breed Quality/Show pup?',
+                petOnly: 'Just a pet & plan to spay/neuter?',
+                xrayAgreement: 'Do you agree to have hips/elbows x-rayed between 12-30 months?',
+                mailman: 'The mailman knocks at the door with a package delivery, I want my dog to:',
+                mailman_other: 'Mailman Reaction (Other):',
+                park: 'Meeting old friends in the park, I want my dog to:',
+                park_other: 'Park Reaction (Other):',
+                temp_details: 'Tell us more about the temperament you are seeking:',
+                housing: 'Housing Type:',
+                location: 'Location:',
+                propertyStatus: 'Property Status:',
+                landlordEmail: 'Landlord Email',
+                landlordPhone: 'Landlord Phone',
+                landlordAddress: 'Landlord Address',
+                fenced: 'Do you have a fenced yard?',
+                fence_info: 'Describe material type, height, and size of enclosed area:',
+                timeSpent: 'Where will the dog spend most of its time?',
+                hoursAlone: 'How many hours of the day would the dog normally be left alone?',
+                current_dogs: 'Please list current dogs in household (Age, Breed, Sex, Spayed/Neutered):',
+                numAdults: 'Number of Adults',
+                numChildren: 'Number of Children',
+                agesChildren: 'Ages of Children',
+                futureChildren: 'Expect children in the future?',
+                numCats: 'Number of Cats',
+                otherAnimals: 'Other Animals',
+                training: 'I am interested in training my dog in:',
+                experience: 'Your experience with large breed dogs:',
+                lifestyle: 'Lifestyle Description:',
+                ref1_name: 'Reference #1 Name',
+                ref1_phone: 'Reference #1 Phone',
+                ref1_email: 'Reference #1 Email',
+                ref2_name: 'Reference #2 Name',
+                ref2_phone: 'Reference #2 Phone',
+                ref2_email: 'Reference #2 Email',
+                additional_comments: 'Additional Comments',
+                signature: 'Digital Signature'
+            };
+
+            // Build the HTML string (wrapped in a styled container for the PDF)
+            let html = '<div style="padding: 40px; background: #ffffff; color: #000000; font-family: sans-serif; width: 800px;">';
+            html += '<h1 style="text-align:center; margin-bottom: 30px;">Wilderness Kennels - Puppy Application</h1>';
             html += '<table style="width:100%; border-collapse: collapse; text-align: left;">';
             
             for (const [key, value] of Object.entries(dataObj)) {
                 if(key.startsWith('_')) continue;
-                const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                const formattedKey = questionMap[key] || key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
                 const displayValue = Array.isArray(value) ? value.join(', ') : value;
                 html += `
                     <tr>
@@ -918,23 +959,18 @@ title: Puppy Application Form
                     </tr>
                 `;
             }
-            html += '</table>';
-            printDiv.innerHTML = html;
-            document.body.appendChild(printDiv);
+            html += '</table></div>';
             
-            // Generate PDF from the simple div
+            // Pass the HTML string directly to html2pdf
             const opt = {
                 margin:       10,
                 filename:     'Puppy_Application.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false, scrollX: 0, scrollY: 0, windowWidth: 800 },
+                html2canvas:  { scale: 2, useCORS: true, logging: false },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             
-            const pdfBlob = await html2pdf().set(opt).from(printDiv).output('blob');
-            
-            // Cleanup
-            document.body.removeChild(printDiv);
+            const pdfBlob = await html2pdf().set(opt).from(html).output('blob');
             
             // Append the PDF blob to the FormData
             formData.append('applicationPdf', pdfBlob, 'Puppy_Application.pdf');
