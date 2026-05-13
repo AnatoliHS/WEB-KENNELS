@@ -305,13 +305,7 @@ title: Puppy Application Form
         </p>
     </div>
 
-    <form id="puppyApplication" action="https://formsubmit.co/e8e9edb58586b242aa6a0e3755cb76f2" method="POST">
-        <!-- FormSubmit Configuration -->
-        <input type="text" name="_honey" style="display:none">
-        <input type="hidden" name="_subject" value="New Puppy Application!">
-        <input type="hidden" name="_template" value="table">
-
-        <input type="hidden" name="_next" value="https://wildernesskennels.ca/thanks">
+    <form id="puppyApplication" action="/api/submit" method="POST">
 
 
         <!-- Section 1: Personal Info -->
@@ -860,6 +854,9 @@ title: Puppy Application Form
     </form>
 </div>
 
+<!-- html2pdf Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <script>
     function toggleRental(show) {
         document.getElementById('rentalInfo').style.display = show ? 'block' : 'none';
@@ -868,4 +865,86 @@ title: Puppy Application Form
     function toggleFence(show) {
         document.getElementById('fenceDetails').style.display = show ? 'block' : 'none';
     }
+
+    document.getElementById('puppyApplication').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        
+        const form = this;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerText;
+        
+        // Visual feedback
+        submitBtn.innerText = 'Generating Application...';
+        submitBtn.disabled = true;
+        
+        try {
+            const element = document.querySelector('.form-container');
+            
+            // Update input attributes so html2canvas renders the typed values
+            const inputs = element.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => {
+                if (input.tagName === 'INPUT') {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        if (input.checked) input.setAttribute('checked', 'checked');
+                        else input.removeAttribute('checked');
+                    } else {
+                        input.setAttribute('value', input.value);
+                    }
+                } else if (input.tagName === 'TEXTAREA') {
+                    input.textContent = input.value;
+                } else if (input.tagName === 'SELECT') {
+                    Array.from(input.options).forEach(option => {
+                        if (option.selected) option.setAttribute('selected', 'selected');
+                        else option.removeAttribute('selected');
+                    });
+                }
+            });
+
+            // Temporarily hide the submit button container so it doesn't appear in the PDF
+            const submitContainer = document.querySelector('.submit-container');
+            submitContainer.style.display = 'none';
+            
+            // Generate PDF as blob
+            const opt = {
+                margin:       10,
+                filename:     'Puppy_Application.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            
+            const pdfBlob = await html2pdf().set(opt).from(element).output('blob');
+            
+            // Restore the submit button container
+            submitContainer.style.display = 'flex';
+            
+            // Create FormData and append the standard form data plus the PDF
+            const formData = new FormData(form);
+            formData.append('applicationPdf', pdfBlob, 'Puppy_Application.pdf');
+            
+            // Submit data to Cloudflare Function
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                // If the fetch didn't follow the redirect automatically, manually redirect
+                window.location.href = '/thanks';
+            } else {
+                const errorText = await response.text();
+                alert('There was an error submitting the form: ' + errorText);
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An unexpected error occurred. Please try again.');
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+            
+            // Ensure submit container is visible in case of error
+            document.querySelector('.submit-container').style.display = 'flex';
+        }
+    });
 </script>
