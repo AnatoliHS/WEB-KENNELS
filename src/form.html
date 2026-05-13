@@ -877,6 +877,8 @@ title: Puppy Application Form
         submitBtn.innerText = 'Generating Application...';
         submitBtn.disabled = true;
         
+        let overlay;
+
         try {
             // Read form data and group multiple checkboxes
             const formData = new FormData(form);
@@ -943,7 +945,29 @@ title: Puppy Application Form
                 signature: 'Digital Signature'
             };
 
-            // Build the HTML string (wrapped in a styled container for the PDF)
+            // 1. Create and show ONLY the loading overlay
+            overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100vw';
+            overlay.style.height = '100vh';
+            overlay.style.backgroundColor = '#eff0e4';
+            overlay.style.zIndex = '999999';
+            overlay.style.display = 'flex';
+            overlay.style.flexDirection = 'column';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            
+            const loadingMsg = document.createElement('h2');
+            loadingMsg.innerText = 'Finalizing Application...';
+            loadingMsg.style.fontFamily = 'sans-serif';
+            loadingMsg.style.color = '#333';
+            overlay.appendChild(loadingMsg);
+            document.body.appendChild(overlay);
+
+            // 2. Build the HTML string for the PDF (DO NOT attach to DOM)
+            // Notice we wrap it in a div with a white background so the PDF itself has a clean background
             let html = '<div style="padding: 40px; background: #ffffff; color: #000000; font-family: sans-serif; width: 800px;">';
             html += '<h1 style="text-align:center; margin-bottom: 30px;">Wilderness Kennels - Puppy Application</h1>';
             html += '<table style="width:100%; border-collapse: collapse; text-align: left;">';
@@ -961,7 +985,7 @@ title: Puppy Application Form
             }
             html += '</table></div>';
             
-            // Pass the HTML string directly to html2pdf
+            // 3. Pass the HTML to html2pdf via a hidden DOM element
             const opt = {
                 margin:       10,
                 filename:     'Puppy_Application.pdf',
@@ -970,7 +994,24 @@ title: Puppy Application Form
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
             
-            const pdfBlob = await html2pdf().set(opt).from(html).output('blob');
+            const pdfContainer = document.createElement('div');
+            pdfContainer.innerHTML = html;
+            pdfContainer.style.position = 'absolute';
+            pdfContainer.style.left = '-9999px';
+            pdfContainer.style.top = '0';
+            pdfContainer.style.background = '#fff';
+
+            document.body.appendChild(pdfContainer);
+
+            const pdfBlob = await html2pdf()
+                .set(opt)
+                .from(pdfContainer)
+                .output('blob');
+
+            document.body.removeChild(pdfContainer);
+            
+            // 4. Cleanup the overlay now that the PDF is generated
+            document.body.removeChild(overlay);
             
             // Append the PDF blob to the FormData
             formData.append('applicationPdf', pdfBlob, 'Puppy_Application.pdf');
@@ -996,8 +1037,9 @@ title: Puppy Application Form
             submitBtn.innerText = originalBtnText;
             submitBtn.disabled = false;
             
-            // Ensure submit container is visible in case of error
-            document.querySelector('.submit-container').style.display = 'flex';
+            if (overlay?.parentNode) {
+                overlay.parentNode.removeChild(overlay);
+            }
         }
     });
 </script>
