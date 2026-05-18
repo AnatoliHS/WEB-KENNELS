@@ -1093,8 +1093,16 @@ title: Puppy Application Form
             if (response.ok) {
                 window.location.href = '/thanks';
             } else {
-                const errorText = await response.text();
-                alert('There was an error submitting the form: ' + errorText);
+                let errorMsg = 'There was an error submitting the form. Please try again.';
+                try {
+                    const errorJson = await response.json();
+                    if (errorJson && errorJson.error) {
+                        errorMsg = errorJson.error;
+                    }
+                } catch (e) {
+                    // Response wasn't JSON or parsing failed
+                }
+                alert(errorMsg);
                 submitBtn.innerText = originalBtnText;
                 submitBtn.disabled = false;
                 document.getElementById('backToEditBtn').disabled = false;

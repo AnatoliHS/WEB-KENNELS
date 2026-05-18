@@ -253,9 +253,17 @@ title: Contact Us
                         // Redirects to your client's custom thanks or confirmation page
                         window.location.href = '/thanks';
                     } else {
-                        const errorMsg = await response.text();
+                        let errorMsg = "There was an issue sending your message. Please check your details and try again.";
+                        try {
+                            const errorJson = await response.json();
+                            if (errorJson && errorJson.error) {
+                                errorMsg = errorJson.error;
+                            }
+                        } catch (e) {
+                            // Response wasn't JSON or parsing failed
+                        }
                         console.error("Backend Error:", errorMsg);
-                        alert("There was an issue sending your message. Please check your details and try again.");
+                        alert(errorMsg);
                         submitBtn.innerText = originalText;
                     }
                 } catch (error) {

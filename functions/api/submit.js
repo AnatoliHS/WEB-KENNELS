@@ -82,11 +82,35 @@ export async function onRequestPost(context) {
 
     // Strict email domain validation
     const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
-    if (data.email && !emailRegex.test(data.email)) {
-      return new Response(JSON.stringify({ error: 'Invalid email address format or domain.' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    if (data.email) {
+      if (!emailRegex.test(data.email)) {
+        return new Response(JSON.stringify({ error: 'Invalid email address format.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+
+      // Advanced check: Verify the domain has mail servers (MX records) using Cloudflare DNS over HTTPS
+      try {
+        const domain = data.email.split('@')[1];
+        const dnsRes = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=MX`, {
+          headers: { 'Accept': 'application/dns-json' }
+        });
+        
+        if (dnsRes.ok) {
+          const dnsData = await dnsRes.json();
+          // If Status is 3 (NXDOMAIN) or there are no Answers, it's an invalid/fake domain
+          if (dnsData.Status !== 0 || !dnsData.Answer || dnsData.Answer.length === 0) {
+            return new Response(JSON.stringify({ error: 'The email domain provided does not exist or cannot receive emails.' }), {
+              status: 400,
+              headers: { 'Content-Type': 'application/json' }
+            });
+          }
+        }
+      } catch (e) {
+        // If the DNS check itself fails, we bypass the check to prevent blocking valid users
+        console.error("DNS verification failed", e);
+      }
     }
 
     // Map of field names to full questions
