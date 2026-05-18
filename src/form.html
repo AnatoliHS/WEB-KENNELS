@@ -307,6 +307,8 @@ title: Puppy Application Form
 
     <form id="puppyApplication" action="/api/submit" method="POST">
 
+        <!-- Anti-spam Honeypot -->
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
         <!-- Section 1: Personal Info -->
         <div class="form-section">
@@ -342,7 +344,9 @@ title: Puppy Application Form
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    <input type="email" id="email" name="email" required placeholder="john@example.com"
+                        pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+                        title="Please enter a valid email address with a valid domain (e.g., name@example.com)">
                 </div>
             </div>
         </div>
@@ -842,6 +846,10 @@ title: Puppy Application Form
                 </p>
             </div>
 
+            <!-- Turnstile Widget Embedded Securely Here -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADRz6gybfr4gsiNx"
+                style="margin-bottom: 25px; display: flex; justify-content: center;"></div>
+
             <div class="form-group full-width">
                 <label>Digital Signature (Type your full name)</label>
                 <input type="text" name="signature" required placeholder="Full Name">
@@ -853,28 +861,36 @@ title: Puppy Application Form
         </div>
     </form>
 
-    <div id="previewSection" style="display: none; background: #ffffff; padding: 40px; border-radius: 20px; margin-top: 0;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;" id="previewHeader">
+    <div id="previewSection"
+        style="display: none; background: #ffffff; padding: 40px; border-radius: 20px; margin-top: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 2px solid #eee; padding-bottom: 20px;"
+            id="previewHeader">
             <img src="/assets/mixal.avif" alt="Logo Left" style="width: 80px; height: 80px; object-fit: contain;">
             <div style="text-align: center;">
-                <h1 style="font-family: 'Satisfy', cursive; font-size: 2.5rem; margin: 0; color: #1a1a1a;">Wilderness Kennels</h1>
-                <p style="margin: 5px 0 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Carrying Place ON, Canada</p>
-                <p style="margin: 0; font-weight: bold; font-size: 1.1rem; margin-top: 10px; color: #9fa89c;">Puppy Pre-Adoption Application</p>
+                <h1 style="font-family: 'Satisfy', cursive; font-size: 2.5rem; margin: 0; color: #1a1a1a;">Wilderness
+                    Kennels</h1>
+                <p
+                    style="margin: 5px 0 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
+                    Carrying Place ON, Canada</p>
+                <p style="margin: 0; font-weight: bold; font-size: 1.1rem; margin-top: 10px; color: #9fa89c;">Puppy
+                    Pre-Adoption Application</p>
             </div>
             <img src="/assets/mixal.avif" alt="Logo Right" style="width: 80px; height: 80px; object-fit: contain;">
         </div>
-        
+
         <div id="previewContent"></div>
-        
-        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee;" id="previewButtons">
+
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 50px; padding-top: 30px; border-top: 2px solid #eee;"
+            id="previewButtons">
             <button type="button" id="backToEditBtn" class="btn btn-prev">Edit Application</button>
             <button type="button" id="finalSubmitBtn" class="btn btn-next">Final Submit</button>
         </div>
     </div>
 </div>
 
-<!-- html2pdf Library -->
+<!-- 1. Load Core html2pdf and Cloudflare Turnstile Script Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
     function toggleRental(show) {
@@ -885,7 +901,7 @@ title: Puppy Application Form
         document.getElementById('fenceDetails').style.display = show ? 'block' : 'none';
     }
 
-    let globalFormData = null; // Store formData for final submission
+    let globalFormData = null;
 
     const questionMap = {
         name: 'Full Name',
@@ -940,12 +956,12 @@ title: Puppy Application Form
     };
 
     document.getElementById('puppyApplication').addEventListener('submit', function (e) {
-        e.preventDefault(); // Stop standard submission
-        
+        e.preventDefault();
+
         const form = this;
         globalFormData = new FormData(form);
         const dataObj = {};
-        
+
         for (const [key, value] of globalFormData.entries()) {
             if (dataObj[key]) {
                 if (!Array.isArray(dataObj[key])) dataObj[key] = [dataObj[key]];
@@ -955,10 +971,10 @@ title: Puppy Application Form
             }
         }
 
-        // Generate Preview HTML
+        // Generate Preview HTML Layout
         let html = '<table style="width:100%; border-collapse: collapse; text-align: left; font-family: \'Inter\', sans-serif;">';
         for (const [key, value] of Object.entries(dataObj)) {
-            if(key.startsWith('_')) continue;
+            if (key.startsWith('_') || key === 'cf-turnstile-response') continue;
             const formattedKey = questionMap[key] || key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
             const displayValue = Array.isArray(value) ? value.join(', ') : value;
             html += `
@@ -969,19 +985,19 @@ title: Puppy Application Form
             `;
         }
         html += '</table>';
-        
+
         document.getElementById('previewContent').innerHTML = html;
 
-        // Hide Form Elements, Show Preview
+        // Toggle UI Visibility State
         document.querySelector('.form-header').style.display = 'none';
         document.querySelector('.form-intro').style.display = 'none';
         document.getElementById('puppyApplication').style.display = 'none';
         document.getElementById('previewSection').style.display = 'block';
-        
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    document.getElementById('backToEditBtn').addEventListener('click', function() {
+    document.getElementById('backToEditBtn').addEventListener('click', function () {
         document.querySelector('.form-header').style.display = 'block';
         document.querySelector('.form-intro').style.display = 'block';
         document.getElementById('puppyApplication').style.display = 'block';
@@ -989,12 +1005,22 @@ title: Puppy Application Form
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    document.getElementById('finalSubmitBtn').addEventListener('click', async function() {
+    document.getElementById('finalSubmitBtn').addEventListener('click', async function () {
         const submitBtn = this;
         const originalBtnText = submitBtn.innerText;
         submitBtn.innerText = 'Submitting...';
         submitBtn.disabled = true;
         document.getElementById('backToEditBtn').disabled = true;
+
+        // Check verification token state before spinning compute tasks
+        const turnstileToken = document.querySelector('[name="cf-turnstile-response"]')?.value;
+        if (!turnstileToken) {
+            alert("Please complete the Turnstile security challenge before submitting.");
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+            document.getElementById('backToEditBtn').disabled = false;
+            return;
+        }
 
         let overlay = document.createElement('div');
         overlay.style.position = 'fixed';
@@ -1008,7 +1034,7 @@ title: Puppy Application Form
         overlay.style.flexDirection = 'column';
         overlay.style.alignItems = 'center';
         overlay.style.justifyContent = 'center';
-        
+
         const loadingMsg = document.createElement('h2');
         loadingMsg.innerText = 'Finalizing Application...';
         loadingMsg.style.fontFamily = "'Inter', sans-serif";
@@ -1017,18 +1043,14 @@ title: Puppy Application Form
         document.body.appendChild(overlay);
 
         try {
-            // Hide buttons temporarily so they don't appear in the PDF
+            // Hide preview control actions from compilation matrix
             const buttonsDiv = document.getElementById('previewButtons');
             buttonsDiv.style.display = 'none';
 
-            // Generate PDF from the visible DOM element
             const previewSection = document.getElementById('previewSection');
-            
-            // Fix for html2canvas scroll offset rendering bugs
             const originalScrollY = window.scrollY;
             window.scrollTo(0, 0);
 
-            // Temporarily remove overflow constraints to prevent clipping
             const formContainer = document.querySelector('.form-container');
             const origOverflow = formContainer.style.overflow;
             const origOverflowX = formContainer.style.overflowX;
@@ -1036,34 +1058,33 @@ title: Puppy Application Form
             formContainer.style.overflowX = 'visible';
 
             const opt = {
-                margin:       [10, 10, 10, 10], // top, left, bottom, right
-                filename:     'Puppy_Application.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { 
-                    scale: 2, 
-                    useCORS: true, 
+                margin: [10, 10, 10, 10],
+                filename: 'Puppy_Application.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: {
+                    scale: 2,
+                    useCORS: true,
                     logging: false,
                     scrollY: 0,
                     windowWidth: document.documentElement.offsetWidth
                 },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                pagebreak:    { mode: 'css' }
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: 'css' }
             };
 
             const pdfBlob = await html2pdf().set(opt).from(previewSection).output('blob');
 
-            // Restore scroll and styles
             formContainer.style.overflow = origOverflow;
             formContainer.style.overflowX = origOverflowX;
             window.scrollTo(0, originalScrollY);
 
-            // Restore buttons
+            // Re-establish control layouts
             buttonsDiv.style.display = 'flex';
 
-            // Append PDF to FormData
+            // Re-map internal data streams to new submission body
+            globalFormData.set('cf-turnstile-response', turnstileToken);
             globalFormData.append('applicationPdf', pdfBlob, 'Puppy_Application.pdf');
 
-            // Submit
             const response = await fetch(document.getElementById('puppyApplication').action, {
                 method: 'POST',
                 body: globalFormData
